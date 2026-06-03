@@ -2,7 +2,7 @@
   "name": "webcontent",
   "version": "1.0.0",
   "type": "module",
-  "main": "desktop/Main.js",
+  "main": "Artgine/desktop/Main.js",
   "build": {
     "appId": "com.Artgine",
     "productName": "Artgine",
@@ -33,6 +33,7 @@
     "@types/node": "^22.14.1",
     "@types/ws": "^8.18.1",
     "@webgpu/types": "^0.1.40",
+    "compression": "^1.8.1",
     "cors": "^2.8.5",
     "electron": "^35.2.1",
     "express": "^4.21.2",

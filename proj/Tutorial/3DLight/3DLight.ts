@@ -1,11 +1,11 @@
-//Version
-import "../../../artgine/artgine.js"
+﻿//Version
+import "../../../Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "../../../artgine/basic/CClass.js";
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "../../../artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -23,9 +23,9 @@ gPF.mServer = 'local';
 gPF.mGitHub = false;
 gPF.mVersion = "mpufvoga_17";
 
-import {CAtelier} from "../../../artgine/app/CAtelier.js";
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "../../../artgine/util/CPlugin.js";
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init(['Main.json'],"");
@@ -34,45 +34,45 @@ var Main = gAtl.Canvas('Main.json');
 
 //EntryPoint
 
-import {CObject} from "../../../artgine/basic/CObject.js"
+import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
 
-import { CCamCon3DFirstPerson, CCamCon3DThirdPerson } from "../../../artgine/util/CCamCon.js";
-import { CVec3 } from "../../../artgine/geometry/CVec3.js";
+import { CCamCon3DFirstPerson, CCamCon3DThirdPerson } from "../../../Artgine/artgine/util/CCamCon.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 
-import { CTexture, CTextureInfo } from "../../../artgine/render/CTexture.js";
-import { CRenderPass } from "../../../artgine/render/CRenderPass.js";
-import { CShaderAttr } from "../../../artgine/render/CShaderAttr.js";
-import { CVec1 } from "../../../artgine/geometry/CVec1.js";
+import { CTexture, CTextureInfo } from "../../../Artgine/artgine/render/CTexture.js";
+import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
+import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
+import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
 
-import { CShadowPlane } from "../../../plugin/ShadowPlane/ShadowPlane.js";
-import { CModal, CModalTitleBar } from "../../../artgine/basic/CModal.js";
-import { SDF } from "../../../artgine/z_file/SDF.js";
+import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
+import { CModal, CModalTitleBar } from "../../../Artgine/artgine/basic/CModal.js";
+import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
 
-import { CVec4 } from "../../../artgine/geometry/CVec4.js";
-
-
-import { CBGAttachButton, CMDViewer, CModalFrameView } from "../../../artgine/util/CModalUtil.js";
-import { CVec2 } from "../../../artgine/geometry/CVec2.js";
-
-import { CUtilWeb } from "../../../artgine/util/CUtilWeb.js";
+import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
 
 
-import { CLoaderOption } from "../../../artgine/util/CLoader.js";
-import { CRPAuto, CRPMgr } from "../../../artgine/app/canvas/CRPMgr.js";
-import { CSurface } from "../../../artgine/app/subject/CSurface.js";
-import { CCanvasPluginRPMgr } from "../../../artgine/app/canvas/CCanvasPluginRPMgr.js";
-import { CSubject } from "../../../artgine/app/subject/CSubject.js";
-import { CPaint3D, CPaintCube } from "../../../artgine/app/component/paint/CPaint3D.js";
-import { CPaint } from "../../../artgine/app/component/paint/CPaint.js";
-import { CLight } from "../../../artgine/app/component/CLight.js";
-import { CColor } from "../../../artgine/render/CColor.js";
-import { CCondition } from "../../../artgine/util/CCondition.js";
-import { CMat } from "../../../artgine/geometry/CMat.js";
-import { CPaint2D } from "../../../artgine/app/component/paint/CPaint2D.js";
-import { CFont, CFontOption } from "../../../artgine/util/CFont.js";
-import { CMath } from "../../../artgine/geometry/CMath.js";
-import { CEvent } from "../../../artgine/basic/CEvent.js";
-import { CUpdate } from "../../../artgine/basic/Basic.js";
+import { CBGAttachButton, CMDViewer, CModalFrameView } from "../../../Artgine/artgine/util/CModalUtil.js";
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
+
+import { CUtilWeb } from "../../../Artgine/artgine/util/CUtilWeb.js";
+
+
+import { CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
+import { CRPAuto, CRPMgr } from "../../../Artgine/artgine/app/canvas/CRPMgr.js";
+import { CSurface } from "../../../Artgine/artgine/app/subject/CSurface.js";
+import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CPaint3D, CPaintCube } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
+import { CLight } from "../../../Artgine/artgine/app/component/CLight.js";
+import { CColor } from "../../../Artgine/artgine/render/CColor.js";
+import { CCondition } from "../../../Artgine/artgine/util/CCondition.js";
+import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
+import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
+import { CFont, CFontOption } from "../../../Artgine/artgine/util/CFont.js";
+import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
+import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
+import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
 
 //====================================================
 // 텍스쳐 로딩

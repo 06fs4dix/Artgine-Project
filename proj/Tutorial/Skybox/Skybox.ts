@@ -1,11 +1,11 @@
-//Version
-import "../../../artgine/artgine.js"
+﻿//Version
+import "../../../Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "../../../artgine/basic/CClass.js";
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "../../../artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -23,32 +23,32 @@ gPF.mServer = 'local';
 gPF.mGitHub = false;
 gPF.mVersion = "mpuhzq22_70";
 
-import {CAtelier} from "../../../artgine/app/CAtelier.js";
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "../../../artgine/util/CPlugin.js";
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
 //The content above this line is automatically set by the program. Do not modify.⬆✋🚫⬆☠️💥🔥
 
 //EntryPoint
-import {CObject} from "../../../artgine/basic/CObject.js"
-import { CCamCon3DFirstPerson } from "../../../artgine/util/CCamCon.js";
-import { CRenderPass } from "../../../artgine/render/CRenderPass.js";
-import { CVec3 } from "../../../artgine/geometry/CVec3.js";
-import { CSubject } from "../../../artgine/app/subject/CSubject.js";
-import { CLight } from "../../../artgine/app/component/CLight.js";
-import { CPaint3D, CPaintCube } from "../../../artgine/app/component/paint/CPaint3D.js";
-import { CDayCycle, CLightPlanet } from "../../../artgine/app/component/CLightPlanet.js";
-import { CColor } from "../../../artgine/render/CColor.js";
-import { CBGAttachButton, CModalFrameView } from "../../../artgine/util/CModalUtil.js";
-import { CVec2 } from "../../../artgine/geometry/CVec2.js";
-import { CUtil } from "../../../artgine/basic/CUtil.js";
-import { CDOM } from "../../../artgine/basic/CDOM.js";
-import { CMath } from "../../../artgine/geometry/CMath.js";
-import { CShaderAttr } from "../../../artgine/render/CShaderAttr.js";
-import { CVec1 } from "../../../artgine/geometry/CVec1.js";
-import { CPaintSurface } from "../../../artgine/app/component/paint/CPaintSurface.js";
+import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
+import { CCamCon3DFirstPerson } from "../../../Artgine/artgine/util/CCamCon.js";
+import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CLight } from "../../../Artgine/artgine/app/component/CLight.js";
+import { CPaint3D, CPaintCube } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CDayCycle, CLightPlanet } from "../../../Artgine/artgine/app/component/CLightPlanet.js";
+import { CColor } from "../../../Artgine/artgine/render/CColor.js";
+import { CBGAttachButton, CModalFrameView } from "../../../Artgine/artgine/util/CModalUtil.js";
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
+import { CUtil } from "../../../Artgine/artgine/basic/CUtil.js";
+import { CDOM } from "../../../Artgine/artgine/basic/CDOM.js";
+import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
+import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
+import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
+import { CPaintSurface } from "../../../Artgine/artgine/app/component/paint/CPaintSurface.js";
 
 var Main=gAtl.NewCanvas("Main");
 Main.SetCameraKey(gAtl.Brush().GetCam3D().Key());

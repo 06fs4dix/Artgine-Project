@@ -1,11 +1,11 @@
-//Version
-import "../../../artgine/artgine.js"
+﻿//Version
+import "../../../Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "../../../artgine/basic/CClass.js";
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "../../../artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -23,45 +23,45 @@ gPF.mServer = 'local';
 gPF.mGitHub = false;
 gPF.mVersion = "mpuhzq22_17";
 
-import {CAtelier} from "../../../artgine/app/CAtelier.js";
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "../../../artgine/util/CPlugin.js";
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
 //The content above this line is automatically set by the program. Do not modify.⬆✋🚫⬆☠️💥🔥
 
 //EntryPoint
-import {CObject} from "../../../artgine/basic/CObject.js"
+import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
 
 
-import { CCamCon3DFirstPerson } from "../../../artgine/util/CCamCon.js";
+import { CCamCon3DFirstPerson } from "../../../Artgine/artgine/util/CCamCon.js";
 
-import { CRenderPass } from "../../../artgine/render/CRenderPass.js";
-import { CSubject } from "../../../artgine/app/subject/CSubject.js";
-import { CPaint3D } from "../../../artgine/app/component/paint/CPaint3D.js";
-import { CParticle, CParticleShapeOut } from "../../../artgine/app/subject/CParticle.js";
-import { CPaint2D } from "../../../artgine/app/component/paint/CPaint2D.js";
-import { CColor } from "../../../artgine/render/CColor.js";
-import { CVec3 } from "../../../artgine/geometry/CVec3.js";
-import { CVec2 } from "../../../artgine/geometry/CVec2.js";
-import { CAlpha } from "../../../artgine/render/CAlpha.js";
-import { CAnimation,  CClipAlpha,  CClipColor,  CClipDestroy, CClipPRS } from "../../../artgine/app/component/CAnimation.js";
-import { CAniFlow } from "../../../artgine/app/component/CAniFlow.js";
-import { CSampler, CSampList, CSampMinMax } from "../../../artgine/util/CSampler.js";
-import { CPaintTrail } from "../../../artgine/app/component/paint/CPaintTrail.js";
-import { CRigidBody } from "../../../artgine/app/component/CRigidBody.js";
-import { CForce } from "../../../artgine/app/component/CForce.js";
-import { CEvent } from "../../../artgine/basic/CEvent.js";
-import { CInput } from "../../../artgine/system/CInput.js";
-import { CPool } from "../../../artgine/basic/CPool.js";
-import { CMath } from "../../../artgine/geometry/CMath.js";
-import { CJSON } from "../../../artgine/basic/CJSON.js";
-import { CVec4 } from "../../../artgine/geometry/CVec4.js";
-import { CUtilMath } from "../../../artgine/geometry/CUtilMath.js";
-import { CUpdate } from "../../../artgine/basic/Basic.js";
-import { CCamera } from "../../../artgine/render/CCamera.js";
-import { CTrail } from "../../../artgine/app/subject/CTrail.js";
+import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CParticle, CParticleShapeOut } from "../../../Artgine/artgine/app/subject/CParticle.js";
+import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
+import { CColor } from "../../../Artgine/artgine/render/CColor.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
+import { CAlpha } from "../../../Artgine/artgine/render/CAlpha.js";
+import { CAnimation,  CClipAlpha,  CClipColor,  CClipDestroy, CClipPRS } from "../../../Artgine/artgine/app/component/CAnimation.js";
+import { CAniFlow } from "../../../Artgine/artgine/app/component/CAniFlow.js";
+import { CSampler, CSampList, CSampMinMax } from "../../../Artgine/artgine/util/CSampler.js";
+import { CPaintTrail } from "../../../Artgine/artgine/app/component/paint/CPaintTrail.js";
+import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
+import { CForce } from "../../../Artgine/artgine/app/component/CForce.js";
+import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
+import { CInput } from "../../../Artgine/artgine/system/CInput.js";
+import { CPool } from "../../../Artgine/artgine/basic/CPool.js";
+import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
+import { CJSON } from "../../../Artgine/artgine/basic/CJSON.js";
+import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
+import { CUtilMath } from "../../../Artgine/artgine/geometry/CUtilMath.js";
+import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
+import { CCamera } from "../../../Artgine/artgine/render/CCamera.js";
+import { CTrail } from "../../../Artgine/artgine/app/subject/CTrail.js";
 
 
 

@@ -1,4 +1,4 @@
-import { Binormal3, Build, CMat, CVec2, CVec3, CVec4,  FloatMulMat,  LWVPMul,
+﻿import { Binormal3, Build, CMat, CVec2, CVec3, CVec4,  FloatMulMat,  LWVPMul,
 	Mat4ToMat3, MatAdd, MatMul,  Normal3,  OutColor, OutPosition, RGBAAdd, TexOff3,
 	Sam2DToColor, Sam2DToMat, Sam2DToV4, Tangent4, UV2,  V3AddV3, V3Dot,
 	V3Nor, Vertex3, Weight4, WeightIndexI4, discard, V4MulMatCoordi,
@@ -18,11 +18,11 @@ import { Binormal3, Build, CMat, CVec2, CVec3, CVec4,  FloatMulMat,  LWVPMul,
 	V2MulFloat,
 	V2AddV2,
 	V4Fract,
-	Null} from "../../../artgine/z_file/Shader"
+	Null} from "../../../Artgine/artgine/z_file/Shader"
 
 import {
 	SDF
-} from "../../../artgine/z_file/SDF";
+} from "../../../Artgine/artgine/z_file/SDF";
 
 var worldMat : CMat;
 var viewMat : CMat;

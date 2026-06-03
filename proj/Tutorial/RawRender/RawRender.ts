@@ -1,27 +1,27 @@
-//Version
-import "../../../artgine/artgine.js"
-import {CPreferences} from "../../../artgine/basic/CPreferences.js";
+﻿//Version
+import "../../../Artgine/artgine/artgine.js"
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 
 
 
-import { CCamera } from "../../../artgine/render/CCamera.js";
-import { CFrame } from "../../../artgine/util/CFrame.js";
-import { CFile } from "../../../artgine/system/CFile.js";
-import { CUtil } from "../../../artgine/basic/CUtil.js";
-import { CParserIMG } from "../../../artgine/util/parser/CParserIMG.js";
-import { CConfirm } from "../../../artgine/basic/CModal.js";
-import { CChecker } from "../../../artgine/util/CChecker.js";
-import { CMeshDrawNode } from "../../../artgine/render/CMeshDrawNode.js";
-import { CConsol } from "../../../artgine/basic/CConsol.js";
-import { CVec3 } from "../../../artgine/geometry/CVec3.js";
-import { CCamCon3DFirstPerson } from "../../../artgine/util/CCamCon.js";
-import { CVec4 } from "../../../artgine/geometry/CVec4.js";
-import { CShader, CVertexFormat } from "../../../artgine/render/CShader.js";
-import { CMeshCreateInfo } from "../../../artgine/render/CMeshCreateInfo.js";
-import { CVec2 } from "../../../artgine/geometry/CVec2.js";
-import { CMat } from "../../../artgine/geometry/CMat.js";
-import { CEvent } from "../../../artgine/basic/CEvent.js";
-import { CUpdate } from "../../../artgine/basic/Basic.js";
+import { CCamera } from "../../../Artgine/artgine/render/CCamera.js";
+import { CFrame } from "../../../Artgine/artgine/util/CFrame.js";
+import { CFile } from "../../../Artgine/artgine/system/CFile.js";
+import { CUtil } from "../../../Artgine/artgine/basic/CUtil.js";
+import { CParserIMG } from "../../../Artgine/artgine/util/parser/CParserIMG.js";
+import { CConfirm } from "../../../Artgine/artgine/basic/CModal.js";
+import { CChecker } from "../../../Artgine/artgine/util/CChecker.js";
+import { CMeshDrawNode } from "../../../Artgine/artgine/render/CMeshDrawNode.js";
+import { CConsol } from "../../../Artgine/artgine/basic/CConsol.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CCamCon3DFirstPerson } from "../../../Artgine/artgine/util/CCamCon.js";
+import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
+import { CShader, CVertexFormat } from "../../../Artgine/artgine/render/CShader.js";
+import { CMeshCreateInfo } from "../../../Artgine/artgine/render/CMeshCreateInfo.js";
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
+import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
+import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
+import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
 var gPF = new CPreferences();
 var gFrame=new CFrame(gPF);
 var gCam=new CCamera(gPF);

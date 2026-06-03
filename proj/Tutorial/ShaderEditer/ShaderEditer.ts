@@ -1,11 +1,11 @@
-//Version
-import "../../../artgine/artgine.js"
+﻿//Version
+import "../../../Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "../../../artgine/basic/CClass.js";
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "../../../artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -23,25 +23,25 @@ gPF.mServer = 'local';
 gPF.mGitHub = false;
 gPF.mVersion = "mpuhzq22_60";
 
-import {CAtelier} from "../../../artgine/app/CAtelier.js";
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "../../../artgine/util/CPlugin.js";
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
 //The content above this line is automatically set by the program. Do not modify.⬆✋🚫⬆☠️💥🔥
 
 //EntryPoint
-import {CObject} from "../../../artgine/basic/CObject.js"
-import {  CFileViewer } from "../../../artgine/util/CModalUtil.js";
-import { CCamCon3DThirdPerson } from "../../../artgine/util/CCamCon.js";
-import { CSubject } from "../../../artgine/app/subject/CSubject.js";
-import { CPaint3D } from "../../../artgine/app/component/paint/CPaint3D.js";
-import { CColor } from "../../../artgine/render/CColor.js";
-import { CVec3 } from "../../../artgine/geometry/CVec3.js";
-import { CRenderPass } from "../../../artgine/render/CRenderPass.js";
-import { CWASM } from "../../../artgine/basic/CWASM.js";
-import { CConsol } from "../../../artgine/basic/CConsol.js";
+import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
+import {  CFileViewer } from "../../../Artgine/artgine/util/CModalUtil.js";
+import { CCamCon3DThirdPerson } from "../../../Artgine/artgine/util/CCamCon.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CColor } from "../../../Artgine/artgine/render/CColor.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
+import { CWASM } from "../../../Artgine/artgine/basic/CWASM.js";
+import { CConsol } from "../../../Artgine/artgine/basic/CConsol.js";
 let Main=gAtl.NewCanvas("Main");
 let camCon=new CCamCon3DThirdPerson(gAtl.Frame().Input());
 gAtl.Brush().GetCam3D().SetCamCon(camCon);

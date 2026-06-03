@@ -1,11 +1,11 @@
-//Version
-import "../../../artgine/artgine.js"
+﻿//Version
+import "../../../Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "../../../artgine/basic/CClass.js";
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "../../../artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -23,34 +23,34 @@ gPF.mServer = 'local';
 gPF.mGitHub = false;
 gPF.mVersion = "mpufvoga_22";
 
-import {CAtelier} from "../../../artgine/app/CAtelier.js";
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "../../../artgine/util/CPlugin.js";
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
 //The content above this line is automatically set by the program. Do not modify.⬆✋🚫⬆☠️💥🔥
 
 //EntryPoint
-import {CObject} from "../../../artgine/basic/CObject.js"
+import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
 
-import { CFrame } from "../../../artgine/util/CFrame.js";
-import { CInput } from "../../../artgine/system/CInput.js";
-import { CUtilObj } from "../../../artgine/basic/CUtilObj.js";
-import { CVec3 } from "../../../artgine/geometry/CVec3.js";
-import { CAlert } from "../../../artgine/basic/CAlert.js";
-import { CModal } from "../../../artgine/basic/CModal.js";
+import { CFrame } from "../../../Artgine/artgine/util/CFrame.js";
+import { CInput } from "../../../Artgine/artgine/system/CInput.js";
+import { CUtilObj } from "../../../Artgine/artgine/basic/CUtilObj.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CAlert } from "../../../Artgine/artgine/basic/CAlert.js";
+import { CModal } from "../../../Artgine/artgine/basic/CModal.js";
 
-import { CDOM } from "../../../artgine/basic/CDOM.js";
-import { CEvent } from "../../../artgine/basic/CEvent.js";
-import { CVec4 } from "../../../artgine/geometry/CVec4.js";
-import { CLoaderOption } from "../../../artgine/util/CLoader.js";
-import { CTexture } from "../../../artgine/render/CTexture.js";
-import { CSubject } from "../../../artgine/app/subject/CSubject.js";
-import { CPaint2D, CPaintHTML } from "../../../artgine/app/component/paint/CPaint2D.js";
-import { CAnimation, CClipCoodi, CClipImg, CClipMesh } from "../../../artgine/app/component/CAnimation.js";
-import { CAniFlow } from "../../../artgine/app/component/CAniFlow.js";
-import { CPaint3D } from "../../../artgine/app/component/paint/CPaint3D.js";
+import { CDOM } from "../../../Artgine/artgine/basic/CDOM.js";
+import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
+import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
+import { CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
+import { CTexture } from "../../../Artgine/artgine/render/CTexture.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CPaint2D, CPaintHTML } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
+import { CAnimation, CClipCoodi, CClipImg, CClipMesh } from "../../../Artgine/artgine/app/component/CAnimation.js";
+import { CAniFlow } from "../../../Artgine/artgine/app/component/CAniFlow.js";
+import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
 gAtl.NewCanvas("Main");
 gAtl.Canvas("Main").SetCameraKey("2D");
 let sub=gAtl.Canvas("Main").PushSub(new CSubject());
