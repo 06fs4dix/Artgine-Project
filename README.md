@@ -2,6 +2,17 @@ Artgine project demos — built with the [Artgine](https://github.com/06fs4dix/A
 
 > Language **[한국어](README-ko.md)**
 
+## Getting Started
+
+```bash
+git clone --recursive https://github.com/06fs4dix/Artgine-Project.git
+cd Artgine-Project
+npm install
+npm start
+```
+
+Set `projectPath` to the desired folder under `proj` in the Artgine app, then click **Run**.
+
 ## Demo
 
 **2D**

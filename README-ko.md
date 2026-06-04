@@ -2,6 +2,17 @@
 
 > Language **[English](README.md)**
 
+## 시작하기
+
+```bash
+git clone --recursive https://github.com/06fs4dix/Artgine-Project.git
+cd Artgine-Project
+npm install
+npm start
+```
+
+Artgine 앱에서 `projectPath`를 `proj` 하위 원하는 폴더로 설정하고 **Run**을 클릭하세요.
+
 ## 데모
 
 **2D**
