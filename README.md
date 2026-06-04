@@ -4,6 +4,25 @@ Artgine project demos — built with the [Artgine](https://github.com/06fs4dix/A
 
 ## Demo
 
+**2D**
+
+| Name | Description | Link |
+|------|-------------|------|
+| Maze | 2D maze game with player, monsters, and pathfinding | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/2D/Maze/Maze.html) |
+| Shooting | 2D top-down shooting game with multiplayer server support | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/2D/Shooting/Shooting.html) |
+| SideScroll | 2D side-scrolling platformer | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/2D/SideScroll/SideScroll.html) |
+| Village | 2D RPG village with multiplayer, bloom, and water effects | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/2D/Village/Village.html) |
+
+**3D**
+
+| Name | Description | Link |
+|------|-------------|------|
+| BoxShow | 3D grid of boxes with animated wave and dynamic color effects | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/3D/BoxShow/BoxShow.html) |
+| GeometryViewer | 3D GeoJSON geometry viewer with custom shaders | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/3D/GeometryViewer/GeometryViewer.html) |
+| Map | Real-time 3D object placement on a 2D MapLibre map | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/3D/Map/Map.html) |
+| ModularVillage | 3D modular village scene with day/night cycle and shadows | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/3D/ModularVillage/ModularVillage.html) |
+| Voxel | 3D voxel world editor with navigation mesh | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/3D/Voxel/Voxel.html) |
+
 **Tutorial**
 
 | Name | Description | Link |
@@ -25,22 +44,3 @@ Artgine project demos — built with the [Artgine](https://github.com/06fs4dix/A
 | Voxel | Interactive 2D/3D voxel map editor | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Voxel/Voxel.html) |
 | Wind | Wind effect simulation on 2D and 3D objects | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Wind/Wind.html) |
 | Terrain | 3D terrain with shadow mapping, collision, and rigid body physics | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Terrain/Terrain.html) |
-
-**3D**
-
-| Name | Description | Link |
-|------|-------------|------|
-| BoxShow | 3D grid of boxes with animated wave and dynamic color effects | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/3D/BoxShow/BoxShow.html) |
-| GeometryViewer | 3D GeoJSON geometry viewer with custom shaders | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/3D/GeometryViewer/GeometryViewer.html) |
-| Map | Real-time 3D object placement on a 2D MapLibre map | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/3D/Map/Map.html) |
-| ModularVillage | 3D modular village scene with day/night cycle and shadows | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/3D/ModularVillage/ModularVillage.html) |
-| Voxel | 3D voxel world editor with navigation mesh | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/3D/Voxel/Voxel.html) |
-
-**2D**
-
-| Name | Description | Link |
-|------|-------------|------|
-| Maze | 2D maze game with player, monsters, and pathfinding | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/2D/Maze/Maze.html) |
-| Shooting | 2D top-down shooting game with multiplayer server support | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/2D/Shooting/Shooting.html) |
-| SideScroll | 2D side-scrolling platformer | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/2D/SideScroll/SideScroll.html) |
-| Village | 2D RPG village with multiplayer, bloom, and water effects | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/2D/Village/Village.html) |

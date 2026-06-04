@@ -4,6 +4,25 @@
 
 ## 데모
 
+**2D**
+
+| 이름 | 설명 | 링크 |
+|------|------|------|
+| Maze | 플레이어, 몬스터, 길찾기가 포함된 2D 미로 게임 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/Maze/Maze.html) |
+| Shooting | 멀티플레이어 서버를 지원하는 2D 탑다운 슈팅 게임 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/Shooting/Shooting.html) |
+| SideScroll | 2D 사이드 스크롤 플랫포머 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/SideScroll/SideScroll.html) |
+| Village | 멀티플레이어, 블룸, 수면 효과가 포함된 2D RPG 마을 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/Village/Village.html) |
+
+**3D**
+
+| 이름 | 설명 | 링크 |
+|------|------|------|
+| BoxShow | 웨이브 애니메이션과 동적 색상 효과의 3D 박스 그리드 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/3D/BoxShow/BoxShow.html) |
+| GeometryViewer | 커스텀 셰이더를 이용한 3D GeoJSON 지오메트리 뷰어 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/3D/GeometryViewer/GeometryViewer.html) |
+| Map | 2D MapLibre 지도 위에 3D 오브젝트 실시간 배치 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/3D/Map/Map.html) |
+| ModularVillage | 주야 사이클과 그림자가 포함된 3D 모듈형 마을 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/3D/ModularVillage/ModularVillage.html) |
+| Voxel | 네비게이션 메시를 포함한 3D 복셀 월드 에디터 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/3D/Voxel/Voxel.html) |
+
 **Tutorial**
 
 | 이름 | 설명 | 링크 |
@@ -25,22 +44,3 @@
 | Voxel | 2D/3D 대화형 복셀 맵 에디터 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Voxel/Voxel.html) |
 | Wind | 2D/3D 오브젝트에 바람 효과 시뮬레이션 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Wind/Wind.html) |
 | Terrain | 그림자 맵핑, 충돌, 강체 물리가 포함된 3D 지형 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Terrain/Terrain.html) |
-
-**3D**
-
-| 이름 | 설명 | 링크 |
-|------|------|------|
-| BoxShow | 웨이브 애니메이션과 동적 색상 효과의 3D 박스 그리드 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/3D/BoxShow/BoxShow.html) |
-| GeometryViewer | 커스텀 셰이더를 이용한 3D GeoJSON 지오메트리 뷰어 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/3D/GeometryViewer/GeometryViewer.html) |
-| Map | 2D MapLibre 지도 위에 3D 오브젝트 실시간 배치 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/3D/Map/Map.html) |
-| ModularVillage | 주야 사이클과 그림자가 포함된 3D 모듈형 마을 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/3D/ModularVillage/ModularVillage.html) |
-| Voxel | 네비게이션 메시를 포함한 3D 복셀 월드 에디터 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/3D/Voxel/Voxel.html) |
-
-**2D**
-
-| 이름 | 설명 | 링크 |
-|------|------|------|
-| Maze | 플레이어, 몬스터, 길찾기가 포함된 2D 미로 게임 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/Maze/Maze.html) |
-| Shooting | 멀티플레이어 서버를 지원하는 2D 탑다운 슈팅 게임 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/Shooting/Shooting.html) |
-| SideScroll | 2D 사이드 스크롤 플랫포머 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/SideScroll/SideScroll.html) |
-| Village | 멀티플레이어, 블룸, 수면 효과가 포함된 2D RPG 마을 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/Village/Village.html) |
