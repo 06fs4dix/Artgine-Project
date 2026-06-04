@@ -21,7 +21,7 @@ gPF.mCanvas = "";
 gPF.mWASM = false;
 gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mpy21tes_2";
+gPF.mVersion = "mpzi2imp_2";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -640,6 +640,7 @@ window["ResetWater"]=ResetWater;
 
 
 new CModalFrameView();
+
 
 
 
