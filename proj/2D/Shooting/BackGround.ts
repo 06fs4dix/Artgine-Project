@@ -1,18 +1,18 @@
-﻿import { CAniFlow } from "../../../Artgine/artgine/app/component/CAniFlow.js";
-import CBehavior from "../../../Artgine/artgine/app/component/CBehavior.js";
-import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
-import { CForce } from "../../../Artgine/artgine/app/component/CForce.js";
-import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
-import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
+﻿import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
+import CBehavior from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
+import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
+import { CForce } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CForce.js";
+import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
+import { CPaint2D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
+import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
+import { CUpdate } from "https://06fs4dix.github.io/Artgine/artgine/basic/Basic.js";
 
-import { CPlaneInside } from "../../../Artgine/artgine/geometry/CPlaneInside.js";
-import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
-import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
-import { CTexture } from "../../../Artgine/artgine/render/CTexture.js";
-import { CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
+import { CPlaneInside } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CPlaneInside.js";
+import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
+import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
+import { CVec4 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec4.js";
+import { CTexture } from "https://06fs4dix.github.io/Artgine/artgine/render/CTexture.js";
+import { CLoaderOption } from "https://06fs4dix.github.io/Artgine/artgine/util/CLoader.js";
 
 export class BackGround extends CSubject
 {

@@ -1,151 +1,46 @@
+[Artgine](https://github.com/06fs4dix/Artgine) 엔진으로 제작된 프로젝트 데모 모음입니다.
 
+> Language **[English](README.md)**
 
-## 소개
+## 데모
 
-Artgine은 Electron과 웹 기술로 구축된 2D/3D 콘텐츠 엔진 및 통합 개발 환경입니다. 웹 기반 그래픽 렌더링과 데스크톱 앱의 편의성을 결합하여, 복잡한 설정 없이도 인터랙티브한 콘텐츠와 게임을 손쉽게 개발할 수 있도록 설계되었습니다.
+**Tutorial**
 
+| 이름 | 설명 | 링크 |
+|------|------|------|
+| Canvas | Artgine 기본 튜토리얼 — 2D/3D 캔버스 생성과 카메라 전환 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Canvas/Canvas.html) |
+| Water | Water 플러그인을 이용한 실시간 수면 렌더링 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Water/Water.html) |
+| 2DLight | ShadowPlane 플러그인을 사용한 2D 조명과 그림자 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/2DLight/2DLight.html) |
+| 3DLight | 그림자 맵핑, 노멀맵, 스카이박스를 포함한 3D 조명 데모 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/3DLight/3DLight.html) |
+| Animation | 블랙보드 기반 상태 관리를 포함한 2D 스프라이트 애니메이션 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Animation/Animation.html) |
+| Collusion | Rapier 물리 엔진을 이용한 충돌 감지 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Collusion/Collusion.html) |
+| DecalSample | 3D 메시 표면에 데칼 투영 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/DecalSample/DecalSample.html) |
+| IKSample | 3D 리그 모델의 FABR IK 및 LookAt IK | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/IKSample/IKSample.html) |
+| Particle | 트레일, 물리, 빌보드 효과를 포함한 파티클 시스템 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Particle/Particle.html) |
+| Plugin | 플러그인 시스템 연동 튜토리얼 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Plugin/Plugin.html) |
+| RawRender | 커스텀 버텍스/프래그먼트 셰이더를 이용한 저수준 렌더링 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/RawRender/RawRender.html) |
+| ShaderEditer | Monaco IDE를 이용한 실시간 셰이더 에디터 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/ShaderEditer/ShaderEditer.html) |
+| Skybox | 절차적 구름과 주야 조명 사이클을 포함한 스카이박스 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Skybox/Skybox.html) |
+| ULPC | Universal LPC 캐릭터 — 풀 애니메이션 상태머신 2D 캐릭터 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/ULPC/ULPC.html) |
+| Voxel | 2D/3D 대화형 복셀 맵 에디터 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Voxel/Voxel.html) |
+| Wind | 2D/3D 오브젝트에 바람 효과 시뮬레이션 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Wind/Wind.html) |
+| Terrain | 그림자 맵핑, 충돌, 강체 물리가 포함된 3D 지형 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Terrain/Terrain.html) |
 
-## 예제
 **3D**
 
-[Water](https://06fs4dix.github.io/Artgine/proj/Tutorial/Water/Water.html) : Water
-
-[ModularVillage](https://06fs4dix.github.io/Artgine/proj/3D/ModularVillage/ModularVillage.html) : Village
-
-[Voxel](https://06fs4dix.github.io/Artgine/proj/3D/Voxel/Voxel.html) : Voxel
+| 이름 | 설명 | 링크 |
+|------|------|------|
+| BoxShow | 웨이브 애니메이션과 동적 색상 효과의 3D 박스 그리드 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/3D/BoxShow/BoxShow.html) |
+| GeometryViewer | 커스텀 셰이더를 이용한 3D GeoJSON 지오메트리 뷰어 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/3D/GeometryViewer/GeometryViewer.html) |
+| Map | 2D MapLibre 지도 위에 3D 오브젝트 실시간 배치 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/3D/Map/Map.html) |
+| ModularVillage | 주야 사이클과 그림자가 포함된 3D 모듈형 마을 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/3D/ModularVillage/ModularVillage.html) |
+| Voxel | 네비게이션 메시를 포함한 3D 복셀 월드 에디터 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/3D/Voxel/Voxel.html) |
 
 **2D**
 
-[Village](https://06fs4dix.github.io/Artgine/proj/2D/Village/Village.html) : Village 
-
-[Maze](https://06fs4dix.github.io/Artgine/proj/2D/Maze/Maze.html) : Maze
-
-
-
-<details>
-  <summary>More examples</summary>
-
-[ArtgineTutorial](https://06fs4dix.github.io/Artgine/proj/Tutorial/Canvas/Canvas.html) : A guided tutorial on how to use Artgine.
-
-[CollusionTest](https://06fs4dix.github.io/Artgine/proj/Tutorial/Collusion/Collusion.html): Collision testing.  
-
-[3DLight](https://06fs4dix.github.io/Artgine/proj/Tutorial/3DLight/3DLight.html): 3D lights and shadows.
-
-[Map](https://06fs4dix.github.io/Artgine/proj/3D/Map/Map.html): Track 3D objects from a 2D map.  
-
-[BoxShow](https://06fs4dix.github.io/Artgine/proj/3D/BoxShow/BoxShow.html) : Box visual viewer
-
-[Shooting](https://06fs4dix.github.io/Artgine/proj/2D/Shooting/Shooting.html) : Shooting
-
-[Up](https://06fs4dix.github.io/Artgine/proj/2D/SideScroll/SideScroll.html) : Up
-
-[Skybox](https://06fs4dix.github.io/Artgine/proj/Tutorial/Skybox/Skybox.html) : Skybox
-
-</details>
-
-## 시작하기
-
-- start.bat/start.sh실행 하거나  ```💡"알 수 없는 게시자" 경고가 표시될 수 있습니다```
-	
-	
-- 콘솔에 아래와 같이 입력해주세요
-```bash
-git clone https://github.com/06fs4dix/Artgine.git
-cd Artgine
-npm install
-npm start
-```
-
-서버만 단독으로 실행하려면  npm start가 아닌 npm run start_web 해주세요.
-
-### 폴더 설명
-
-```
-├── README.md 
-├── LICENSE.txt
-├── NOTICE.txt
-├── package.json
-├── start.bat(윈도우 시작 배치파일
-├── start.sh(리눅스 배치 파일
-├── tsconfig.json
-├── App/ (일렉트론 파일
-├── artgine/ (엔진 파일
-├── db/(데이타베이스 저장 경로
-├── plugin/
-└── proj/(프로젝트 파일
-```
->🚫프로젝트 파일은 작업 폴더보다 상위에 있으면 안됩니다.
-
-### 일렉트론
-
-![Artgine App](https://06fs4dix.github.io/Artgine/help/Artgine.png)
-
-**탭 설명**
-- App : 애플리케이션 실행 설정
-- Preference : 프로젝트 구성 설정
-- Include : 프로젝트 포함 파일 설정
-- Manifest : PWA 구성 설정
-- ServiceWorker : 캐시 설정
-- Plugin : Artgine용 외부 라이브러리 구성
-  
-
-**App Tap**
-- url : 실행할 웹 서버 주소
-	- 예시 : `http://localhost:8050/Artgine`
-- projectPath : 시작할 프로젝트
-	- 예시 : `proj/Tutorial/ShaderEditer`
-- "Folder" 버튼을 사용하여 프로젝트 디렉토리를 찾아보고 선택
-- width, height : 시작 크기
-	- 예시: `1024 x 768`
-    - 참고: .exe 파일로 실행할 때만 유지됨
-**프로그램 모드**
-- program : 프로그램 역할
-    - `developer`: 개발자 모드 (배포 금지 / 서버와 클라이언트가 동시에 적용됨)
-    - `client`: 클라이언트 모드
-    - `server`: 웹 서버 모드
-**서버 구성**
-- server : 서버 운영
-    - `local` : 파일 기반 로컬 실행
-    - `remote` : 외부 서버에 연결할 때 사용
-    - `webserver` : 웹 서버 운영 (외부 접근 허용)
-**표시 옵션**
-- fullScreen : 전체 화면 모드
-- github : GitHub 라이브러리를 사용하여 실행
-	- 프로젝트에 Chrome 로컬 실행 파일(.bat) 생성
-	
-**작업 버튼**
-- Run : 애플리케이션 실행
-- VSCode : Visual Studio Code에서 열기
-
-### 프로젝트 실행
-1. projectPath에 ```Folder```를 선택하고 원하는 proj폴더를 선택 합니다.
-2. ```Run(F9)```버튼을 누르거나 단축키를 누르면 프로젝트가 로드됩니다.
-
-
-### 코드 작성
-
-일렉트론 앱으로 실행시  
-> 💡 **참고**: 수동으로 작업시 자유롭게 수정 가능합니다
-
-> 🚫 다음 파일들은 **[Project Name]**을 기준으로 자동 생성 및 관리되므로 수정에 주의하세요
-
-
-- **[Project Name]** HTML 파일
-- **[Project Name]** TypeScript 파일
-- **[Project Name]** JSON 파일
-- **[Project Name]** Web Manifest 파일
-
-**📝 수정 가능한 범위**
-
-`EntryPoint 이후의 코드만` 수정 가능합니다. 아래는 예시 입니다.
-```js
-//The content above this line is automatically set by the program. Do not modify.⬆✋🚫⬆☠️💥🔥
-//EntryPoint
-//여기서부터 수정가능
-```
-
-자동 생성되는 코드는 수정하지 마세요
-
-**GPT**
-
-[Artgine BOT](https://chatgpt.com/g/g-68ad603d9b3081918273f3d352f995fc-artgine-bot) : 미리 학습된 GPT Bot을 이용해서 실시간 질문해보세요.
+| 이름 | 설명 | 링크 |
+|------|------|------|
+| Maze | 플레이어, 몬스터, 길찾기가 포함된 2D 미로 게임 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/Maze/Maze.html) |
+| Shooting | 멀티플레이어 서버를 지원하는 2D 탑다운 슈팅 게임 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/Shooting/Shooting.html) |
+| SideScroll | 2D 사이드 스크롤 플랫포머 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/SideScroll/SideScroll.html) |
+| Village | 멀티플레이어, 블룸, 수면 효과가 포함된 2D RPG 마을 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/Village/Village.html) |

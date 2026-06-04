@@ -1,12 +1,12 @@
-﻿import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
-import { CPad } from "../../../Artgine/artgine/app/subject/CPad.js";
-import { CUIText } from "../../../Artgine/artgine/app/subject/CUI.js";
-import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
-import { CAlert } from "../../../Artgine/artgine/basic/CAlert.js";
-import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
-import { CPlaneInside } from "../../../Artgine/artgine/geometry/CPlaneInside.js";
-import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+﻿import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
+import { CPad } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CPad.js";
+import { CUIText } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CUI.js";
+import { CUpdate } from "https://06fs4dix.github.io/Artgine/artgine/basic/Basic.js";
+import { CAlert } from "https://06fs4dix.github.io/Artgine/artgine/basic/CAlert.js";
+import { CEvent } from "https://06fs4dix.github.io/Artgine/artgine/basic/CEvent.js";
+import { CPlaneInside } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CPlaneInside.js";
+import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
+import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
 import { CPacShooting } from "./CPacShooting.js";
 import {CProComp} from "./CProComp.js";
 

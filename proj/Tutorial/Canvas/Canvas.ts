@@ -1,11 +1,11 @@
 ﻿//Version
-import "../../../Artgine/artgine/artgine.js"
+import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
+import {CClass} from "https://06fs4dix.github.io/Artgine/artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -23,9 +23,9 @@ gPF.mServer = 'local';
 gPF.mGitHub = false;
 gPF.mVersion = "mpuhzq22_2";
 
-import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
+import {CPlugin} from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
@@ -33,37 +33,37 @@ await gAtl.Init([],"");
 
 //EntryPoint
 //The content above this line is automatically set by the program. Do not modify.⬆✋🚫⬆☠️💥🔥
-import { CInput } from "../../../Artgine/artgine/system/CInput.js";
-import { CCamCon2DFreeMove, CCamCon3DFirstPerson } from "../../../Artgine/artgine/util/CCamCon.js";
-import { CFrame } from "../../../Artgine/artgine/util/CFrame.js";
-import {  CModalBackGround, CFileViewer, CMDViewer } from "../../../Artgine/artgine/util/CModalUtil.js";
+import { CInput } from "https://06fs4dix.github.io/Artgine/artgine/system/CInput.js";
+import { CCamCon2DFreeMove, CCamCon3DFirstPerson } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
+import { CFrame } from "https://06fs4dix.github.io/Artgine/artgine/util/CFrame.js";
+import {  CModalBackGround, CFileViewer, CMDViewer } from "https://06fs4dix.github.io/Artgine/artgine/util/CModalUtil.js";
 
-import { CUtil } from "../../../Artgine/artgine/basic/CUtil.js";
-import { CUtilObj } from "../../../Artgine/artgine/basic/CUtilObj.js";
-import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
-import { CUtilWeb } from "../../../Artgine/artgine/util/CUtilWeb.js";
-import { CString } from "../../../Artgine/artgine/basic/CString.js";
-import { CPath } from "../../../Artgine/artgine/basic/CPath.js";
-import { CAlert } from "../../../Artgine/artgine/basic/CAlert.js";
-import { CConfirm, CModal } from "../../../Artgine/artgine/basic/CModal.js";
-import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
-import { CChecker } from "../../../Artgine/artgine/util/CChecker.js";
-import { CTimer } from "../../../Artgine/artgine/system/CTimer.js";
-import { CTutorial } from "../../../Artgine/artgine/util/CTutorial.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
-import { CLan } from "../../../Artgine/artgine/basic/CLan.js";
-import { CStorage } from "../../../Artgine/artgine/system/CStorage.js";
-import { CObject } from "../../../Artgine/artgine/basic/CObject.js";
-import { CScript } from "../../../Artgine/artgine/util/CScript.js";
-import { GetDevToolScriptViewer, InitDevToolScriptViewer } from "../../../Artgine/artgine/tool/DevTool.js";
-import { CFile } from "../../../Artgine/artgine/system/CFile.js";
-import { CTooltip } from "../../../Artgine/artgine/util/CTooltip.js";
-import { Bootstrap } from "../../../Artgine/artgine/basic/Bootstrap.js";
-import { CCoroutine } from "../../../Artgine/artgine/util/CCoroutine.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
-import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CDOM } from "../../../Artgine/artgine/basic/CDOM.js";
+import { CUtil } from "https://06fs4dix.github.io/Artgine/artgine/basic/CUtil.js";
+import { CUtilObj } from "https://06fs4dix.github.io/Artgine/artgine/basic/CUtilObj.js";
+import { CEvent } from "https://06fs4dix.github.io/Artgine/artgine/basic/CEvent.js";
+import { CUtilWeb } from "https://06fs4dix.github.io/Artgine/artgine/util/CUtilWeb.js";
+import { CString } from "https://06fs4dix.github.io/Artgine/artgine/basic/CString.js";
+import { CPath } from "https://06fs4dix.github.io/Artgine/artgine/basic/CPath.js";
+import { CAlert } from "https://06fs4dix.github.io/Artgine/artgine/basic/CAlert.js";
+import { CConfirm, CModal } from "https://06fs4dix.github.io/Artgine/artgine/basic/CModal.js";
+import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
+import { CChecker } from "https://06fs4dix.github.io/Artgine/artgine/util/CChecker.js";
+import { CTimer } from "https://06fs4dix.github.io/Artgine/artgine/system/CTimer.js";
+import { CTutorial } from "https://06fs4dix.github.io/Artgine/artgine/util/CTutorial.js";
+import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
+import { CLan } from "https://06fs4dix.github.io/Artgine/artgine/basic/CLan.js";
+import { CStorage } from "https://06fs4dix.github.io/Artgine/artgine/system/CStorage.js";
+import { CObject } from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js";
+import { CScript } from "https://06fs4dix.github.io/Artgine/artgine/util/CScript.js";
+import { GetDevToolScriptViewer, InitDevToolScriptViewer } from "https://06fs4dix.github.io/Artgine/artgine/tool/DevTool.js";
+import { CFile } from "https://06fs4dix.github.io/Artgine/artgine/system/CFile.js";
+import { CTooltip } from "https://06fs4dix.github.io/Artgine/artgine/util/CTooltip.js";
+import { Bootstrap } from "https://06fs4dix.github.io/Artgine/artgine/basic/Bootstrap.js";
+import { CCoroutine } from "https://06fs4dix.github.io/Artgine/artgine/util/CCoroutine.js";
+import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
+import { CPaint2D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
+import { CPaint3D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CDOM } from "https://06fs4dix.github.io/Artgine/artgine/basic/CDOM.js";
 
 
 //CLan.SetCode("en");

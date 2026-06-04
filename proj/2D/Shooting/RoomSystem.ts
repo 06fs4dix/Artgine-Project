@@ -1,10 +1,10 @@
-﻿import { CCanvas } from "../../../Artgine/artgine/app/canvas/CCanvas.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
-import { CConsol } from "../../../Artgine/artgine/basic/CConsol.js";
-import { CBlackBoardRef } from "../../../Artgine/artgine/basic/CObject.js";
-import { CUniqueID } from "../../../Artgine/artgine/basic/CUniqueID.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+﻿import { CCanvas } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CCanvas.js";
+import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
+import { CUpdate } from "https://06fs4dix.github.io/Artgine/artgine/basic/Basic.js";
+import { CConsol } from "https://06fs4dix.github.io/Artgine/artgine/basic/CConsol.js";
+import { CBlackBoardRef } from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js";
+import { CUniqueID } from "https://06fs4dix.github.io/Artgine/artgine/basic/CUniqueID.js";
+import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
 import { CPacShooting } from "./CPacShooting.js";
 import { CProComp } from "./CProComp.js";
 

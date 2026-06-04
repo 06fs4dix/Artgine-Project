@@ -1,27 +1,27 @@
 ﻿//Version
-import "../../../Artgine/artgine/artgine.js"
-import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
+import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
+import {CPreferences} from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
 
 
 
-import { CCamera } from "../../../Artgine/artgine/render/CCamera.js";
-import { CFrame } from "../../../Artgine/artgine/util/CFrame.js";
-import { CFile } from "../../../Artgine/artgine/system/CFile.js";
-import { CUtil } from "../../../Artgine/artgine/basic/CUtil.js";
-import { CParserIMG } from "../../../Artgine/artgine/util/parser/CParserIMG.js";
-import { CConfirm } from "../../../Artgine/artgine/basic/CModal.js";
-import { CChecker } from "../../../Artgine/artgine/util/CChecker.js";
-import { CMeshDrawNode } from "../../../Artgine/artgine/render/CMeshDrawNode.js";
-import { CConsol } from "../../../Artgine/artgine/basic/CConsol.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
-import { CCamCon3DFirstPerson } from "../../../Artgine/artgine/util/CCamCon.js";
-import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
-import { CShader, CVertexFormat } from "../../../Artgine/artgine/render/CShader.js";
-import { CMeshCreateInfo } from "../../../Artgine/artgine/render/CMeshCreateInfo.js";
-import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
-import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
-import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
-import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
+import { CCamera } from "https://06fs4dix.github.io/Artgine/artgine/render/CCamera.js";
+import { CFrame } from "https://06fs4dix.github.io/Artgine/artgine/util/CFrame.js";
+import { CFile } from "https://06fs4dix.github.io/Artgine/artgine/system/CFile.js";
+import { CUtil } from "https://06fs4dix.github.io/Artgine/artgine/basic/CUtil.js";
+import { CParserIMG } from "https://06fs4dix.github.io/Artgine/artgine/util/parser/CParserIMG.js";
+import { CConfirm } from "https://06fs4dix.github.io/Artgine/artgine/basic/CModal.js";
+import { CChecker } from "https://06fs4dix.github.io/Artgine/artgine/util/CChecker.js";
+import { CMeshDrawNode } from "https://06fs4dix.github.io/Artgine/artgine/render/CMeshDrawNode.js";
+import { CConsol } from "https://06fs4dix.github.io/Artgine/artgine/basic/CConsol.js";
+import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
+import { CCamCon3DFirstPerson } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
+import { CVec4 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec4.js";
+import { CShader, CVertexFormat } from "https://06fs4dix.github.io/Artgine/artgine/render/CShader.js";
+import { CMeshCreateInfo } from "https://06fs4dix.github.io/Artgine/artgine/render/CMeshCreateInfo.js";
+import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
+import { CMat } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMat.js";
+import { CEvent } from "https://06fs4dix.github.io/Artgine/artgine/basic/CEvent.js";
+import { CUpdate } from "https://06fs4dix.github.io/Artgine/artgine/basic/Basic.js";
 var gPF = new CPreferences();
 var gFrame=new CFrame(gPF);
 var gCam=new CCamera(gPF);

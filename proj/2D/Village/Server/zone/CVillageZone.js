@@ -1,4 +1,4 @@
-import { parentPort, workerData } from "worker_threads";
+﻿import { parentPort, workerData } from "worker_threads";
 import { CStream } from "../../../../../artgine/basic/CStream.js";
 import { CGeometryInfo } from "../../../../../artgine/app/component/CGeometryComp.js";
 import { CCanvas } from "../../../../../artgine/app/canvas/CCanvas.js";
@@ -9,7 +9,7 @@ import { CForce } from "../../../../../artgine/app/component/CForce.js";
 import { CZone } from "../../../../../artgine/server/CWorldServer.js";
 import { PacketWorld } from "../../../../../artgine/server/PacketWorld.js";
 import { PacketVillage } from "../PacketVillage.js";
-import "../../../../../artgine/artgine.js";
+import "../../https://06fs4dix.github.io/Artgine/artgine.js";
 import CBehavior from "../../../../../artgine/app/component/CBehavior.js";
 import { CCollider } from "../../../../../artgine/app/component/CCollider.js";
 import { CBound } from "../../../../../artgine/geometry/CBound.js";

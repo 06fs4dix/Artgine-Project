@@ -1,11 +1,11 @@
-import { CAniFlow } from "../../../Artgine/artgine/app/component/CAniFlow.js";
-import { CForce } from "../../../Artgine/artgine/app/component/CForce.js";
-import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
-import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
-import { CPad } from "../../../Artgine/artgine/app/subject/CPad.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+﻿import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
+import { CForce } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CForce.js";
+import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
+import { CPaint2D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
+import { CPad } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CPad.js";
+import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
+import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
+import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
 export class ULPCChar extends CSubject {
     mState = "idle";
     mDir = CVec3.eDir.Down;

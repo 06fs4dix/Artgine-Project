@@ -18,11 +18,11 @@
 	V2MulFloat,
 	V2AddV2,
 	V4Fract,
-	Null} from "../../../Artgine/artgine/z_file/Shader"
+	Null} from "https://06fs4dix.github.io/Artgine/artgine/z_file/Shader"
 
 import {
 	SDF
-} from "../../../Artgine/artgine/z_file/SDF";
+} from "https://06fs4dix.github.io/Artgine/artgine/z_file/SDF";
 
 var worldMat : CMat;
 var viewMat : CMat;
