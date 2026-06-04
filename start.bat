@@ -16,7 +16,10 @@ if %ERRORLEVEL% NEQ 0 (
     pause
     exit /b
 )
-
+if not exist "Artgine/desktop\Start.js" (
+    echo Artgine/desktop/Start.js not found. Installing submodules...
+    git submodule update --init --recursive
+)
 echo Start... Artgine/desktop/Start.js
 node Artgine/desktop/Start.js
 pause
