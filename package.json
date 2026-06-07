@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "node Artgine/desktop/Start.js",
-    "start_web": "node desktop/WebStart.js",
+    "start_web": "node Artgine/desktop/WebStart.js",
     "artgine_class": "node script/gen_class_push.js",
     "artgine_packet": "node script/gen_packet.js"
   },
@@ -52,9 +52,6 @@
   "description": "",
   "devDependencies": {
     "del": "^8.0.0",
-    "electron-packager": "^17.1.2",
-    "gulp": "^5.0.1",
-    "gulp-javascript-obfuscator": "^1.1.6",
     "through2": "^4.0.2",
     "vinyl-sourcemaps-apply": "^0.2.1"
   }
