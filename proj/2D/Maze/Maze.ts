@@ -1,5 +1,4 @@
-﻿//Version
-const version='mn9vjd50_13';
+//Version
 import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
 
 //Class
@@ -25,8 +24,9 @@ gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mCanvas = "";
 gPF.mWASM = false;
-gPF.mServer = 'local';
-gPF.mGitHub = true;
+gPF.mServer = 'webServer';
+gPF.mGitHub = false;
+gPF.mVersion = "mq4m3t4v_21";
 
 import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
 
@@ -38,6 +38,7 @@ var Main = gAtl.Canvas('Main.json');
 //The content above this line is automatically set by the program. Do not modify.⬆✋🚫⬆☠️💥🔥
 
 //EntryPoint
+CBlackBoard.Push("Main", Main);
 import {CObject} from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js"
 
 import { CBGAttachButton, CBGFadeEffect } from "https://06fs4dix.github.io/Artgine/artgine/util/CModalUtil.js";
@@ -66,8 +67,6 @@ import { CAudioTag } from "https://06fs4dix.github.io/Artgine/artgine/system/aud
 import { CWindow } from "https://06fs4dix.github.io/Artgine/artgine/system/CWindow.js";
 import { CBound } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CBound.js";
 import { CDOM } from "https://06fs4dix.github.io/Artgine/artgine/basic/CDOM.js";
-import { CNavigation } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CNavigation.js";
-import { CNaviMgr } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CNavigationMgr.js";
 import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
 import { CPaint2D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
 import { CColor } from "https://06fs4dix.github.io/Artgine/artgine/render/CColor.js";
@@ -79,85 +78,8 @@ import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/compo
 
 
 
-CNavigation.Normal=50;
-CNavigation.Small=10;
 var g_camMode=0;
 let g_fadeEffect=new CBGFadeEffect("test");
-//gAtl.Frame().Win().HtmlPush(g_fadeEffect);
-//g_fadeEffect.AniStart("test");
-
-Main.GetGI().mNavi=new CNaviMgr();
-Main.GetGI().mNavi.Init(new CVec3(100,100,1));
-
-
-let tileList=new Array<CSubject>();
-let FindPath=(_target : CSubject,_end : CVec3)=>
-{
-    for(let each0 of tileList)
-    {
-        each0.Destroy();
-    }
-    let bound=new CBound();
-    bound.InitBound(16);
-    console.time();
-    //let path=Main.GetGI().mNavi.PathAll(_target.GetPos(),_end,bound,true);
-    // let pass=new Set<number>();
-    // let path=Main.GetGI().m_navi.Path(_target.GetPos(),_end,bound,pass,true);
-    let path=[];
-    Main.GetGI().mOctree.Find(_target.GetPos(),_end,bound,(_ocData : COctreeData)=>{
-        let cl=_ocData.mData as CCollider;
-        if(cl.GetLayer()=="block")  return false;
-
-        
-        return true;
-    },path,8);
-    console.timeEnd();
-
-    let so=new CStopover(path,500);
-    _target.FindComp(CRigidBody).Clear();
-    _target.FindComp(CRigidBody).Push(so);
-
-
-    // for(var i=0;i<path.length;++i)
-    // {
-    //     let C=Main.PushSub(new CSubject());
-    //     C.SetPos(CMath.V3AddV3(path[i],new CVec3(0,0,2)));
-    //     C.PushComp(new CPaint2D(gAtl.Frame().Pal().GetNoneTex(),new CVec2(20,20))) as CPaint2D;
-    //     tileList.push(C);
-    // }
-
-    // for(var y=0;y<10*5;++y)
-    // for(var x=0;x<10*5;++x)
-    // {
-    //     let C=Main.Push(new CSubject());
-    //     C.SetPos(new CVec3(x*CNavigation.Small+CNavigation.Small*0.5,y*CNavigation.Small+CNavigation.Small*0.5,1));
-    
-    //     let pt=C.PushComp(new CPaint2D(gAtl.Frame().Pal().GetBlackTex(),new CVec2(CNavigation.Small*0.9,CNavigation.Small*0.9))) as CPaint2D;
-    //     if(Main.GetGI().m_navi.R().m_keyS[x+y*100*5]!=0)
-    //         pt.SetColorModel(new CColor(1,0,0,SDF.eColorModel.RGBAdd));
-    //     else
-    //         pt.SetColorModel(new CColor(0,0,0.5,SDF.eColorModel.RGBAdd));
-    //     tileList.push(C);
-        
-    // }
-
-    // for(var y=0;y<20;++y)
-    // for(var x=0;x<20;++x)
-    // {
-    //     let C=Main.PushSub(new CSubject());
-    //     C.SetPos(new CVec3(x*CNavigation.Normal+CNavigation.Normal*0.5,y*CNavigation.Normal+CNavigation.Normal*0.5,1));
-    
-    //     let pt=C.PushComp(new CPaint2D(gAtl.Frame().Pal().GetBlackTex(),new CVec2(CNavigation.Normal*0.9,CNavigation.Normal*0.9))) as CPaint2D;
-    //     if(Main.GetGI().mNavi.R().mKeyN[x+y*100]!=0)
-    //         pt.SetColorModel(new CColor(1,0,0,SDF.eColorModel.RGBAdd));
-    //     else
-    //         pt.SetColorModel(new CColor(0,0,0.5,SDF.eColorModel.RGBAdd));
-    //     pt.SetAlphaModel(new CAlpha(0.5));
-    //     tileList.push(C);
-     
-    // }
-};
-CBlackBoard.Push("FindPath",FindPath);
 
 let size=100;
 
@@ -195,7 +117,6 @@ CBlackBoard.Push("RayExtrapolate",RayExtrapolate);
 let ResetMaze=(_xCount,_yCount)=>
 {
     g_fadeEffect.AniStart("Level : "+CStage.level);
-    Main.GetGI().mNavi.Reset(true);
     let rp=new CRenderPass(gAtl.Frame().Pal().Sl2DKey());
     if(CStage.fog)
         rp.mTag.add("light");
@@ -264,11 +185,6 @@ let ResetMaze=(_xCount,_yCount)=>
         pt.SetPos(new CVec3(size/3*x,size/3*y));
         pt.PushRenderPass(rp);
 
-        //let cl=new CCollider(pt);
-        //cl.SetLayer("block");
-        //cl.SetBoundType(CBound.eType.Box);
-        //pt.m_autoLoad.textureFilter=CTexture.eFilter.Neaest;
-        //pt.SetColorModel(new CColor(0.1,0.1,0.1,SDF.eColorModel.RGBAdd));
         return pt;
     };
 
@@ -294,15 +210,11 @@ let ResetMaze=(_xCount,_yCount)=>
             for(let sx=-1;sx<=1;++sx)
             sub.PushComp(RandBasicTile(sx,sy));
         }
-            //pt=sub.PushComp(new CPaint2D("floor/rect_gray0.png",new CVec2(size,size))) as CPaint2D;
         else if(maze[x+y*count.x]==2 )
         {
             pt=sub.PushComp(new CPaint2D("floor/tomb0.png",new CVec2(size,size))) as CPaint2D;
             pt.PushRenderPass(rp);
             pt.mAutoLoad.mFilter=CTexture.eFilter.Neaest;
-            //let cl=sub.PushComp(new CCollider(pt)) as CCollider;
-            //cl.SetLayer("block");
-
         }
         else if(maze[x+y*count.x]==3)
         {
@@ -311,7 +223,6 @@ let ResetMaze=(_xCount,_yCount)=>
             pt.mAutoLoad.mFilter=CTexture.eFilter.Neaest;
             let cl=sub.PushComp(new CCollider(pt)) as CCollider;
             cl.SetLayer("endpoint");
-            //cl.SetTrigger(true);
 
         }
         else
@@ -320,9 +231,6 @@ let ResetMaze=(_xCount,_yCount)=>
             pt.PushRenderPass(rp);
             let cl=sub.PushComp(new CCollider(pt)) as CCollider;
             cl.SetLayer("block");
-            let navi=sub.PushComp(new CNavigation());
-            navi.mStatic=true;
-            navi.InitBound(pt);
 
             if(IsBlockFun(x-1,y)==1)
             {
@@ -331,9 +239,6 @@ let ResetMaze=(_xCount,_yCount)=>
                 pt.SetPos(new CVec3(-size/3,0))
                 cl=sub.PushComp(new CCollider(pt)) as CCollider;
                 cl.SetLayer("block");
-                navi=sub.PushComp(new CNavigation());
-                navi.mStatic=true;
-                navi.InitBound(pt);
             }
             else    sub.PushComp(RandBasicTile(-1,0));
             if(IsBlockFun(x+1,y)==1)
@@ -343,9 +248,6 @@ let ResetMaze=(_xCount,_yCount)=>
                 pt.SetPos(new CVec3(size/3,0))
                 cl=sub.PushComp(new CCollider(pt)) as CCollider;
                 cl.SetLayer("block");
-                navi=sub.PushComp(new CNavigation());
-                navi.mStatic=true;
-                navi.InitBound(pt);
             }
             else    sub.PushComp(RandBasicTile(1,0));
 
@@ -356,9 +258,6 @@ let ResetMaze=(_xCount,_yCount)=>
                 pt.SetPos(new CVec3(0,-size/3))
                 cl=sub.PushComp(new CCollider(pt)) as CCollider;
                 cl.SetLayer("block");
-                navi=sub.PushComp(new CNavigation());
-                navi.mStatic=true;
-                navi.InitBound(pt);
             }
             else    sub.PushComp(RandBasicTile(0,-1));
             if(IsBlockFun(x,y+1)==1)
@@ -368,24 +267,13 @@ let ResetMaze=(_xCount,_yCount)=>
                 pt.SetPos(new CVec3(0,size/3))
                 cl=sub.PushComp(new CCollider(pt)) as CCollider;
                 cl.SetLayer("block");
-                navi=sub.PushComp(new CNavigation());
-                navi.mStatic=true;
-                navi.InitBound(pt);
             }
             else    sub.PushComp(RandBasicTile(0,1));
             sub.PushComp(RandBasicTile(-1,-1));
             sub.PushComp(RandBasicTile(1,-1));
             sub.PushComp(RandBasicTile(-1,1));
             sub.PushComp(RandBasicTile(1,1));
-            
-
         }
-            
-        
-            
-        
-        
-
     }
 
     for(let i=0;i<CStage.small;++i)
@@ -409,9 +297,6 @@ let ResetMaze=(_xCount,_yCount)=>
                 pt.SetPos(new CVec3(size/3*sx,size/3*sy));
                 let cl=sub.PushComp(new CCollider(pt)) as CCollider;
                 cl.SetLayer("block");
-                let navi=sub.PushComp(new CNavigation());
-                navi.mStatic=true;
-                navi.InitBound(pt);
             }
             
         }
@@ -440,11 +325,6 @@ let ResetMaze=(_xCount,_yCount)=>
     }
     sub.FindComp(CUser).m_camMode=g_camMode;
         
-    
-    
-    //camcon.m_smoothSpd=0.05;
-
-
     let FineRoad=()=>
     {
         while(true)
@@ -472,55 +352,21 @@ let ResetMaze=(_xCount,_yCount)=>
         sub.SetPos(new CVec3(road.x*size,road.y*size));
         Main.PushSub(sub);
     }
-
-
-
 }
-
-
 
 ResetMaze(5,5);
 
 CBlackBoard.Push("ResetMaze",ResetMaze);
-//CStage.nextCorutine.Start();
-
-
-//let co=new CCoroutine(CStage.Next);
-// co.Start();
-// co.Restart();
-//co.Restart();
 
 let cam2D=gAtl.Brush().GetCam2D();
 cam2D.Set2DZoom(1.5);
 
-
-gAtl.Frame().PushEvent(CEvent.eType.Update,()=>{
-    // if(gAtl.Frame().Win().IsResize())
-    // {
-    //     let cam2D=gAtl.Brush().GetCam2D();
-    //     let per=800/gAtl.Frame().PF().m_height;
-    //     cam2D.SetSize(per*gAtl.Frame().PF().m_width,gAtl.Frame().PF().m_height*per);
-    //     cam2D.ResetOrthographic();
-
-        
-    // }
-    // if(gAtl.Frame().Win().Input().KeyUp(CInput.eKey.LButton))
-    // {
-    //     //const statusBarHeight = window.outerHeight - window.innerHeight;
-    //     const startY = document.documentElement.getBoundingClientRect().top * -1;
-    //     CMsg.Info(gAtl.Frame().PF().m_top+" @ "+gAtl.Frame().Win().m_by+" | "+gAtl.Frame().PF().m_width+"/"+gAtl.Frame().PF().m_height);
-    // }
-   
-});
 gAtl.Frame().PushEvent(CEvent.eType.Resume,new CEvent(()=>{
     ResetMaze(5,5);
     CAlert.Info("화면 전환시 다시 시작");
-   
 }));
-//CWebUtil.ScreenFull();
 
 let Option_btn=new CBGAttachButton("Option_btn",101,new CVec2(320,240));
-//gAtl.Frame().Win().HtmlPush(Option_btn);
 Option_btn.SetTitleText("Option");
 Option_btn.SetContent(`
 <div>
@@ -535,8 +381,8 @@ Option_btn.SetContent(`
     <button id='FlowCam' onclick='ClickCamOption("FlowCam")'>CamFlow</button>
     <button id='StopCam' onclick='ClickCamOption("StopCam")'>CamStop</button>
     <button id='StopCam' onclick='ClickScreenFull()'>Full</button>
-    
 </div>`);
+
 function ClickScreenFull()
 {
     CWindow.ScreenFull();
@@ -547,12 +393,12 @@ window["ClickScreenFull"]=ClickScreenFull;
 document.getElementById("PWAInstall_btn").addEventListener("click", () => {
     CPWA.Install();
   });
+
 function ClickCamOption(_id)
 {
     let value=CDOM.IDValue(_id);
     if(_id=="zoomSize")
     {
-        //CMsg.E("call");
         cam2D.Set2DZoom(Number(value));
     }
     else if(_id=="Restart_btn")
@@ -575,84 +421,15 @@ function ClickCamOption(_id)
         cam2D.SetCamCon(null);
         g_camMode=0;
     }
-
-
 }
 window["ClickCamOption"]=ClickCamOption;
 
-
 CSysAuth.Confirm(true).then(async (_enable)=>{
-    
     if(_enable==false)  return;
     let audio=new CAudioTag("Rolemusic - A ninja among culturachippers.mp3");
     audio.Volume(0.5);
     audio.Play();
-
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

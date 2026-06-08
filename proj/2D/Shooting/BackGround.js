@@ -1,5 +1,5 @@
-﻿import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
-import CBehavior from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
+import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
+import { CBehavior } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
 import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
 import { CForce } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CForce.js";
 import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";

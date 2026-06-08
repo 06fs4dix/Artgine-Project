@@ -1,10 +1,11 @@
-﻿const version = 'mluvqq4j_52';
 import "https://06fs4dix.github.io/Artgine/artgine/artgine.js";
 import { CClass } from "https://06fs4dix.github.io/Artgine/artgine/basic/CClass.js";
 import { BackGround } from "./BackGround.js";
 CClass.Push(BackGround);
 import { CBulletComp } from "./CBulletComp.js";
 CClass.Push(CBulletComp);
+import { CMonComp } from "./CMonComp.js";
+CClass.Push(CMonComp);
 import { CMoveComp } from "./CMoveComp.js";
 CClass.Push(CMoveComp);
 import { CPacShooting } from "./CPacShooting.js";
@@ -30,7 +31,8 @@ gPF.mIAuto = true;
 gPF.mWASM = false;
 gPF.mCanvas = "";
 gPF.mServer = 'local';
-gPF.mGitHub = true;
+gPF.mGitHub = false;
+gPF.mVersion = "mq4m3t4v_52";
 import { CAtelier } from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
@@ -49,7 +51,7 @@ import { CVec1 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec1
 import { CEvent } from "https://06fs4dix.github.io/Artgine/artgine/basic/CEvent.js";
 import { CPool } from "https://06fs4dix.github.io/Artgine/artgine/basic/CPool.js";
 import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/CRenderPass.js";
-import { CSurfaceBloom } from "../../../Artgine/plugin/Bloom/Bloom.js";
+import { CSurfaceBloom } from "../../../plugin/Bloom/Bloom.js";
 import { CConsol } from "https://06fs4dix.github.io/Artgine/artgine/basic/CConsol.js";
 import { CConfirm, CModal, CModalTitleBar } from "https://06fs4dix.github.io/Artgine/artgine/basic/CModal.js";
 import { CTimer } from "https://06fs4dix.github.io/Artgine/artgine/system/CTimer.js";
@@ -177,18 +179,24 @@ socket.On(CPacShooting.eHeader.Pos, (_stream) => {
 CPool.On("Monster", () => {
     let Mon = CBlackBoard.Find("Monster");
     let mon = Mon.Export(true, true);
-    mon.FindComp(CRigidBody).Push(new CForce("move", new CVec3(0, -1), 100));
+    mon.PushComp(new CMonComp());
     return mon;
 }, CPool.ePool.Product);
+const MON_SCALES = [1.0, 0.85, 0.7, 1.3];
 socket.On(CPacShooting.eHeader.MonCreate, async (_stream) => {
     let packet = CPacShooting.MonCreate(_stream);
     let mon = await CPool.Product("Monster");
     if (mon.GetFrame() != null) {
         CConsol.Log(packet.monKey);
     }
+    const moveType = packet.type % 10;
+    const level = Math.floor(packet.type / 10);
     mon.SetKey(packet.monKey);
     mon.SetPos(packet.pos);
-    mon.FindComp(CProComp).SetHP(5 + packet.type * 5);
+    mon.FindComp(CProComp).SetHP(5 + level * 5);
+    mon.FindComp(CMonComp).SetMoveType(moveType);
+    let sc = MON_SCALES[moveType] ?? 1.0;
+    mon.SetSca(new CVec3(sc, sc, 1));
     Main.PushSub(mon);
 });
 socket.On(CPacShooting.eHeader.Effect, (stream) => {

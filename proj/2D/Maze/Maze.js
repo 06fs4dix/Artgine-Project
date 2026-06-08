@@ -1,4 +1,3 @@
-﻿const version = 'mn9vjd50_13';
 import "https://06fs4dix.github.io/Artgine/artgine/artgine.js";
 import { CClass } from "https://06fs4dix.github.io/Artgine/artgine/basic/CClass.js";
 import CMonster from "./CMonster.js";
@@ -21,13 +20,15 @@ gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mCanvas = "";
 gPF.mWASM = false;
-gPF.mServer = 'local';
-gPF.mGitHub = true;
+gPF.mServer = 'webServer';
+gPF.mGitHub = false;
+gPF.mVersion = "mq4m3t4v_21";
 import { CAtelier } from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init(['Main.json'], "");
 var Main = gAtl.Canvas('Main.json');
+CBlackBoard.Push("Main", Main);
 import { CBGAttachButton, CBGFadeEffect } from "https://06fs4dix.github.io/Artgine/artgine/util/CModalUtil.js";
 import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
 import { CMath } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMath.js";
@@ -45,42 +46,12 @@ import { CInput } from "https://06fs4dix.github.io/Artgine/artgine/system/CInput
 import { CSysAuth } from "https://06fs4dix.github.io/Artgine/artgine/system/CSysAuth.js";
 import { CAudioTag } from "https://06fs4dix.github.io/Artgine/artgine/system/audio/CAudio.js";
 import { CWindow } from "https://06fs4dix.github.io/Artgine/artgine/system/CWindow.js";
-import { CBound } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CBound.js";
 import { CDOM } from "https://06fs4dix.github.io/Artgine/artgine/basic/CDOM.js";
-import { CNavigation } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CNavigation.js";
-import { CNaviMgr } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CNavigationMgr.js";
 import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
 import { CPaint2D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
 import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
-import { CStopover } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CStopover.js";
-import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
-CNavigation.Normal = 50;
-CNavigation.Small = 10;
 var g_camMode = 0;
 let g_fadeEffect = new CBGFadeEffect("test");
-Main.GetGI().mNavi = new CNaviMgr();
-Main.GetGI().mNavi.Init(new CVec3(100, 100, 1));
-let tileList = new Array();
-let FindPath = (_target, _end) => {
-    for (let each0 of tileList) {
-        each0.Destroy();
-    }
-    let bound = new CBound();
-    bound.InitBound(16);
-    console.time();
-    let path = [];
-    Main.GetGI().mOctree.Find(_target.GetPos(), _end, bound, (_ocData) => {
-        let cl = _ocData.mData;
-        if (cl.GetLayer() == "block")
-            return false;
-        return true;
-    }, path, 8);
-    console.timeEnd();
-    let so = new CStopover(path, 500);
-    _target.FindComp(CRigidBody).Clear();
-    _target.FindComp(CRigidBody).Push(so);
-};
-CBlackBoard.Push("FindPath", FindPath);
 let size = 100;
 let count = new CVec2(5, 5);
 let maze = new Array();
@@ -107,7 +78,6 @@ let RayExtrapolate = (_st, _ed, _target) => {
 CBlackBoard.Push("RayExtrapolate", RayExtrapolate);
 let ResetMaze = (_xCount, _yCount) => {
     g_fadeEffect.AniStart("Level : " + CStage.level);
-    Main.GetGI().mNavi.Reset(true);
     let rp = new CRenderPass(gAtl.Frame().Pal().Sl2DKey());
     if (CStage.fog)
         rp.mTag.add("light");
@@ -201,18 +171,12 @@ let ResetMaze = (_xCount, _yCount) => {
                 pt.PushRenderPass(rp);
                 let cl = sub.PushComp(new CCollider(pt));
                 cl.SetLayer("block");
-                let navi = sub.PushComp(new CNavigation());
-                navi.mStatic = true;
-                navi.InitBound(pt);
                 if (IsBlockFun(x - 1, y) == 1) {
                     pt = sub.PushComp(new CPaint2D("floor/sandstone_floor0.png", new CVec2(size / 3, size / 3)));
                     pt.PushRenderPass(rp);
                     pt.SetPos(new CVec3(-size / 3, 0));
                     cl = sub.PushComp(new CCollider(pt));
                     cl.SetLayer("block");
-                    navi = sub.PushComp(new CNavigation());
-                    navi.mStatic = true;
-                    navi.InitBound(pt);
                 }
                 else
                     sub.PushComp(RandBasicTile(-1, 0));
@@ -222,9 +186,6 @@ let ResetMaze = (_xCount, _yCount) => {
                     pt.SetPos(new CVec3(size / 3, 0));
                     cl = sub.PushComp(new CCollider(pt));
                     cl.SetLayer("block");
-                    navi = sub.PushComp(new CNavigation());
-                    navi.mStatic = true;
-                    navi.InitBound(pt);
                 }
                 else
                     sub.PushComp(RandBasicTile(1, 0));
@@ -234,9 +195,6 @@ let ResetMaze = (_xCount, _yCount) => {
                     pt.SetPos(new CVec3(0, -size / 3));
                     cl = sub.PushComp(new CCollider(pt));
                     cl.SetLayer("block");
-                    navi = sub.PushComp(new CNavigation());
-                    navi.mStatic = true;
-                    navi.InitBound(pt);
                 }
                 else
                     sub.PushComp(RandBasicTile(0, -1));
@@ -246,9 +204,6 @@ let ResetMaze = (_xCount, _yCount) => {
                     pt.SetPos(new CVec3(0, size / 3));
                     cl = sub.PushComp(new CCollider(pt));
                     cl.SetLayer("block");
-                    navi = sub.PushComp(new CNavigation());
-                    navi.mStatic = true;
-                    navi.InitBound(pt);
                 }
                 else
                     sub.PushComp(RandBasicTile(0, 1));
@@ -273,9 +228,6 @@ let ResetMaze = (_xCount, _yCount) => {
                     pt.SetPos(new CVec3(size / 3 * sx, size / 3 * sy));
                     let cl = sub.PushComp(new CCollider(pt));
                     cl.SetLayer("block");
-                    let navi = sub.PushComp(new CNavigation());
-                    navi.mStatic = true;
-                    navi.InitBound(pt);
                 }
         }
     }
@@ -319,8 +271,6 @@ ResetMaze(5, 5);
 CBlackBoard.Push("ResetMaze", ResetMaze);
 let cam2D = gAtl.Brush().GetCam2D();
 cam2D.Set2DZoom(1.5);
-gAtl.Frame().PushEvent(CEvent.eType.Update, () => {
-});
 gAtl.Frame().PushEvent(CEvent.eType.Resume, new CEvent(() => {
     ResetMaze(5, 5);
     CAlert.Info("화면 전환시 다시 시작");
@@ -340,7 +290,6 @@ Option_btn.SetContent(`
     <button id='FlowCam' onclick='ClickCamOption("FlowCam")'>CamFlow</button>
     <button id='StopCam' onclick='ClickCamOption("StopCam")'>CamStop</button>
     <button id='StopCam' onclick='ClickScreenFull()'>Full</button>
-    
 </div>`);
 function ClickScreenFull() {
     CWindow.ScreenFull();

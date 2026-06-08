@@ -1,4 +1,4 @@
-﻿import { CStream } from "https://06fs4dix.github.io/Artgine/artgine/basic/CStream.js";
+import { CStream } from "https://06fs4dix.github.io/Artgine/artgine/basic/CStream.js";
 import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
 import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
 

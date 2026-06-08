@@ -1,4 +1,4 @@
-﻿import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
+import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
 import { CPad } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CPad.js";
 import { CUIText } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CUI.js";
 import { CUpdate } from "https://06fs4dix.github.io/Artgine/artgine/basic/Basic.js";

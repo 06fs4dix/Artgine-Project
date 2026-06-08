@@ -1,5 +1,5 @@
-﻿import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
-import CBehavior from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
+import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
+import { CBehavior } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
 import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
 import { CForce } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CForce.js";
 import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
@@ -17,7 +17,7 @@ import { CLoaderOption } from "https://06fs4dix.github.io/Artgine/artgine/util/C
 export class BackGround extends CSubject
 {
     mMoon : CSubject=null;
-    Start() 
+    override Start() 
     {
         this.SetPos(new CVec3(0,0,-1));
         this.GetFrame().Load().Exe("Res/bg.png",new CLoaderOption().Set("mWrap",CTexture.eWrap.Mirrored))
@@ -30,7 +30,7 @@ export class BackGround extends CSubject
         };
         
     }
-    Update(_update : CUpdate): void {
+    override Update(_update : CUpdate): void {
         if(this.mMoon==null || this.mMoon.IsDestroy())
         {
             this.mMoon=this.PushChild(new CSubject())

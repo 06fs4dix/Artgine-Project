@@ -1,4 +1,5 @@
-﻿import CBehavior from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
+
+import { CBehavior } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
 import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
 import { CComponent } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CComponent.js";
 import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
@@ -24,7 +25,7 @@ export class CProComp extends CBehavior
         super();
         this.mSysc=CComponent.eSysn.First;
     }
-    IsShould(_member: string, _type: CObject.eShould): boolean {
+    override IsShould(_member: string, _type: CObject.eShould): boolean {
 
         if(_member=="mHP" || _member=="mSpeed")
             return true;
@@ -36,7 +37,7 @@ export class CProComp extends CBehavior
         this.mHP=_val;
     }
     GetHP(){    return this.mHP;    }
-    CameraOut(_pArr : Array<CPlaneInside>)
+    override CameraOut(_pArr : Array<CPlaneInside>)
     {
         for(var each0 of _pArr)
         {
@@ -47,7 +48,7 @@ export class CProComp extends CBehavior
             }
         }
     }
-    Start()
+    override Start()
     {
         this.mPT=this.GetOwner().FindComp(CPaint2D);
         if(this.GetOwner().FindComp(CRigidBody)==null)
@@ -74,7 +75,7 @@ export class CProComp extends CBehavior
         //this.GetOwner().SetPower(this.m_speed);
         this.EditRefresh();
     }
-    Update(_update : CUpdate): void {
+    override Update(_update : CUpdate): void {
       
         if(this.mRB==null) return;
 

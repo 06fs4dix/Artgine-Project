@@ -1,9 +1,8 @@
-﻿import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
+import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
 import { CAnimation, CClipAlpha, CClipColor, CClipDestroy } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAnimation.js";
-import CBehavior from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
+import { CBehavior } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
 import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
 import { CLight } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CLight.js";
-import { CNavigation } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CNavigation.js";
 import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
 import { CPaint2D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
 import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
@@ -60,10 +59,7 @@ export default class CUser extends CBehavior {
         bound.mType = CBound.eType.Box;
         cl = sub.PushComp(new CCollider(bound));
         cl.SetPickMouse(true);
-        let navi = new CNavigation();
-        navi.InitBound(pt);
-        this.GetOwner().PushComp(navi);
-        let rb = sub.PushComp(new CRigidBody());
+        sub.PushComp(new CRigidBody());
     }
     *ReadyMouse() {
         this.GetOwner().FindComp(CPaint2D).SetColorModel(new CColor(1, 0, 0, CColor.eModel.RGBMul));
@@ -92,7 +88,6 @@ export default class CUser extends CBehavior {
         let camcon = cam.GetCamCon();
         let fw = this.GetOwner().GetFrame();
         if (_type == 0 && (camcon instanceof CCamCon2DFollow) == false) {
-            let user = CBlackBoard.Find("User");
             let camcon = new CCamCon2DFollow(fw.Input());
             cam.SetCamCon(camcon);
             camcon.SetPosKey(CInput.eKey.LButton);
@@ -159,22 +154,14 @@ export default class CUser extends CBehavior {
             ch.PushComp(new CAniFlow(ani));
             this.m_footTime = 0;
         }
-        if (this.GetOwner().GetFrame().Input().KeyUp(CInput.eKey.J)) {
-            let mouse = this.GetOwner().GetFrame().Input().Mouse();
-            let cam = CBlackBoard.Find("2D");
-            let npos = cam.ScreenToWorld2DPoint(mouse.x, mouse.y);
-            CBlackBoard.Find("FindPath")(this.GetOwner(), npos);
-        }
     }
     Collision(_org, _size, _tar, _push) {
-        let audio = new CAudioBuf("Hit_Hurt.mp3");
-        audio.SetRemove(true);
-        audio.Play();
         this.m_move = false;
         this.m_ready = false;
         new CCoroutine(this.ReadyMouse, this).Start();
-        let ch = new CSubject();
-        ch.SetPMatMul(false);
+        let audio = new CAudioBuf("Hit_Hurt.mp3");
+        audio.SetRemove(true);
+        audio.Play();
     }
     Trigger(_org, _size, _tar) {
         if (this.m_move == false) {

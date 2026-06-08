@@ -1,4 +1,3 @@
-﻿const version = 'mluvqq4j_47';
 import "https://06fs4dix.github.io/Artgine/artgine/artgine.js";
 import { CPreferences } from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
@@ -14,8 +13,9 @@ gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mWASM = false;
 gPF.mCanvas = "";
-gPF.mServer = 'local';
-gPF.mGitHub = true;
+gPF.mServer = 'webServer';
+gPF.mGitHub = false;
+gPF.mVersion = "mq4m3t4v_11";
 import { CAtelier } from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
@@ -32,16 +32,16 @@ import { CDOM } from "https://06fs4dix.github.io/Artgine/artgine/basic/CDOM.js";
 import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
 import { CPaint2D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
 import { CColor } from "https://06fs4dix.github.io/Artgine/artgine/render/CColor.js";
-import CBehavior from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
 import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
 import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
 import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
 import { CPad } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CPad.js";
-import { CSMComp } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CSMComp.js";
-import { CSMP } from "https://06fs4dix.github.io/Artgine/artgine/util/CStateMachine.js";
+import { CRoleComp } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRoleComp.js";
 import { CCondition } from "https://06fs4dix.github.io/Artgine/artgine/util/CCondition.js";
 import { CForce } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CForce.js";
 import { CAction } from "https://06fs4dix.github.io/Artgine/artgine/util/CAction.js";
+import { CBehavior } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
+import { CRole } from "https://06fs4dix.github.io/Artgine/artgine/util/CRole.js";
 gAtl.Brush().GetCam2D().SetSize(600, 800);
 let camcon = gAtl.Brush().GetCam2D().SetCamCon(new CCamCon2DFollow(gAtl.Frame().Input()));
 let back = Main.PushSub(new CSubject());
@@ -95,21 +95,21 @@ rb.SetGravity(1);
 let af = mary.PushComp(new CAniFlow("MaryStand"));
 af.SetSpeed(0.4);
 let pad = mary.PushChild(new CPad());
-let sm = mary.PushComp(new CSMComp());
-sm.GetSM().PushPattern(new CSMP([new CCondition("Jump", "!="), new CCondition("move", "!="), new CCondition("Fall", "!="), new CCondition("Down", "!=")], new CAction(CAction.eType.Message, "Default")));
-sm.GetSM().PushPattern(new CSMP([new CCondition("move"), new CCondition("Jump", "!=")], new CAction(CAction.eType.Message, "MaryWalk")));
-sm.GetSM().PushPattern(new CSMP([new CCondition("move" + CVec3.eDir.Left)], new CAction(CAction.eType.Message, "Left")));
-sm.GetSM().PushPattern(new CSMP([new CCondition("move" + CVec3.eDir.Right)], new CAction(CAction.eType.Message, "Right")));
-sm.GetSM().PushPattern(new CSMP([new CCondition("Jump")], new CAction(CAction.eType.Message, "MaryJumpStart")));
-sm.GetSM().PushPattern(new CSMP([new CCondition("Jump"), new CCondition("MaryJumpStartStop")], new CAction(CAction.eType.Message, "MaryJumpLoop")));
-sm.GetSM().PushPattern(new CSMP([new CCondition("Down"), new CCondition("Jump", "!="), new CCondition("move", "!=")], new CAction(CAction.eType.Message, "MaryDown")));
-sm.GetSM().PushPattern(new CSMP([new CCondition("Fall"), new CCondition("Jump", "!=")], new CAction(CAction.eType.Message, "MaryJumpStart")));
-sm.GetSM().PushPattern(new CSMP([new CCondition("Fall"), new CCondition("MaryJumpStartStop", "!=")], new CAction(CAction.eType.Message, "MaryJumpLoop")));
+let sm = mary.PushComp(new CRoleComp());
+sm.GetRoleMgr().PushRole(new CRole([new CCondition("/rigidBody/force/Jump", "!="), new CCondition("/rigidBody/force/move", "!="), new CCondition("/rigidBody/force/Fall", "!="), new CCondition("Down", "!=")], new CAction(CAction.eType.Message, "Default")));
+sm.GetRoleMgr().PushRole(new CRole([new CCondition("/rigidBody/force/move"), new CCondition("/rigidBody/force/Jump", "!=")], new CAction(CAction.eType.Message, "MaryWalk")));
+sm.GetRoleMgr().PushRole(new CRole([new CCondition("/rigidBody/force/move" + CVec3.eDir.Left)], new CAction(CAction.eType.Message, "Left")));
+sm.GetRoleMgr().PushRole(new CRole([new CCondition("/rigidBody/force/move" + CVec3.eDir.Right)], new CAction(CAction.eType.Message, "Right")));
+sm.GetRoleMgr().PushRole(new CRole([new CCondition("/rigidBody/force/Jump")], new CAction(CAction.eType.Message, "MaryJumpStart")));
+sm.GetRoleMgr().PushRole(new CRole([new CCondition("/rigidBody/force/Jump"), new CCondition("/aniFlow/MaryJumpStartStop")], new CAction(CAction.eType.Message, "MaryJumpLoop")));
+sm.GetRoleMgr().PushRole(new CRole([new CCondition("Down"), new CCondition("/rigidBody/force/Jump", "!="), new CCondition("/rigidBody/force/move", "!=")], new CAction(CAction.eType.Message, "MaryDown")));
+sm.GetRoleMgr().PushRole(new CRole([new CCondition("/rigidBody/force/Fall"), new CCondition("/rigidBody/force/Jump", "!=")], new CAction(CAction.eType.Message, "MaryJumpStart")));
+sm.GetRoleMgr().PushRole(new CRole([new CCondition("/rigidBody/force/Fall"), new CCondition("/aniFlow/MaryJumpStartStop", "!=")], new CAction(CAction.eType.Message, "MaryJumpLoop")));
 sm["Default"] = () => {
-    af.ResetAni("MaryStand");
+    af.SetAni("MaryStand");
 };
 sm["MaryWalk"] = () => {
-    af.ResetAni("MaryWalk");
+    af.SetAni("MaryWalk");
 };
 sm["Left"] = () => {
     pt.SetReverse(true, false);
@@ -118,21 +118,21 @@ sm["Right"] = () => {
     pt.SetReverse(false, false);
 };
 sm["MaryJumpStart"] = () => {
-    af.ResetAni("MaryJumpStart");
+    af.SetAni("MaryJumpStart");
 };
 sm["MaryJumpLoop"] = () => {
-    af.ResetAni("MaryJumpLoop");
+    af.SetAni("MaryJumpLoop");
 };
 sm["MaryDown"] = () => {
-    af.ResetAni("MaryDown");
+    af.SetAni("MaryDown");
 };
 let beforeCamY = 0;
 mary.Update = (_update) => {
     let dir = pad.GetDir();
     if (dir.y < 0)
-        sm.GetSM().SetStateValue("Down", 1);
+        sm.GetRoleMgr().SetStateValue("Down", 1);
     else
-        sm.GetSM().SetStateValue("Down", 0);
+        sm.GetRoleMgr().SetStateValue("Down", 0);
     if (dir.x > 0)
         rb.Push(new CForce("move", new CVec3(1, 0, 0), 200));
     else if (dir.x < 0)

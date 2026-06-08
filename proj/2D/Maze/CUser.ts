@@ -1,10 +1,9 @@
-﻿
+
 import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
-import { CAnimation, CClipAlpha, CClipColor, CClipDestroy } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAnimation.js";
-import CBehavior from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
+import { CAnimation, CClipAlpha, CClipColor, CClipDestroy, CClipPRS } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAnimation.js";
+import { CBehavior } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
 import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
 import { CLight } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CLight.js";
-import { CNavigation } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CNavigation.js";
 import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
 import { CPaint2D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
 import { CRayMouse } from "https://06fs4dix.github.io/Artgine/artgine/app/CRayMouse.js";
@@ -12,6 +11,7 @@ import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject
 import { CUpdate } from "https://06fs4dix.github.io/Artgine/artgine/basic/Basic.js";
 import { CBlackBoard } from "https://06fs4dix.github.io/Artgine/artgine/basic/CBlackBoard.js";
 import { CPool } from "https://06fs4dix.github.io/Artgine/artgine/basic/CPool.js";
+import { CConsol } from "https://06fs4dix.github.io/Artgine/artgine/basic/CConsol.js";
 
 import { CBound } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CBound.js";
 import { CMath } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMath.js";
@@ -39,7 +39,6 @@ export default class CUser extends CBehavior
     m_lastPos=new CVec3();
     m_camMode=0;
     
-    //m_shakeTime=0;
     override Start(): void {
 
         let sub=this.GetOwner();
@@ -65,7 +64,6 @@ export default class CUser extends CBehavior
         let pt=sub.PushComp(new CPaint2D("circle.tex",new CVec2(32,32))) as CPaint2D;
         pt.SetPos(new CVec3(0,0,1));
         let cl=sub.PushComp(new CCollider(pt)) as CCollider;
-        //cl.SetPickMouse(true);
         cl.SetLayer("user");
         cl.PushCollisionLayer(["block","mon"]);
         cl.SetRestitution(15);
@@ -74,7 +72,6 @@ export default class CUser extends CBehavior
         cl.SetLayer("user");
         cl.SetEvent(CCollider.eEvent.Trigger);
         cl.PushCollisionLayer("endpoint");
-        //cl.SetRestitution(15);
 
         let bound=new CBound();
         bound.mMin=new CVec3(-50,-50,-50);
@@ -83,17 +80,10 @@ export default class CUser extends CBehavior
         cl=sub.PushComp(new CCollider(bound)) as CCollider;
         cl.SetPickMouse(true);
 
-        let navi=new CNavigation();
-        navi.InitBound(pt);
-        this.GetOwner().PushComp(navi);
-        
-    
-        let rb=sub.PushComp<CRigidBody>(new CRigidBody());
-        
-        
+        sub.PushComp<CRigidBody>(new CRigidBody());
         
     }
-    //m_camSpeed=0.1;
+
     *ReadyMouse()
     {
         this.GetOwner().FindComp(CPaint2D).SetColorModel(new CColor(1,0,0,CColor.eModel.RGBMul));
@@ -129,12 +119,10 @@ export default class CUser extends CBehavior
         let fw=this.GetOwner().GetFrame();
         if(_type==0 && (camcon instanceof CCamCon2DFollow)==false)
         {
-            let user=CBlackBoard.Find("User") as CSubject;
             let camcon=new CCamCon2DFollow(fw.Input());
             cam.SetCamCon(camcon);
             camcon.SetPosKey(CInput.eKey.LButton);
             camcon.SetRotKey(CInput.eKey.RButton);
-            //camcon.m_smoothSpeed=Number(CWebUtil.IDValue("trakingSpeed"));
         }
         else if(_type==1 && (camcon instanceof CCamCon2DFreeMove) ==false)
         {
@@ -189,12 +177,7 @@ export default class CUser extends CBehavior
                 let audio=new CAudioBuf("Hit_Hurt.mp3");
                 audio.SetRemove(true);
                 audio.Play();
-
-                
-
             }
-            
-            
         }
 
         this.m_footTime+=_update.DeltaMil();
@@ -214,7 +197,6 @@ export default class CUser extends CBehavior
             ch.SetPos(this.m_lastPos);
             this.GetOwner().PushChild(ch);
             let ani=new CAnimation();
-            //ani.Push(new CClipColorAlpha(0,15,new CVec4(-1,-1,1,0.5),new CVec4(-1,-1,1,0)));
             ani.Push(new CClipColor(0,15,new CColor(-1,-1,1,CColor.eModel.RGBAdd),new CColor(-1,-1,1,CColor.eModel.RGBAdd)));
             ani.Push(new CClipAlpha(0,15,new CAlpha(0.5),new CAlpha(0)));
             ani.Push(new CClipDestroy(15));
@@ -222,52 +204,24 @@ export default class CUser extends CBehavior
             this.m_footTime=0;
         }
 
-
-        if(this.GetOwner().GetFrame().Input().KeyUp(CInput.eKey.J))
-        {
-            let mouse=this.GetOwner().GetFrame().Input().Mouse();
-            let cam=CBlackBoard.Find("2D") as CCamera;
-            let npos=cam.ScreenToWorld2DPoint(mouse.x,mouse.y);
-
-            CBlackBoard.Find("FindPath")(this.GetOwner(),npos);
-        }
-
     }
+
     override Collision(_org : CCollider,_size : number,_tar : Array<CCollider>,_push : Array<CVec3>)
     {
-        let audio=new CAudioBuf("Hit_Hurt.mp3");
-        audio.SetRemove(true);
-        audio.Play();
         this.m_move=false;
         this.m_ready=false;
         new CCoroutine(this.ReadyMouse,this).Start();
-
         
-
-        let ch=new CSubject();
-        ch.SetPMatMul(false);
-        
-        // let ptb=this.GetOwner().FindComp(CPaint2D);
-        // let pt=ch.PushComp(new CPaint2D(ptb.GetTexture()[0],ptb.GetSize())) as CPaint2D;
-        // pt.SetColorModel(new CColor(0,0,1,SDF.eColorModel.RGBMul));
-        // ch.SetPos(this.m_lastPos);
-        // this.GetOwner().PushChild(ch);
-        // let ani=new CAnimation();
-        // //ani.Push(new CClipColorAlpha(0,1000*10,new CVec4(1,-1,-1,-0.5),new CVec4(1,-1,-1,-1)));
-        // ani.Push(new CClipColor(0,10,new CColor(1,-1,-1,CColor.eModel.RGBAdd),new CColor(1,-1,-1,CColor.eModel.RGBAdd)));
-        // //ani.Push(new CClipAlpha(0,10,new CAlpha(0.5),new CAlpha(0)));
-        // ani.Push(new CClipDestroy(1000*10));
-        // ch.PushComp(new CAniFlow(ani));
-
+        let audio=new CAudioBuf("Hit_Hurt.mp3");
+        audio.SetRemove(true);
+        audio.Play();
     }
     override Trigger(_org : CCollider,_size : number,_tar : Array<CCollider>)
     {
         if(this.m_move==false)
         {
-            //this.m_move=false;
             CStage.LevelUp();
             CBlackBoard.Find("ResetMaze")(11,11);
-            
         }
     }
 }

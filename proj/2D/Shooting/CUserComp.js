@@ -1,4 +1,4 @@
-﻿import { CPad } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CPad.js";
+import { CPad } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CPad.js";
 import { CUIText } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CUI.js";
 import { CEvent } from "https://06fs4dix.github.io/Artgine/artgine/basic/CEvent.js";
 import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
