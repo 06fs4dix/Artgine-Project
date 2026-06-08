@@ -1,5 +1,4 @@
-﻿//Version
-const version='mf2jnnjd_2';
+//Version
 import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
 
 //Class
@@ -21,9 +20,10 @@ gPF.mIAuto = true;
 gPF.mWASM = false;
 gPF.mCanvas = "";
 gPF.mServer = 'local';
-gPF.mGitHub = true;
+gPF.mGitHub = false;
+gPF.mVersion = "mq4m3t4v_84";
 
-import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/canvas/CAtelier.js";
+import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
 
 import {CPlugin} from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
@@ -39,8 +39,7 @@ import { CVertexFormat } from "https://06fs4dix.github.io/Artgine/artgine/render
 import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
 import { CFecth } from "https://06fs4dix.github.io/Artgine/artgine/network/CFecth.js";
 import { CUtilRender } from "https://06fs4dix.github.io/Artgine/artgine/render/CUtilRender.js";
-import { CPaint3D } from "https://06fs4dix.github.io/Artgine/artgine/canvas/component/paint/CPaint3D.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/canvas/subject/CSubject.js";
+
 import { CVec4 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec4.js";
 import { CMath } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMath.js";
 import { CCamCon3DFirstPerson } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
@@ -48,11 +47,13 @@ import { CModalFrameView } from "https://06fs4dix.github.io/Artgine/artgine/util
 import { CPath } from "https://06fs4dix.github.io/Artgine/artgine/basic/CPath.js";
 import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/CRenderPass.js";
 import { CConfirm } from "https://06fs4dix.github.io/Artgine/artgine/basic/CModal.js";
+import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
+import { CPaint3D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint3D.js";
 var Can3D = gAtl.NewCanvas('Can3D');
 Can3D.SetCameraKey("3D");
 
 
-await gAtl.Frame().Load().Load("Shader.ts");
+await gAtl.Frame().Load().Exe("Shader.ts");
 
 let camcon=Can3D.GetCam().SetCamCon(new CCamCon3DFirstPerson(gAtl.Frame().Input()));
 camcon.SetZoomSensitivity(10);
@@ -238,7 +239,7 @@ async function loadLocalGeoJSONFile(): Promise<any> {
         console.log("Attempting to load local test.geojson file...");
         
         // CFecth를 사용하여 로컬 파일 로드
-        const localData = await CFecth.Exe(CPath.PHPCR() + "test.geojson", null, "json");
+        const localData = await CFecth.Exe(CPath.WebPageUrl() + "test.geojson", null, "json");
         if (localData) {
             console.log("✅ Local test.geojson file loaded successfully");
             return localData;
@@ -250,7 +251,7 @@ async function loadLocalGeoJSONFile(): Promise<any> {
     // test.json도 시도
     try {
         console.log("Attempting to load local test.json file...");
-        const localData = await CFecth.Exe(CPath.PHPCR() + "test.json", null, "json");
+        const localData = await CFecth.Exe(CPath.WebPageUrl() + "test.json", null, "json");
         if (localData) {
             console.log("✅ Local test.json file loaded successfully");
             return localData;
@@ -313,6 +314,7 @@ function CreateMeshCreateInfo(_feature : Feature) : CMeshCreateInfo {
     const posb = rVal.Create(CVertexFormat.eIdentifier.Position);
     const uvb = rVal.Create(CVertexFormat.eIdentifier.UV);
     const norb = rVal.Create(CVertexFormat.eIdentifier.Normal);
+    const inb = rVal.Create(CVertexFormat.eIdentifier.Index);
 
     const outerRing = _feature.geometry.coordinates[0];
     const n = outerRing.length;
@@ -334,7 +336,7 @@ function CreateMeshCreateInfo(_feature : Feature) : CMeshCreateInfo {
 
     // 상단 삼각형 (팬)
     for (let i = 1; i < n - 1; i++) {
-        rVal.index.push(
+        inb.bufI.push(
             topStartIndex, 
             topStartIndex + i, 
             topStartIndex + i + 1
@@ -367,8 +369,8 @@ function CreateMeshCreateInfo(_feature : Feature) : CMeshCreateInfo {
         const h2 = h0 + 2;
         const h3 = h2 + 1;
 
-        rVal.index.push(h0, h2, h1);
-        rVal.index.push(h1, h2, h3);
+        inb.bufI.push(h0, h2, h1);
+        inb.bufI.push(h1, h2, h3);
 
         // 측면 노멀 계산 (외적)
         const ax = posb.bufF.X1(h2*3) - posb.bufF.X1(h0*3);
@@ -390,7 +392,7 @@ function CreateMeshCreateInfo(_feature : Feature) : CMeshCreateInfo {
     }
 
     rVal.vertexCount = posb.bufF.Size(3);
-    rVal.indexCount = rVal.index.length;
+    rVal.indexCount = inb.bufI.length;
 
     return rVal;
 }
@@ -401,6 +403,7 @@ function AddMeshCreateInfo(_feature : Feature, _originalMesh : CMeshCreateInfo) 
     const uvb = rVal.GetVFType(CVertexFormat.eIdentifier.UV)[0];
     const norb = rVal.GetVFType(CVertexFormat.eIdentifier.Normal)[0];
     const colb = rVal.GetVFType(CVertexFormat.eIdentifier.Color)[0];
+    const inb = rVal.GetVFType(CVertexFormat.eIdentifier.Index)[0];
 
     const outerRing = _feature.geometry.coordinates[0];
     const n = outerRing.length;
@@ -427,7 +430,7 @@ function AddMeshCreateInfo(_feature : Feature, _originalMesh : CMeshCreateInfo) 
 
     // 상단 삼각형 (팬)
     for (let i = 1; i < n - 1; i++) {
-        rVal.index.push(
+        inb.bufI.push(
             topStartIndex, 
             topStartIndex + i, 
             topStartIndex + i + 1
@@ -462,8 +465,8 @@ function AddMeshCreateInfo(_feature : Feature, _originalMesh : CMeshCreateInfo) 
         const h2 = h0 + 2;
         const h3 = h2 + 1;
 
-        rVal.index.push(h0, h2, h1);
-        rVal.index.push(h1, h2, h3);
+        inb.bufI.push(h0, h2, h1);
+        inb.bufI.push(h1, h2, h3);
 
         // 측면 노멀 계산 (외적)
         const ax = posb.bufF.X1(h2*3) - posb.bufF.X1(h0*3);
@@ -485,7 +488,7 @@ function AddMeshCreateInfo(_feature : Feature, _originalMesh : CMeshCreateInfo) 
     }
 
     rVal.vertexCount = posb.bufF.Size(3);
-    rVal.indexCount = rVal.index.length;
+    rVal.indexCount = inb.bufI.length;
 
     return rVal;
 }
@@ -567,6 +570,7 @@ if (polygonArr.length === 0) {
     createInfo.Create(CVertexFormat.eIdentifier.UV);
     createInfo.Create(CVertexFormat.eIdentifier.Normal);
     createInfo.Create(CVertexFormat.eIdentifier.Color);
+    createInfo.Create(CVertexFormat.eIdentifier.Index);
 
     for(const polygon of polygonArr) {
         AddMeshCreateInfo(polygon, createInfo);
@@ -581,31 +585,6 @@ if (polygonArr.length === 0) {
 }
 
 new CModalFrameView();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

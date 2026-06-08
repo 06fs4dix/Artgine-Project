@@ -1,4 +1,3 @@
-﻿const version = 'mf2jnnjd_2';
 import "https://06fs4dix.github.io/Artgine/artgine/artgine.js";
 import { CPreferences } from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
@@ -15,8 +14,9 @@ gPF.mIAuto = true;
 gPF.mWASM = false;
 gPF.mCanvas = "";
 gPF.mServer = 'local';
-gPF.mGitHub = true;
-import { CAtelier } from "https://06fs4dix.github.io/Artgine/artgine/canvas/CAtelier.js";
+gPF.mGitHub = false;
+gPF.mVersion = "mq4m3t4v_84";
+import { CAtelier } from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([], "");
@@ -26,16 +26,16 @@ import { CVertexFormat } from "https://06fs4dix.github.io/Artgine/artgine/render
 import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
 import { CFecth } from "https://06fs4dix.github.io/Artgine/artgine/network/CFecth.js";
 import { CUtilRender } from "https://06fs4dix.github.io/Artgine/artgine/render/CUtilRender.js";
-import { CPaint3D } from "https://06fs4dix.github.io/Artgine/artgine/canvas/component/paint/CPaint3D.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/canvas/subject/CSubject.js";
 import { CCamCon3DFirstPerson } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
 import { CModalFrameView } from "https://06fs4dix.github.io/Artgine/artgine/util/CModalUtil.js";
 import { CPath } from "https://06fs4dix.github.io/Artgine/artgine/basic/CPath.js";
 import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/CRenderPass.js";
 import { CConfirm } from "https://06fs4dix.github.io/Artgine/artgine/basic/CModal.js";
+import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
+import { CPaint3D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint3D.js";
 var Can3D = gAtl.NewCanvas('Can3D');
 Can3D.SetCameraKey("3D");
-await gAtl.Frame().Load().Load("Shader.ts");
+await gAtl.Frame().Load().Exe("Shader.ts");
 let camcon = Can3D.GetCam().SetCamCon(new CCamCon3DFirstPerson(gAtl.Frame().Input()));
 camcon.SetZoomSensitivity(10);
 Can3D.GetCam().Init(new CVec3(250, 10000, -150), new CVec3(-600, 750, 350));
@@ -169,7 +169,7 @@ async function loadWebData() {
 async function loadLocalGeoJSONFile() {
     try {
         console.log("Attempting to load local test.geojson file...");
-        const localData = await CFecth.Exe(CPath.PHPCR() + "test.geojson", null, "json");
+        const localData = await CFecth.Exe(CPath.WebPageUrl() + "test.geojson", null, "json");
         if (localData) {
             console.log("✅ Local test.geojson file loaded successfully");
             return localData;
@@ -180,7 +180,7 @@ async function loadLocalGeoJSONFile() {
     }
     try {
         console.log("Attempting to load local test.json file...");
-        const localData = await CFecth.Exe(CPath.PHPCR() + "test.json", null, "json");
+        const localData = await CFecth.Exe(CPath.WebPageUrl() + "test.json", null, "json");
         if (localData) {
             console.log("✅ Local test.json file loaded successfully");
             return localData;
@@ -240,6 +240,7 @@ function CreateMeshCreateInfo(_feature) {
     const posb = rVal.Create(CVertexFormat.eIdentifier.Position);
     const uvb = rVal.Create(CVertexFormat.eIdentifier.UV);
     const norb = rVal.Create(CVertexFormat.eIdentifier.Normal);
+    const inb = rVal.Create(CVertexFormat.eIdentifier.Index);
     const outerRing = _feature.geometry.coordinates[0];
     const n = outerRing.length;
     const maxHeight = 1000;
@@ -252,7 +253,7 @@ function CreateMeshCreateInfo(_feature) {
         norb.bufF.Push(new CVec3(0, 1, 0));
     }
     for (let i = 1; i < n - 1; i++) {
-        rVal.index.push(topStartIndex, topStartIndex + i, topStartIndex + i + 1);
+        inb.bufI.push(topStartIndex, topStartIndex + i, topStartIndex + i + 1);
     }
     const sideStartIndex = posb.bufF.Size(3);
     for (let i = 0; i < n; i++) {
@@ -270,8 +271,8 @@ function CreateMeshCreateInfo(_feature) {
         const h1 = h0 + 1;
         const h2 = h0 + 2;
         const h3 = h2 + 1;
-        rVal.index.push(h0, h2, h1);
-        rVal.index.push(h1, h2, h3);
+        inb.bufI.push(h0, h2, h1);
+        inb.bufI.push(h1, h2, h3);
         const ax = posb.bufF.X1(h2 * 3) - posb.bufF.X1(h0 * 3);
         const ay = posb.bufF.X1(h2 * 3 + 1) - posb.bufF.X1(h0 * 3 + 1);
         const az = posb.bufF.X1(h2 * 3 + 2) - posb.bufF.X1(h0 * 3 + 2);
@@ -287,7 +288,7 @@ function CreateMeshCreateInfo(_feature) {
         norb.bufF.V3(h3, new CVec3(nx, ny, nz));
     }
     rVal.vertexCount = posb.bufF.Size(3);
-    rVal.indexCount = rVal.index.length;
+    rVal.indexCount = inb.bufI.length;
     return rVal;
 }
 function AddMeshCreateInfo(_feature, _originalMesh) {
@@ -296,6 +297,7 @@ function AddMeshCreateInfo(_feature, _originalMesh) {
     const uvb = rVal.GetVFType(CVertexFormat.eIdentifier.UV)[0];
     const norb = rVal.GetVFType(CVertexFormat.eIdentifier.Normal)[0];
     const colb = rVal.GetVFType(CVertexFormat.eIdentifier.Color)[0];
+    const inb = rVal.GetVFType(CVertexFormat.eIdentifier.Index)[0];
     const outerRing = _feature.geometry.coordinates[0];
     const n = outerRing.length;
     const growth = _feature.properties?.growth || Math.random() * 0.5;
@@ -311,7 +313,7 @@ function AddMeshCreateInfo(_feature, _originalMesh) {
         colb.bufF.Push(col);
     }
     for (let i = 1; i < n - 1; i++) {
-        rVal.index.push(topStartIndex, topStartIndex + i, topStartIndex + i + 1);
+        inb.bufI.push(topStartIndex, topStartIndex + i, topStartIndex + i + 1);
     }
     const sideStartIndex = posb.bufF.Size(3);
     for (let i = 0; i < n; i++) {
@@ -331,8 +333,8 @@ function AddMeshCreateInfo(_feature, _originalMesh) {
         const h1 = h0 + 1;
         const h2 = h0 + 2;
         const h3 = h2 + 1;
-        rVal.index.push(h0, h2, h1);
-        rVal.index.push(h1, h2, h3);
+        inb.bufI.push(h0, h2, h1);
+        inb.bufI.push(h1, h2, h3);
         const ax = posb.bufF.X1(h2 * 3) - posb.bufF.X1(h0 * 3);
         const ay = posb.bufF.X1(h2 * 3 + 1) - posb.bufF.X1(h0 * 3 + 1);
         const az = posb.bufF.X1(h2 * 3 + 2) - posb.bufF.X1(h0 * 3 + 2);
@@ -348,7 +350,7 @@ function AddMeshCreateInfo(_feature, _originalMesh) {
         norb.bufF.V3(h3, new CVec3(nx, ny, nz));
     }
     rVal.vertexCount = posb.bufF.Size(3);
-    rVal.indexCount = rVal.index.length;
+    rVal.indexCount = inb.bufI.length;
     return rVal;
 }
 function extractPolygonsFromGeoJSON(geoJson) {
@@ -414,6 +416,7 @@ else {
     createInfo.Create(CVertexFormat.eIdentifier.UV);
     createInfo.Create(CVertexFormat.eIdentifier.Normal);
     createInfo.Create(CVertexFormat.eIdentifier.Color);
+    createInfo.Create(CVertexFormat.eIdentifier.Index);
     for (const polygon of polygonArr) {
         AddMeshCreateInfo(polygon, createInfo);
     }

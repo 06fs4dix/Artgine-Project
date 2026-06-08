@@ -1,5 +1,4 @@
-﻿//Version
-const version='mf2jnnjd_2';
+//Version
 import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
 
 //Class
@@ -21,9 +20,10 @@ gPF.mIAuto = true;
 gPF.mWASM = false;
 gPF.mCanvas = "canvas";
 gPF.mServer = 'local';
-gPF.mGitHub = true;
+gPF.mGitHub = false;
+gPF.mVersion = "mq4m3t4v_75";
 
-import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/canvas/CAtelier.js";
+import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
 
 import {CPlugin} from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
@@ -39,8 +39,8 @@ import { CMeshCreateInfo } from "https://06fs4dix.github.io/Artgine/artgine/rend
 import { CVertexFormat } from "https://06fs4dix.github.io/Artgine/artgine/render/CShader.js";
 import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
 import { CUtilRender } from "https://06fs4dix.github.io/Artgine/artgine/render/CUtilRender.js";
-import { CPaint3D } from "https://06fs4dix.github.io/Artgine/artgine/canvas/component/paint/CPaint3D.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/canvas/subject/CSubject.js";
+import { CPaint3D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
 import { CVec4 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec4.js";
 import { CMath } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMath.js";
 import { CCamCon3DFirstPerson } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
@@ -48,7 +48,7 @@ import { CModalFrameView } from "https://06fs4dix.github.io/Artgine/artgine/util
 import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/CRenderPass.js";
 import { CConsol } from "https://06fs4dix.github.io/Artgine/artgine/basic/CConsol.js";
 import { CFont, CFontOption } from "https://06fs4dix.github.io/Artgine/artgine/util/CFont.js";
-import { CUIText } from "https://06fs4dix.github.io/Artgine/artgine/canvas/subject/CUI.js";
+import { CUIText } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CUI.js";
 
 
 declare global {
@@ -273,6 +273,14 @@ function CacLatLng(_lat: number, _lng: number, baseLat=0, baseLng=0)
  
     return new CVec2(screenPoint.x,screenPoint.y);
 }
+
+
+
+
+
+
+
+
 
 
 

@@ -1,5 +1,4 @@
-﻿//Version
-const version='mlwa3uxx_7';
+//Version
 import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
 
 //Class
@@ -21,7 +20,8 @@ gPF.mIAuto = true;
 gPF.mCanvas = "";
 gPF.mWASM = false;
 gPF.mServer = 'local';
-gPF.mGitHub = true;
+gPF.mGitHub = false;
+gPF.mVersion = "mq4m3t4v_89";
 
 import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
 
@@ -56,8 +56,7 @@ import { SDF } from "https://06fs4dix.github.io/Artgine/artgine/z_file/SDF.js";
 
 import { CH5Canvas } from "https://06fs4dix.github.io/Artgine/artgine/render/CH5Canvas.js";
 import { CLoaderOption } from "https://06fs4dix.github.io/Artgine/artgine/util/CLoader.js";
-import { CVoxel, CVTile, CVTileSurface } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CVoxel.js";
-import { CNaviMgr } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CNavigationMgr.js";
+import { CVoxelMap, CVTile } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CVoxelMap.js";
 import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
 import { CCIndex } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CCIndex.js";
 import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
@@ -68,14 +67,16 @@ import { CRPAuto, CRPMgr } from "https://06fs4dix.github.io/Artgine/artgine/app/
 import { CCondition } from "https://06fs4dix.github.io/Artgine/artgine/util/CCondition.js";
 import { CCanvasPluginRPMgr } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
 import { CLight } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CLight.js";
-let Main = gAtl.NewCanvas("Matin");
+let Main = gAtl.NewCanvas("Main");
 Main.SetCameraKey("3D");
 gAtl.Brush().GetCam3D().SetCamCon(new CCamCon3DFirstPerson(gAtl.Frame().Input()));
 //gAtl.Brush().GetCam3D().Init(new CVec3(500,1000,2600),new CVec3(500,0,1600));
 
 var texList = new Array<string>();
+var tileColors = new Array<number>();
 var select = 0;
-var gVoxel = new CVoxel();
+var gTileCounter = 6; // 동적 타일 ID 카운터 (정적 5개 이후부터)
+var gVoxel = new CVoxelMap();
 gVoxel.SetBlackBoard(true);
 await gVoxel.mAtlas.Push("Res/rect_gray0.png");
 await gVoxel.mAtlas.Push("Res/tutorial_pad.png");
@@ -88,46 +89,22 @@ texList.push("Res/floor_sand_stone0.png");
 texList.push("Res/dngn_shoals_shallow_water4.png");
 texList.push("Res/dirt_full.png");
 
-let naniMgr = new CNaviMgr();
-let tile = new CVTile();
-tile.mVInfo = 1;
-tile.mPattern.push(new CVTileSurface(1));
-tile.mCollider = CCollider.eEvent.Collision;
-gVoxel.PushTile(tile);
+// 색상값은 반드시 상위 24비트에 데이터 필요 (내부적으로 & 0xFFFFFF00 마스킹됨)
+gVoxel.PushTile(new CVTile(0x01000000, 1, "voxel")); tileColors.push(0x01000000);
+gVoxel.PushTile(new CVTile(0x02000000, 2, "voxel")); tileColors.push(0x02000000);
+gVoxel.PushTile(new CVTile(0x03000000, 3, "voxel")); tileColors.push(0x03000000);
+gVoxel.PushTile(new CVTile(0x04000000, 4, "voxel")); tileColors.push(0x04000000);
+gVoxel.PushTile(new CVTile(0x05000000, 5, "voxel")); tileColors.push(0x05000000);
 
-tile = new CVTile();
-tile.mVInfo = 2;
-tile.mPattern.push(new CVTileSurface(2));
-tile.mCollider = CCollider.eEvent.Collision;
-gVoxel.PushTile(tile);
-
-tile = new CVTile();
-tile.mVInfo = 3;
-tile.mPattern.push(new CVTileSurface(3));
-tile.mCollider = CCollider.eEvent.Collision;
-gVoxel.PushTile(tile);
-
-tile = new CVTile();
-tile.mVInfo = 4;
-tile.mPattern.push(new CVTileSurface(4));
-tile.mCollider = CCollider.eEvent.Collision;
-gVoxel.PushTile(tile);
-
-tile = new CVTile();
-tile.mVInfo = 5;
-tile.mPattern.push(new CVTileSurface(5));
-tile.mCollider = CCollider.eEvent.Collision;
-gVoxel.PushTile(tile);
-
-
-
-
-gVoxel.ResetInfo(new CVec3(16, 16, 16), 100, false);
+gVoxel.ResetInfo(new CVec3(16, 16, 16), 100);
 Main.PushSub(gVoxel);
 
-gVoxel.BondsFill(new CCIndex(0, 0, 0), new CCIndex(15, 0, 15), 1);
-//naniMgr.Init(new CVec3(16,16,16))
-//Main.GetGI().mNavi=naniMgr;
+// BondsFill 대체: 바닥면(y=0) 전체 채우기
+for (let _x = 0; _x < 16; _x++) {
+    for (let _z = 0; _z < 16; _z++) {
+        gVoxel.Bonds(new CCIndex(_x, 0, _z), tileColors[0]);
+    }
+}
 
 
 let Help = new CBGAttachButton("DevToolModal", 101, new CVec2(320, 320));
@@ -181,16 +158,14 @@ async function AddColor() {
     texList.push(CH5Canvas.GetDataURL());
     RefreshTexList();
     let tex = CH5Canvas.GetNewTex();
-    await gVoxel.mAtlas.Push(texList[texList.length - 1]);
+    const atlasIdx = await gVoxel.mAtlas.Push(texList[texList.length - 1]);
+    (gVoxel.mAtlas as any).mGBuffer = new Array<any>();
     gAtl.Frame().Ren().BuildTexture(tex);
     gAtl.Frame().Res().Push(texList[texList.length - 1], tex);
-    //await gVoxel.mAtlas.Push(r+"/"+g+"/"+b+".png",tex.GetBuf()[0]);
 
-    let tile = new CVTile();
-    tile.mVInfo = gVoxel.mAtlas.mTexCodi.length - 1;
-    tile.mPattern.push(new CVTileSurface(gVoxel.mAtlas.mTexCodi.length - 1));
-    tile.mCollider = CCollider.eEvent.Collision;
-    gVoxel.PushTile(tile);
+    const newColor = (gTileCounter++ << 24) >>> 0;
+    gVoxel.PushTile(new CVTile(newColor, atlasIdx as number, "voxel"));
+    tileColors.push(newColor);
 
 
     //const inputColor = new CVec4(r, g, b, this.w); // 유지되는 알파 포함
@@ -217,24 +192,18 @@ async function AddImg() {
         // 1) 팔레트 소스 목록에 추가
         
 
-        // 2) 아틀라스에 푸시 (내부적으로 텍스처 코딩/인덱스 갱신)
-        await gVoxel.mAtlas.Push(dataUrl);
-        
+        // 2) 아틀라스에 푸시, 반환값으로 atlasIdx 획득
+        const atlasIdx = await gVoxel.mAtlas.Push(dataUrl);
+        (gVoxel.mAtlas as any).mGBuffer = new Array<any>();
 
         let ab=await file.arrayBuffer();
-        
         texList.push(dataUrl);
         await gAtl.Frame().Load().TextureLoad(dataUrl,ab,new CLoaderOption());
-        // gAtl.Frame().Ren().BuildTexture(tex);
-        // gAtl.Frame().Res().Push(texList[texList.length - 1], tex);
 
         // 3) 새 타일 생성해서 바로 사용 가능하게 등록
-        const idx = gVoxel.mAtlas.mTexCodi.length - 1;
-        const tile = new CVTile();
-        tile.mVInfo = idx;
-        tile.mPattern.push(new CVTileSurface(idx));
-        tile.mCollider = CCollider.eEvent.Collision;
-        gVoxel.PushTile(tile);
+        const newColor = (gTileCounter++ << 24) >>> 0;
+        gVoxel.PushTile(new CVTile(newColor, atlasIdx as number, "voxel"));
+        tileColors.push(newColor);
     }
     RefreshTexList();
 }
@@ -256,7 +225,12 @@ gAtl.Frame().PushEvent(CEvent.eType.Update, (_update: CUpdate) => {
         return;
     }
 
-    else if (CDOM.IDValue("tileMode") == "Create") {
+    if (!pick) {
+        gBoxSub.SetSca(0);
+        return;
+    }
+
+    if (CDOM.IDValue("tileMode") == "Create") {
         pt3d.SetColorModel(new CColor(0, 0, 0, CColor.eModel.RGBAdd));
         pt3d.SetTexture(texList[select]);
         pick.PickMove();
@@ -270,17 +244,15 @@ gAtl.Frame().PushEvent(CEvent.eType.Update, (_update: CUpdate) => {
 
 
 
-
-
-    let sca = (gVoxel.mSize / 200) * 1.1;
-    let pos = CMath.V3AddV3(pick.M2Pos(gVoxel.mSize), gVoxel.GetPos());
+    let sca = (gVoxel.mBuf.mSize / 200) * 1.1;
+    let pos = CMath.V3AddV3(pick.M2Pos(gVoxel.mBuf.mSize), gVoxel.GetPos());
 
     gBoxSub.SetPos(pos);
     gBoxSub.SetSca(sca);
 
     if (gAtl.Frame().Input().KeyUp(CInput.eKey.LButton)) {
         if (CDOM.IDValue("tileMode") == "Create")
-            gVoxel.Bonds(pick, select + 1);
+            gVoxel.Bonds(pick, tileColors[select]);
         else
             gVoxel.Bonds(pick, 0);
     }
@@ -318,31 +290,44 @@ let texKey = forward.PushTex("shadowread.tex", new CTexture());
 let rp = forward.PushRP(new CRPAuto());
 rp.PushOr(new CCondition("class", "==", "CPaintVoxel"));
 rp.mPriority = CRenderPass.ePriority.BackGround + 1;
-rp.mShaderAttr.push(new CShaderAttr(0, gAtl.Frame().Pal().GetShadowWriteTex()));
+rp.mShaderAttr.push(new CShaderAttr(SDF.eTexSlot.ArrShadowWrite, gAtl.Frame().Pal().GetShadowWriteTex()));
 rp.mShaderAttr.push(new CShaderAttr("shadowRate", shadowRate));
 rp.mShaderAttr.push(new CShaderAttr("PCF", PCF));
 rp.mShaderAttr.push(new CShaderAttr("bias", bias));
 rp.mShaderAttr.push(new CShaderAttr("normalBias", normalBias));
+rp.mShaderAttr.push(new CShaderAttr("jitter", 0.2));
 rp.mShader = gAtl.Frame().Pal().SlVoxelKey();
 rp.mRenderTarget = "shadowread.tex";
 rp.mTag.add("shadowRead");
 
 rp = forward.PushRP(new CRPAuto());
 rp.PushOr(new CCondition("class", "==", "CPaintVoxel"));
-rp.mShaderAttr.push(new CShaderAttr(10, "shadowread.tex"));
-rp.mShaderAttr.push(new CShaderAttr("shadowOn", new CVec1(10)));
+rp.mShaderAttr.push(new CShaderAttr(SDF.eTexSlot.SingleShadowRead, "shadowread.tex"));
+rp.mShaderAttr.push(new CShaderAttr("shadowOn", new CVec1(SDF.eTexSlot.SingleShadowRead)));
 rp.mShader = gAtl.Frame().Pal().SlVoxelKey();
-rp.mShaderAttr.push(new CShaderAttr("ligStep1", new CVec1(SDF.eLightStep1.None)));
-//rp.mTag="light";
+rp.mTag.add("light");
 Main.PushPlugin(new CCanvasPluginRPMgr(forward));
 
 
 
 let ligSub = Main.PushSub(new CSubject());
-let lig = ligSub.Push(new CLight());
+let lig = ligSub.PushComp(new CLight());
 lig.SetDirect();
 lig.SetColor(new CVec3(1, 1, 1));
-lig.SetShadow("test", 0);
+lig.SetShadow3D("test", 0);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
