@@ -1,14 +1,16 @@
-﻿import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
+import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
 import { CAnimation,  CClipAlpha,  CClipDestroy } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAnimation.js";
 import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
 import { CForce } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CForce.js";
 import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
 import { CRoleComp } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRoleComp.js";
+import { CPaint } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint.js";
 import { CPaint2D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
 import { CPad } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CPad.js";
 import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
 import { CUpdate } from "https://06fs4dix.github.io/Artgine/artgine/basic/Basic.js";
 import { CBlackBoardRef } from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js";
+import { CPool } from "https://06fs4dix.github.io/Artgine/artgine/basic/CPool.js";
 import { CMath } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMath.js";
 import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
 import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
@@ -20,7 +22,7 @@ import { CAction } from "https://06fs4dix.github.io/Artgine/artgine/util/CAction
 import { CCamCon2DFollow } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
 import { CRandom } from "https://06fs4dix.github.io/Artgine/artgine/util/CRandom.js";
 import { CULPC } from "https://06fs4dix.github.io/Artgine/artgine/util/parser/CParserULPC.js";
-import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
+import { CShadowPlane } from "../../../plugin/ShadowPlane/ShadowPlane.js";
 
 export class CUser extends CSubject
 {
@@ -48,6 +50,7 @@ export class CUser extends CSubject
         this.mPT.mSave = false;
         this.mPT.SetAutoLoad(false);
         this.mPT.SetYSort(true);
+        this.mPT.PushTag(CPaint.eTag.Shadow);
         //this.mPT.SetYSortOrigin(-64);
         //this.PushChild(new CPad()).mSave=false;
         this.mRB=this.PushComp(new CRigidBody());
@@ -66,7 +69,7 @@ export class CUser extends CSubject
         itemCL.PushCollisionLayer("item");
         itemCL.SetEvent(CCollider.eEvent.Trigger);
 
-        this.PushComp(new CShadowPlane());
+        //this.PushComp(new CShadowPlane());
 
         this.mAF = this.PushComp(new CAniFlow());
         this.mAF.mSave = false;
@@ -157,6 +160,7 @@ export class CUser extends CSubject
                 let audio=new CAudioBuf("Res/sound/jute-dh-steps/stepdirt_2.wav");
                 audio.Volume(0.5);
                 audio.Play();
+                
                 let smoke=new CSubject();
                 let pt=smoke.PushComp(new CPaint2D("Res/smoke.png",new CVec2(100,100)));
                 pt.SetColorModel(new CColor(1,1,1,CColor.eModel.RGBAdd));

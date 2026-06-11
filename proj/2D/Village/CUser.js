@@ -1,9 +1,10 @@
-﻿import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
+import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
 import { CAnimation, CClipAlpha, CClipDestroy } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAnimation.js";
 import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
 import { CForce } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CForce.js";
 import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
 import { CRoleComp } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRoleComp.js";
+import { CPaint } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint.js";
 import { CPaint2D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
 import { CPad } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CPad.js";
 import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
@@ -16,7 +17,6 @@ import { CColor } from "https://06fs4dix.github.io/Artgine/artgine/render/CColor
 import { CAudioBuf } from "https://06fs4dix.github.io/Artgine/artgine/system/audio/CAudio.js";
 import { CAction } from "https://06fs4dix.github.io/Artgine/artgine/util/CAction.js";
 import { CRandom } from "https://06fs4dix.github.io/Artgine/artgine/util/CRandom.js";
-import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
 export class CUser extends CSubject {
     mRB;
     mAF;
@@ -37,6 +37,7 @@ export class CUser extends CSubject {
         this.mPT.mSave = false;
         this.mPT.SetAutoLoad(false);
         this.mPT.SetYSort(true);
+        this.mPT.PushTag(CPaint.eTag.Shadow);
         this.mRB = this.PushComp(new CRigidBody());
         this.mRB.mSave = false;
         this.mSave = false;
@@ -50,7 +51,6 @@ export class CUser extends CSubject {
         itemCL.SetLayer("player");
         itemCL.PushCollisionLayer("item");
         itemCL.SetEvent(CCollider.eEvent.Trigger);
-        this.PushComp(new CShadowPlane());
         this.mAF = this.PushComp(new CAniFlow());
         this.mAF.mSave = false;
         let sm = this.PushComp(new CRoleComp());

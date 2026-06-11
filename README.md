@@ -33,6 +33,7 @@ Set `projectPath` to the desired folder under `proj` in the Artgine app, then cl
 | Map | Real-time 3D object placement on a 2D MapLibre map | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/3D/Map/Map.html) |
 | ModularVillage | 3D modular village scene with day/night cycle and shadows | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/3D/ModularVillage/ModularVillage.html) |
 | Voxel | 3D voxel world editor with navigation mesh | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/3D/Voxel/Voxel.html) |
+| Terrain | 3D terrain with shadow mapping, collision, and rigid body physics | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/3D/Terrain/Terrain.html) |
 
 **Tutorial**
 

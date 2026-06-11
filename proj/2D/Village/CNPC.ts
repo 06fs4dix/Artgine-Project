@@ -1,6 +1,7 @@
-﻿import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
+import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
 import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
 import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
+import { CPaint } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint.js";
 import { CPaint2D, CPaintHTML } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
 import { CRayMouse } from "https://06fs4dix.github.io/Artgine/artgine/app/CRayMouse.js";
 import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
@@ -12,7 +13,7 @@ import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3
 import { CInput } from "https://06fs4dix.github.io/Artgine/artgine/system/CInput.js";
 import { CCoroutine } from "https://06fs4dix.github.io/Artgine/artgine/util/CCoroutine.js";
 import { CULPC } from "https://06fs4dix.github.io/Artgine/artgine/util/parser/CParserULPC.js";
-import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
+import { CShadowPlane } from "../../../plugin/ShadowPlane/ShadowPlane.js";
 
 
 export class CNPC extends CSubject
@@ -124,6 +125,7 @@ export class CNPC extends CSubject
         this.mPT.mSave = false;
         this.mPT.SetAutoLoad(false);
         this.mPT.SetYSort(true);
+        this.mPT.PushTag(CPaint.eTag.Shadow);
         //this.mPT.SetYSortOrigin(-64);
 
         const flow     = this.PushComp(new CAniFlow());
@@ -144,7 +146,7 @@ export class CNPC extends CSubject
         this.mCL.SetPickMouse(true);
         this.mCL.SetRestitution(0);
 
-        this.PushComp(new CShadowPlane());
+        //this.PushComp(new CShadowPlane());
 
         let co = new CCoroutine(this.AutoChat, this);
         co.Start();

@@ -1,4 +1,4 @@
-﻿import "https://06fs4dix.github.io/Artgine/artgine/artgine.js";
+import "https://06fs4dix.github.io/Artgine/artgine/artgine.js";
 import { CPreferences } from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
@@ -13,9 +13,9 @@ gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mWASM = false;
 gPF.mCanvas = "";
-gPF.mServer = 'local';
+gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mpufvoga_17";
+gPF.mVersion = "mq98xtgp_2";
 import { CAtelier } from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
@@ -27,7 +27,7 @@ import { CTexture, CTextureInfo } from "https://06fs4dix.github.io/Artgine/artgi
 import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/CRenderPass.js";
 import { CShaderAttr } from "https://06fs4dix.github.io/Artgine/artgine/render/CShaderAttr.js";
 import { CVec1 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec1.js";
-import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
+import { CShadowPlane } from "../../../plugin/ShadowPlane/ShadowPlane.js";
 import { CModal, CModalTitleBar } from "https://06fs4dix.github.io/Artgine/artgine/basic/CModal.js";
 import { SDF } from "https://06fs4dix.github.io/Artgine/artgine/z_file/SDF.js";
 import { CBGAttachButton, CMDViewer, CModalFrameView } from "https://06fs4dix.github.io/Artgine/artgine/util/CModalUtil.js";
@@ -44,7 +44,6 @@ import { CLight } from "https://06fs4dix.github.io/Artgine/artgine/app/component
 import { CColor } from "https://06fs4dix.github.io/Artgine/artgine/render/CColor.js";
 import { CCondition } from "https://06fs4dix.github.io/Artgine/artgine/util/CCondition.js";
 import { CMat } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMat.js";
-import { CMath } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMath.js";
 import { CEvent } from "https://06fs4dix.github.io/Artgine/artgine/basic/CEvent.js";
 const opt = new CLoaderOption();
 opt.mFilter = CTexture.eFilter.Linear;
@@ -52,13 +51,24 @@ opt.mWrap = CTexture.eWrap.Repeat;
 await gAtl.Frame().Load().Exe("Res/teapot/1zflt0j.jpg", opt);
 await gAtl.Frame().Load().Exe("Res/teapot/1zflt0j_NRM.jpg", opt);
 await gAtl.Frame().Load().Exe("Res/teapot/1zflt0j_lig.jpg", opt);
+const skyLowTexBufList = [];
 const skyTexKey = ["Res/skybox/right.jpg", "Res/skybox/left.jpg", "Res/skybox/bottom.jpg", "Res/skybox/top.jpg", "Res/skybox/front.jpg", "Res/skybox/back.jpg"];
 const skyTexList = [];
 await gAtl.Frame().Load().Exe(skyTexKey);
 for (let i = 0; i < skyTexKey.length; ++i) {
     skyTexList.push(gAtl.Frame().Res().Find(skyTexKey[i]));
+    skyLowTexBufList.push(skyTexList[i].GetBuf()[0]);
 }
 const cubeTexKey = gAtl.Frame().Ren().BuildCubeMap(skyTexList, true, "cube.tex");
+const envTexKey = "env.tex";
+const envTex = new CTexture();
+envTex.SetSize(128, 128);
+envTex.PushInfo([new CTextureInfo(CTexture.eTarget.Cube, CTexture.eFormat.RGBA8)]);
+envTex.GetBuf().push(...skyLowTexBufList);
+envTex.SetMipMap(CTexture.eMipmap.EnvFilter);
+envTex.SetFilter(CTexture.eFilter.Linear);
+gAtl.Frame().Ren().BuildTexture(envTex);
+gAtl.Frame().Res().Push(envTexKey, envTex);
 let PCF = new CVec1(1.0);
 let bias = new CVec1(10);
 let normalBias = new CVec1(5);
@@ -181,77 +191,9 @@ const gBufMultiTexKey = DeferredMulti.PushTex("gBufMulti.tex", gBufMultiTex);
 rp = DeferredMulti.PushRP(new CRPAuto());
 rp.PushAnd(new CCondition("class", "==", "CPaint3D"));
 rp.mPriority = CRenderPass.ePriority.Normal;
-rp.mShaderAttr.push(new CShaderAttr("outputType", SDF.eGBuf.Position));
 rp.mShader = gAtl.Frame().Pal().Sl3DKey();
 rp.mRenderTarget = gBufMultiTexKey;
-rp.mTag.add("gBufMulti");
-const camDirList = [
-    new CVec3(1, 0, 0), new CVec3(-1, 0, 0), new CVec3(0, -1, 0),
-    new CVec3(0, 1, 0), new CVec3(0, 0, 1), new CVec3(0, 0, -1)
-];
-for (let i = 0; i < 6; i++) {
-    gAtl.Brush().GetCamera("noMove");
-    const camDir = camDirList[i];
-    const eye = new CVec3();
-    const look = CMath.V3AddV3(eye, camDir);
-    const envmapCam = gAtl.Brush().GetCamera("envmap" + i);
-    if (envmapCam.Init(eye, look)) {
-        envmapCam.SetFov(Math.PI * 0.5);
-        envmapCam.SetSize(128, 128);
-        envmapCam.mRCS = false;
-        envmapCam.ResetPerspective();
-    }
-}
-const irradianceTex = new CTexture();
-irradianceTex.SetSize(32, 32);
-irradianceTex.PushInfo([new CTextureInfo(CTexture.eTarget.Cube, CTexture.eFormat.RGBA32F, 1)]);
-irradianceTex.SetFilter(CTexture.eFilter.Linear);
-irradianceTex.SetAutoResize(false);
-gAtl.Frame().Ren().BuildTexture(irradianceTex);
-const irradianceTexKey = DeferredMulti.PushTex("irradiance.tex", irradianceTex);
-for (let i = 0; i < 6; i++) {
-    rp = DeferredMulti.PushRP(new CRPAuto());
-    rp.PushAnd(new CCondition("class", "==", "CPaintCube"));
-    rp.mPriority = CRenderPass.ePriority.BackGround;
-    rp.mShader = gAtl.Frame().Pal().SlCube().GetShader("Artgine/Shader/CubeIrradiance").Key();
-    rp.mRenderTarget = irradianceTexKey;
-    rp.mRenderTargetUse.add(i);
-    rp.mCamera = "envmap" + i;
-    rp.mCullFace = CRenderPass.eCull.None;
-    rp.mCullFrustum = false;
-    rp.mCycle = 100000000;
-}
-gAtl.Frame().Ren().BuildRenderTarget([new CTextureInfo(CTexture.eTarget.Cube, CTexture.eFormat.RGBA32F, 1)], new CVec2(128, 128), "prefilter.tex");
-const prefilterTex = gAtl.Frame().Res().Find("prefilter.tex");
-prefilterTex.SetAutoResize(false);
-prefilterTex.SetFilter(CTexture.eFilter.Linear);
-prefilterTex.SetMipMap(CTexture.eMipmap.EnvFilter);
-const prefilterTexKey = DeferredMulti.PushTex("prefilter.tex", prefilterTex);
-for (let i = 0; i < 6; i++) {
-    rp = DeferredMulti.PushRP(new CRPAuto());
-    rp.PushAnd(new CCondition("class", "==", "CPaintCube"));
-    rp.mPriority = CRenderPass.ePriority.BackGround;
-    rp.mShader = gAtl.Frame().Pal().SlCubeKey();
-    rp.mRenderTarget = prefilterTexKey;
-    rp.mRenderTargetUse.add(i);
-    rp.mCamera = "envmap" + i;
-    rp.mCullFace = CRenderPass.eCull.None;
-    rp.mCullFrustum = false;
-    rp.mCycle = 100000000;
-}
-const brdfTex = new CTexture();
-brdfTex.SetSize(512, 512);
-brdfTex.PushInfo([new CTextureInfo(CTexture.eTarget.Sigle, CTexture.eFormat.RGBA32F, 1)]);
-const brdfTexKey = DeferredMulti.PushTex("brdf.tex", brdfTex);
-brdfTex.SetAutoResize(false);
-const brdfSuf = DeferredMulti.PushSuf(new CSurface());
-srp = brdfSuf.GetRP();
-srp.mPriority = CRenderPass.ePriority.BackGround;
-srp.mShader = gAtl.Frame().Pal().SlPostKey();
-srp.mTag.add("brdf");
-srp.mCamera = "noMove";
-srp.mRenderTarget = brdfTexKey;
-srp.mCycle = 1000000000;
+rp.mTag.add("gBuf");
 ShadowReadTexKey = DeferredMulti.PushTex(gAtl.Frame().Pal().GetShadowReadTex(), new CTexture());
 rp = DeferredMulti.PushRP(new CRPAuto());
 rp.PushAnd(new CCondition("class", "==", "CPaint3D"));
@@ -263,43 +205,22 @@ for (const attr of shadowShaderAttrs) {
 rp.mShader = gAtl.Frame().Pal().Sl3DKey();
 rp.mRenderTarget = ShadowReadTexKey;
 rp.mTag.add("shadowRead");
-const cubemapShaderAttr0 = new CShaderAttr(0, irradianceTexKey);
-const cubemapShaderAttr1 = new CShaderAttr(1, prefilterTexKey);
-const envApproxShaderAttr = new CShaderAttr("EnvmapApprox", 1);
 sufLig0 = DeferredMulti.PushSuf(new CSurface());
-sufLig0.NewRT([new CTextureInfo(CTexture.eTarget.Sigle, CTexture.eFormat.RGBA32F, 1)]);
+sufLig0.NewRT([
+    new CTextureInfo(CTexture.eTarget.Sigle, CTexture.eFormat.RGBA32F, 1),
+    new CTextureInfo(CTexture.eTarget.Sigle, CTexture.eFormat.RGBA32F, 1),
+    new CTextureInfo(CTexture.eTarget.Sigle, CTexture.eFormat.RGBA32F, 1)
+]);
 srp = sufLig0.GetRP();
 srp.mShader = gAtl.Frame().Pal().SlPostKey();
-srp.mTag.add("light");
-srp.mTag.add("shadow");
+srp.mTag.add("light").add("shadow");
 srp.mShaderAttr.push(new CShaderAttr(SDF.eTexSlot.SingleShadowRead, gAtl.Frame().Pal().GetShadowReadTex()));
 srp.mShaderAttr.push(new CShaderAttr("shadowOn", new CVec1(1)));
 srp.mShaderAttr.push(new CShaderAttr(0, gBufMultiTexKey));
-srp.mShaderAttr.push(new CShaderAttr(9, brdfTexKey));
-srp.mShaderAttr.push(envApproxShaderAttr);
-srp.mShaderAttr.push(new CShaderAttr("renType", 0));
-srp.mShaderAttr.push(new CShaderAttr("ligStep0", SDF.eLightStep0.None));
+srp.mShaderAttr.push(new CShaderAttr(0, envTexKey));
+srp.mShaderAttr.push(new CShaderAttr("ligStep0", SDF.eLightStep0.Lambert));
 srp.mShaderAttr.push(new CShaderAttr("ligStep1", SDF.eLightStep1.CookTorrance));
-srp.mShaderAttr.push(cubemapShaderAttr0);
-srp.mShaderAttr.push(cubemapShaderAttr1);
-srp.mShaderAttr.push(new CShaderAttr("envCube", SDF.eEnvCube.Texture));
-sufLig1 = DeferredMulti.PushSuf(new CSurface());
-sufLig1.NewRT([new CTextureInfo(CTexture.eTarget.Sigle, CTexture.eFormat.RGBA32F, 1)]);
-srp = sufLig1.GetRP();
-srp.mShader = gAtl.Frame().Pal().SlPostKey();
-srp.mTag.add("light");
-srp.mTag.add("shadow");
-srp.mShaderAttr.push(new CShaderAttr(SDF.eTexSlot.SingleShadowRead, gAtl.Frame().Pal().GetShadowReadTex()));
-srp.mShaderAttr.push(new CShaderAttr("shadowOn", new CVec1(1)));
-srp.mShaderAttr.push(new CShaderAttr(0, gBufMultiTexKey));
-srp.mShaderAttr.push(new CShaderAttr(9, brdfTexKey));
-srp.mShaderAttr.push(envApproxShaderAttr);
-srp.mShaderAttr.push(new CShaderAttr("renType", 1));
-srp.mShaderAttr.push(new CShaderAttr("ligStep0", SDF.eLightStep0.None));
-srp.mShaderAttr.push(new CShaderAttr("ligStep1", SDF.eLightStep1.CookTorrance));
-srp.mShaderAttr.push(cubemapShaderAttr0);
-srp.mShaderAttr.push(cubemapShaderAttr1);
-srp.mShaderAttr.push(new CShaderAttr("envCube", SDF.eEnvCube.Texture));
+srp.mShaderAttr.push(new CShaderAttr("envmapOn", 1));
 rp = DeferredMulti.PushRP(new CRPAuto());
 rp.PushAnd(new CCondition("class", "==", "CPaintCube"));
 rp.mPriority = CRenderPass.ePriority.Surface;
@@ -315,7 +236,6 @@ srp = sufLast.GetRP();
 srp.mShader = gAtl.Frame().Pal().SlPostKey();
 srp.mTag.add("blend");
 srp.mShaderAttr.push(new CShaderAttr(0, sufLig0.GetTexKey()));
-srp.mShaderAttr.push(new CShaderAttr(1, sufLig1.GetTexKey()));
 srp.mShaderAttr.push(new CShaderAttr(2, rp.mRenderTarget));
 srp.mShaderAttr.push(new CShaderAttr("TexOffBlendFactor", new CMat([
     1, CRenderPass.eBlend.LinearDodge, 1, 0,
@@ -362,7 +282,7 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal", "ShadowPlane", () => {
     let L = Main.PushSub(new CSubject());
     L.SetPos(new CVec3(0, 1, 0));
     let lig = new CLight();
-    lig.SetShadow("test", 0);
+    lig.SetShadow3D("test", 0);
     lig.SetDirect();
     lig.SetColor(new CVec3(1, 1, 1));
     lig.mShadowDistance = shadowDistance;
@@ -386,7 +306,7 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal", "Forward", () => {
     let L = Main.PushSub(new CSubject());
     L.SetPos(new CVec3(0, 1, 0));
     let lig = new CLight();
-    lig.SetShadow("test", 0);
+    lig.SetShadow3D("test", 0);
     lig.SetDirect();
     lig.SetColor(new CVec3(1, 1, 1));
     lig.mShadowDistance = shadowDistance;
@@ -414,7 +334,7 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred", "DeferredSingle(HafeLambert+P
     let L = Main.PushSub(new CSubject());
     L.SetPos(new CVec3(0, 1, 0));
     let lig = new CLight();
-    lig.SetShadow("test", 0, 100);
+    lig.SetShadow3D("test", 0, 100);
     lig.SetDirect();
     lig.SetColor(new CVec3(1, 1, 1));
     lig.mShadowDistance = shadowDistance;
@@ -444,7 +364,7 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred", "DeferredMulti(None+CookTorra
         let L = Main.PushSub(new CSubject());
         L.SetKey("lig");
         let lig = new CLight();
-        lig.SetShadow("test", 0, 100);
+        lig.SetShadow3D("test", 0, 100);
         lig.SetDirect();
         lig.SetColor(new CVec3(1, 1, 1));
         lig.mShadowDistance = shadowDistance;
@@ -468,7 +388,7 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred", "DeferredMulti(None+CookTorra
     let pt = back.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
     pt.SetTexture(["Res/teapot/1zflt0j.jpg"]);
     pt.PushTag(CPaint.eTag.Light);
-    pt.PushTag(CPaint.eTag.Shadow);
+    pt.PushTag(CPaint.eTag.ShadowReadOnly);
     pt.SetMaterial(0.1, 0.6);
     back.SetSca(new CVec3(10, 0.01, 10));
     for (let x = -1; x <= 1; x += 1)
@@ -487,18 +407,6 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred", "DeferredMulti(None+CookTorra
     ptcube.Sky(false, false, false, false, false);
 }));
 CModal.PushTitleBar(new CModalTitleBar("DevToolModal", "DeferredOption", () => {
-}));
-CModal.PushTitleBar(new CModalTitleBar("DeferredOption", "Approx Envmap", () => {
-    envApproxShaderAttr.mData = 0;
-    Main.ClearBatch();
-    gAtl.Brush().ClearRen();
-    rpPlug.SetRPMgr(DeferredMulti);
-}));
-CModal.PushTitleBar(new CModalTitleBar("DeferredOption", "Prefilterd Envmap", () => {
-    envApproxShaderAttr.mData = 1;
-    Main.ClearBatch();
-    gAtl.Brush().ClearRen();
-    rpPlug.SetRPMgr(DeferredMulti);
 }));
 let firstLightPos = new CVec3(0, 1, 0);
 const moveLightEvent = new CEvent(() => {
