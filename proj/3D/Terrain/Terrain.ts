@@ -19,15 +19,15 @@ gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mCanvas = "";
 gPF.mWASM = false;
-gPF.mServer = 'webServer';
+gPF.mServer = 'local';
 gPF.mGitHub = false;
-gPF.mVersion = "mpw1wzhh_9";
+gPF.mVersion = "mq9h6ljs_4";
 
 import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
 
 import {CPlugin} from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
-CPlugin.PushPath('Water','../../../plugin/Water/');
-import "../../../plugin/Water/Water.js"
+CPlugin.PushPath('Water','../../../Artgine/plugin/Water/');
+import "../../../Artgine/plugin/Water/Water.js"
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
@@ -60,7 +60,7 @@ import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/compo
 import { CBehavior } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
 import { CUtilRender } from "https://06fs4dix.github.io/Artgine/artgine/render/CUtilRender.js";
 import { CImgPro } from "https://06fs4dix.github.io/Artgine/artgine/render/CImgPro.js";
-import { CWater3D } from "../../../plugin/Water/Water.js";
+import { CWater3D } from "../../../Artgine/plugin/Water/Water.js";
 import { CVec4 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec4.js";
 
 var Main=gAtl.NewCanvas("Main");
@@ -72,7 +72,7 @@ gAtl.Brush().GetCam3D().Init(new CVec3(23000, 6000, 20000), new CVec3(23001, 600
 let ligSub = Main.PushSub(new CSubject());
 ligSub.SetPos(new CVec3(0, 1, 5));
 let ligComp = ligSub.PushComp(new CLight())
-ligComp.SetShadow3D("shadow", 0, 0, 0);
+ligComp.SetShadow3D("shadow", 0, 2, 16);
 
 class CTestComp extends CComponent
 {
@@ -262,6 +262,15 @@ async function InitScene()
     heightMap.ClearAll();
 }
 InitScene();
+
+
+
+
+
+
+
+
+
 
 
 
