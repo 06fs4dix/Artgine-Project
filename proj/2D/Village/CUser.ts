@@ -22,7 +22,7 @@ import { CAction } from "https://06fs4dix.github.io/Artgine/artgine/util/CAction
 import { CCamCon2DFollow } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
 import { CRandom } from "https://06fs4dix.github.io/Artgine/artgine/util/CRandom.js";
 import { CULPC } from "https://06fs4dix.github.io/Artgine/artgine/util/parser/CParserULPC.js";
-import { CShadowPlane } from "../../../plugin/ShadowPlane/ShadowPlane.js";
+import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
 
 export class CUser extends CSubject
 {

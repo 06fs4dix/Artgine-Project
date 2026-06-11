@@ -29,12 +29,12 @@ gPF.mVersion = "mq8uscyc_2";
 import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
 
 import {CPlugin} from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
-CPlugin.PushPath('Inventory','../../../plugin/Inventory/');
-import "../../../plugin/Inventory/Inventory.js"
-CPlugin.PushPath('ShadowPlane','../../../plugin/ShadowPlane/');
-import "../../../plugin/ShadowPlane/ShadowPlane.js"
-CPlugin.PushPath('Water','../../../plugin/Water/');
-import "../../../plugin/Water/Water.js"
+CPlugin.PushPath('Inventory','../../../Artgine/plugin/Inventory/');
+import "../../../Artgine/plugin/Inventory/Inventory.js"
+CPlugin.PushPath('ShadowPlane','../../../Artgine/plugin/ShadowPlane/');
+import "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js"
+CPlugin.PushPath('Water','../../../Artgine/plugin/Water/');
+import "../../../Artgine/plugin/Water/Water.js"
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init(['Main.json','Real.json'],"");
@@ -68,10 +68,10 @@ import { CVec1 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec1
 import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
 
 import { CConsol } from "https://06fs4dix.github.io/Artgine/artgine/basic/CConsol.js";
-import { CSurfaceBloom } from "../../../plugin/Bloom/Bloom.js";
+import { CSurfaceBloom } from "../../../Artgine/plugin/Bloom/Bloom.js";
 
 import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/CRenderPass.js";
-import { CShadowPlane } from "../../../plugin/ShadowPlane/ShadowPlane.js";
+import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
 
 
 import { SDF } from "https://06fs4dix.github.io/Artgine/artgine/z_file/SDF.js";

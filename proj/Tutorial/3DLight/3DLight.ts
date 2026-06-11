@@ -44,7 +44,7 @@ import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/C
 import { CShaderAttr } from "https://06fs4dix.github.io/Artgine/artgine/render/CShaderAttr.js";
 import { CVec1 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec1.js";
 
-import { CShadowPlane } from "../../../plugin/ShadowPlane/ShadowPlane.js";
+import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
 import { CModal, CModalTitleBar } from "https://06fs4dix.github.io/Artgine/artgine/basic/CModal.js";
 import { SDF } from "https://06fs4dix.github.io/Artgine/artgine/z_file/SDF.js";
 
