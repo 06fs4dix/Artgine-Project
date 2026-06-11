@@ -1,11 +1,10 @@
-const version = 'mp4216w1_23';
-import "https://06fs4dix.github.io/Artgine/artgine/artgine.js";
-import { CClass } from "https://06fs4dix.github.io/Artgine/artgine/basic/CClass.js";
+import "../../../Artgine/artgine/artgine.js";
+import { CClass } from "../../../Artgine/artgine/basic/CClass.js";
 import { CNPC } from "./CNPC.js";
 CClass.Push(CNPC);
 import { CUser } from "./CUser.js";
 CClass.Push(CUser);
-import { CPreferences } from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
+import { CPreferences } from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -20,9 +19,10 @@ gPF.mIAuto = true;
 gPF.mWASM = false;
 gPF.mCanvas = "";
 gPF.mServer = 'local';
-gPF.mGitHub = true;
-import { CAtelier } from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
-import { CPlugin } from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
+gPF.mGitHub = false;
+gPF.mVersion = "mq9kph7i_5";
+import { CAtelier } from "../../../Artgine/artgine/app/CAtelier.js";
+import { CPlugin } from "../../../Artgine/artgine/util/CPlugin.js";
 CPlugin.PushPath('Inventory', '../../../Artgine/plugin/Inventory/');
 import "../../../Artgine/plugin/Inventory/Inventory.js";
 CPlugin.PushPath('ShadowPlane', '../../../Artgine/plugin/ShadowPlane/');
@@ -36,76 +36,76 @@ var Main = gAtl.Canvas('Main.json');
 var Real = gAtl.Canvas('Real.json');
 let comcon = gAtl.Brush().GetCam2D().SetCamCon(new CCamCon2DFollow(gAtl.Frame().Input()));
 gAtl.Brush().GetCam2D().Set2DZoom(1.5);
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
-import { CBlackBoard } from "https://06fs4dix.github.io/Artgine/artgine/basic/CBlackBoard.js";
-import { CBlackboardModal, CMDViewer, CModalBackGround } from "https://06fs4dix.github.io/Artgine/artgine/util/CModalUtil.js";
-import { CModal, CModalTitleBar } from "https://06fs4dix.github.io/Artgine/artgine/basic/CModal.js";
-import { CTexture, CTextureInfo } from "https://06fs4dix.github.io/Artgine/artgine/render/CTexture.js";
-import { CCamCon2DFollow } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
-import { CSysAuth } from "https://06fs4dix.github.io/Artgine/artgine/system/CSysAuth.js";
-import { CAudioTag } from "https://06fs4dix.github.io/Artgine/artgine/system/audio/CAudio.js";
-import { CDOM } from "https://06fs4dix.github.io/Artgine/artgine/basic/CDOM.js";
-import { CShaderAttr } from "https://06fs4dix.github.io/Artgine/artgine/render/CShaderAttr.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CBlackBoard } from "../../../Artgine/artgine/basic/CBlackBoard.js";
+import { CBlackboardModal, CMDViewer, CModalBackGround } from "../../../Artgine/artgine/util/CModalUtil.js";
+import { CModal, CModalTitleBar } from "../../../Artgine/artgine/basic/CModal.js";
+import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
+import { CTexture, CTextureInfo } from "../../../Artgine/artgine/render/CTexture.js";
+import { CCamCon2DFollow } from "../../../Artgine/artgine/util/CCamCon.js";
+import { CSysAuth } from "../../../Artgine/artgine/system/CSysAuth.js";
+import { CAudioTag } from "../../../Artgine/artgine/system/audio/CAudio.js";
+import { CDOM } from "../../../Artgine/artgine/basic/CDOM.js";
+import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
 import { CSurfaceBloom } from "../../../Artgine/plugin/Bloom/Bloom.js";
-import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/CRenderPass.js";
-import { CCIndex } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CCIndex.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
-import { CCanvasPluginRPMgr } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
-import { CRPAuto, CRPMgr } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CRPMgr.js";
-import { CCondition } from "https://06fs4dix.github.io/Artgine/artgine/util/CCondition.js";
-import { CSurface } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSurface.js";
-import { CLight } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CLight.js";
-import { CPad } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CPad.js";
-import { CMat } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMat.js";
-import { Bootstrap } from "https://06fs4dix.github.io/Artgine/artgine/basic/Bootstrap.js";
-import { CHTMLDropdown } from "https://06fs4dix.github.io/Artgine/artgine/util/CHTMLBar.js";
+import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
+import { CRPAuto, CRPMgr } from "../../../Artgine/artgine/app/canvas/CRPMgr.js";
+import { CCondition } from "../../../Artgine/artgine/util/CCondition.js";
+import { CSurface } from "../../../Artgine/artgine/app/subject/CSurface.js";
+import { CLight } from "../../../Artgine/artgine/app/component/CLight.js";
+import { CPad } from "../../../Artgine/artgine/app/subject/CPad.js";
+import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
+import { Bootstrap } from "../../../Artgine/artgine/basic/Bootstrap.js";
+import { CHTMLDropdown } from "../../../Artgine/artgine/util/CHTMLBar.js";
+import { CDensityInfo2D, CDensityMap } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
+import { CBound } from "../../../Artgine/artgine/geometry/CBound.js";
+import { CSampler, CSampMinMax } from "../../../Artgine/artgine/util/CSampler.js";
+import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
+import { CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
 {
     const backVoxel = Main.Find("BackGround");
     if (backVoxel) {
-        const decoNames = ["Prefab/LTree", "Prefab/MTree", "Prefab/Flower1", "Prefab/Flower2"];
-        const decoObjs = decoNames.map(name => CBlackBoard.Find(name)).filter(obj => obj && obj.Export);
-        const width = backVoxel.mBuf.mCount?.x || 0;
-        const height = backVoxel.mBuf.mCount?.y || 0;
-        const tileSize = backVoxel.mBuf.mSize || 200;
-        const placed = new Set();
-        const minDist = 2;
-        const placeProb = 0.1;
-        for (let y = 0; y < height; y++) {
-            for (let x = 0; x < width; x++) {
-                let pos = new CVec3(x * tileSize, y * tileSize, 0);
-                if (pos.x < 1000 || pos.x > 15000 || pos.y < 1000 || pos.y > 15000)
-                    continue;
-                const idx = new CCIndex(x, y, 0);
-                const vinfo = backVoxel.mBuf.RGB(idx);
-                if ((vinfo == 0x0000ff00 || vinfo == 0x00001000 || vinfo == 0x00002000 || vinfo == 0x00003000 || vinfo == 0x00004000)
-                    && Math.random() < placeProb) {
-                    let overlap = false;
-                    for (let dy = -minDist; dy <= minDist; dy++) {
-                        for (let dx = -minDist; dx <= minDist; dx++) {
-                            if (dx === 0 && dy === 0)
-                                continue;
-                            const key = (x + dx) + ',' + (y + dy);
-                            if (placed.has(key)) {
-                                overlap = true;
-                                break;
-                            }
-                        }
-                        if (overlap)
-                            break;
-                    }
-                    if (overlap)
-                        continue;
-                    const deco = decoObjs[Math.floor(Math.random() * decoObjs.length)];
-                    if (deco) {
-                        const obj = deco.ExportProxy();
-                        obj.SetPos(pos);
-                        obj.SetSave(false);
-                        Real.PushSub(obj);
-                        placed.add(x + ',' + y);
-                    }
-                }
-            }
-        }
+        const densityMap = Real.PushSub(new CDensityMap());
+        densityMap.mBuf = backVoxel.mBuf;
+        densityMap.mDiv = 10;
+        const tex = "Res/Back/TilesetNature.png";
+        gAtl.Frame().Load().Exe(tex, new CLoaderOption().Set("mFilter", CTexture.eFilter.Neaest));
+        const ltree = densityMap.PushDensityInfo(new CDensityInfo2D(0x0000ff00, new CVec3(800, 800, 0), tex, new CSampler(new CVec4(0.12447916716337204, 0.14226190745830536, 0.12526041269302368, 0.000297616352327168))));
+        ltree.mYSort = true;
+        ltree.mWind = 20;
+        ltree.mSca = new CSampler(new CVec3(0.375, 0.375, 1));
+        ltree.mPos = new CSampMinMax(new CVec3(-300, -300, 0), new CVec3(300, 300, 0));
+        ltree.mColliderLayer = "object";
+        ltree.mBound = new CBound();
+        ltree.mBound.SetType(CBound.eType.Box);
+        ltree.mBound.mMin.Import(new CVec3(-50 / 300, -120 / 300, -0.5));
+        ltree.mBound.mMax.Import(new CVec3(50 / 300, -50 / 300, 0.5));
+        ltree.mPaintTag.push(CPaint.eTag.Shadow);
+        const mtree = densityMap.PushDensityInfo(new CDensityInfo2D(0x00001000, new CVec3(600, 600, 0), tex, new CSampler(new CVec4(0.08020833134651184, 0.09166666865348816, 0.0002604166802484542, 0.9080356955528259))));
+        mtree.mYSort = true;
+        mtree.mWind = 20;
+        mtree.mSca = new CSampler(new CVec3(0.167, 0.167, 1));
+        mtree.mPos = new CSampMinMax(new CVec3(-250, -250, 0), new CVec3(250, 250, 0));
+        mtree.mColliderLayer = "object";
+        mtree.mBound = new CBound();
+        mtree.mBound.SetType(CBound.eType.Box);
+        mtree.mBound.mMin.Import(new CVec3(-50 / 100, -30 / 100, -0.5));
+        mtree.mBound.mMax.Import(new CVec3(50 / 100, 0 / 100, 0.5));
+        mtree.mPaintTag.push(CPaint.eTag.Shadow);
+        const flower1 = densityMap.PushDensityInfo(new CDensityInfo2D(0x00002000, new CVec3(400, 400, 0), tex, new CSampler(new CVec4(0.04114583507180214, 0.04702381044626236, 0.04192708432674408, 0.4288690388202667))));
+        flower1.mYSort = true;
+        flower1.mWind = 50;
+        flower1.mSca = new CSampler(new CVec3(0.125, 0.125, 1));
+        flower1.mPos = new CSampMinMax(new CVec3(-150, -150, 0), new CVec3(150, 150, 0));
+        flower1.mPaintTag.push(CPaint.eTag.Shadow);
+        const flower2 = densityMap.PushDensityInfo(new CDensityInfo2D(0x00003000, new CVec3(400, 400, 0), tex, new CSampler(new CVec4(0.03593749925494194, 0.04404762014746666, 0.12786458432674408, 0.4288690388202667))));
+        flower2.mYSort = true;
+        flower2.mWind = 50;
+        flower2.mSca = new CSampler(new CVec3(0.125, 0.125, 1));
+        flower2.mPos = new CSampMinMax(new CVec3(-150, -150, 0), new CVec3(150, 150, 0));
+        flower2.mPaintTag.push(CPaint.eTag.Shadow);
     }
 }
 CModal.PushTitleBar(new CModalTitleBar("DevToolModal", "Unit", async () => {
@@ -124,7 +124,8 @@ let rpPlug = new CCanvasPluginRPMgr(null);
 Real.PushPlugin(rpPlug);
 let AM7RP = new CRPMgr();
 let rp = AM7RP.PushRP(new CRPAuto());
-rp.PushAnd(new CCondition({ "s": "class", "v": "CPaint2D" }));
+rp.PushOr(new CCondition({ "s": "class", "v": "CPaint2D" }));
+rp.PushOr(new CCondition({ "s": "class", "v": "CPaint2DMerge" }));
 rp.PushAnd(new CCondition({ "s": "mTag[shadowPlane]", "v": 0 }));
 rp.mShader = gAtl.Frame().Pal().Sl2DKey();
 rp.mTag.add("light");
@@ -134,7 +135,8 @@ rp.mShader = gAtl.Frame().Pal().SlVoxelKey();
 rp.mTag.add("light");
 let PM1RP = new CRPMgr();
 rp = PM1RP.PushRP(new CRPAuto());
-rp.PushAnd(new CCondition({ "s": "class", "v": "CPaint2D" }));
+rp.PushOr(new CCondition({ "s": "class", "v": "CPaint2D" }));
+rp.PushOr(new CCondition({ "s": "class", "v": "CPaint2DMerge" }));
 rp.PushAnd(new CCondition({ "s": "mTag[shadowPlane]", "v": 0 }));
 rp.mShader = gAtl.Frame().Pal().Sl2DKey();
 rp = PM1RP.PushRP(new CRPAuto());
@@ -151,25 +153,20 @@ rp.PushAnd(new CCondition({ "s": "mTag[bloom]" }));
 rp.mShader = gAtl.Frame().Pal().Sl2DKey();
 rp.mRenderTarget = emissiveTexKey;
 rp.mTag.add("mask");
-let basiceTex = new CTexture();
-basiceTex.PushInfo([new CTextureInfo(CTexture.eTarget.Sigle, CTexture.eFormat.RGBA8, 1)]);
-let basiceTexKey = PM11RP.PushTex("Bloom/basiceTex.tex", basiceTex);
 rp = PM11RP.PushRP(new CRPAuto());
-rp.PushAnd(new CCondition({ "s": "class", "v": "CPaint2D" }));
+rp.PushOr(new CCondition({ "s": "class", "v": "CPaint2D" }));
+rp.PushOr(new CCondition({ "s": "class", "v": "CPaint2DMerge" }));
 rp.PushAnd(new CCondition({ "s": "mTag[shadowPlane]", "v": 0 }));
 rp.mShader = gAtl.Frame().Pal().Sl2DKey();
 rp.mTag.add("light");
-rp.mRenderTarget = basiceTexKey;
 rp = PM11RP.PushRP(new CRPAuto());
 rp.PushAnd(new CCondition({ "s": "class", "v": "CPaintVoxel" }));
 rp.mShader = gAtl.Frame().Pal().SlVoxelKey();
 rp.mTag.add("light");
-rp.mRenderTarget = basiceTexKey;
 rp = PM11RP.PushRP(new CRPAuto());
 rp.PushAnd(new CCondition({ "s": "class", "v": "CShadowPlane" }));
 rp.PushAnd(new CCondition({ "s": "mTag[shadowPlane]" }));
 rp.mShader = gAtl.Frame().Pal().Sl2DKey();
-rp.mRenderTarget = basiceTexKey;
 let sufBloom = PM11RP.PushSuf(new CSurfaceBloom());
 let srp = sufBloom.GetRP();
 srp.mShader = gAtl.Frame().Pal().Sl2DKey();
@@ -180,10 +177,10 @@ sufBloom.m_threshold = 1.0;
 sufBloom.m_softThreshold = 1.0;
 let sufLast = PM11RP.PushSuf(new CSurface());
 srp = sufLast.GetRP();
-sufLast.SetUseRT(false);
+srp.mRenderTarget = gAtl.Frame().Pal().GetDefaultFrameBuffer();
 srp.mShader = gAtl.Frame().Pal().SlPostKey();
 srp.mTag.add("blend");
-srp.mShaderAttr.push(new CShaderAttr(0, basiceTexKey));
+srp.mShaderAttr.push(new CShaderAttr(0, gAtl.Frame().Pal().GetMainFrameTex()));
 srp.mShaderAttr.push(new CShaderAttr(1, sufBloom.GetTexKey()));
 srp.mShaderAttr.push(new CShaderAttr("TexOffBlendFactor", new CMat([1, 1, CRenderPass.eBlend.LinearDodge])));
 function AM7() {

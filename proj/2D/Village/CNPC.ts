@@ -1,18 +1,18 @@
-import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
-import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
-import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
-import { CPaint } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint.js";
-import { CPaint2D, CPaintHTML } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
-import { CRayMouse } from "https://06fs4dix.github.io/Artgine/artgine/app/CRayMouse.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
-import { CUpdate } from "https://06fs4dix.github.io/Artgine/artgine/basic/Basic.js";
-import { CDOM } from "https://06fs4dix.github.io/Artgine/artgine/basic/CDOM.js";
-import { CModal } from "https://06fs4dix.github.io/Artgine/artgine/basic/CModal.js";
-import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
-import { CInput } from "https://06fs4dix.github.io/Artgine/artgine/system/CInput.js";
-import { CCoroutine } from "https://06fs4dix.github.io/Artgine/artgine/util/CCoroutine.js";
-import { CULPC } from "https://06fs4dix.github.io/Artgine/artgine/util/parser/CParserULPC.js";
+import { CAniFlow } from "../../../Artgine/artgine/app/component/CAniFlow.js";
+import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
+import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
+import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
+import { CPaint2D, CPaintHTML } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
+import { CRayMouse } from "../../../Artgine/artgine/app/CRayMouse.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
+import { CDOM } from "../../../Artgine/artgine/basic/CDOM.js";
+import { CModal } from "../../../Artgine/artgine/basic/CModal.js";
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CInput } from "../../../Artgine/artgine/system/CInput.js";
+import { CCoroutine } from "../../../Artgine/artgine/util/CCoroutine.js";
+import { CULPC } from "../../../Artgine/artgine/util/parser/CParserULPC.js";
 import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
 
 

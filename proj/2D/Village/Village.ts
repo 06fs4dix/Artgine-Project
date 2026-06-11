@@ -1,14 +1,14 @@
 //Version
-import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
+import "../../../Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "https://06fs4dix.github.io/Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
 import { CNPC } from "./CNPC.js";
 CClass.Push(CNPC);
 import { CUser } from "./CUser.js";
 CClass.Push(CUser);
 //Atelier
-import {CPreferences} from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -22,13 +22,13 @@ gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mWASM = false;
 gPF.mCanvas = "";
-gPF.mServer = 'webServer';
+gPF.mServer = 'local';
 gPF.mGitHub = false;
-gPF.mVersion = "mq8uscyc_2";
+gPF.mVersion = "mq9kph7i_5";
 
-import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
 CPlugin.PushPath('Inventory','../../../Artgine/plugin/Inventory/');
 import "../../../Artgine/plugin/Inventory/Inventory.js"
 CPlugin.PushPath('ShadowPlane','../../../Artgine/plugin/ShadowPlane/');
@@ -45,68 +45,68 @@ var Real = gAtl.Canvas('Real.json');
 //EntryPoint
 let comcon=gAtl.Brush().GetCam2D().SetCamCon(new CCamCon2DFollow(gAtl.Frame().Input()));
 gAtl.Brush().GetCam2D().Set2DZoom(1.5);
-import {CObject} from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js"
+import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
 
 // === vinfo==3 위치에 랜덤 조형물 배치 (Village) ===
 
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 
-import { CBlackBoard } from "https://06fs4dix.github.io/Artgine/artgine/basic/CBlackBoard.js";
+import { CBlackBoard } from "../../../Artgine/artgine/basic/CBlackBoard.js";
 
-import { CBGAttachButton, CBlackboardModal, CLoadingBack, CMDViewer, CModalBackGround } from "https://06fs4dix.github.io/Artgine/artgine/util/CModalUtil.js";
-import { CModal, CModalTitleBar } from "https://06fs4dix.github.io/Artgine/artgine/basic/CModal.js";
-import { CVec4 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec4.js";
+import { CBGAttachButton, CBlackboardModal, CLoadingBack, CMDViewer, CModalBackGround } from "../../../Artgine/artgine/util/CModalUtil.js";
+import { CModal, CModalTitleBar } from "../../../Artgine/artgine/basic/CModal.js";
+import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
 
-import { CTexture, CTextureInfo } from "https://06fs4dix.github.io/Artgine/artgine/render/CTexture.js";
-import { CCamCon2DFollow } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
-import { CSysAuth } from "https://06fs4dix.github.io/Artgine/artgine/system/CSysAuth.js";
-import { CAudioTag } from "https://06fs4dix.github.io/Artgine/artgine/system/audio/CAudio.js";
-import { CDOM } from "https://06fs4dix.github.io/Artgine/artgine/basic/CDOM.js";
+import { CTexture, CTextureInfo } from "../../../Artgine/artgine/render/CTexture.js";
+import { CCamCon2DFollow } from "../../../Artgine/artgine/util/CCamCon.js";
+import { CSysAuth } from "../../../Artgine/artgine/system/CSysAuth.js";
+import { CAudioTag } from "../../../Artgine/artgine/system/audio/CAudio.js";
+import { CDOM } from "../../../Artgine/artgine/basic/CDOM.js";
 
-import { CShaderAttr } from "https://06fs4dix.github.io/Artgine/artgine/render/CShaderAttr.js";
-import { CVec1 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec1.js";
-import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
+import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
+import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
 
-import { CConsol } from "https://06fs4dix.github.io/Artgine/artgine/basic/CConsol.js";
+import { CConsol } from "../../../Artgine/artgine/basic/CConsol.js";
 import { CSurfaceBloom } from "../../../Artgine/plugin/Bloom/Bloom.js";
 
-import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/CRenderPass.js";
+import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
 import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
 
 
-import { SDF } from "https://06fs4dix.github.io/Artgine/artgine/z_file/SDF.js";
-import { CSing, CSingOption } from "https://06fs4dix.github.io/Artgine/artgine/server/CSing.js";
+import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
+import { CSing, CSingOption } from "../../../Artgine/artgine/server/CSing.js";
 
-import { CSocketIO } from "https://06fs4dix.github.io/Artgine/artgine/network/CSocketIO.js";
-import { CStream } from "https://06fs4dix.github.io/Artgine/artgine/basic/CStream.js";
-import { CAlert } from "https://06fs4dix.github.io/Artgine/artgine/basic/CAlert.js";
-import { CCIndex } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CCIndex.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
-import { CCanvasPluginRPMgr } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
-import { CRPAuto, CRPMgr } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CRPMgr.js";
-import { CCondition } from "https://06fs4dix.github.io/Artgine/artgine/util/CCondition.js";
-import { CSurface } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSurface.js";
-import { CLight } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CLight.js";
-import { CUI, CUIPicture } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CUI.js";
-import { CPad } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CPad.js";
-import { CUpdate } from "https://06fs4dix.github.io/Artgine/artgine/basic/Basic.js";
-import { CForce } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CForce.js";
-import { CEvent } from "https://06fs4dix.github.io/Artgine/artgine/basic/CEvent.js";
-import { CUniqueID } from "https://06fs4dix.github.io/Artgine/artgine/basic/CUniqueID.js";
+import { CSocketIO } from "../../../Artgine/artgine/network/CSocketIO.js";
+import { CStream } from "../../../Artgine/artgine/basic/CStream.js";
+import { CAlert } from "../../../Artgine/artgine/basic/CAlert.js";
+import { CCIndex } from "../../../Artgine/artgine/app/canvas/CCIndex.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
+import { CRPAuto, CRPMgr } from "../../../Artgine/artgine/app/canvas/CRPMgr.js";
+import { CCondition } from "../../../Artgine/artgine/util/CCondition.js";
+import { CSurface } from "../../../Artgine/artgine/app/subject/CSurface.js";
+import { CLight } from "../../../Artgine/artgine/app/component/CLight.js";
+import { CUI, CUIPicture } from "../../../Artgine/artgine/app/subject/CUI.js";
+import { CPad } from "../../../Artgine/artgine/app/subject/CPad.js";
+import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
+import { CForce } from "../../../Artgine/artgine/app/component/CForce.js";
+import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
+import { CUniqueID } from "../../../Artgine/artgine/basic/CUniqueID.js";
 
 
-import { CMat } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMat.js";
-import { Bootstrap } from "https://06fs4dix.github.io/Artgine/artgine/basic/Bootstrap.js";
+import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
+import { Bootstrap } from "../../../Artgine/artgine/basic/Bootstrap.js";
 
-import { CHTMLDropdown } from "https://06fs4dix.github.io/Artgine/artgine/util/CHTMLBar.js";
-import { CVoxelMap } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CVoxelMap.js";
-import { CColor } from "https://06fs4dix.github.io/Artgine/artgine/render/CColor.js";
-import { CAtlas } from "https://06fs4dix.github.io/Artgine/artgine/util/CAtlas.js";
-import { CDensityInfo2D, CDensityMap } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CDensityMap.js";
-import { CBound } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CBound.js";
-import { CSampler, CSampList, CSampMinMax } from "https://06fs4dix.github.io/Artgine/artgine/util/CSampler.js";
-import { CPaint } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint.js";
-import { CLoader, CLoaderOption } from "https://06fs4dix.github.io/Artgine/artgine/util/CLoader.js";
+import { CHTMLDropdown } from "../../../Artgine/artgine/util/CHTMLBar.js";
+import { CVoxelMap } from "../../../Artgine/artgine/app/subject/CVoxelMap.js";
+import { CColor } from "../../../Artgine/artgine/render/CColor.js";
+import { CAtlas } from "../../../Artgine/artgine/util/CAtlas.js";
+import { CDensityInfo2D, CDensityMap } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
+import { CBound } from "../../../Artgine/artgine/geometry/CBound.js";
+import { CSampler, CSampList, CSampMinMax } from "../../../Artgine/artgine/util/CSampler.js";
+import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
+import { CLoader, CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
 
 
 // //Real.Clear();
@@ -484,6 +484,8 @@ const dummy = CHTMLDropdown.Attach(arr, "left");
 let rightDiv=CDOM.DataToDom(`<div class="position-fixed top-0 end-0" style="z-index:2000;"></div>`);
 rightDiv.append(dummy);
 mg.SetBody(rightDiv);
+
+
 
 
 
