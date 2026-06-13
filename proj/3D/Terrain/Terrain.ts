@@ -1,11 +1,11 @@
 //Version
-import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
+import "../../../Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "https://06fs4dix.github.io/Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -19,13 +19,13 @@ gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mCanvas = "";
 gPF.mWASM = false;
-gPF.mServer = 'local';
+gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mq9h6ljs_4";
+gPF.mVersion = "mqc9ngpy_2";
 
-import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
 CPlugin.PushPath('Water','../../../Artgine/plugin/Water/');
 import "../../../Artgine/plugin/Water/Water.js"
 var gAtl = new CAtelier();
@@ -35,33 +35,33 @@ await gAtl.Init([],"");
 
 //EntryPoint
 
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
-import { CCamCon3DFirstPerson } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
-import { CLoaderOption } from "https://06fs4dix.github.io/Artgine/artgine/util/CLoader.js";
-import { CTexture } from "https://06fs4dix.github.io/Artgine/artgine/render/CTexture.js";
-import { CMat } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMat.js";
-import { CTerrainMap } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CTerrainMap.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
-import { CLight } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CLight.js";
-import { CRPAuto, CRPMgr } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CRPMgr.js";
-import { CCondition } from "https://06fs4dix.github.io/Artgine/artgine/util/CCondition.js";
-import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/CRenderPass.js";
-import { CShaderAttr } from "https://06fs4dix.github.io/Artgine/artgine/render/CShaderAttr.js";
-import { SDF } from "https://06fs4dix.github.io/Artgine/artgine/z_file/SDF.js";
-import { CCanvasPluginRPMgr } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
-import { CPaint3D, CPaintCube } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CVec1 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec1.js";
-import { CModalFrameView } from "https://06fs4dix.github.io/Artgine/artgine/util/CModalUtil.js";
-import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
-import { CComponent } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CComponent.js";
-import { CColor } from "https://06fs4dix.github.io/Artgine/artgine/render/CColor.js";
-import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
-import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
-import { CBehavior } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
-import { CUtilRender } from "https://06fs4dix.github.io/Artgine/artgine/render/CUtilRender.js";
-import { CImgPro } from "https://06fs4dix.github.io/Artgine/artgine/render/CImgPro.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CCamCon3DFirstPerson } from "../../../Artgine/artgine/util/CCamCon.js";
+import { CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
+import { CTexture } from "../../../Artgine/artgine/render/CTexture.js";
+import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
+import { CTerrainMap } from "../../../Artgine/artgine/app/subject/CTerrainMap.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CLight } from "../../../Artgine/artgine/app/component/CLight.js";
+import { CRPAuto, CRPMgr } from "../../../Artgine/artgine/app/canvas/CRPMgr.js";
+import { CCondition } from "../../../Artgine/artgine/util/CCondition.js";
+import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
+import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
+import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
+import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
+import { CPaint3D, CPaintCube } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
+import { CModalFrameView } from "../../../Artgine/artgine/util/CModalUtil.js";
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
+import { CComponent } from "../../../Artgine/artgine/app/component/CComponent.js";
+import { CColor } from "../../../Artgine/artgine/render/CColor.js";
+import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
+import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
+import { CBehavior } from "../../../Artgine/artgine/app/component/CBehavior.js";
+import { CUtilRender } from "../../../Artgine/artgine/render/CUtilRender.js";
+import { CImgPro } from "../../../Artgine/artgine/render/CImgPro.js";
 import { CWater3D } from "../../../Artgine/plugin/Water/Water.js";
-import { CVec4 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec4.js";
+import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
 
 var Main=gAtl.NewCanvas("Main");
 Main.SetCameraKey("3D");
@@ -262,6 +262,17 @@ async function InitScene()
     heightMap.ClearAll();
 }
 InitScene();
+
+
+
+
+
+
+
+
+
+
+
 
 
 
