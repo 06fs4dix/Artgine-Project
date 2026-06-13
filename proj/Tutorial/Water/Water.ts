@@ -128,7 +128,7 @@ let L=Main.PushSub(new CSubject());
 L.SetPos(new CVec3(0,1,0));
 
 let lig=new CLight();
-lig.SetShadow("test",0,1000/60);
+lig.SetShadow3D("test",0,1000/60);
 lig.SetDirect();
 lig.SetColor(new CVec3(1,1,1));
 lig.mShadowDistance=shadowDistance;
