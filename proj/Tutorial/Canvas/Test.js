@@ -1,4 +1,4 @@
-﻿import { CAlert } from "https://06fs4dix.github.io/Artgine/artgine/basic/CAlert.js";
+import { CAlert } from "https://06fs4dix.github.io/Artgine/artgine/basic/CAlert.js";
 import { CEvent } from "https://06fs4dix.github.io/Artgine/artgine/basic/CEvent.js";
 import { CLan } from "https://06fs4dix.github.io/Artgine/artgine/basic/CLan.js";
 import { CAtelier } from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";

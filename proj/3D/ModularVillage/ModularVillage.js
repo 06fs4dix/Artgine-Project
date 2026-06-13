@@ -1,4 +1,4 @@
-﻿const version = 'mp4216w1_12';
+const version = 'mp4216w1_12';
 import "https://06fs4dix.github.io/Artgine/artgine/artgine.js";
 import { CPreferences } from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();

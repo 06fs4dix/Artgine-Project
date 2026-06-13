@@ -1,4 +1,4 @@
-﻿import "https://06fs4dix.github.io/Artgine/artgine/artgine.js";
+import "https://06fs4dix.github.io/Artgine/artgine/artgine.js";
 import { CClass } from "https://06fs4dix.github.io/Artgine/artgine/basic/CClass.js";
 import { ULPCChar } from "./ULPCChar.js";
 CClass.Push(ULPCChar);

@@ -1,4 +1,4 @@
-﻿import "https://06fs4dix.github.io/Artgine/artgine/artgine.js";
+import "https://06fs4dix.github.io/Artgine/artgine/artgine.js";
 import { CPreferences } from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
 import { CCamera } from "https://06fs4dix.github.io/Artgine/artgine/render/CCamera.js";
 import { CFrame } from "https://06fs4dix.github.io/Artgine/artgine/util/CFrame.js";
