@@ -1,11 +1,11 @@
 //Version
-import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
+import "../../../Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "https://06fs4dix.github.io/Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -21,11 +21,11 @@ gPF.mWASM = false;
 gPF.mCanvas = "";
 gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mq98xtgp_2";
+gPF.mVersion = "mqjg475k_16";
 
-import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init(['Main.json'],"");
@@ -34,39 +34,39 @@ var Main = gAtl.Canvas('Main.json');
 
 //EntryPoint
 
-import {CObject} from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js"
+import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
 
-import { CCamCon3DFirstPerson, CCamCon3DThirdPerson } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
+import { CCamCon3DFirstPerson, CCamCon3DThirdPerson } from "../../../Artgine/artgine/util/CCamCon.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 
-import { CTexture, CTextureInfo } from "https://06fs4dix.github.io/Artgine/artgine/render/CTexture.js";
-import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/CRenderPass.js";
-import { CShaderAttr } from "https://06fs4dix.github.io/Artgine/artgine/render/CShaderAttr.js";
-import { CVec1 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec1.js";
+import { CTexture, CTextureInfo } from "../../../Artgine/artgine/render/CTexture.js";
+import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
+import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
+import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
 
 import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
-import { CModal, CModalTitleBar } from "https://06fs4dix.github.io/Artgine/artgine/basic/CModal.js";
-import { SDF } from "https://06fs4dix.github.io/Artgine/artgine/z_file/SDF.js";
+import { CModal, CModalTitleBar } from "../../../Artgine/artgine/basic/CModal.js";
+import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
 
-import { CBGAttachButton, CMDViewer, CModalFrameView } from "https://06fs4dix.github.io/Artgine/artgine/util/CModalUtil.js";
-import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
+import { CBGAttachButton, CMDViewer, CModalFrameView } from "../../../Artgine/artgine/util/CModalUtil.js";
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
 
-import { CUtilWeb } from "https://06fs4dix.github.io/Artgine/artgine/util/CUtilWeb.js";
+import { CUtilWeb } from "../../../Artgine/artgine/util/CUtilWeb.js";
 
 
-import { CLoaderOption } from "https://06fs4dix.github.io/Artgine/artgine/util/CLoader.js";
-import { CRPAuto, CRPMgr } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CRPMgr.js";
-import { CSurface } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSurface.js";
-import { CCanvasPluginRPMgr } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
-import { CPaint3D, CPaintCube } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CPaint } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint.js";
-import { CLight } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CLight.js";
-import { CColor } from "https://06fs4dix.github.io/Artgine/artgine/render/CColor.js";
-import { CCondition } from "https://06fs4dix.github.io/Artgine/artgine/util/CCondition.js";
-import { CMat } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMat.js";
-import { CMath } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMath.js";
-import { CEvent } from "https://06fs4dix.github.io/Artgine/artgine/basic/CEvent.js";
+import { CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
+import { CRPAuto, CRPMgr } from "../../../Artgine/artgine/app/canvas/CRPMgr.js";
+import { CSurface } from "../../../Artgine/artgine/app/subject/CSurface.js";
+import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CPaint3D, CPaintCube } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
+import { CLight } from "../../../Artgine/artgine/app/component/CLight.js";
+import { CColor } from "../../../Artgine/artgine/render/CColor.js";
+import { CCondition } from "../../../Artgine/artgine/util/CCondition.js";
+import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
+import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
+import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
 
 //====================================================
 // 텍스쳐 로딩
@@ -369,7 +369,7 @@ let pt=back.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
 pt.SetTexture(["Res/teapot/1zflt0j.jpg","Res/teapot/1zflt0j_NRM.jpg","Res/teapot/1zflt0j_lig.jpg"]);
 pt.PushTag(CPaint.eTag.Shadow);
 //pt.AddDecal(new CVec4(1,0,0,1),new CVec3(),new CVec3(),new CVec3(100,100,100));
-back.SetSca(new CVec3(10,0.01,10));
+back.SetSca(new CVec3(2000,2,2000));
 
 let teapot=Main.PushSub(new CSubject());
 let pt2=teapot.PushComp(new CPaint3D("Res/teapot/teapot.FBX"));
@@ -403,7 +403,7 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal","ShadowPlane",()=>{
     pt.SetTexture(["Res/teapot/1zflt0j.jpg","Res/teapot/1zflt0j_NRM.jpg","Res/teapot/1zflt0j_lig.jpg"]);
     
     back.SetPos(new CVec3(0,-1,0))
-    back.SetSca(new CVec3(10,0.01,10));
+    back.SetSca(new CVec3(2000,2,2000));
 
     let teapot=Main.PushSub(new CSubject());
     let pt2=teapot.PushComp(new CPaint3D("Res/teapot/teapot.FBX"));
@@ -438,7 +438,7 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal","Forward",()=>{
     let pt=back.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
     pt.SetTexture(["Res/teapot/1zflt0j.jpg","Res/teapot/1zflt0j_NRM.jpg","Res/teapot/1zflt0j_lig.jpg"]);
     pt.PushTag(CPaint.eTag.Shadow);
-    back.SetSca(new CVec3(10,0.01,10));
+    back.SetSca(new CVec3(2000,2,2000));
 
 
     let teapot=Main.PushSub(new CSubject());
@@ -493,7 +493,7 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred","DeferredSingle(HafeLambert+Ph
     L.SetPos(new CVec3(0,1,0));
 
     let lig=new CLight();
-    lig.SetShadow3D("test",0,100);
+    lig.SetShadow3D("test",0,0.1);
     lig.SetDirect();
     lig.SetColor(new CVec3(1,1,1));
     lig.mShadowDistance=shadowDistance;
@@ -511,7 +511,7 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred","DeferredSingle(HafeLambert+Ph
     //pt.PushTag(CPaint.eTag.Shadow);
     pt.PushTag(CPaint.eTag.Parallax);
     pt.PushCShaderAttr(new CShaderAttr("parallaxNormal",0.1));
-    back.SetSca(new CVec3(10,0.01,10));
+    back.SetSca(new CVec3(20,1,20));
 
 
     let teapot=Main.PushSub(new CSubject());
@@ -544,7 +544,7 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred","DeferredMulti(None+CookTorran
         L.SetKey("lig");
 
         let lig=new CLight();
-        lig.SetShadow3D("test",0,100);
+        lig.SetShadow3D("test",0,0.1);
         lig.SetDirect();
         lig.SetColor(new CVec3(1,1,1));
         lig.mShadowDistance=shadowDistance;
@@ -573,13 +573,14 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred","DeferredMulti(None+CookTorran
     pt.PushTag(CPaint.eTag.Light);
     pt.PushTag(CPaint.eTag.ShadowReadOnly);
     pt.SetMaterial(0.1,0.6);
-    back.SetSca(new CVec3(10,0.01,10));
+    back.SetSca(new CVec3(2000,2,2000));
 
     for(let x=-1;x<=1;x+=1)
     for(let z=-1;z<=1;z+=1)
     {
         let teapot=Main.PushSub(new CSubject());
         let pt2=teapot.PushComp(new CPaint3D(gAtl.Frame().Pal().GetSphereMesh()));
+        teapot.SetSca(new CVec3(200,200,200));
         pt2.SetColorModel(new CColor(1,0,0,CColor.eModel.RGBAdd));
         pt2.PushTag(CPaint.eTag.Light);
         pt2.PushTag(CPaint.eTag.Shadow);
@@ -645,7 +646,7 @@ CModal.PushTitleBar(new CModalTitleBar("DeferredOption","Moving Light",()=>{
 //     pt.SetTexture(["Res/teapot/1zflt0j.jpg","Res/teapot/1zflt0j_NRM.jpg","Res/teapot/1zflt0j_lig.jpg"]);
 //     pt.Shadow();
     
-//     back.SetSca(new CVec3(10,0.01,10));
+//     back.SetSca(new CVec3(2000,2,2000));
 
 
 //     let teapot=Main.PushSub(new CSubject());
@@ -675,6 +676,19 @@ Help.SetContent(await CUtilWeb.MDReader("README.md"));
 
 
 new CModalFrameView();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

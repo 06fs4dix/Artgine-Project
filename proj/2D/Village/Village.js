@@ -20,7 +20,7 @@ gPF.mWASM = false;
 gPF.mCanvas = "";
 gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mqdr15me_2";
+gPF.mVersion = "mqjg475k_2";
 import { CAtelier } from "../../../Artgine/artgine/app/CAtelier.js";
 import { CPlugin } from "../../../Artgine/artgine/util/CPlugin.js";
 CPlugin.PushPath('Inventory', '../../../Artgine/plugin/Inventory/');

@@ -24,7 +24,7 @@ gPF.mWASM = false;
 gPF.mCanvas = "";
 gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mqdr15me_2";
+gPF.mVersion = "mqjg475k_2";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -484,6 +484,7 @@ const dummy = CHTMLDropdown.Attach(arr, "left");
 let rightDiv=CDOM.DataToDom(`<div class="position-fixed top-0 end-0" style="z-index:2000;"></div>`);
 rightDiv.append(dummy);
 mg.SetBody(rightDiv);
+
 
 
 

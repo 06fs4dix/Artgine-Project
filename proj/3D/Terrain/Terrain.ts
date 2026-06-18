@@ -21,7 +21,7 @@ gPF.mCanvas = "";
 gPF.mWASM = false;
 gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mqc9ngpy_2";
+gPF.mVersion = "mqjg475k_33";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -164,7 +164,7 @@ heightMap.mCollider.PushCollisionLayer("test");
 const water = Main.PushSub(new CWater3D());
 water.SetKey("water");
 water.SetRot(new CVec3(-Math.PI / 2, 0, 0));
-water.SetSca(new CVec3(50000, 50000, 50000));
+water.SetSca(new CVec3(500000, 500000, 500000));
 water.SetPos(new CVec3(0, 400, 0));
 water.Light();
 water.GetPT().SetTexCodi(new CVec4(100,100,0,0));
@@ -181,13 +181,14 @@ cube.Sky(true, true, true);
 // plane
 const plane = Main.PushSub(new CSubject());
 plane.SetPos(new CVec3(300, -0.5, 300));
-plane.SetSca(new CVec3(1, 0.01, 1));
+plane.SetSca(new CVec3(200, 2, 200));
 const planePt = plane.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
 planePt.SetColorModel(new CColor(0, 0, 1, CColor.eModel.RGBAdd));
 
 // player
 const player = Main.PushSub(new CSubject());
 player.SetPos(new CVec3(1000, 1000, 1000));
+player.SetSca(new CVec3(200, 200, 200));
 const playerPt = player.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
 playerPt.PushTag("light");
 playerPt.PushTag("shadow");
@@ -262,6 +263,9 @@ async function InitScene()
     heightMap.ClearAll();
 }
 InitScene();
+
+
+
 
 
 

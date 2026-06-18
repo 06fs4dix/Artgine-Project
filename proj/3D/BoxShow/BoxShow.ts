@@ -1,12 +1,11 @@
-﻿//Version
-const version='mluxeja3_10';
-import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
+//Version
+import "../../../Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "https://06fs4dix.github.io/Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -20,12 +19,13 @@ gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mWASM = true;
 gPF.mCanvas = "";
-gPF.mServer = 'local';
-gPF.mGitHub = true;
+gPF.mServer = 'webServer';
+gPF.mGitHub = false;
+gPF.mVersion = "mqjg475k_29";
 
-import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
@@ -33,12 +33,12 @@ await gAtl.Init([],"");
 
 //EntryPoint
 
-import {CObject} from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js"
+import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
 
 // Main 캔버스 새로 생성
 
-import {CVec3} from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
-import {CVec4} from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec4.js";
+import {CVec3} from "../../../Artgine/artgine/geometry/CVec3.js";
+import {CVec4} from "../../../Artgine/artgine/geometry/CVec4.js";
 
 
 // Main 캔버스 새로 생성
@@ -47,8 +47,8 @@ var Main = gAtl.NewCanvas("Main");
 console.log("Main 캔버스가 성공적으로 생성되었습니다.");
 
 // 카메라 설정 (3D 박스를 잘 볼 수 있도록)
-import {CCamera} from "https://06fs4dix.github.io/Artgine/artgine/render/CCamera.js";
-import {CCamCon3DFirstPerson} from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
+import {CCamera} from "../../../Artgine/artgine/render/CCamera.js";
+import {CCamCon3DFirstPerson} from "../../../Artgine/artgine/util/CCamCon.js";
 
 // Main 캔버스에 3D 카메라 설정
 Main.SetCameraKey("3D");
@@ -58,15 +58,15 @@ var firstPersonCamCon = new CCamCon3DFirstPerson(gAtl.Frame().Input());
 Main.GetCam().SetCamCon(firstPersonCamCon);
 
 // 박스 파도 효과 구현
-import {CMath} from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMath.js";
-import {CInput} from "https://06fs4dix.github.io/Artgine/artgine/system/CInput.js";
-import {CEvent} from "https://06fs4dix.github.io/Artgine/artgine/basic/CEvent.js";
-import { CBGAttachButton } from "https://06fs4dix.github.io/Artgine/artgine/util/CModalUtil.js";
-import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
-import { CPaint3D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CColor } from "https://06fs4dix.github.io/Artgine/artgine/render/CColor.js";
-import { CDOM } from "https://06fs4dix.github.io/Artgine/artgine/basic/CDOM.js";
+import {CMath} from "../../../Artgine/artgine/geometry/CMath.js";
+import {CInput} from "../../../Artgine/artgine/system/CInput.js";
+import {CEvent} from "../../../Artgine/artgine/basic/CEvent.js";
+import { CBGAttachButton } from "../../../Artgine/artgine/util/CModalUtil.js";
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CColor } from "../../../Artgine/artgine/render/CColor.js";
+import { CDOM } from "../../../Artgine/artgine/basic/CDOM.js";
 
 // 박스 파도 설정 (변수로 변경하여 수정 가능하게)
 var WAVE_GRID_SIZE = 50; // 25x25 격자 (더 많은 박스)
@@ -148,7 +148,7 @@ function createWave() {
             // 박스 위치 설정
             boxSubject.SetPos(new CVec3(posX, posY, posZ));
             boxSubject.SetRot(new CVec3(0, 0, 0));
-            boxSubject.SetSca(new CVec3(0.1, 0.1, 0.1)); // 박스 크기를 더 작게 조정
+            boxSubject.SetSca(new CVec3(20, 20, 20)); // 박스 크기를 더 작게 조정 (기본 메쉬 1단위 기준 ×200)
             
             // 3D 페인트 컴포넌트 추가
             var paint3D = new CPaint3D(gAtl.Frame().Pal().GetBoxMesh());
@@ -217,7 +217,7 @@ gAtl.Frame().PushEvent(CEvent.eType.Update, () => {
         box.SetRot(CVec3.Vec3(rotationX, 0, rotationZ),false);
         
         // 스케일 효과 (파도 높이에 따라 살짝 커졌다 작아짐)
-        let scaleFactor = 0.1 + Math.sin(time + distanceToMouse * 0.4) * 0.02; // 기본 스케일 0.1에 맞게 조정
+        let scaleFactor = 20 + Math.sin(time + distanceToMouse * 0.4) * 4; // 기본 스케일 20에 맞게 조정 (기본 메쉬 1단위 기준 ×200)
         box.SetSca(CVec3.Vec3(scaleFactor, scaleFactor, scaleFactor));
         
         // 높이에 따른 색상 변경
@@ -594,6 +594,10 @@ Option_btn.mModal.Show = function() {
 Option_btn.mModal.GetBody().addEventListener('DOMContentLoaded', function() {
     setTimeout(setupWaveControls, 500);
 });
+
+
+
+
 
 
 

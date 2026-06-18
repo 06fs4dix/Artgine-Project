@@ -4,7 +4,7 @@
   "fullScreen": false,
   "program": "developer",
   "url": "http://localhost:7000/Artgine-Project",
-  "projectPath": "proj/2D/Village",
+  "projectPath": "proj/3D/Terrain",
   "page": "html",
   "server": "webServer",
   "github": false,
