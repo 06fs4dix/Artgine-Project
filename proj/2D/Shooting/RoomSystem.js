@@ -1,6 +1,6 @@
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
-import { CBlackBoardRef } from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js";
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CBlackBoardRef } from "../../../Artgine/artgine/basic/CObject.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 import { CPacShooting } from "./CPacShooting.js";
 export class RoomSystem extends CSubject {
     mMon = new CBlackBoardRef("Monster");
@@ -17,7 +17,7 @@ export class RoomSystem extends CSubject {
     Spawn(_x, _y, _moveType) {
         let key = this.mMonKey + "mon";
         this.mMonKey++;
-        this.PushPacket(CPacShooting.MonCreate(key, new CVec3(_x, _y), this.mLevel * 10 + _moveType));
+        this.PushPacket(CPacShooting.MonCreate({ monKey: key, pos: new CVec3(_x, _y), type: this.mLevel * 10 + _moveType }));
     }
     Update(_update) {
         let ResetFun = () => {

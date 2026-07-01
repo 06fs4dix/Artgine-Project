@@ -1,5 +1,11 @@
 # Artgine Script - 프로젝트 가이드 (Project Guide)
 
+## 작업 디렉토리 (Working Directory)
+- ./
+
+## 아티젠 디렉토리 (Artgine Directory)
+- ./
+
 ## 메모리 저장 규칙 (Memory Storage Rules)
 - 메모리 정보 저장 전 사용자 승인 필수.
 
@@ -9,13 +15,13 @@
 ## TS 타입 체크 규칙 - 필수 (TS Type Check Rules - Required)
 `.ts` 수정 후 완료 보고 전 반드시 실행한다.
 ```bash
-node ai/tsc_check.js 수정한파일.ts
+node ai/tool/tsc_check.js 파일A.ts 파일B.ts 파일C.ts
 ```
 
 ## 제한 명령어 (Restricted Commands)
 다음 명령어는 사용자가 명시적으로 요청하거나 승인하지 않는 한 실행하지 않는다.
 
-- node 임의 실행. `ai/tsc_check.js`, `ai/web_debug.js`는 제외
+- node 임의 실행. `ai/tool/tsc_check.js`, `ai/tool/browser.js`는 제외
 - python / python3 실행
 
 ## 접속 정보 (Connection Information)
@@ -28,10 +34,13 @@ node ai/tsc_check.js 수정한파일.ts
 - 예시: `http://localhost:8050/Artgine/proj/2D/Village/Village.html`
 
 ## 새 프로젝트 생성 (Create New Project)
-**`ai/ProjectSetup.md`** 먼저 읽기 필수.
+**`ai/ProjectSetupGuide.md`** 먼저 읽기 필수.
 
-## 원격 작업 (Remote Work & File Server)
-**`ai/FileServerGuide.md`** 먼저 읽기 필수.
+## 원격 작업 (Remote Work & Command Execution)
+**`ai/RemoteCMDGuide.md`** 먼저 읽기 필수.
+
+## 메모 가이드 (Memo Guide)
+메모 저장/검색 관련 작업 전 **`ai/MemoGuide.md`** 먼저 읽기 필수.
 
 
 ## 프로젝트 명명 규칙 (Project Naming Convention)
@@ -57,14 +66,12 @@ node ai/tsc_check.js 수정한파일.ts
 
 
 ## 경로 기준 (Path Standards)
-- 모든 상대 경로는 `artgine/`, `desktop/`, `proj/`, `plugin/`, `ai/`가 함께 있는 프로젝트 루트 기준으로 해석한다.
-- 현재 작업 디렉터리에 위 폴더 구조가 없으면 상위 디렉터리를 순차 검색해 프로젝트 루트를 찾는다.
-
-
+- 프로젝트 루트는 위 "아티젠 디렉토리" 절대경로다.
+- `artgine/`, `desktop/`, `proj/`, `plugin/`, `ai/` 등 모든 상대 경로는 이 루트 기준으로 해석한다.
 
 ## 폴더 구조 (Folder Structure)
 ```
-프로젝트 루트/
+(아티젠 디렉토리)/
 ├── artgine/   ← 엔진 코어 (Read-only)
 │   ├── basic/     ← Base(CObject, CEvent), 자료구조(Tree, Queue), JSON, WASM, LZ압축
 │   ├── geometry/  ← Math(Vec, Mat), 충돌(Bound, Ray, GJK_EPA), Octree, 공간분할
@@ -81,58 +88,11 @@ node ai/tsc_check.js 수정한파일.ts
 └── ai/        ← AI 가이드 및 설정 문서
 ```
 
-## AI 웹브라우저 디버깅 (AI Web Browser Debugging - curl HTTP API)
+## 웹브라우저 디버깅 (Web Browser Debugging)
+라이브 페이지 콘솔 로그·JS 실행·DOM 조회 작업 전 **`ai/BrowserDebugGuide.md`** 먼저 읽기 필수.
 
-> 라이브 페이지 콘솔 로그·JS 실행·DOM 조회용. 코드 파일 수정엔 쓰지 않는다.
-
-### 사용 제한 (Usage Restrictions)
-- 소스 분석과 정적 검증을 먼저 한다.
-- `ai/web_debug.js`는 런타임 확인이 꼭 필요할 때만 쓴다.
-- 용도: 콘솔 로그, JS 실행, DOM 조회, 최종 동작 검증.
-- 단순 코드 확인이나 파일 구조 파악에는 쓰지 않는다.
-
-`ai/web_debug.js`를 사용한다. 비밀번호는 스크립트가 자동으로 읽는다. 쿠키는 `ai/cookie.txt`에 자동 저장/로드.  
-**규칙**: Bash 툴만 사용 (PowerShell 금지)
-
-> ⚠️ **첫 번째 인자(BASE_URL)는 이 파일 위쪽 "접속 정보" 섹션의 `주소`+`포트`+`기본경로` 값을 직접 읽어서 조합한다. Main.json을 열거나 포트를 임의로 추측하지 말 것.**
-
-```bash
-node ai/web_debug.js $BASE_URL login                                   # 인증 (최초 1회) → "ok" 출력
-node ai/web_debug.js $BASE_URL push <url> [ttl=60] [logSize=100] [width=1280] [height=720] # 세션 생성 → sessionId 문자열 출력
-node ai/web_debug.js $BASE_URL exec <sid> <fn> [args_json]             # 명령 실행 → result 출력
-node ai/web_debug.js $BASE_URL input <sid> <key|mouseButton> <time> <focus> [x y [x2 y2]] # 입력 실행
-node ai/web_debug.js $BASE_URL eval <sid> <js_expression>              # JS 표현식 직접 실행 → result 출력
-node ai/web_debug.js $BASE_URL logs <sid> [fromOffset=0]               # 콘솔 로그 조회 → logs, nextOffset 출력
-node ai/web_debug.js $BASE_URL list                                     # 세션 목록
-node ai/web_debug.js $BASE_URL remove <sid>                             # 세션 제거 (TTL 만료 시 자동 제거)
-```
-
-- `push`: width/height로 Playwright viewport size를 지정한다. 0 이하, 미입력, 알 수 없는 값은 서버 기본값 1280x720을 사용한다.
-- `fn`: Playwright Page API 메서드, dot-notation 지원 (`mouse.click`, `keyboard.type` 등)
-- `args_json`: JSON 배열 문자열 (기본 `[]`)
-- `input`: 키보드/마우스 입력을 한 요청 안에서 실행한다. 좌표가 없으면 키보드, `x y`가 있으면 마우스 press, `x y x2 y2`가 있으면 드래그로 처리한다. 마우스 버튼은 `mouseLeft|mouseRight|mouseMiddle`, `focus`는 `canvas|page|none`.
-  - 키 유지: `node ai/web_debug.js $BASE_URL input <sid> w 1000 canvas`
-  - 마우스 클릭/프레스: `node ai/web_debug.js $BASE_URL input <sid> mouseLeft 80 canvas 400 300`
-  - 마우스 드래그: `node ai/web_debug.js $BASE_URL input <sid> mouseLeft 800 canvas 400 300 520 300`
-- `eval` vs `exec evaluate`: DOM 조회·JS 변수 읽기 등 브라우저 메모리 접근 시 `eval` 사용. `exec evaluate`는 args_json 따옴표 이스케이핑 문제로 사용 금지.
-- `logs` 응답: `{ logs: [{"type":"log"|"error"|"network","text":"...","ts":0,"offset":N}], nextOffset: N }`
-  - 로그는 조회해도 삭제되지 않음. `logSize` 초과 시 오래된 것부터 자동 삭제
-  - `fromOffset` 미입력 시 전체 조회. 이전 `nextOffset`을 넘기면 새 로그만 조회 가능
-
-**흐름 예시** (페이지 콘솔 확인):
-```
-# BASE_URL = "접속 정보" 섹션의 주소+포트+기본경로 (이 파일에서 직접 읽을 것, Main.json 금지)
-BASE_URL=<접속정보.주소>:<접속정보.포트>/<접속정보.기본경로>
-node ai/web_debug.js $BASE_URL login
-→ ok
-
-node ai/web_debug.js $BASE_URL push $BASE_URL/proj/Home/Home.html 60 100 1280 720
-→ 3he4wj8iy6vmqf86ham   (이 값이 sessionId)
-
-node ai/web_debug.js $BASE_URL exec 3he4wj8iy6vmqf86ham title
-node ai/web_debug.js $BASE_URL logs 3he4wj8iy6vmqf86ham
-```
-
+## 원격 데스크탑 제어 (Remote Desktop Control)
+원격 PC의 마우스/키보드/화면을 직접 제어하는 작업 전 **`ai/RemoteDesktopGuide.md`** 먼저 읽기 필수.
 
 ## 파일 변경 전 설명 규칙 (File Modification Explanation Rules)
 

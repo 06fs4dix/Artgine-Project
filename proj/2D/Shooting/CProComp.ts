@@ -1,14 +1,14 @@
 
-import { CBehavior } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
-import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
-import { CComponent } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CComponent.js";
-import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
-import { CPaint2D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
-import { CUpdate } from "https://06fs4dix.github.io/Artgine/artgine/basic/Basic.js";
-import { CConsol } from "https://06fs4dix.github.io/Artgine/artgine/basic/CConsol.js";
-import { CObject } from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js";
-import { CPlaneInside } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CPlaneInside.js";
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
+import { CBehavior } from "../../../Artgine/artgine/app/component/CBehavior.js";
+import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
+import { CComponent } from "../../../Artgine/artgine/app/component/CComponent.js";
+import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
+import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
+import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
+import { CConsol } from "../../../Artgine/artgine/basic/CConsol.js";
+import { CObject } from "../../../Artgine/artgine/basic/CObject.js";
+import { CPlaneInside } from "../../../Artgine/artgine/geometry/CPlaneInside.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 import { CPacShooting } from "./CPacShooting.js";
 
 
@@ -82,7 +82,7 @@ export class CProComp extends CBehavior
         if(this.mHP<=0)
         {
             this.GetOwner().Destroy();
-            this.GetOwner().PushPacket(CPacShooting.Effect("Explosion",this.GetOwner().GetPos(),this.mPT.GetSize()));
+            this.GetOwner().PushPacket(CPacShooting.Effect({ key: "Explosion", pos: this.GetOwner().GetPos(), size: this.mPT.GetSize() }));
         }
         // let dir=this.m_rb.MoveDir("move");
         // let angle=CMath.V3TwoAngle(new CVec3(0,1,0),dir);

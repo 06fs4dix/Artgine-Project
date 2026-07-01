@@ -1,8 +1,8 @@
-import { CCanvas } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CCanvas.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
-import { CUpdate } from "https://06fs4dix.github.io/Artgine/artgine/basic/Basic.js";
-import { CBlackBoardRef } from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js";
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
+import { CCanvas } from "../../../Artgine/artgine/app/canvas/CCanvas.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
+import { CBlackBoardRef } from "../../../Artgine/artgine/basic/CObject.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 import { CPacShooting } from "./CPacShooting.js";
 
 // type 인코딩: level * 10 + movePattern(0~3)
@@ -24,7 +24,7 @@ export class RoomSystem extends CSubject {
     Spawn(_x: number, _y: number, _moveType: number) {
         let key = this.mMonKey + "mon";
         this.mMonKey++;
-        this.PushPacket(CPacShooting.MonCreate(key, new CVec3(_x, _y), this.mLevel * 10 + _moveType));
+        this.PushPacket(CPacShooting.MonCreate({ monKey: key, pos: new CVec3(_x, _y), type: this.mLevel * 10 + _moveType }));
     }
 
     override Update(_update: CUpdate): void {

@@ -1,12 +1,12 @@
-import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
-import { CPad } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CPad.js";
-import { CUIText } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CUI.js";
-import { CUpdate } from "https://06fs4dix.github.io/Artgine/artgine/basic/Basic.js";
-import { CAlert } from "https://06fs4dix.github.io/Artgine/artgine/basic/CAlert.js";
-import { CEvent } from "https://06fs4dix.github.io/Artgine/artgine/basic/CEvent.js";
-import { CPlaneInside } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CPlaneInside.js";
-import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
+import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
+import { CPad } from "../../../Artgine/artgine/app/subject/CPad.js";
+import { CUIText } from "../../../Artgine/artgine/app/subject/CUI.js";
+import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
+import { CAlert } from "../../../Artgine/artgine/basic/CAlert.js";
+import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
+import { CPlaneInside } from "../../../Artgine/artgine/geometry/CPlaneInside.js";
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 import { CPacShooting } from "./CPacShooting.js";
 import {CProComp} from "./CProComp.js";
 
@@ -48,7 +48,7 @@ export class CUserComp extends CProComp
         this.mShotTime-=_update.DeltaMil();
         if(this.mPad.IsEnable() && this.mPad.GetButtonEvent(0)==CEvent.eType.Press && this.mShotTime<=0)
         {
-            this.GetOwner().PushPacket(CPacShooting.UserShot(this.GetOwner().GetPos()));
+            this.GetOwner().PushPacket(CPacShooting.UserShot({ pos: this.GetOwner().GetPos() }));
             this.mShotTime=200;
         }
         
@@ -61,8 +61,8 @@ export class CUserComp extends CProComp
         this.GetOwner().PushChild(uit);
     }
     override Collision(_org: CCollider, _size: number, _tar: Array<CCollider>, _push: Array<CVec3>): void {
-        this.GetOwner().PushPacket(CPacShooting.Dead(this.GetOwner().Key()));
-        this.GetOwner().PushPacket(CPacShooting.Effect("Flash",this.GetOwner().GetPos(),new CVec2(50,50)));
+        this.GetOwner().PushPacket(CPacShooting.Dead({ nick: this.GetOwner().Key() }));
+        this.GetOwner().PushPacket(CPacShooting.Effect({ key: "Flash", pos: this.GetOwner().GetPos(), size: new CVec2(50, 50) }));
         this.GetOwner().Destroy();
 
         //CAlert.Info("[Die!]");

@@ -1,68 +1,13 @@
-import { CStream } from "https://06fs4dix.github.io/Artgine/artgine/basic/CStream.js";
+import { CStream } from "../../../Artgine/artgine/basic/CStream.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
 export class CPacShooting {
-    static eHeader = {
-        "MonCreate": "MonCreate",
-        "UserShot": "UserShot",
-        "Effect": "Effect",
-        "Pos": "Pos",
-        "Dead": "Dead"
-    };
-    static MonCreate(monKey, pos = null, type = null) {
-        if (monKey instanceof CStream) {
-            return monKey.GetPacket("monKey", "pos", "type");
-        }
-        return new CStream().Push("MonCreate").Push(monKey).Push(pos).Push(type);
+    static MonCreate = CStream.DefinePacket({ monKey: "", pos: new CVec3(), type: 0 });
+    static UserShot = CStream.DefinePacket({ pos: new CVec3() });
+    static Effect = CStream.DefinePacket({ key: "", pos: new CVec3(), size: new CVec2() });
+    static Pos = CStream.DefinePacket({ suk: "", nick: "", pos: new CVec3(), dir: new CVec3() });
+    static Dead = CStream.DefinePacket({ nick: "" });
+    static {
+        CStream.RegisterPacketNames(CPacShooting);
     }
-    static UserShot(pos) {
-        if (pos instanceof CStream) {
-            return pos.GetPacket("pos");
-        }
-        return new CStream().Push("UserShot").Push(pos);
-    }
-    static Effect(key, pos = null, size = null) {
-        if (key instanceof CStream) {
-            return key.GetPacket("key", "pos", "size");
-        }
-        return new CStream().Push("Effect").Push(key).Push(pos).Push(size);
-    }
-    static Pos(suk, nick = null, pos = null, dir = null) {
-        if (suk instanceof CStream) {
-            return suk.GetPacket("suk", "nick", "pos", "dir");
-        }
-        return new CStream().Push("Pos").Push(suk).Push(nick).Push(pos).Push(dir);
-    }
-    static Dead(nick) {
-        if (nick instanceof CStream) {
-            return nick.GetPacket("nick");
-        }
-        return new CStream().Push("Dead").Push(nick);
-    }
-    static Test(_test) {
-    }
-}
-var json = {
-    "MonCreate": {
-        "monKey": "string",
-        "pos": "CVec3",
-        "type": "string"
-    },
-    "UserShot": {
-        "pos": "CVec3"
-    },
-    "Effect": {
-        "key": "string",
-        "pos": "CVec3",
-        "size": "CVec2"
-    },
-    "Pos": {
-        "suk": "string",
-        "nick": "string",
-        "pos": "CVec3",
-        "dir": "CVec3"
-    },
-    "Dead": {
-        "nick": "string"
-    }
-};
-function Test(_test) {
 }

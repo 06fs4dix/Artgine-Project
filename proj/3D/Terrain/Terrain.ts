@@ -19,9 +19,9 @@ gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mCanvas = "";
 gPF.mWASM = false;
-gPF.mServer = 'webServer';
+gPF.mServer = 'local';
 gPF.mGitHub = false;
-gPF.mVersion = "mqjg475k_33";
+gPF.mVersion = "mr21golw_7";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -263,6 +263,8 @@ async function InitScene()
     heightMap.ClearAll();
 }
 InitScene();
+
+
 
 
 

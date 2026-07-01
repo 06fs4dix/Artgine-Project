@@ -1,8 +1,8 @@
-import { CBehavior } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
-import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
-import { CComponent } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CComponent.js";
-import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
-import { CPaint2D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
+import { CBehavior } from "../../../Artgine/artgine/app/component/CBehavior.js";
+import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
+import { CComponent } from "../../../Artgine/artgine/app/component/CComponent.js";
+import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
+import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
 import { CPacShooting } from "./CPacShooting.js";
 export class CProComp extends CBehavior {
     mHP = 100;
@@ -52,7 +52,7 @@ export class CProComp extends CBehavior {
             return;
         if (this.mHP <= 0) {
             this.GetOwner().Destroy();
-            this.GetOwner().PushPacket(CPacShooting.Effect("Explosion", this.GetOwner().GetPos(), this.mPT.GetSize()));
+            this.GetOwner().PushPacket(CPacShooting.Effect({ key: "Explosion", pos: this.GetOwner().GetPos(), size: this.mPT.GetSize() }));
         }
     }
 }
