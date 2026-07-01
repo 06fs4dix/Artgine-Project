@@ -7,6 +7,8 @@ import { BackGround } from "./BackGround.js";
 CClass.Push(BackGround);
 import { CBulletComp } from "./CBulletComp.js";
 CClass.Push(CBulletComp);
+import { CMonComp } from "./CMonComp.js";
+CClass.Push(CMonComp);
 import { CMoveComp } from "./CMoveComp.js";
 CClass.Push(CMoveComp);
 import { CPacShooting } from "./CPacShooting.js";
@@ -32,9 +34,9 @@ gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mWASM = false;
 gPF.mCanvas = "";
-gPF.mServer = 'webServer';
+gPF.mServer = 'local';
 gPF.mGitHub = false;
-gPF.mVersion = "mr21kyji_7";
+gPF.mVersion = "mr228xhk_12";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -378,6 +380,15 @@ Option_btn.SetContent(`
     블룸,기본 설정 가능
 </div>`);
 if(gPF.mServer=="webServer")    CScore.Read("Shooting");
+
+
+
+
+
+
+
+
+
 
 
 

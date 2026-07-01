@@ -81,19 +81,7 @@ if (location.protocol == 'file:' && isElectron==false){
 	location.replace(target);
 	}).catch(() => {    alert('Please run the web server! [npm run start_web]');  });
 }</script>
-
-		<script>
-		if ('serviceWorker' in navigator) 
-		{
-			navigator.serviceWorker.register('ServiceWorker.js').then(() => {
-				navigator.serviceWorker.ready.then(() => {
-					console.log("서비스 워커 준비됨");
-					//window.location.reload();
-				});
-			}).catch((err) => console.error("Service Worker 등록 실패:", err));
-		}
-		</script>
-		<script type='module' src='Shooting.js'></script>
+<script type='module' src='Shooting.js'></script>
 
 <!--Manifest-->
 <!--EntryPoint-->
