@@ -1,17 +1,8 @@
+## Introduction
 Artgine project demos — built with the [Artgine](https://github.com/06fs4dix/Artgine) engine.
 
-> Language **[한국어](README-ko.md)**
-
-## Getting Started
-
-```bash
-git clone --recursive https://github.com/06fs4dix/Artgine-Project.git
-cd Artgine-Project
-npm install
-npm start
-```
-
-Set `projectPath` to the desired folder under `proj` in the Artgine app, then click **Run**.
+## Language
+**[한국어](README-ko.md)**
 
 ## Demo
 
@@ -56,3 +47,14 @@ Set `projectPath` to the desired folder under `proj` in the Artgine app, then cl
 | Voxel | Interactive 2D/3D voxel map editor | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Voxel/Voxel.html) |
 | Wind | Wind effect simulation on 2D and 3D objects | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Wind/Wind.html) |
 | Terrain | 3D terrain with shadow mapping, collision, and rigid body physics | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Terrain/Terrain.html) |
+
+## Getting Started
+
+```bash
+git clone --recursive https://github.com/06fs4dix/Artgine-Project.git
+cd Artgine-Project
+npm install
+npm start
+```
+
+Set `projectPath` to the desired folder under `proj` in the Artgine app, then click **Run**.

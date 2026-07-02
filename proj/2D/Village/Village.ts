@@ -22,9 +22,9 @@ gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mWASM = false;
 gPF.mCanvas = "";
-gPF.mServer = 'webServer';
+gPF.mServer = 'local';
 gPF.mGitHub = false;
-gPF.mVersion = "mqjg475k_2";
+gPF.mVersion = "mr3ke4nf_8";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -70,7 +70,6 @@ import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
 import { CConsol } from "../../../Artgine/artgine/basic/CConsol.js";
 import { CSurfaceBloom } from "../../../Artgine/plugin/Bloom/Bloom.js";
 
-import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
 import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
 
 
@@ -95,7 +94,6 @@ import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
 import { CUniqueID } from "../../../Artgine/artgine/basic/CUniqueID.js";
 
 
-import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
 import { Bootstrap } from "../../../Artgine/artgine/basic/Bootstrap.js";
 
 import { CHTMLDropdown } from "../../../Artgine/artgine/util/CHTMLBar.js";
@@ -322,7 +320,9 @@ srp.mTag.add("blend");
 // srp.mShaderAttr.push(new CShaderAttr(0,basiceTexKey));
 srp.mShaderAttr.push(new CShaderAttr(0,gAtl.Frame().Pal().GetMainFrameTex()));
 srp.mShaderAttr.push(new CShaderAttr(1,sufBloom.GetTexKey()));
-srp.mShaderAttr.push(new CShaderAttr("TexOffBlendFactor",new CMat([1,1,CRenderPass.eBlend.LinearDodge])));
+srp.mShaderAttr.push(new CShaderAttr("BlendColor0", new CVec4(SDF.eBlend.Texture, 0)));                 // col0 = mainFrameTex
+srp.mShaderAttr.push(new CShaderAttr("BlendColor1", new CVec4(SDF.eBlend.Texture, 1)));                 // col1 = bloomTex
+srp.mShaderAttr.push(new CShaderAttr("BlendColor2", new CVec4(SDF.eBlend.LinearDodge, 0, 1, 1)));       // col2 = col0 + col1
 
 //srp.mShaderAttr.push(new CShaderAttr("blend", 1, CRenderPass.eBlend.LinearDodge));
 //srp.mShaderAttr.push(new CShaderAttr("opacity",1,1));
@@ -484,6 +484,21 @@ const dummy = CHTMLDropdown.Attach(arr, "left");
 let rightDiv=CDOM.DataToDom(`<div class="position-fixed top-0 end-0" style="z-index:2000;"></div>`);
 rightDiv.append(dummy);
 mg.SetBody(rightDiv);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

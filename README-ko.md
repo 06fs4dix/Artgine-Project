@@ -1,17 +1,8 @@
+## 소개
 [Artgine](https://github.com/06fs4dix/Artgine) 엔진으로 제작된 프로젝트 데모 모음입니다.
 
-> Language **[English](README.md)**
-
-## 시작하기
-
-```bash
-git clone --recursive https://github.com/06fs4dix/Artgine-Project.git
-cd Artgine-Project
-npm install
-npm start
-```
-
-Artgine 앱에서 `projectPath`를 `proj` 하위 원하는 폴더로 설정하고 **Run**을 클릭하세요.
+## 언어
+**[English](README.md)**
 
 ## 데모
 
@@ -56,3 +47,14 @@ Artgine 앱에서 `projectPath`를 `proj` 하위 원하는 폴더로 설정하�
 | Voxel | 2D/3D 대화형 복셀 맵 에디터 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Voxel/Voxel.html) |
 | Wind | 2D/3D 오브젝트에 바람 효과 시뮬레이션 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Wind/Wind.html) |
 | Terrain | 그림자 맵핑, 충돌, 강체 물리가 포함된 3D 지형 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Terrain/Terrain.html) |
+
+## 시작하기
+
+```bash
+git clone --recursive https://github.com/06fs4dix/Artgine-Project.git
+cd Artgine-Project
+npm install
+npm start
+```
+
+Artgine 앱에서 `projectPath`를 `proj` 하위 원하는 폴더로 설정하고 **Run**을 클릭하세요.
