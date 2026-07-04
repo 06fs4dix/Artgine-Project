@@ -4,7 +4,7 @@
   "fullScreen": false,
   "program": "developer",
   "url": "http://localhost:7000/Artgine-Project",
-  "projectPath": "proj/2D/Village",
+  "projectPath": "proj/Tutorial/2DLight",
   "page": "html",
   "server": "local",
   "github": false,

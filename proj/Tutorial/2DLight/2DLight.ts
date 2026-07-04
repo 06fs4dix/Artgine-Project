@@ -19,9 +19,9 @@ gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mWASM = false;
 gPF.mCanvas = "";
-gPF.mServer = 'webServer';
+gPF.mServer = 'local';
 gPF.mGitHub = false;
-gPF.mVersion = "mqjg475k_12";
+gPF.mVersion = "mr6h3dfi_12";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -59,6 +59,8 @@ CAlert.Info("f3로 개발모드에서 라이팅 위치와 값을 수정해 보�
 // let pt=sub.PushComp(new CPaint2D("Res/01.png",new CVec2(128,128)));
 // //pt.PushTag("tail");
 // pt.PushTag("shadowProj");
+
+
 
 
 

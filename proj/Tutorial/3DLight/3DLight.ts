@@ -21,7 +21,7 @@ gPF.mWASM = false;
 gPF.mCanvas = "";
 gPF.mServer = 'local';
 gPF.mGitHub = false;
-gPF.mVersion = "mr21golw_2";
+gPF.mVersion = "mr6h3dfi_7";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -723,6 +723,8 @@ Help.SetContent(await CUtilWeb.MDReader("README.md"));
 
 
 new CModalFrameView();
+
+
 
 
 
