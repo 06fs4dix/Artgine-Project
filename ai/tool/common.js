@@ -3,10 +3,10 @@ import { join } from 'path';
 
 export function getPassword(projectRoot) {
     const candidates = [
-        'Main.json',
-        join('desktop', 'Main.json'),
-        join(projectRoot, 'Main.json'),
-        join(projectRoot, 'desktop', 'Main.json'),
+        'settings.json',
+        join('desktop', 'settings.json'),
+        join(projectRoot, 'settings.json'),
+        join(projectRoot, 'desktop', 'settings.json'),
     ];
     const file = candidates.find((path) => existsSync(path));
     if (!file) return 'artgine';
@@ -30,7 +30,19 @@ export function createApiClient(cookieFile) {
         if (setCookie) saveCookie(setCookie.split(';')[0]);
         return res.json();
     }
-    return { call };
+    async function get(base, path, query = {}) {
+        const qs = new URLSearchParams(
+            Object.fromEntries(Object.entries(query).filter(([, v]) => v !== undefined && v !== null))
+        ).toString();
+        const url = `${base}/${path}${qs ? `?${qs}` : ''}`;
+        const cookie = loadCookie();
+        const headers = { ...(cookie ? { Cookie: cookie } : {}) };
+        const res = await fetch(url, { method: 'GET', headers });
+        const setCookie = res.headers.get('set-cookie');
+        if (setCookie) saveCookie(setCookie.split(';')[0]);
+        return res.json();
+    }
+    return { call, get };
 }
 
 export async function login(call, base, projectRoot) {
