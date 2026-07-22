@@ -19,9 +19,9 @@ gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mCanvas = "";
 gPF.mWASM = false;
-gPF.mServer = 'webServer';
+gPF.mServer = 'local';
 gPF.mGitHub = false;
-gPF.mVersion = "mqc8fbj5_5";
+gPF.mVersion = "mrw3k0ix_7";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -315,6 +315,10 @@ let lig = ligSub.PushComp(new CLight());
 lig.SetDirect();
 lig.SetColor(new CVec3(1, 1, 1));
 lig.SetShadow3D("test", 0);
+
+
+
+
 
 
 

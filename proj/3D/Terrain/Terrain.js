@@ -15,7 +15,7 @@ gPF.mCanvas = "";
 gPF.mWASM = false;
 gPF.mServer = 'local';
 gPF.mGitHub = false;
-gPF.mVersion = "mr21golw_7";
+gPF.mVersion = "mrw3k0ix_12";
 import { CAtelier } from "../../../Artgine/artgine/app/CAtelier.js";
 import { CPlugin } from "../../../Artgine/artgine/util/CPlugin.js";
 CPlugin.PushPath('Water', '../../../Artgine/plugin/Water/');
@@ -60,8 +60,8 @@ let ligComp = ligSub.PushComp(new CLight());
 ligComp.SetShadow3D("shadow", 0, 2, 16);
 class CTestComp extends CComponent {
     PCF = new CVec1(2);
-    bias = new CVec1(40);
-    normalBias = new CVec1(10);
+    bias = new CVec1(1);
+    normalBias = new CVec1(0.3);
     shadowRate = new CVec1(0.3);
     jitter = new CVec1(1);
 }

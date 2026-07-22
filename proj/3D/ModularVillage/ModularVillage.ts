@@ -19,9 +19,9 @@ gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mCanvas = "";
 gPF.mWASM = false;
-gPF.mServer = 'webServer';
+gPF.mServer = 'local';
 gPF.mGitHub = false;
-gPF.mVersion = "mqjg475k_24";
+gPF.mVersion = "mrw3k0ix_2";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -38,7 +38,7 @@ var Main = gAtl.Canvas('Main.json');
 
 import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
 
-import { CTexture } from "../../../Artgine/artgine/render/CTexture.js";
+import { CTexture, CTextureInfo } from "../../../Artgine/artgine/render/CTexture.js";
 
 import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
 import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
@@ -78,13 +78,14 @@ import { CForce } from "../../../Artgine/artgine/app/component/CForce.js";
 import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
 import { CDensityInfo2D, CDensityInfo3D, CDensityMap } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
 import { CAlert } from "../../../Artgine/artgine/basic/CAlert.js";
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
 
 
 
 let PCF=new CVec1(0.0);
 var bias : number = 5;
-var normalBias : number = 4;
-var shadowRate=0.7;
+var normalBias : number = 0.3;
+var shadowRate=0.0;
 let forward=new CRPMgr();
 let rtex=new CTexture();
 rtex.SetSize(512,512);
@@ -94,10 +95,9 @@ if(await gAtl.Frame().Dev().BenchmarkScore()>100)
     rtex.SetSize(2048,2048);
     PCF=new CVec1(2.0);
     bias  = 20;
-    normalBias  = 10;
+    normalBias  = 0.3;
     CAlert.Info("고사양");
 }
-
 
 let texKey=forward.PushTex("shadowread.tex",rtex);
 let rp=forward.PushRP(new CRPAuto());
@@ -112,6 +112,7 @@ rp.mShaderAttr.push(new CShaderAttr("normalBias",normalBias));
 rp.mShaderAttr.push(new CShaderAttr("jitter",0.2));
 rp.mShader=gAtl.Frame().Pal().Sl3DKey();
 rp.mRenderTarget="shadowread.tex";
+rp.mAlpha=false;
 //rp.mRenderTarget=gAtl.Frame().Pal().GetShadowReadTex();
 rp.mTag.add("shadowRead");
 
@@ -272,7 +273,7 @@ pt3.PushTag(CPaint.eTag.Shadow);
 chsub.SetPos(new CVec3(590,600,892));
 //chsub.SetRot(new CVec3(0,3.14/2,0));
 let bound=new CBound();
-bound.InitBound(60);
+bound.InitBound(50);
 bound.SetType(CBound.eType.Sphere);
 let cl=chsub.PushComp(new CCollider(bound));
 cl.SetLayer("user");
@@ -441,6 +442,19 @@ chsub.Update=(_update : CUpdate)=>{
 
 //     }
 // });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
