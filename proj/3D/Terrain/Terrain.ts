@@ -1,11 +1,11 @@
 //Version
-import "../../../Artgine/artgine/artgine.js"
+import "../../../artgine/artgine.js"
 
 //Class
-import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -18,16 +18,15 @@ gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mCanvas = "";
-gPF.mWASM = false;
-gPF.mServer = 'local';
+gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mrw3k0ix_12";
+gPF.mVersion = "mt12d5az_9";
 
-import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../artgine/app/CAtelier.js";
 
-import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
-CPlugin.PushPath('Water','../../../Artgine/plugin/Water/');
-import "../../../Artgine/plugin/Water/Water.js"
+import {CPlugin} from "../../../artgine/util/CPlugin.js";
+CPlugin.PushPath('Water','../../../plugin/Water/');
+import "../../../plugin/Water/Water.js"
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
@@ -35,33 +34,33 @@ await gAtl.Init([],"");
 
 //EntryPoint
 
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
-import { CCamCon3DFirstPerson } from "../../../Artgine/artgine/util/CCamCon.js";
-import { CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
-import { CTexture } from "../../../Artgine/artgine/render/CTexture.js";
-import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
-import { CTerrainMap } from "../../../Artgine/artgine/app/subject/CTerrainMap.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CLight } from "../../../Artgine/artgine/app/component/CLight.js";
-import { CRPAuto, CRPMgr } from "../../../Artgine/artgine/app/canvas/CRPMgr.js";
-import { CCondition } from "../../../Artgine/artgine/util/CCondition.js";
-import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
-import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
-import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
-import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
-import { CPaint3D, CPaintCube } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
-import { CModalFrameView } from "../../../Artgine/artgine/util/CModalUtil.js";
-import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
-import { CComponent } from "../../../Artgine/artgine/app/component/CComponent.js";
-import { CColor } from "../../../Artgine/artgine/render/CColor.js";
-import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
-import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
-import { CBehavior } from "../../../Artgine/artgine/app/component/CBehavior.js";
-import { CUtilRender } from "../../../Artgine/artgine/render/CUtilRender.js";
-import { CImgPro } from "../../../Artgine/artgine/render/CImgPro.js";
-import { CWater3D } from "../../../Artgine/plugin/Water/Water.js";
-import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
+import { CCamCon3DFirstPerson } from "../../../artgine/util/CCamCon.js";
+import { CLoaderOption } from "../../../artgine/util/CLoader.js";
+import { CTexture } from "../../../artgine/render/CTexture.js";
+import { CMat } from "../../../artgine/geometry/CMat.js";
+import { CTerrainMap } from "../../../artgine/app/subject/CTerrainMap.js";
+import { CSubject } from "../../../artgine/app/subject/CSubject.js";
+import { CLight } from "../../../artgine/app/component/CLight.js";
+import { CRPAuto, CRPMgr } from "../../../artgine/app/canvas/CRPMgr.js";
+import { CCondition } from "../../../artgine/util/CCondition.js";
+import { CRenderPass } from "../../../artgine/render/CRenderPass.js";
+import { CShaderAttr } from "../../../artgine/render/CShaderAttr.js";
+import { SDF } from "../../../artgine/z_file/SDF.js";
+import { CCanvasPluginRPMgr } from "../../../artgine/app/canvas/CCanvasPluginRPMgr.js";
+import { CPaint3D, CPaintCube } from "../../../artgine/app/component/paint/CPaint3D.js";
+import { CVec1 } from "../../../artgine/geometry/CVec1.js";
+import { CModalFrameView } from "../../../artgine/util/CModalUtil.js";
+import { CVec2 } from "../../../artgine/geometry/CVec2.js";
+import { CComponent } from "../../../artgine/app/component/CComponent.js";
+import { CColor } from "../../../artgine/render/CColor.js";
+import { CCollider } from "../../../artgine/app/component/CCollider.js";
+import { CRigidBody } from "../../../artgine/app/component/CRigidBody.js";
+import { CBehavior } from "../../../artgine/app/component/CBehavior.js";
+import { CUtilRender } from "../../../artgine/render/CUtilRender.js";
+import { CImgPro } from "../../../artgine/render/CImgPro.js";
+import { CWater3D } from "../../../plugin/Water/Water.js";
+import { CVec4 } from "../../../artgine/geometry/CVec4.js";
 
 var Main=gAtl.NewCanvas("Main");
 Main.SetCameraKey("3D");
@@ -73,6 +72,7 @@ let ligSub = Main.PushSub(new CSubject());
 ligSub.SetPos(new CVec3(0, 1, 5));
 let ligComp = ligSub.PushComp(new CLight())
 ligComp.SetShadow3D("shadow", 0, 2, 16);
+ligComp.mShadowDistance = 100000;
 
 class CTestComp extends CComponent
 {
@@ -159,8 +159,9 @@ heightMap.SetLevel([1, 1, 1, 1, 1, 1]);
 heightMap.mHeightBuf.mSize = 40;
 heightMap.mTag.add("light");
 heightMap.mTag.add("shadow");
-heightMap.mCollider.SetLayer("test");
-heightMap.mCollider.PushCollisionLayer("test");
+const collider = heightMap.PushComp(new CCollider());
+collider.SetLayer("test");
+collider.PushCollisionLayer("test");
 
 // water
 const water = Main.PushSub(new CWater3D());
@@ -199,7 +200,7 @@ playerRb.SetGravity(10);
 const playerCol = player.PushComp(new CCollider(playerPt, playerRb));
 playerCol.SetLayer("test");
 playerCol.PushCollisionLayer("test");
-playerCol.SetRestitution();
+playerCol.SetPushRate();
 class CBehaviorTest extends CBehavior {
     override CollisionEnter(_org: CCollider, _tar: CCollider): void {
         super.CollisionEnter(_org, _tar);
@@ -265,6 +266,23 @@ async function InitScene()
     heightMap.ClearAll();
 }
 InitScene();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

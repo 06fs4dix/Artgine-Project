@@ -1,5 +1,5 @@
-import "https://06fs4dix.github.io/Artgine/artgine/artgine.js";
-import { CPreferences } from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
+import "../../../artgine/artgine.js";
+import { CPreferences } from "../../../artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -11,32 +11,32 @@ gPF.mBatchPool = true;
 gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
-gPF.mWASM = false;
 gPF.mCanvas = "";
-gPF.mServer = 'local';
+gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mpuhzq22_17";
-import { CAtelier } from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
+gPF.mVersion = "mszqhp50_4";
+import { CAtelier } from "../../../artgine/app/CAtelier.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([], "");
-import { CCamCon3DFirstPerson } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
-import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/CRenderPass.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
-import { CPaint3D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CParticle, CParticleShapeOut } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CParticle.js";
-import { CPaint2D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
-import { CColor } from "https://06fs4dix.github.io/Artgine/artgine/render/CColor.js";
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
-import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
-import { CAlpha } from "https://06fs4dix.github.io/Artgine/artgine/render/CAlpha.js";
-import { CAnimation, CClipAlpha, CClipColor, CClipDestroy, CClipPRS } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAnimation.js";
-import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
-import { CSampList } from "https://06fs4dix.github.io/Artgine/artgine/util/CSampler.js";
-import { CEvent } from "https://06fs4dix.github.io/Artgine/artgine/basic/CEvent.js";
-import { CInput } from "https://06fs4dix.github.io/Artgine/artgine/system/CInput.js";
-import { CPool } from "https://06fs4dix.github.io/Artgine/artgine/basic/CPool.js";
-import { CTrail } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CTrail.js";
+import { CCamCon3DFirstPerson } from "../../../artgine/util/CCamCon.js";
+import { CRenderPass } from "../../../artgine/render/CRenderPass.js";
+import { CSubject } from "../../../artgine/app/subject/CSubject.js";
+import { CPaint3D } from "../../../artgine/app/component/paint/CPaint3D.js";
+import { CParticle, CParticleShapeOut } from "../../../artgine/app/subject/CParticle.js";
+import { CPaint2D } from "../../../artgine/app/component/paint/CPaint2D.js";
+import { CColor } from "../../../artgine/render/CColor.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
+import { CVec2 } from "../../../artgine/geometry/CVec2.js";
+import { CAlpha } from "../../../artgine/render/CAlpha.js";
+import { CAnimation, CClipAlpha, CClipColor, CClipDestroy, CClipPRS } from "../../../artgine/app/component/CAnimation.js";
+import { CAniFlow } from "../../../artgine/app/component/CAniFlow.js";
+import { CSampList } from "../../../artgine/util/CSampler.js";
+import { CEvent } from "../../../artgine/basic/CEvent.js";
+import { CInput } from "../../../artgine/system/CInput.js";
+import { CPool } from "../../../artgine/basic/CPool.js";
+import { CMath } from "../../../artgine/geometry/CMath.js";
+import { CTrail } from "../../../artgine/app/subject/CTrail.js";
 var Main = gAtl.NewCanvas("Main");
 Main.SetCameraKey("3D");
 gAtl.Brush().GetCam3D().SetCamCon(new CCamCon3DFirstPerson(gAtl.Frame().Input()));
@@ -47,7 +47,7 @@ rp.SetPriority(CRenderPass.ePriority.BackGround);
 pt.PushRenderPass(rp);
 pt.SetTexture(gAtl.Frame().Pal().GetNoneTex());
 obj.PushComp(pt);
-obj.SetSca(new CVec3(10, 0.1, 10));
+obj.SetSca(new CVec3(2000, 20, 2000));
 Main.PushSub(obj);
 var particle = new CParticle();
 var sub0 = new CSubject();
@@ -94,57 +94,104 @@ var sam = new CSampList([sub0, sub1, sub2], [1, 4, 2]);
 particle.mSample = sam;
 particle.mShape = new CParticleShapeOut();
 Main.PushSub(particle);
-var trail3Obj = Main.PushSub(new CTrail(gAtl.Brush().GetCam3D()));
-trail3Obj.mLength = 1000;
-trail3Obj.mFadeTime = 10.0;
-var ani = new CAnimation();
-ani.Push(new CClipPRS(0, 5, new CVec3(500, 100, 500), new CVec3(500, 100, -500), 0));
-ani.Push(new CClipPRS(5, 5, new CVec3(500, 100, -500), new CVec3(-500, 100, -500), 0));
-ani.Push(new CClipPRS(10, 5, new CVec3(-500, 100, -500), new CVec3(-500, 100, 500), 0));
-ani.Push(new CClipPRS(15, 5, new CVec3(-500, 100, 500), new CVec3(500, 100, 500), 0));
-trail3Obj.PushComp(new CAniFlow(ani));
-function SwordThrustTrail(distance = 400, size = 50, duration = 0.3, center = new CVec3(0, 100, 0), direction = new CVec3(0, 0, 1)) {
-    const tip = new CVec3(center.x + direction.x * distance, center.y + direction.y * distance, center.z + direction.z * distance);
-    const trail = new CTrail(gAtl.Brush().GetCam3D());
-    Main.PushSub(trail);
-    const thrustAni = new CAnimation();
-    thrustAni.Push(new CClipPRS(0, duration, center, tip, 0));
-    thrustAni.Push(new CClipPRS(duration, duration, tip, center, 0));
-    thrustAni.mLoop = false;
-    let af = trail.PushComp(new CAniFlow(thrustAni));
-    return trail;
+{
+    const plane = new CSubject();
+    const planePT = new CPaint3D(gAtl.Frame().Pal().GetBoxMesh());
+    const planeRP = new CRenderPass(gAtl.Frame().Pal().Sl3DKey());
+    planeRP.SetPriority(CRenderPass.ePriority.BackGround);
+    planePT.PushRenderPass(planeRP);
+    planePT.SetTexture(gAtl.Frame().Pal().GetNoneTex());
+    planePT.SetColorModel(new CColor(0.2, 0.5, 0.2, CColor.eModel.RGBMul));
+    plane.PushComp(planePT);
+    plane.SetSca(new CVec3(200, 20, 200));
+    plane.SetPos(new CVec3(0, 500, 0));
+    Main.PushSub(plane);
 }
-function SwordCircleTrail(radius = 300, size = 50, duration = 1.5, center = new CVec3(0, 100, 0)) {
-    const SEGMENTS = 32;
-    const segDur = duration / SEGMENTS;
+function ArcTrail180(_pos, _view, _dot, _size, _duration = 1.0, _fadeTime = 2.0) {
+    const reach = _size > 0 ? _size : 100;
+    const radius = reach * 0.5;
+    const dir = CMath.V3Nor(_view);
+    const center = _pos;
+    const baseAng = Math.atan2(dir.z, dir.x);
+    const halfArc = Math.acos(_dot);
+    const arcDeg = halfArc * 2 * 180 / Math.PI;
+    const startA = baseAng - halfArc;
+    const endA = baseAng + halfArc;
+    const SEGMENTS = 16;
+    const segDur = _duration / SEGMENTS;
+    const arcLen = radius * (arcDeg * Math.PI / 180);
     const trail = new CTrail(gAtl.Brush().GetCam3D());
-    trail.mLastSmall = true;
+    trail.mLength = arcLen * 1.1;
+    trail.mFadeTime = _fadeTime;
+    trail.mWidth = reach;
+    trail.mLastSmall = false;
     trail.mLastHide = false;
-    Main.PushSub(trail);
-    const swordAni = new CAnimation();
-    for (let i = 0; i < SEGMENTS; i++) {
-        const a0 = (i / SEGMENTS) * Math.PI * 2;
-        const a1 = ((i + 1) / SEGMENTS) * Math.PI * 2;
-        swordAni.Push(new CClipPRS(i * segDur, segDur, new CVec3(center.x + Math.cos(a0) * radius, center.y, center.z + Math.sin(a0) * radius), new CVec3(center.x + Math.cos(a1) * radius, center.y, center.z + Math.sin(a1) * radius), 0));
-    }
-    trail.PushComp(new CAniFlow(swordAni));
-    const destroyTime = duration * 2 + 1.0;
-    let elapsed = 0;
-    const cleanupEv = new CEvent();
-    cleanupEv.mEvent = (_dt) => {
-        elapsed += _dt;
-        if (elapsed >= destroyTime) {
-            trail.Destroy();
-            gAtl.Frame().RemoveEvent(cleanupEv);
+    trail.mNormal = new CVec3(0, 1, 0);
+    const startPos = new CVec3(center.x + Math.cos(startA) * radius, center.y, center.z + Math.sin(startA) * radius);
+    trail.SetPos(startPos);
+    const colorize = new CEvent();
+    let applied = false;
+    colorize.mEvent = (_dt) => {
+        const tp = trail.mTrailPaint;
+        if (tp != null && !applied) {
+            tp.SetColorModel(new CColor(0.7, 0.9, 1.0, CColor.eModel.RGBAdd));
+            tp.SetAlphaModel(new CAlpha(0.8));
+            applied = true;
+            gAtl.Frame().RemoveEvent(colorize);
         }
     };
-    gAtl.Frame().PushEvent(CEvent.eType.Update, cleanupEv);
+    gAtl.Frame().PushEvent(CEvent.eType.Update, colorize);
+    const ani = new CAnimation();
+    ani.mLoop = false;
+    let prev = startPos;
+    for (let i = 1; i <= SEGMENTS; i++) {
+        const a = startA + (endA - startA) * (i / SEGMENTS);
+        const cur = new CVec3(center.x + Math.cos(a) * radius, center.y, center.z + Math.sin(a) * radius);
+        ani.Push(new CClipPRS((i - 1) * segDur, segDur, prev, cur, CClipPRS.eType.Pos));
+        prev = cur;
+    }
+    ani.Push(new CClipDestroy(_duration + _fadeTime));
+    trail.PushComp(new CAniFlow(ani));
+    Main.PushSub(trail);
     return trail;
 }
-gAtl.Frame().PushEvent(CEvent.eType.Update, () => {
+function ThrustTest(_pos, _view, _distance = 130, _duration = 0.25, _fadeTime = 0.3) {
+    const nor = CMath.V3Nor(_view);
+    const startPos = new CVec3(_pos.x, _pos.y, _pos.z);
+    const endPos = new CVec3(_pos.x + nor.x * _distance, _pos.y + nor.y * _distance, _pos.z + nor.z * _distance);
+    const trail = new CTrail(gAtl.Brush().GetCam3D());
+    trail.mLength = _distance * 1.2;
+    trail.mFadeTime = _fadeTime;
+    trail.mWidth = 18;
+    trail.mLastSmall = true;
+    trail.mLastHide = true;
+    trail.SetPos(startPos);
+    const colorize = new CEvent();
+    let applied = false;
+    colorize.mEvent = (_dt) => {
+        const tp = trail.mTrailPaint;
+        if (tp != null && !applied) {
+            tp.SetColorModel(new CColor(1.0, 0.6, 0.2, CColor.eModel.RGBAdd));
+            tp.SetAlphaModel(new CAlpha(0.8));
+            applied = true;
+            gAtl.Frame().RemoveEvent(colorize);
+        }
+    };
+    gAtl.Frame().PushEvent(CEvent.eType.Update, colorize);
+    const half = _duration / 2;
+    const ani = new CAnimation();
+    ani.mLoop = false;
+    ani.Push(new CClipPRS(0, half, startPos, endPos, CClipPRS.eType.Pos));
+    ani.Push(new CClipPRS(half, half, endPos, startPos, CClipPRS.eType.Pos));
+    ani.Push(new CClipDestroy(_duration + _fadeTime));
+    trail.PushComp(new CAniFlow(ani));
+    Main.PushSub(trail);
+    return trail;
+}
+gAtl.Frame().PushEvent(CEvent.eType.Update, new CEvent((_dt) => {
     const input = gAtl.Frame().Input();
-    if (input.KeyDown(CInput.eKey.F, true)) {
-        SwordThrustTrail(400, 50, 0.3, new CVec3(0, 100, 0), new CVec3(0, 0, 1));
-    }
-});
-SwordCircleTrail(300, 50, 1.5, new CVec3(0, 100, 0));
+    if (input.KeyDown(CInput.eKey.Space, true))
+        ArcTrail180(new CVec3(0, 550, 0), new CVec3(0, 0, 1), 0, 100);
+    if (input.KeyDown(CInput.eKey.F, true))
+        ThrustTest(new CVec3(0, 550, 0), new CVec3(0, 0, 1), 100);
+}));

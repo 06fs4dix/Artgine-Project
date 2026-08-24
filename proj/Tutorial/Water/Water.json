@@ -10,9 +10,8 @@
     "mXR": false,
     "mDeveloper": true,
     "mIAuto": true,
-    "mCanvas": "",
-    "mWASM": false
-  },
+    "mCanvas": ""
+},
   "pluging": [],
   "includes": {
     "pakozlib": true,

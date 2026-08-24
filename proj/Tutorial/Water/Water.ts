@@ -1,11 +1,11 @@
 //Version
-import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
+import "../../../artgine/artgine.js"
 
 //Class
-import {CClass} from "https://06fs4dix.github.io/Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -18,16 +18,15 @@ gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mCanvas = "";
-gPF.mWASM = false;
 gPF.mServer = 'webServer';
-gPF.mGitHub = true;
-gPF.mVersion = "mpzig8xa_2";
+gPF.mGitHub = false;
+gPF.mVersion = "mqg7brr3_40";
 
-import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../artgine/app/CAtelier.js";
 
-import {CPlugin} from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
-CPlugin.PushPath('Water','https://06fs4dix.github.io/Artgine/plugin/Water/');
-import "https://06fs4dix.github.io/Artgine/plugin/Water/Water.js"
+import {CPlugin} from "../../../artgine/util/CPlugin.js";
+CPlugin.PushPath('Water','../../../plugin/Water/');
+import "../../../plugin/Water/Water.js"
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
@@ -35,34 +34,34 @@ await gAtl.Init([],"");
 
 //EntryPoint
 
-import {CObject} from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js"
-import {CWater3D} from "https://06fs4dix.github.io/Artgine/plugin/Water/Water.js";
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
-import { CVec1 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec1.js";
-import { CTexture, CTextureInfo } from "https://06fs4dix.github.io/Artgine/artgine/render/CTexture.js";
-import { CShaderAttr } from "https://06fs4dix.github.io/Artgine/artgine/render/CShaderAttr.js";
-import { CCamCon3DFirstPerson } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
-import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/CRenderPass.js";
-import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
-import { CLoaderOption } from "https://06fs4dix.github.io/Artgine/artgine/util/CLoader.js";
-import { CVec4 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec4.js";
-import { CBGAttachButton, CModalFrameView } from "https://06fs4dix.github.io/Artgine/artgine/util/CModalUtil.js";
-import { CDOM } from "https://06fs4dix.github.io/Artgine/artgine/basic/CDOM.js";
-import { CFrame } from "https://06fs4dix.github.io/Artgine/artgine/util/CFrame.js";
-import { CRPAuto, CRPMgr } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CRPMgr.js";
-import { CCondition } from "https://06fs4dix.github.io/Artgine/artgine/util/CCondition.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
-import { CLight } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CLight.js";
-import { CPaint3D, CPaintCube } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CPaint } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint.js";
-import { CAlpha } from "https://06fs4dix.github.io/Artgine/artgine/render/CAlpha.js";
-import { CCanvasPluginRPMgr } from "https://06fs4dix.github.io/Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
-import { CImgPro } from "https://06fs4dix.github.io/Artgine/artgine/render/CImgPro.js";
-import { SDF } from "https://06fs4dix.github.io/Artgine/artgine/z_file/SDF.js";
-import { CMath } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMath.js";
-import { CUtilRender } from "https://06fs4dix.github.io/Artgine/artgine/render/CUtilRender.js";
-import { CMat } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMat.js";
-import { CColor } from "https://06fs4dix.github.io/Artgine/artgine/render/CColor.js";
+import {CObject} from "../../../artgine/basic/CObject.js"
+import {CWater3D} from "../../../plugin/Water/Water.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
+import { CVec1 } from "../../../artgine/geometry/CVec1.js";
+import { CTexture, CTextureInfo } from "../../../artgine/render/CTexture.js";
+import { CShaderAttr } from "../../../artgine/render/CShaderAttr.js";
+import { CCamCon3DFirstPerson } from "../../../artgine/util/CCamCon.js";
+import { CRenderPass } from "../../../artgine/render/CRenderPass.js";
+import { CVec2 } from "../../../artgine/geometry/CVec2.js";
+import { CLoaderOption } from "../../../artgine/util/CLoader.js";
+import { CVec4 } from "../../../artgine/geometry/CVec4.js";
+import { CBGAttachButton, CModalFrameView } from "../../../artgine/util/CModalUtil.js";
+import { CDOM } from "../../../artgine/basic/CDOM.js";
+import { CFrame } from "../../../artgine/util/CFrame.js";
+import { CRPAuto, CRPMgr } from "../../../artgine/app/canvas/CRPMgr.js";
+import { CCondition } from "../../../artgine/util/CCondition.js";
+import { CSubject } from "../../../artgine/app/subject/CSubject.js";
+import { CLight } from "../../../artgine/app/component/CLight.js";
+import { CPaint3D, CPaintCube } from "../../../artgine/app/component/paint/CPaint3D.js";
+import { CPaint } from "../../../artgine/app/component/paint/CPaint.js";
+import { CAlpha } from "../../../artgine/render/CAlpha.js";
+import { CCanvasPluginRPMgr } from "../../../artgine/app/canvas/CCanvasPluginRPMgr.js";
+import { CImgPro } from "../../../artgine/render/CImgPro.js";
+import { SDF } from "../../../artgine/z_file/SDF.js";
+import { CMath } from "../../../artgine/geometry/CMath.js";
+import { CUtilRender } from "../../../artgine/render/CUtilRender.js";
+import { CMat } from "../../../artgine/geometry/CMat.js";
+import { CColor } from "../../../artgine/render/CColor.js";
 var Main=gAtl.NewCanvas("Main");
 Main.SetCameraKey("3D");
 gAtl.Brush().GetCam3D().SetEye(new CVec3(2500, 1000, -500));
@@ -128,7 +127,7 @@ let L=Main.PushSub(new CSubject());
 L.SetPos(new CVec3(0,1,0));
 
 let lig=new CLight();
-lig.SetShadow3D("test",0,1000/60);
+lig.SetShadow3D("test",0,1/60);
 lig.SetDirect();
 lig.SetColor(new CVec3(1,1,1));
 lig.mShadowDistance=shadowDistance;
@@ -242,7 +241,7 @@ CFrame.Main().Load().Exe("Res/Water1.jpg", loaderOpt);
 let water = Main.PushSub(new CWater3D());
 water.SetKey("water");
 water.SetRot(new CVec3(-Math.PI / 2, 0, 0));
-water.SetSca(new CVec3(5000, 5000, 5000));
+water.SetSca(new CVec3(50000, 50000, 50000));
 water.SetPos(new CVec3(0, 100, 0));
 
 water.GetPT().PushCShaderAttr(new CShaderAttr("waterTest", 0.0));

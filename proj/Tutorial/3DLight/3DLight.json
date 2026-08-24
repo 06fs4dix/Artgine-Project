@@ -3,14 +3,13 @@
     "mTargetWidth": 0,
     "mTargetHeight": 0,
     "mRenderer": "GL",
-    "m32fDepth": false,
+    "m32fDepth": true,
     "mTexture16f": false,
-    "mAnti": false,
+    "mAnti": true,
     "mBatchPool": true,
     "mXR": false,
     "mDeveloper": true,
     "mIAuto": true,
-    "mWASM": false,
     "mCanvas": ""
   },
   "pluging": [],
@@ -27,11 +26,13 @@
     "colorpicker": false,
     "jquery": false,
     "summernote": false,
-    "MonacoEditor": true,
     "jsoneditor": false,
+    "MonacoEditor": true,
     "tone": false,
     "soundfont": false,
     "toastui": false
   },
-  "dependencies": {}
+  "dependencies": {
+    "Water": 1
+  }
 }

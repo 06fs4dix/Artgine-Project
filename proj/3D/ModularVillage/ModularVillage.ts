@@ -1,11 +1,11 @@
 //Version
-import "../../../Artgine/artgine/artgine.js"
+import "../../../artgine/artgine.js"
 
 //Class
-import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -18,16 +18,15 @@ gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mCanvas = "";
-gPF.mWASM = false;
-gPF.mServer = 'local';
+gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mrw3k0ix_2";
+gPF.mVersion = "mt2oh57h_4";
 
-import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../artgine/app/CAtelier.js";
 
-import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
-CPlugin.PushPath('ShadowPlane','../../../Artgine/plugin/ShadowPlane/');
-import "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js"
+import {CPlugin} from "../../../artgine/util/CPlugin.js";
+CPlugin.PushPath('ShadowPlane','../../../plugin/ShadowPlane/');
+import "../../../plugin/ShadowPlane/ShadowPlane.js"
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init(['Main.json'],"");
@@ -36,53 +35,54 @@ var Main = gAtl.Canvas('Main.json');
 
 //EntryPoint
 
-import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
+import {CObject} from "../../../artgine/basic/CObject.js"
 
-import { CTexture, CTextureInfo } from "../../../Artgine/artgine/render/CTexture.js";
+import { CTexture, CTextureInfo } from "../../../artgine/render/CTexture.js";
 
-import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
-import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
-import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
-
-
-import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
-
-import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
-import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
-
-import { CInput } from "../../../Artgine/artgine/system/CInput.js";
-import { CFrame } from "../../../Artgine/artgine/util/CFrame.js";
-import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
-import { CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
-
-import { CBound } from "../../../Artgine/artgine/geometry/CBound.js";
-import { CCamCon3DThirdPerson } from "../../../Artgine/artgine/util/CCamCon.js";
+import { CRenderPass } from "../../../artgine/render/CRenderPass.js";
+import { CShaderAttr } from "../../../artgine/render/CShaderAttr.js";
+import { CVec1 } from "../../../artgine/geometry/CVec1.js";
 
 
-import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
-import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
-import { CRPAuto, CRPMgr } from "../../../Artgine/artgine/app/canvas/CRPMgr.js";
-import { CCondition } from "../../../Artgine/artgine/util/CCondition.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CPaint3D, CPaintCube } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CDayCycle, CLightPlanet } from "../../../Artgine/artgine/app/component/CLightPlanet.js";
-import { CColor } from "../../../Artgine/artgine/render/CColor.js";
-import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
-import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
-import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
-import { CAnimation, CClipMesh } from "../../../Artgine/artgine/app/component/CAnimation.js";
-import { CAniFlow } from "../../../Artgine/artgine/app/component/CAniFlow.js";
-import { CPad } from "../../../Artgine/artgine/app/subject/CPad.js";
-import { CForce } from "../../../Artgine/artgine/app/component/CForce.js";
-import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
-import { CDensityInfo2D, CDensityInfo3D, CDensityMap } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
-import { CAlert } from "../../../Artgine/artgine/basic/CAlert.js";
-import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
+import { CMath } from "../../../artgine/geometry/CMath.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
+
+import { CVec4 } from "../../../artgine/geometry/CVec4.js";
+import { SDF } from "../../../artgine/z_file/SDF.js";
+
+import { CInput } from "../../../artgine/system/CInput.js";
+import { CFrame } from "../../../artgine/util/CFrame.js";
+import { CEvent } from "../../../artgine/basic/CEvent.js";
+import { CLoaderOption } from "../../../artgine/util/CLoader.js";
+
+import { CBound } from "../../../artgine/geometry/CBound.js";
+import { CCamCon3DThirdPerson } from "../../../artgine/util/CCamCon.js";
+
+
+import { CUpdate } from "../../../artgine/basic/Basic.js";
+import { CMat } from "../../../artgine/geometry/CMat.js";
+import { CRPAuto, CRPMgr } from "../../../artgine/app/canvas/CRPMgr.js";
+import { CCondition } from "../../../artgine/util/CCondition.js";
+import { CSubject } from "../../../artgine/app/subject/CSubject.js";
+import { CPaint3D, CPaintCube } from "../../../artgine/app/component/paint/CPaint3D.js";
+import { CDayCycle, CLightPlanet } from "../../../artgine/app/component/CLightPlanet.js";
+import { CColor } from "../../../artgine/render/CColor.js";
+import { CRigidBody } from "../../../artgine/app/component/CRigidBody.js";
+import { CCollider } from "../../../artgine/app/component/CCollider.js";
+import { CPaint } from "../../../artgine/app/component/paint/CPaint.js";
+import { CAnimation, CClipMesh } from "../../../artgine/app/component/CAnimation.js";
+import { CAniFlow } from "../../../artgine/app/component/CAniFlow.js";
+import { CPad } from "../../../artgine/app/subject/CPad.js";
+import { CForce } from "../../../artgine/app/component/CForce.js";
+import { CCanvasPluginRPMgr } from "../../../artgine/app/canvas/CCanvasPluginRPMgr.js";
+import { CDensityInfo, CLODInfo, CDensityMap } from "../../../artgine/app/subject/CDensityMap.js";
+import { CAlert } from "../../../artgine/basic/CAlert.js";
+import { CVec2 } from "../../../artgine/geometry/CVec2.js";
 
 
 
 let PCF=new CVec1(0.0);
+let PCFStep=new CVec1(1.0);
 var bias : number = 5;
 var normalBias : number = 0.3;
 var shadowRate=0.0;
@@ -92,10 +92,11 @@ rtex.SetSize(512,512);
 
 if(await gAtl.Frame().Dev().BenchmarkScore()>100)
 {
-    rtex.SetSize(2048,2048);
-    PCF=new CVec1(2.0);
-    bias  = 20;
-    normalBias  = 0.3;
+    //rtex.SetSize(2048,2048);
+    PCF=new CVec1(4.0);
+    PCFStep=new CVec1(1.0);
+    bias  = 4;
+    normalBias  = 0.6;
     CAlert.Info("고사양");
 }
 
@@ -107,6 +108,7 @@ rp.mPriority=CRenderPass.ePriority.BackGround+1;
 rp.mShaderAttr.push(new CShaderAttr(SDF.eTexSlot.ArrShadowWrite,gAtl.Frame().Pal().GetShadowWriteTex()));
 rp.mShaderAttr.push(new CShaderAttr("shadowRate",shadowRate));
 rp.mShaderAttr.push(new CShaderAttr("PCF",PCF));
+rp.mShaderAttr.push(new CShaderAttr("PCFStep",PCFStep));
 rp.mShaderAttr.push(new CShaderAttr("bias",bias));
 rp.mShaderAttr.push(new CShaderAttr("normalBias",normalBias));
 rp.mShaderAttr.push(new CShaderAttr("jitter",0.2));
@@ -141,14 +143,12 @@ Main.Find("Ground").Destroy();
 // Main.Find("Prop_Lamp_Street").Destroy();
 
 // Main.Find("Prop_Crate_1").Destroy();
-let densityMap=new CDensityMap();
+let densityMap=new CDensityMap(true);
 densityMap.mDiv=16;
 densityMap.mBuf.Reset(new CVec3(32,32,1),100);
-let info=densityMap.PushDensityInfo(new CDensityInfo3D(0,new CVec3(100,100,100),"Res/ModularVillage/Cobblestone_Dirt_Transition_1.obj"));
+let info=densityMap.PushDensityInfo(new CDensityInfo(0,new CVec3(100,100,100),[new CLODInfo("Res/ModularVillage/Cobblestone_Dirt_Transition_1.obj",1,0,0,[CPaint.eTag.Shadow, CPaint.eTag.Light])]));
 info.mColor=0;
 info.mColliderLayer="ground";
-info.mPaintTag.push(CPaint.eTag.Shadow);
-info.mPaintTag.push(CPaint.eTag.Light);
 Main.PushSub(densityMap);
 
 
@@ -247,8 +247,8 @@ Main.Find("Light").Destroy();
 let sl=Main.PushSub(new CSubject());
 sl.SetKey("Light");
 let lp=sl.PushComp(new CLightPlanet());
-lp.SetShadow3D("Test",0);
-lp.SetShadowDistance(1);
+lp.SetShadow3D("shadow", 0, 100,1000);
+lp.SetShadowDistance(5000);
 sl.SetPos(new CVec3(0.3,1,0));
 lp.Push(new CDayCycle(new CVec3(0,1,0),new CColor(1,1,1)));
 lp.Push(new CDayCycle(new CVec3(2,0.5,0),new CColor(1,0.8,0.8)));
@@ -278,7 +278,7 @@ bound.SetType(CBound.eType.Sphere);
 let cl=chsub.PushComp(new CCollider(bound));
 cl.SetLayer("user");
 cl.PushCollisionLayer("ground");
-cl.SetRestitution(1);
+cl.SetPushRate(1);
 let rb=chsub.PushComp(new CRigidBody());
 rb.SetGravity(1);
 let aniStand=new CAnimation();
@@ -442,6 +442,33 @@ chsub.Update=(_update : CUpdate)=>{
 
 //     }
 // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

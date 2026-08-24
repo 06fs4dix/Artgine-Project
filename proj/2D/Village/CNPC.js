@@ -111,7 +111,7 @@ export class CNPC extends CSubject {
         this.mCL.PushCollisionLayer("object");
         this.mCL.PushCollisionLayer("player");
         this.mCL.SetPickMouse(true);
-        this.mCL.SetRestitution(0);
+        this.mCL.SetPushRate(0);
         let co = new CCoroutine(this.AutoChat, this);
         co.Start();
     }

@@ -1,11 +1,11 @@
-﻿//Version
-import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
+//Version
+import "../../../artgine/artgine.js"
 
 //Class
-import {CClass} from "https://06fs4dix.github.io/Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -17,43 +17,42 @@ gPF.mBatchPool = true;
 gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
-gPF.mWASM = false;
 gPF.mCanvas = "";
-gPF.mServer = 'local';
+gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mpuhzq22_94";
+gPF.mVersion = "msipawvm_5";
 
-import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../artgine/app/CAtelier.js";
 
-import {CPlugin} from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
+import {CPlugin} from "../../../artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init(['Main.json'],"");
 var Main = gAtl.Canvas('Main.json');
 //The content above this line is automatically set by the program. Do not modify.⬆✋🚫⬆☠️💥🔥
 
-//EntryPointimport {CBlackBoardRef, CObject} from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js"
-import { CConfirm } from "https://06fs4dix.github.io/Artgine/artgine/basic/CModal.js";
+//EntryPointimport {CBlackBoardRef, CObject} from "../../../artgine/basic/CObject.js"
+import { CConfirm } from "../../../artgine/basic/CModal.js";
 
-import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
-import { CAlert } from "https://06fs4dix.github.io/Artgine/artgine/basic/CAlert.js";
-import { CBlackBoardRef } from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js";
-import { CVoxelMap, CVTile } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CVoxelMap.js";
-import { CColor } from "https://06fs4dix.github.io/Artgine/artgine/render/CColor.js";
-import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
-import { CJSON } from "https://06fs4dix.github.io/Artgine/artgine/basic/CJSON.js";
-import { CSampler, CSampMinMax } from "https://06fs4dix.github.io/Artgine/artgine/util/CSampler.js";
-import { CDensityInfo2D, CDensityInfo3D, CDensityMap } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CDensityMap.js";
-import { CCamCon2DFreeMove, CCamCon3DFirstPerson } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
-import { CTexture } from "https://06fs4dix.github.io/Artgine/artgine/render/CTexture.js";
-import { CBound } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CBound.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
-import { CConsol } from "https://06fs4dix.github.io/Artgine/artgine/basic/CConsol.js";
-import { CPaint3D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CWind } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CWind.js";
-import { CPaint2D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
-import { CUtil } from "https://06fs4dix.github.io/Artgine/artgine/basic/CUtil.js";
+import { CVec2 } from "../../../artgine/geometry/CVec2.js";
+import { CAlert } from "../../../artgine/basic/CAlert.js";
+import { CBlackBoardRef } from "../../../artgine/basic/CObject.js";
+import { CVoxelMap, CVTile } from "../../../artgine/app/subject/CVoxelMap.js";
+import { CColor } from "../../../artgine/render/CColor.js";
+import { CCollider } from "../../../artgine/app/component/CCollider.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
+import { CJSON } from "../../../artgine/basic/CJSON.js";
+import { CSampler, CSampMinMax } from "../../../artgine/util/CSampler.js";
+import { CDensityInfo, CLODInfo, CDensityMap } from "../../../artgine/app/subject/CDensityMap.js";
+import { CCamCon2DFreeMove, CCamCon3DFirstPerson } from "../../../artgine/util/CCamCon.js";
+import { CTexture } from "../../../artgine/render/CTexture.js";
+import { CBound } from "../../../artgine/geometry/CBound.js";
+import { CSubject } from "../../../artgine/app/subject/CSubject.js";
+import { CConsol } from "../../../artgine/basic/CConsol.js";
+import { CPaint3D } from "../../../artgine/app/component/paint/CPaint3D.js";
+import { CWind } from "../../../artgine/app/component/CWind.js";
+import { CPaint2D } from "../../../artgine/app/component/paint/CPaint2D.js";
+import { CUtil } from "../../../artgine/basic/CUtil.js";
 
 
 
@@ -119,7 +118,7 @@ async ()=>{
     let densityMap=new CDensityMap();
     densityMap.mDiv=10;
     densityMap.mBuf.Reset(new CVec3(256,256,1),100);
-    let info=densityMap.PushDensityInfo(new CDensityInfo2D(0x0000ff00,new CVec3(500,500,500),"Res/tutorial_map.png"));
+    let info=densityMap.PushDensityInfo(new CDensityInfo(0x0000ff00,new CVec3(500,500,500),[new CLODInfo("Res/tutorial_map.png",1,0,0)]));
     //info.mPos=new CSamplerMinMax(new CVec3(-25,-25),new CVec3(25,25));
     info.mSca=new CSampler(new CVec3(0.8,0.8,0.8));
     info.mColliderLayer="density";
@@ -127,7 +126,7 @@ async ()=>{
     Main.PushSub(densityMap);
     densityMap.mBuf.SetTexture(tex);
 
-    // let info=densityMap.PushDensityInfo(new CDensityInfo3D(0,new CVec3(100,100,100),gAtl.Frame().Pal().GetBoxMesh()));
+    // let info=densityMap.PushDensityInfo(new CDensityInfo(0,new CVec3(100,100,100),[new CLODInfo("Res/box.obj",1,0,0)]));
     // //info.mCollider=true;
     // info.mSca=new CSampler(new CVec3(0.5,0.5,0.5));
     // Main.PushSub(densityMap);
@@ -200,6 +199,14 @@ async ()=>{
 
 }
 ],["2D","3D"]);
+
+
+
+
+
+
+
+
 
 
 

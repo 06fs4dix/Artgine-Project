@@ -72,7 +72,7 @@
                             ]
                         },
                         "mBoundType": 0,
-                        "mRestitution": 0
+                        "mPushRate": 0
                     },
                     {
                         "class": "CCollider",
@@ -126,7 +126,7 @@
                             ]
                         },
                         "mBoundType": 0,
-                        "mRestitution": 0
+                        "mPushRate": 0
                     },
                     {
                         "class": "CCollider",
@@ -180,7 +180,7 @@
                             ]
                         },
                         "mBoundType": 0,
-                        "mRestitution": 0
+                        "mPushRate": 0
                     },
                     {
                         "class": "CCollider",
@@ -234,7 +234,7 @@
                             ]
                         },
                         "mBoundType": 0,
-                        "mRestitution": 0
+                        "mPushRate": 0
                     },
                     {
                         "class": "CCollider",
@@ -288,7 +288,7 @@
                             ]
                         },
                         "mBoundType": 0,
-                        "mRestitution": 0
+                        "mPushRate": 0
                     },
                     {
                         "class": "CPaintMeshMerge",
@@ -6034,7 +6034,7 @@
                             ]
                         },
                         "mBoundType": 0,
-                        "mRestitution": 0
+                        "mPushRate": 0
                     },
                     {
                         "class": "CPaint3D",
@@ -6280,7 +6280,7 @@
                             ]
                         },
                         "mBoundType": 0,
-                        "mRestitution": 0
+                        "mPushRate": 0
                     },
                     {
                         "class": "CPaint3D",
@@ -6527,7 +6527,7 @@
                             ]
                         },
                         "mBoundType": 0,
-                        "mRestitution": 0
+                        "mPushRate": 0
                     },
                     {
                         "class": "CPaint3D",
@@ -6780,7 +6780,7 @@
                             ]
                         },
                         "mBoundType": 0,
-                        "mRestitution": 0
+                        "mPushRate": 0
                     },
                     {
                         "class": "CPaint3D",
@@ -7220,7 +7220,7 @@
                             ]
                         },
                         "mBoundType": 0,
-                        "mRestitution": 0
+                        "mPushRate": 0
                     },
                     {
                         "class": "CPaint3D",

@@ -46,7 +46,7 @@ export class CUser extends CSubject {
         this.mCL.SetLayer("player");
         this.mCL.PushCollisionLayer("object");
         this.mCL.PushCollisionLayer("player");
-        this.mCL.SetRestitution(1);
+        this.mCL.SetPushRate(1);
         let itemCL = this.PushComp(new CCollider(this.mPT));
         itemCL.SetLayer("player");
         itemCL.PushCollisionLayer("item");

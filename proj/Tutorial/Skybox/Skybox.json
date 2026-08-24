@@ -2,7 +2,7 @@
   "preference": {
     "mTargetWidth": 0,
     "mTargetHeight": 0,
-    "mRenderer": "GL",
+    "mRenderer": "GPU",
     "m32fDepth": false,
     "mTexture16f": false,
     "mAnti": true,
@@ -10,7 +10,6 @@
     "mXR": false,
     "mDeveloper": true,
     "mIAuto": true,
-    "mWASM": false,
     "mCanvas": ""
   },
   "pluging": [],

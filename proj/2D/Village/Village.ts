@@ -20,11 +20,10 @@ gPF.mBatchPool = true;
 gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
-gPF.mWASM = false;
 gPF.mCanvas = "";
 gPF.mServer = 'local';
 gPF.mGitHub = false;
-gPF.mVersion = "mran6n12_5";
+gPF.mVersion = "mt77xoq9_17";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -53,7 +52,7 @@ import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 
 import { CBlackBoard } from "../../../Artgine/artgine/basic/CBlackBoard.js";
 
-import { CBGAttachButton, CBlackboardModal, CLoadingBack, CMDViewer, CModalBackGround } from "../../../Artgine/artgine/util/CModalUtil.js";
+import { CBGAttachButton, CBlackboardModal, CLoadingBack, CMDViewer, CModalBackGround, CModalFrameView } from "../../../Artgine/artgine/util/CModalUtil.js";
 import { CModal, CModalTitleBar } from "../../../Artgine/artgine/basic/CModal.js";
 import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
 
@@ -93,19 +92,18 @@ import { CForce } from "../../../Artgine/artgine/app/component/CForce.js";
 import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
 import { CUniqueID } from "../../../Artgine/artgine/basic/CUniqueID.js";
 
-
 import { Bootstrap } from "../../../Artgine/artgine/basic/Bootstrap.js";
 
 import { CHTMLDropdown } from "../../../Artgine/artgine/util/CHTMLBar.js";
 import { CVoxelMap } from "../../../Artgine/artgine/app/subject/CVoxelMap.js";
 import { CColor } from "../../../Artgine/artgine/render/CColor.js";
 import { CAtlas } from "../../../Artgine/artgine/util/CAtlas.js";
-import { CDensityInfo2D, CDensityMap } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
+import { CDensityInfo, CDensityMap } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
 import { CBound } from "../../../Artgine/artgine/geometry/CBound.js";
 import { CSampler, CSampList, CSampMinMax } from "../../../Artgine/artgine/util/CSampler.js";
 import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
 import { CLoader, CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
-
+import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
 
 // //Real.Clear();
 
@@ -138,56 +136,48 @@ import { CLoader, CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js
         gAtl.Frame().Load().Exe(tex,new CLoaderOption().Set("mFilter",CTexture.eFilter.Neaest));
         // LTree (0x0000ff00)
         // LTree (0x0000ff00) — 셀 800, mSca로 렌더 크기 300 유지
-        const ltree = densityMap.PushDensityInfo(new CDensityInfo2D(
-            0x0000ff00, new CVec3(800, 800, 0), tex,
-            new CSampler(new CVec4(0.12447916716337204, 0.14226190745830536, 0.12526041269302368, 0.000297616352327168))
-        ));
+        const ltree = densityMap.PushDensityInfo(new CDensityInfo(0x0000ff00, new CVec3(800, 800, 0)));
+        ltree.mCodi = new CSampler(new CVec4(0.12447916716337204, 0.14226190745830536, 0.12526041269302368, 0.000297616352327168));
+        ltree.AddLODLevel([{mRes:tex, mPaintTag:[CPaint.eTag.Shadow, CPaint.eTag.Light]}]);
         ltree.mYSort = true;
         ltree.mWind = 20;
-        ltree.mSca = new CSampler(new CVec3(0.375, 0.375, 1));
+        ltree.mSca = new CSampler(new CVec3(300, 300, 1));
         ltree.mPos = new CSampMinMax(new CVec3(-300, -300, 0), new CVec3(300, 300, 0));
         ltree.mColliderLayer = "object";
-        ltree.mBound = new CBound(); ltree.mBound.SetType(CBound.eType.Box);
-        ltree.mBound.mMin.Import(new CVec3(-50/300, -120/300, -0.5));
-        ltree.mBound.mMax.Import(new CVec3( 50/300,  -50/300,  0.5));
-        ltree.mPaintTag.push(CPaint.eTag.Shadow);
+        ltree.mColliderBound = new CBound(); ltree.mColliderBound.SetType(CBound.eType.Box);
+        ltree.mColliderBound.mMin.Import(new CVec3(-50/300, -120/300, -0.5));
+        ltree.mColliderBound.mMax.Import(new CVec3( 50/300,  -50/300,  0.5));
 
         // MTree (0x00001000) — 셀 600, mSca로 렌더 크기 100 유지
-        const mtree = densityMap.PushDensityInfo(new CDensityInfo2D(
-            0x00001000, new CVec3(600, 600, 0), tex,
-            new CSampler(new CVec4(0.08020833134651184, 0.09166666865348816, 0.0002604166802484542, 0.9080356955528259))
-        ));
+        const mtree = densityMap.PushDensityInfo(new CDensityInfo(0x00001000, new CVec3(600, 600, 0)));
+        mtree.mCodi = new CSampler(new CVec4(0.08020833134651184, 0.09166666865348816, 0.0002604166802484542, 0.9080356955528259));
+        mtree.AddLODLevel([{mRes:tex, mPaintTag:[CPaint.eTag.Shadow, CPaint.eTag.Light]}]);
         mtree.mYSort = true;
         mtree.mWind = 20;
-        mtree.mSca = new CSampler(new CVec3(0.167, 0.167, 1));
+        mtree.mSca = new CSampler(new CVec3(100, 100, 1));
         mtree.mPos = new CSampMinMax(new CVec3(-250, -250, 0), new CVec3(250, 250, 0));
         mtree.mColliderLayer = "object";
-        mtree.mBound = new CBound(); mtree.mBound.SetType(CBound.eType.Box);
-        mtree.mBound.mMin.Import(new CVec3(-50/100, -30/100, -0.5));
-        mtree.mBound.mMax.Import(new CVec3( 50/100,   0/100,  0.5));
-        mtree.mPaintTag.push(CPaint.eTag.Shadow);
+        mtree.mColliderBound = new CBound(); mtree.mColliderBound.SetType(CBound.eType.Box);
+        mtree.mColliderBound.mMin.Import(new CVec3(-50/100, -30/100, -0.5));
+        mtree.mColliderBound.mMax.Import(new CVec3( 50/100,   0/100,  0.5));
 
         // Flower1 (0x00002000) — 셀 400, mSca로 렌더 크기 50 유지
-        const flower1 = densityMap.PushDensityInfo(new CDensityInfo2D(
-            0x00002000, new CVec3(400, 400, 0), tex,
-            new CSampler(new CVec4(0.04114583507180214, 0.04702381044626236, 0.04192708432674408, 0.4288690388202667))
-        ));
+        const flower1 = densityMap.PushDensityInfo(new CDensityInfo(0x00002000, new CVec3(400, 400, 0)));
+        flower1.mCodi = new CSampler(new CVec4(0.04114583507180214, 0.04702381044626236, 0.04192708432674408, 0.4288690388202667));
+        flower1.AddLODLevel([{mRes:tex, mPaintTag:[CPaint.eTag.Shadow, CPaint.eTag.Light]}]);
         flower1.mYSort = true;
         flower1.mWind = 50;
-        flower1.mSca = new CSampler(new CVec3(0.125, 0.125, 1));
+        flower1.mSca = new CSampler(new CVec3(50, 50, 1));
         flower1.mPos = new CSampMinMax(new CVec3(-150, -150, 0), new CVec3(150, 150, 0));
-        flower1.mPaintTag.push(CPaint.eTag.Shadow);
 
         // Flower2 (0x00003000) — 셀 400, mSca로 렌더 크기 50 유지
-        const flower2 = densityMap.PushDensityInfo(new CDensityInfo2D(
-            0x00003000, new CVec3(400, 400, 0), tex,
-            new CSampler(new CVec4(0.03593749925494194, 0.04404762014746666, 0.12786458432674408, 0.4288690388202667))
-        ));
+        const flower2 = densityMap.PushDensityInfo(new CDensityInfo(0x00003000, new CVec3(400, 400, 0)));
+        flower2.mCodi = new CSampler(new CVec4(0.03593749925494194, 0.04404762014746666, 0.12786458432674408, 0.4288690388202667));
+        flower2.AddLODLevel([{mRes:tex, mPaintTag:[CPaint.eTag.Shadow, CPaint.eTag.Light]}]);
         flower2.mYSort = true;
         flower2.mWind = 50;
-        flower2.mSca = new CSampler(new CVec3(0.125, 0.125, 1));
+        flower2.mSca = new CSampler(new CVec3(50, 50, 1));
         flower2.mPos = new CSampMinMax(new CVec3(-150, -150, 0), new CVec3(150, 150, 0));
-        flower2.mPaintTag.push(CPaint.eTag.Shadow);
     }
 }
 CModal.PushTitleBar(new CModalTitleBar("DevToolModal", "Unit", async () => {
@@ -317,19 +307,11 @@ srp=sufLast.GetRP();
 srp.mRenderTarget = gAtl.Frame().Pal().GetDefaultFrameBuffer();
 srp.mShader=gAtl.Frame().Pal().SlPostKey();
 srp.mTag.add("blend");
-// srp.mShaderAttr.push(new CShaderAttr(0,basiceTexKey));
 srp.mShaderAttr.push(new CShaderAttr(0,gAtl.Frame().Pal().GetMainFrameTex()));
 srp.mShaderAttr.push(new CShaderAttr(1,sufBloom.GetTexKey()));
 srp.mShaderAttr.push(new CShaderAttr("BlendColor0", new CVec4(SDF.eBlend.Texture, 0)));                 // col0 = mainFrameTex
 srp.mShaderAttr.push(new CShaderAttr("BlendColor1", new CVec4(SDF.eBlend.Texture, 1)));                 // col1 = bloomTex
 srp.mShaderAttr.push(new CShaderAttr("BlendColor2", new CVec4(SDF.eBlend.LinearDodge, 0, 1, 1)));       // col2 = col0 + col1
-
-//srp.mShaderAttr.push(new CShaderAttr("blend", 1, CRenderPass.eBlend.LinearDodge));
-//srp.mShaderAttr.push(new CShaderAttr("opacity",1,1));
-
-
-
-
 
 
 
@@ -484,6 +466,26 @@ const dummy = CHTMLDropdown.Attach(arr, "left");
 let rightDiv=CDOM.DataToDom(`<div class="position-fixed top-0 end-0" style="z-index:2000;"></div>`);
 rightDiv.append(dummy);
 mg.SetBody(rightDiv);
+
+
+
+
+
+new CModalFrameView();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

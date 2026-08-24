@@ -10,22 +10,23 @@ var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
 gPF.mRenderer = "GL";
-gPF.m32fDepth = false;
+gPF.m32fDepth = true;
 gPF.mTexture16f = false;
-gPF.mAnti = false;
+gPF.mAnti = true;
 gPF.mBatchPool = true;
 gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
-gPF.mWASM = false;
 gPF.mCanvas = "";
 gPF.mServer = 'local';
 gPF.mGitHub = false;
-gPF.mVersion = "mr6h3dfi_7";
+gPF.mVersion = "mt77xoq9_7";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
 import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
+CPlugin.PushPath('Water','../../../Artgine/plugin/Water/');
+import "../../../Artgine/plugin/Water/Water.js"
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init(['Main.json'],"");
@@ -107,7 +108,7 @@ gAtl.Frame().Res().Push(envTexKey, envTex);
 
 let PCF : CVec1 = new CVec1(1.0);
 let bias : CVec1 = new CVec1(10);
-let normalBias : CVec1 = new CVec1(5);
+let normalBias : CVec1 = new CVec1(0.3);
 let shadowRate : CVec1 = new CVec1(0.0);
 
 let shadowDistance = 0.4;
@@ -246,6 +247,7 @@ sufLast.SetUseRT(false);    // to screen
 srp=sufLast.GetRP();
 srp.mShader=gAtl.Frame().Pal().SlPostKey();
 srp.mTag.add("blend");
+srp.mAlpha=false;   // 풀스크린 합성 결과를 그대로 덮어쓴다. 알파블렌딩을 켜두면 col6.a(diffuse+specular+sky 알파를 단순합산해 1을 넘김)가 블렌드 팩터로 쓰여 dstFactor(1-srcAlpha)가 음수가 되고, 화면에 이전 프레임/캔버스 내용이 비쳐 보인다(바닥이 반투명해지는 원인)
 srp.mShaderAttr.push(new CShaderAttr(0,sufLig0.GetTexKey()));
 srp.mShaderAttr.push(new CShaderAttr(1,sufLig1.GetTexKey()));
 srp.mShaderAttr.push(new CShaderAttr(2,rp.mRenderTarget));
@@ -329,6 +331,7 @@ sufLast.SetUseRT(false);
 srp=sufLast.GetRP();
 srp.mShader=gAtl.Frame().Pal().SlPostKey();
 srp.mTag.add("blend");
+srp.mAlpha=false;   // 풀스크린 합성 결과를 그대로 덮어쓴다(DeferredSingle과 동일한 이유)
 srp.mShaderAttr.push(new CShaderAttr(0,sufLig0.GetTexKey()));
 srp.mShaderAttr.push(new CShaderAttr(2,rp.mRenderTarget));
 srp.mShaderAttr.push(new CShaderAttr("BlendColor0", new CVec4(SDF.eBlend.Texture, 0)));                                         // col0 = diffuse
@@ -410,7 +413,7 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal","Forward",()=>{
     let lig=new CLight();
     lig.SetShadow3D("D1_",0,100);
     lig.SetDirect();
-    lig.SetMask(CPaint.eLightMask.Mask01);
+    lig.SetMask(CPaint.eCullMask.Mask01);
     lig.SetColor(new CVec3(1,1,1));
     lig.mShadowDistance=shadowDistance;
     L.PushComp(lig);
@@ -421,7 +424,7 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal","Forward",()=>{
     lig=new CLight();
     lig.SetShadow3D("D2_",0,100);
     lig.SetDirect();
-    lig.SetMask(CPaint.eLightMask.Mask02);
+    lig.SetMask(CPaint.eCullMask.Mask02);
     lig.SetColor(new CVec3(1,1,1));
     lig.mShadowDistance=shadowDistance;
     L.PushComp(lig);
@@ -451,7 +454,7 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal","Forward",()=>{
     pt.PushTag(CPaint.eTag.Shadow);
     pt.PushTag(CPaint.eTag.Light);
     pt.PushTag("shadowMulti");
-    pt.SetMask(CPaint.eLightMask.Mask01 + CPaint.eLightMask.Mask02);
+    pt.SetCullMask(CPaint.eCullMask.Mask01 + CPaint.eCullMask.Mask02);
     back.SetSca(new CVec3(2000,2,2000));
 
     let teapot=Main.PushSub(new CSubject());
@@ -460,7 +463,7 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal","Forward",()=>{
     pt2.PushTag(CPaint.eTag.Shadow);
     pt2.PushTag(CPaint.eTag.Light);
     pt2.PushTag("shadowMulti");
-    pt2.SetMask(CPaint.eLightMask.Mask01);
+    pt2.SetCullMask(CPaint.eCullMask.Mask01);
 
     teapot=Main.PushSub(new CSubject());
     teapot.SetPos(new CVec3(-300,0,0));
@@ -468,7 +471,7 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal","Forward",()=>{
     pt2.PushTag(CPaint.eTag.Shadow);
     pt2.PushTag(CPaint.eTag.Light);
     pt2.PushTag("shadowMulti");
-    pt2.SetMask(CPaint.eLightMask.Mask02);
+    pt2.SetCullMask(CPaint.eCullMask.Mask02);
 
     let skybox=Main.PushSub(new CSubject());
     skybox.SetSca(new CVec3(10,10,10));
@@ -723,6 +726,30 @@ Help.SetContent(await CUtilWeb.MDReader("README.md"));
 
 
 new CModalFrameView();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
