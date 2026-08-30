@@ -21,9 +21,9 @@ gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mCanvas = "";
-gPF.mServer = 'local';
+gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mtefcslx_2";
+gPF.mVersion = "mtf4t3oh_4";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -472,6 +472,8 @@ mg.SetBody(rightDiv);
 
 
 new CModalFrameView();
+
+
 
 
 

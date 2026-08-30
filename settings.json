@@ -6,7 +6,7 @@
   "url": "http://localhost:7000/Artgine-Project",
   "projectPath": "proj/2D/Village",
   "page": "html",
-  "server": "local",
+  "server": "webServer",
   "github": false,
   "tsc": true,
   "password": "artgine"
