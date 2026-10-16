@@ -23,10 +23,6 @@ gPF.mGitHub = false;
 gPF.mVersion = "mv91179n_4";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
-
-import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
-CPlugin.PushPath('EnvmapGPU','../../../plugin/EnvmapGPU/');
-import "../../../plugin/EnvmapGPU/EnvmapGPU.js"
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
@@ -46,14 +42,12 @@ import { CDayCycle, CLightPlanet } from "../../../Artgine/artgine/app/component/
 import { CColor } from "../../../Artgine/artgine/render/CColor.js";
 import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
 import { CModal } from "../../../Artgine/artgine/basic/CModal.js";
-import { CCanvasPluginEnvmapGPU } from "../../../plugin/EnvmapGPU/EnvmapGPU.js";
 
 // -----------------------------------------------
 // cam
 // -----------------------------------------------
 const Main = gAtl.NewCanvas("Main");
 Main.SetCameraKey("3D");
-Main.PushPlugin(new CCanvasPluginEnvmapGPU());
 const camCon = new CCamCon3DFirstPerson(gAtl.Frame().Input());
 camCon.SetPosSensitivity(4);
 Main.GetCam().SetCamCon(camCon);
@@ -100,7 +94,7 @@ function PushBox(_min : CVec3, _max : CVec3, _color : CColor) : CPaint3D
     pt.SetMaterial(0.8, 0);
     pt.PushTag(CPaint.eTag.Light);
     pt.PushTag(CPaint.eTag.Shadow);
-    pt.PushTag(CPaint.eTag.Env);
+    pt.Env();
     pt.PushTag("probe");
     return pt;
 }

@@ -25,10 +25,10 @@ gPF.mVersion = "forgebuild_1";
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
 import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
-CPlugin.PushPath('ForgeBuild','../../../plugin/ForgeBuild/');
-import "../../../plugin/ForgeBuild/ForgeBuild.js"
-CPlugin.PushPath('Water','../../../plugin/Water/');
-import "../../../plugin/Water/Water.js"
+CPlugin.PushPath('ForgeBuild','../../../Artgine/plugin/ForgeBuild/');
+import "../../../Artgine/plugin/ForgeBuild/ForgeBuild.js"
+CPlugin.PushPath('Water','../../../Artgine/plugin/Water/');
+import "../../../Artgine/plugin/Water/Water.js"
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
@@ -55,19 +55,19 @@ import { CWind } from "../../../Artgine/artgine/app/component/CWind.js";
 import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
 import { CPaintCube } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
 import { CProbe } from "../../../Artgine/artgine/app/subject/CProbe.js";
-import { CForgeScene, IForgeWall } from "../../../plugin/ForgeBuild/CForgeScene.js";
-import { CForgeHistory } from "../../../plugin/ForgeBuild/CForgeHistory.js";
+import { CForgeScene, IForgeWall } from "../../../Artgine/plugin/ForgeBuild/CForgeScene.js";
+import { CForgeHistory } from "../../../Artgine/plugin/ForgeBuild/CForgeHistory.js";
 import { CForgeTerrain } from "./CForgeTerrain.js";
 import { CForgeCamCon } from "./CForgeCamCon.js";
 import { CForgeSync } from "./CForgeSync.js";
-import { CForgeTheme } from "../../../plugin/ForgeBuild/CForgeTheme.js";
+import { CForgeTheme } from "../../../Artgine/plugin/ForgeBuild/CForgeTheme.js";
 import { CForgeInspect } from "./CForgeInspect.js";
-import { CForgeAdjust } from "../../../plugin/ForgeBuild/CForgeAdjust.js";
-import { CForgeWallGen } from "../../../plugin/ForgeBuild/CForgeWallGen.js";
+import { CForgeAdjust } from "../../../Artgine/plugin/ForgeBuild/CForgeAdjust.js";
+import { CForgeWallGen } from "../../../Artgine/plugin/ForgeBuild/CForgeWallGen.js";
 import { CForgeHandle } from "./CForgeHandle.js";
 import { CForgeSample } from "./CForgeSample.js";
-import { CForgeGeoTest } from "../../../plugin/ForgeBuild/CForgeGeoTest.js";
-import { CWater3D } from "../../../plugin/Water/Water.js";
+import { CForgeGeoTest } from "../../../Artgine/plugin/ForgeBuild/CForgeGeoTest.js";
+import { CWater3D } from "../../../Artgine/plugin/Water/Water.js";
 import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
 import { CRPAuto } from "../../../Artgine/artgine/app/canvas/CRPMgr.js";
 import { CCondition } from "../../../Artgine/artgine/util/CCondition.js";

@@ -25,8 +25,8 @@ gPF.mVersion = "msxy9gqk_7";
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
 import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
-CPlugin.PushPath('Rapier','../../../plugin/Rapier/');
-import "../../../plugin/Rapier/Rapier.js"
+CPlugin.PushPath('Rapier','../../../Artgine/plugin/Rapier/');
+import "../../../Artgine/plugin/Rapier/Rapier.js"
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init(['Main.json'],"");
@@ -45,7 +45,7 @@ import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
 import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
 import { CBGAttachButton } from "../../../Artgine/artgine/util/CModalUtil.js";
 import { CUtil } from "../../../Artgine/artgine/basic/CUtil.js";
-import { CRapier, CRapierCollider, CRapierRigidBody } from "../../../plugin/Rapier/Rapier.js";
+import { CRapier, CRapierCollider, CRapierRigidBody } from "../../../Artgine/plugin/Rapier/Rapier.js";
 import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
 
 import { CDOM } from "../../../Artgine/artgine/basic/CDOM.js";

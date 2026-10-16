@@ -1,8 +1,8 @@
-import { CForgeScene } from "../../../plugin/ForgeBuild/CForgeScene.js";
-import { CForgeHistory } from "../../../plugin/ForgeBuild/CForgeHistory.js";
-import { CForgeTheme } from "../../../plugin/ForgeBuild/CForgeTheme.js";
-import { CForgeRand } from "../../../plugin/ForgeBuild/CForgeRand.js";
-import { CForgeHouseGen } from "../../../plugin/ForgeBuild/CForgeHouseGen.js";
+import { CForgeScene } from "../../../Artgine/plugin/ForgeBuild/CForgeScene.js";
+import { CForgeHistory } from "../../../Artgine/plugin/ForgeBuild/CForgeHistory.js";
+import { CForgeTheme } from "../../../Artgine/plugin/ForgeBuild/CForgeTheme.js";
+import { CForgeRand } from "../../../Artgine/plugin/ForgeBuild/CForgeRand.js";
+import { CForgeHouseGen } from "../../../Artgine/plugin/ForgeBuild/CForgeHouseGen.js";
 import { CForgeSync } from "./CForgeSync.js";
 import { CForgeHandle } from "./CForgeHandle.js";
 

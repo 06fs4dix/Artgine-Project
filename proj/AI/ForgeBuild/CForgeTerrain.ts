@@ -4,8 +4,8 @@ import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
 import { CTexture } from "../../../Artgine/artgine/render/CTexture.js";
 import { CFrame } from "../../../Artgine/artgine/util/CFrame.js";
 import { CTerrainMap } from "../../../Artgine/artgine/app/subject/CTerrainMap.js";
-import { CForgeRand } from "../../../plugin/ForgeBuild/CForgeRand.js";
-import { CForgeScene } from "../../../plugin/ForgeBuild/CForgeScene.js";
+import { CForgeRand } from "../../../Artgine/plugin/ForgeBuild/CForgeRand.js";
+import { CForgeScene } from "../../../Artgine/plugin/ForgeBuild/CForgeScene.js";
 
 //고정 바닥 지형(편집 없음). 생성기는 HeightM으로 지면 높이만 조회한다
 export class CForgeTerrain

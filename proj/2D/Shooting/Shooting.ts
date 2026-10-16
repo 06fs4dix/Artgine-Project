@@ -65,7 +65,7 @@ import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
 import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
 import { CPool } from "../../../Artgine/artgine/basic/CPool.js";
 import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
-import { CRPMgrBloom } from "../../../plugin/Bloom/Bloom.js";
+import { CRPMgrBloom } from "../../../Artgine/plugin/Bloom/Bloom.js";
 import { CConsol } from "../../../Artgine/artgine/basic/CConsol.js";
 import { CConfirm, CModal, CModalTitleBar } from "../../../Artgine/artgine/basic/CModal.js";
 import { CTimer } from "../../../Artgine/artgine/system/CTimer.js";

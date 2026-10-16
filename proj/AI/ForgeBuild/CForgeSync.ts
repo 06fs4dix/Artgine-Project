@@ -4,7 +4,7 @@ import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
 import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
 import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
 import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
-import { CForgeFactory, CForgeOption, CForgeScene } from "../../../plugin/ForgeBuild/ForgeBuild.js";
+import { CForgeFactory, CForgeOption, CForgeScene } from "../../../Artgine/plugin/ForgeBuild/ForgeBuild.js";
 import { CForgeTerrain } from "./CForgeTerrain.js";
 
 //데모 편집 데이터(CForgeScene) → 플러그인 공장. 바뀐 게 있으면 전체를 Push하고 Build 한 번(공장이 결과가 같은 것은 재사용한다).

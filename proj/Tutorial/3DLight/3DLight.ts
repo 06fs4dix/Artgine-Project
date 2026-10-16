@@ -26,8 +26,8 @@ gPF.mVersion = "mtuwqfrg_2";
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
 import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
-CPlugin.PushPath('Water','../../../plugin/Water/');
-import "../../../plugin/Water/Water.js"
+CPlugin.PushPath('Water','../../../Artgine/plugin/Water/');
+import "../../../Artgine/plugin/Water/Water.js"
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init(['Main.json'],"");

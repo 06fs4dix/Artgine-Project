@@ -42,7 +42,7 @@ import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
 import { CInput } from "../../../Artgine/artgine/system/CInput.js";
 import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
 import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
-import { CPaint3DDecalMesh } from "../../../plugin/DecalMesh/DecalMesh.js";
+import { CPaint3DDecalMesh } from "../../../Artgine/plugin/DecalMesh/DecalMesh.js";
 import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
 import { CRay } from "../../../Artgine/artgine/geometry/CRay.js";
 import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";

@@ -63,7 +63,7 @@ import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasP
 import { CSurface } from "../../../Artgine/artgine/app/subject/CSurface.js";
 import { CCondition } from "../../../Artgine/artgine/util/CCondition.js";
 import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
-import { CRPMgrBloom } from "../../../plugin/Bloom/Bloom.js";
+import { CRPMgrBloom } from "../../../Artgine/plugin/Bloom/Bloom.js";
 import { CFx, CDelayComp, CSpinComp } from "./CFx.js";
 import { CGemComp } from "./CGemComp.js";
 import { CMissileComp } from "./CMissileComp.js";

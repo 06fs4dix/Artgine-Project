@@ -7,13 +7,13 @@ import { CCanvas } from "../../../Artgine/artgine/app/canvas/CCanvas.js";
 import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
 import { CComponent } from "../../../Artgine/artgine/app/component/CComponent.js";
 import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CForgeScene, IForgeBuilding, IForgeTower, IForgeWall } from "../../../plugin/ForgeBuild/CForgeScene.js";
-import { CForgeHistory } from "../../../plugin/ForgeBuild/CForgeHistory.js";
+import { CForgeScene, IForgeBuilding, IForgeTower, IForgeWall } from "../../../Artgine/plugin/ForgeBuild/CForgeScene.js";
+import { CForgeHistory } from "../../../Artgine/plugin/ForgeBuild/CForgeHistory.js";
 import { CForgeTerrain } from "./CForgeTerrain.js";
-import { CForgeSpline } from "../../../plugin/ForgeBuild/CForgeSpline.js";
+import { CForgeSpline } from "../../../Artgine/plugin/ForgeBuild/CForgeSpline.js";
 import { CCamCon } from "../../../Artgine/artgine/util/CCamCon.js";
 import { CForgeSync } from "./CForgeSync.js";
-import { CForgeAdjust } from "../../../plugin/ForgeBuild/CForgeAdjust.js";
+import { CForgeAdjust } from "../../../Artgine/plugin/ForgeBuild/CForgeAdjust.js";
 
 interface IForgeHandle { kind : string; id : number; idx : number; x : number; y : number; z : number; }
 interface IForgeLink { kind : string; ent : any; idx : number[]; org : number[][]; }

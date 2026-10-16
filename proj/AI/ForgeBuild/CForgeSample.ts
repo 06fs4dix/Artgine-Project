@@ -1,10 +1,10 @@
-import { CForgeRand } from "../../../plugin/ForgeBuild/CForgeRand.js";
-import { CForgeScene, ForgeV2, IForgeBridge, IForgeBuilding, IForgeChurch, IForgeDock, IForgeFence, IForgeMonument, IForgePath, IForgeStair, IForgeTower, IForgeWall } from "../../../plugin/ForgeBuild/CForgeScene.js";
-import { CForgeHistory } from "../../../plugin/ForgeBuild/CForgeHistory.js";
-import { CForgeCurve, CForgeSpline } from "../../../plugin/ForgeBuild/CForgeSpline.js";
+import { CForgeRand } from "../../../Artgine/plugin/ForgeBuild/CForgeRand.js";
+import { CForgeScene, ForgeV2, IForgeBridge, IForgeBuilding, IForgeChurch, IForgeDock, IForgeFence, IForgeMonument, IForgePath, IForgeStair, IForgeTower, IForgeWall } from "../../../Artgine/plugin/ForgeBuild/CForgeScene.js";
+import { CForgeHistory } from "../../../Artgine/plugin/ForgeBuild/CForgeHistory.js";
+import { CForgeCurve, CForgeSpline } from "../../../Artgine/plugin/ForgeBuild/CForgeSpline.js";
 import { CForgeTerrain } from "./CForgeTerrain.js";
-import { CForgePoly } from "../../../plugin/ForgeBuild/CForgePoly.js";
-import { CForgeTheme } from "../../../plugin/ForgeBuild/CForgeTheme.js";
+import { CForgePoly } from "../../../Artgine/plugin/ForgeBuild/CForgePoly.js";
+import { CForgeTheme } from "../../../Artgine/plugin/ForgeBuild/CForgeTheme.js";
 
 //P1 확인용 무작위 장면. 같은 시드면 같은 장면이 나와야 한다
 export class CForgeSample

@@ -5,7 +5,7 @@ import { CColor } from "../../../Artgine/artgine/render/CColor.js";
 import { CLight } from "../../../Artgine/artgine/app/component/CLight.js";
 import { CPaint2DMerge } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
 import { CPaint3DMerge } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CForgeFloraBake } from "../../../plugin/ForgeFlora/ForgeFlora.js";
+import { CForgeFloraBake } from "../../../Artgine/plugin/ForgeFlora/ForgeFlora.js";
 import { CCanvas } from "../../../Artgine/artgine/app/canvas/CCanvas.js";
 import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
 import { CDensityInfo, CDensityMap, ILODInfo } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
@@ -13,9 +13,9 @@ import { CTerrainMap } from "../../../Artgine/artgine/app/subject/CTerrainMap.js
 import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
 import { CSampler } from "../../../Artgine/artgine/util/CSampler.js";
 import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
-import { CForgeRand } from "../../../plugin/ForgeBuild/CForgeRand.js";
-import { CForgeScene } from "../../../plugin/ForgeBuild/CForgeScene.js";
-import { CForgeFloraAsset, CForgeFloraFactory } from "../../../plugin/ForgeFlora/ForgeFlora.js";
+import { CForgeRand } from "../../../Artgine/plugin/ForgeBuild/CForgeRand.js";
+import { CForgeScene } from "../../../Artgine/plugin/ForgeBuild/CForgeScene.js";
+import { CForgeFloraAsset, CForgeFloraFactory } from "../../../Artgine/plugin/ForgeFlora/ForgeFlora.js";
 import { CForgeTerrain } from "./CForgeTerrain.js";
 
 class CForgeFloraSamp extends CSampler<CVec3>

@@ -25,8 +25,8 @@ gPF.mVersion = "mu3dgthw_12";
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
 import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
-CPlugin.PushPath('Water','../../../plugin/Water/');
-import "../../../plugin/Water/Water.js"
+CPlugin.PushPath('Water','../../../Artgine/plugin/Water/');
+import "../../../Artgine/plugin/Water/Water.js"
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
@@ -35,7 +35,7 @@ await gAtl.Init([],"");
 //EntryPoint
 
 import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
-import {CWater3D} from "../../../plugin/Water/Water.js";
+import {CWater3D} from "../../../Artgine/plugin/Water/Water.js";
 import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
 import { CTexture, CTextureInfo } from "../../../Artgine/artgine/render/CTexture.js";

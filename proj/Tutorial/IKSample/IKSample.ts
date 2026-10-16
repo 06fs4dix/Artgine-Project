@@ -48,7 +48,7 @@ import { CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
 import { CMeshCopyNode } from "../../../Artgine/artgine/render/CMeshCopyNode.js";
 import { CColor } from "../../../Artgine/artgine/render/CColor.js";
 import { CCamCon3DThirdPerson } from "../../../Artgine/artgine/util/CCamCon.js";
-import { CAimIK, CAttacher, CLookAtIK, CSpringBone, CSpringChain, CSpringCollider } from "../../../plugin/CResolverComp/CResolverComp.js";
+import { CAimIK, CAttacher, CLookAtIK, CSpringBone, CSpringChain, CSpringCollider } from "../../../Artgine/plugin/CResolverComp/CResolverComp.js";
 
 //VRoid 공식 샘플 Sendagaya Shino (CC0)
 const MODEL = "Res/Shino.glb";

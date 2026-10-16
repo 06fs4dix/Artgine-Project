@@ -11,7 +11,6 @@ Artgine project demos — built with the [Artgine](https://github.com/06fs4dix/A
 | Name | Description | Link |
 |------|-------------|------|
 | Maze | 2D maze game with player, monsters, and pathfinding | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/2D/Maze/Maze.html) |
-| Shooting | 2D top-down shooting game with multiplayer server support | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/2D/Shooting/Shooting.html) |
 | SideScroll | 2D side-scrolling platformer | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/2D/SideScroll/SideScroll.html) |
 | Village | 2D RPG village with multiplayer, bloom, and water effects | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/2D/Village/Village.html) |
 
@@ -47,6 +46,15 @@ Artgine project demos — built with the [Artgine](https://github.com/06fs4dix/A
 | Voxel | Interactive 2D/3D voxel map editor | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Voxel/Voxel.html) |
 | Wind | Wind effect simulation on 2D and 3D objects | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Wind/Wind.html) |
 | Terrain | 3D terrain with shadow mapping, collision, and rigid body physics | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Terrain/Terrain.html) |
+| EnvMap | Real-time environment map reflections using probes | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/EnvMap/EnvMap.html) |
+
+**AI**
+
+| Name | Description | Link |
+|------|-------------|------|
+| CrossyRoad | Voxel-style lane-crossing arcade game with themed stages | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/AI/CrossyRoad/CrossyRoad.html) |
+| ForgeBuild | 3D scene builder for terrain, buildings, walls, towers, and flora | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/AI/ForgeBuild/ForgeBuild.html) |
+| Shooting | Shoot 'em up with enemies, bosses, missiles, and gem pickups | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/AI/Shooting/Shooting.html) |
 
 ## Getting Started
 

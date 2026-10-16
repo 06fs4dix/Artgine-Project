@@ -11,7 +11,6 @@
 | 이름 | 설명 | 링크 |
 |------|------|------|
 | Maze | 플레이어, 몬스터, 길찾기가 포함된 2D 미로 게임 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/Maze/Maze.html) |
-| Shooting | 멀티플레이어 서버를 지원하는 2D 탑다운 슈팅 게임 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/Shooting/Shooting.html) |
 | SideScroll | 2D 사이드 스크롤 플랫포머 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/SideScroll/SideScroll.html) |
 | Village | 멀티플레이어, 블룸, 수면 효과가 포함된 2D RPG 마을 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/2D/Village/Village.html) |
 
@@ -47,6 +46,15 @@
 | Voxel | 2D/3D 대화형 복셀 맵 에디터 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Voxel/Voxel.html) |
 | Wind | 2D/3D 오브젝트에 바람 효과 시뮬레이션 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Wind/Wind.html) |
 | Terrain | 그림자 맵핑, 충돌, 강체 물리가 포함된 3D 지형 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Terrain/Terrain.html) |
+| EnvMap | 프로브를 이용한 실시간 환경맵 반사 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/EnvMap/EnvMap.html) |
+
+**AI**
+
+| 이름 | 설명 | 링크 |
+|------|------|------|
+| CrossyRoad | 테마별 스테이지가 있는 복셀 스타일 길 건너기 아케이드 게임 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/AI/CrossyRoad/CrossyRoad.html) |
+| ForgeBuild | 지형, 건물, 성벽, 타워, 식물을 배치하는 3D 씬 빌더 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/AI/ForgeBuild/ForgeBuild.html) |
+| Shooting | 적, 보스, 미사일, 젬 수집이 있는 슈팅 게임 | [데모](https://06fs4dix.github.io/Artgine-Project/proj/AI/Shooting/Shooting.html) |
 
 ## 시작하기
 
