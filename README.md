@@ -6,6 +6,14 @@ Artgine project demos — built with the [Artgine](https://github.com/06fs4dix/A
 
 ## Demo
 
+**AI**
+
+| Name | Description | Link |
+|------|-------------|------|
+| CrossyRoad | Voxel-style lane-crossing arcade game with themed stages | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/AI/CrossyRoad/CrossyRoad.html) |
+| ForgeBuild | 3D scene builder for terrain, buildings, walls, towers, and flora | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/AI/ForgeBuild/ForgeBuild.html) |
+| Shooting | Shoot 'em up with enemies, bosses, missiles, and gem pickups | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/AI/Shooting/Shooting.html) |
+
 **2D**
 
 | Name | Description | Link |
@@ -47,14 +55,6 @@ Artgine project demos — built with the [Artgine](https://github.com/06fs4dix/A
 | Wind | Wind effect simulation on 2D and 3D objects | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Wind/Wind.html) |
 | Terrain | 3D terrain with shadow mapping, collision, and rigid body physics | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/Terrain/Terrain.html) |
 | EnvMap | Real-time environment map reflections using probes | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/Tutorial/EnvMap/EnvMap.html) |
-
-**AI**
-
-| Name | Description | Link |
-|------|-------------|------|
-| CrossyRoad | Voxel-style lane-crossing arcade game with themed stages | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/AI/CrossyRoad/CrossyRoad.html) |
-| ForgeBuild | 3D scene builder for terrain, buildings, walls, towers, and flora | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/AI/ForgeBuild/ForgeBuild.html) |
-| Shooting | Shoot 'em up with enemies, bosses, missiles, and gem pickups | [Demo](https://06fs4dix.github.io/Artgine-Project/proj/AI/Shooting/Shooting.html) |
 
 ## Getting Started
 
