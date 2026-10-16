@@ -1,7 +1,7 @@
-import { CForgeScene } from "../../../plugin/ForgeBuild/CForgeScene.js";
-import { CForgeTheme } from "../../../plugin/ForgeBuild/CForgeTheme.js";
-import { CForgeRand } from "../../../plugin/ForgeBuild/CForgeRand.js";
-import { CForgeHouseGen } from "../../../plugin/ForgeBuild/CForgeHouseGen.js";
+import { CForgeScene } from "../../../Artgine/plugin/ForgeBuild/CForgeScene.js";
+import { CForgeTheme } from "../../../Artgine/plugin/ForgeBuild/CForgeTheme.js";
+import { CForgeRand } from "../../../Artgine/plugin/ForgeBuild/CForgeRand.js";
+import { CForgeHouseGen } from "../../../Artgine/plugin/ForgeBuild/CForgeHouseGen.js";
 export class CForgeInspect {
     static sKindName = { wall: "성벽", building: "건물", tower: "탑", path: "길", fence: "울타리", bridge: "다리", stair: "계단", church: "교회", dock: "선착장", monument: "기념탑" };
     static sListKind = new Set(["mHouseWall", "mRoofKind"]);

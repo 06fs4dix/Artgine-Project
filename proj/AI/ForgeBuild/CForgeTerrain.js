@@ -2,8 +2,8 @@ import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
 import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
 import { CTexture } from "../../../Artgine/artgine/render/CTexture.js";
-import { CForgeRand } from "../../../plugin/ForgeBuild/CForgeRand.js";
-import { CForgeScene } from "../../../plugin/ForgeBuild/CForgeScene.js";
+import { CForgeRand } from "../../../Artgine/plugin/ForgeBuild/CForgeRand.js";
+import { CForgeScene } from "../../../Artgine/plugin/ForgeBuild/CForgeScene.js";
 export class CForgeTerrain {
     static sN = 256;
     static sCellM = CForgeScene.sSize / 256;

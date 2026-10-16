@@ -4,9 +4,9 @@ import { CInput } from "../../../Artgine/artgine/system/CInput.js";
 import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
 import { CComponent } from "../../../Artgine/artgine/app/component/CComponent.js";
 import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CForgeScene } from "../../../plugin/ForgeBuild/CForgeScene.js";
-import { CForgeSpline } from "../../../plugin/ForgeBuild/CForgeSpline.js";
-import { CForgeAdjust } from "../../../plugin/ForgeBuild/CForgeAdjust.js";
+import { CForgeScene } from "../../../Artgine/plugin/ForgeBuild/CForgeScene.js";
+import { CForgeSpline } from "../../../Artgine/plugin/ForgeBuild/CForgeSpline.js";
+import { CForgeAdjust } from "../../../Artgine/plugin/ForgeBuild/CForgeAdjust.js";
 export class CForgeHandle extends CComponent {
     static sColor = [[1, 1, 1], [1, 0.82, 0.25], [1, 0.45, 0.2]];
     static sSize = 0.55;

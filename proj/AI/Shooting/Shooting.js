@@ -45,7 +45,7 @@ import { CAniFlow } from "../../../Artgine/artgine/app/component/CAniFlow.js";
 import { CAlpha } from "../../../Artgine/artgine/render/CAlpha.js";
 import { CColor } from "../../../Artgine/artgine/render/CColor.js";
 import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
-import { CRPMgrBloom } from "../../../plugin/Bloom/Bloom.js";
+import { CRPMgrBloom } from "../../../Artgine/plugin/Bloom/Bloom.js";
 import { CFx, CDelayComp, CSpinComp } from "./CFx.js";
 import { CGemComp } from "./CGemComp.js";
 import { CMissileComp } from "./CMissileComp.js";

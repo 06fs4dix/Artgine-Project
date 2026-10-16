@@ -1,9 +1,9 @@
-import { CForgeRand } from "../../../plugin/ForgeBuild/CForgeRand.js";
-import { CForgeScene } from "../../../plugin/ForgeBuild/CForgeScene.js";
-import { CForgeCurve, CForgeSpline } from "../../../plugin/ForgeBuild/CForgeSpline.js";
+import { CForgeRand } from "../../../Artgine/plugin/ForgeBuild/CForgeRand.js";
+import { CForgeScene } from "../../../Artgine/plugin/ForgeBuild/CForgeScene.js";
+import { CForgeCurve, CForgeSpline } from "../../../Artgine/plugin/ForgeBuild/CForgeSpline.js";
 import { CForgeTerrain } from "./CForgeTerrain.js";
-import { CForgePoly } from "../../../plugin/ForgeBuild/CForgePoly.js";
-import { CForgeTheme } from "../../../plugin/ForgeBuild/CForgeTheme.js";
+import { CForgePoly } from "../../../Artgine/plugin/ForgeBuild/CForgePoly.js";
+import { CForgeTheme } from "../../../Artgine/plugin/ForgeBuild/CForgeTheme.js";
 export class CForgeSample {
     static Rect(_c, _w, _d, _a) {
         const cs = Math.cos(_a), sn = Math.sin(_a);

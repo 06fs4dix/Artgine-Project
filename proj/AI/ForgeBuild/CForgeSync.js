@@ -2,7 +2,7 @@ import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
 import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
 import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
-import { CForgeFactory, CForgeOption, CForgeScene } from "../../../plugin/ForgeBuild/ForgeBuild.js";
+import { CForgeFactory, CForgeOption, CForgeScene } from "../../../Artgine/plugin/ForgeBuild/ForgeBuild.js";
 export class CForgeSync {
     static sType = { wall: CForgeFactory.eType.Wall, building: CForgeFactory.eType.House, tower: CForgeFactory.eType.Tower, path: CForgeFactory.eType.Path, fence: CForgeFactory.eType.Fence,
         bridge: CForgeFactory.eType.Bridge, stair: CForgeFactory.eType.Stair, church: CForgeFactory.eType.Church, dock: CForgeFactory.eType.Dock, monument: CForgeFactory.eType.Monument };

@@ -34,7 +34,7 @@ import { CLight } from "../../../Artgine/artgine/app/component/CLight.js";
 import { CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
 import { CColor } from "../../../Artgine/artgine/render/CColor.js";
 import { CCamCon3DThirdPerson } from "../../../Artgine/artgine/util/CCamCon.js";
-import { CAimIK, CAttacher, CLookAtIK, CSpringBone, CSpringChain, CSpringCollider } from "../../../plugin/CResolverComp/CResolverComp.js";
+import { CAimIK, CAttacher, CLookAtIK, CSpringBone, CSpringChain, CSpringCollider } from "../../../Artgine/plugin/CResolverComp/CResolverComp.js";
 const MODEL = "Res/Shino.glb";
 var Main = gAtl.NewCanvas("Main");
 Main.SetCameraKey("3D");

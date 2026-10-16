@@ -25,7 +25,7 @@ import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 import { CCamCon3DFirstPerson } from "../../../Artgine/artgine/util/CCamCon.js";
 import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
 import { CInput } from "../../../Artgine/artgine/system/CInput.js";
-import { CPaint3DDecalMesh } from "../../../plugin/DecalMesh/DecalMesh.js";
+import { CPaint3DDecalMesh } from "../../../Artgine/plugin/DecalMesh/DecalMesh.js";
 import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
 import { CAlert } from "../../../Artgine/artgine/basic/CAlert.js";
 let Main = gAtl.NewCanvas("Main");
