@@ -1,0 +1,24 @@
+{
+  "preference": {
+    "mTargetWidth": 0,
+    "mTargetHeight": 0,
+    "mRenderer": "GL",
+    "m32fDepth": false,
+    "mTexture16f": false,
+    "mAnti": true,
+    "mBatchPool": true,
+    "mXR": false,
+    "mDeveloper": true,
+    "mIAuto": true,
+    "mCanvas": ""
+  },
+  "pluging": [],
+  "includes": {
+    "pakozlib": true,
+    "jszip": true,
+    "screenfull": true,
+    "bootstrap": true,
+    "popper": true,
+    "MonacoEditor": true
+  }
+}

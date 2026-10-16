@@ -1,12 +1,12 @@
-﻿//Version
-import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
+//Version
+import "../../../Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "https://06fs4dix.github.io/Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
 import { ULPCChar } from "./ULPCChar.js";
 CClass.Push(ULPCChar);
 //Atelier
-import {CPreferences} from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -18,24 +18,23 @@ gPF.mBatchPool = true;
 gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
-gPF.mWASM = false;
 gPF.mCanvas = "";
 gPF.mServer = 'local';
 gPF.mGitHub = false;
-gPF.mVersion = "mpul7pt0_16";
+gPF.mVersion = "mq4m3t4v_62";
 
-import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
 //The content above this line is automatically set by the program. Do not modify.⬆✋🚫⬆☠️💥🔥
 
 //EntryPoint
-import { CCamCon2DFollow } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
-import { CPad } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CPad.js";
-import { CParserULPC } from "https://06fs4dix.github.io/Artgine/artgine/util/parser/CParserULPC.js";
+import { CCamCon2DFollow } from "../../../Artgine/artgine/util/CCamCon.js";
+import { CPad } from "../../../Artgine/artgine/app/subject/CPad.js";
+import { CParserULPC } from "../../../Artgine/artgine/util/parser/CParserULPC.js";
 
 let Main = gAtl.NewCanvas("Main");
 Main.SetCameraKey("2D");
@@ -89,6 +88,8 @@ guide.textContent = [
     '(키 누르는 동안 재생)',
 ].join('\n');
 document.body.appendChild(guide);
+
+
 
 
 

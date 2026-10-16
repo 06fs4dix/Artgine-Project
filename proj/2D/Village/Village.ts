@@ -23,7 +23,7 @@ gPF.mIAuto = true;
 gPF.mCanvas = "";
 gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mtf4t3oh_4";
+gPF.mVersion = "mvb0zs5z_2";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -67,7 +67,7 @@ import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
 import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
 
 import { CConsol } from "../../../Artgine/artgine/basic/CConsol.js";
-import { CSurfaceBloom } from "../../../Artgine/plugin/Bloom/Bloom.js";
+import { CRPMgrBloom } from "../../../Artgine/plugin/Bloom/Bloom.js";
 
 import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
 
@@ -98,7 +98,7 @@ import { CHTMLDropdown } from "../../../Artgine/artgine/util/CHTMLBar.js";
 import { CVoxelMap } from "../../../Artgine/artgine/app/subject/CVoxelMap.js";
 import { CColor } from "../../../Artgine/artgine/render/CColor.js";
 import { CAtlas } from "../../../Artgine/artgine/util/CAtlas.js";
-import { CDensityInfo, CDensityMap } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
+import { CDensityInfo, CDensityMap, CDensityColliderInfo } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
 import { CBound } from "../../../Artgine/artgine/geometry/CBound.js";
 import { CSampler, CSampList, CSampMinMax } from "../../../Artgine/artgine/util/CSampler.js";
 import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
@@ -133,7 +133,7 @@ import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.
         densityMap.mDiv = 10;
 
         const tex = "Res/Back/TilesetNature.png";
-        gAtl.Frame().Load().Exe(tex,new CLoaderOption().Set("mFilter",CTexture.eFilter.Neaest));
+        gAtl.Frame().Load().Exe(tex,new CLoaderOption().Set("mFilter",CTexture.eFilter.Nearest));
         // LTree (0x0000ff00)
         // LTree (0x0000ff00) — 셀 800, mSca로 렌더 크기 300 유지
         const ltree = densityMap.PushDensityInfo(new CDensityInfo(0x0000ff00, new CVec3(800, 800, 0)));
@@ -143,10 +143,10 @@ import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.
         ltree.mWind = 20;
         ltree.mSca = new CSampler(new CVec3(300, 300, 1));
         ltree.mPos = new CSampMinMax(new CVec3(-300, -300, 0), new CVec3(300, 300, 0));
-        ltree.mColliderLayer = "object";
-        ltree.mColliderBound = new CBound(); ltree.mColliderBound.SetType(CBound.eType.Box);
-        ltree.mColliderBound.mMin.Import(new CVec3(-50/300, -120/300, -0.5));
-        ltree.mColliderBound.mMax.Import(new CVec3( 50/300,  -50/300,  0.5));
+        const ltreeBound = new CBound(); ltreeBound.SetType(CBound.eType.Box);
+        ltree.mCollider.push(new CDensityColliderInfo("object", ltreeBound));
+        ltreeBound.mMin.Import(new CVec3(-50/300, -120/300, -0.5));
+        ltreeBound.mMax.Import(new CVec3( 50/300,  -50/300,  0.5));
 
         // MTree (0x00001000) — 셀 600, mSca로 렌더 크기 100 유지
         const mtree = densityMap.PushDensityInfo(new CDensityInfo(0x00001000, new CVec3(600, 600, 0)));
@@ -156,10 +156,10 @@ import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.
         mtree.mWind = 20;
         mtree.mSca = new CSampler(new CVec3(100, 100, 1));
         mtree.mPos = new CSampMinMax(new CVec3(-250, -250, 0), new CVec3(250, 250, 0));
-        mtree.mColliderLayer = "object";
-        mtree.mColliderBound = new CBound(); mtree.mColliderBound.SetType(CBound.eType.Box);
-        mtree.mColliderBound.mMin.Import(new CVec3(-50/100, -30/100, -0.5));
-        mtree.mColliderBound.mMax.Import(new CVec3( 50/100,   0/100,  0.5));
+        const mtreeBound = new CBound(); mtreeBound.SetType(CBound.eType.Box);
+        mtree.mCollider.push(new CDensityColliderInfo("object", mtreeBound));
+        mtreeBound.mMin.Import(new CVec3(-50/100, -30/100, -0.5));
+        mtreeBound.mMax.Import(new CVec3( 50/100,   0/100,  0.5));
 
         // Flower1 (0x00002000) — 셀 400, mSca로 렌더 크기 50 유지
         const flower1 = densityMap.PushDensityInfo(new CDensityInfo(0x00002000, new CVec3(400, 400, 0)));
@@ -197,16 +197,23 @@ Real.PushSub(new CNPC("Dante")).SetPos(new CVec3(6600,6400));
 Real.PushSub(new CNPC("Miles")).SetPos(new CVec3(6200,9200));
 Real.PushSub(new CNPC("Poppy")).SetPos(new CVec3(11000,8000));
 
+let MainRPPlug=new CCanvasPluginRPMgr(null);
+Main.PushPlugin(MainRPPlug);
+
+let MainRPMgr=new CRPMgr();
+MainRPPlug.SetRPMgr(MainRPMgr);
+
+let rp : CRPAuto;
 
 
 
+let RealRPPlug=new CCanvasPluginRPMgr(null);
+Real.PushPlugin(RealRPPlug);
 
 
 
-let rpPlug=new CCanvasPluginRPMgr(null);
-Real.PushPlugin(rpPlug);
 let AM7RP=new CRPMgr();
-let rp=AM7RP.PushRP(new CRPAuto());
+rp=AM7RP.PushRP(new CRPAuto());
 rp.PushOr(new CCondition({"s":"class","v":"CPaint2D"}));
 rp.PushOr(new CCondition({"s":"class","v":"CPaint2DMerge"}));
 rp.PushAnd(new CCondition({"s":"mTag[shadowPlane]","v":0}));
@@ -241,22 +248,10 @@ rp.PushAnd(new CCondition({"s":"class","v":"CPaintVoxel"}));
 rp.mShader=gAtl.Frame().Pal().SlVoxelKey();
 
 //Real.SetRPMgr(PM1RP);
-rpPlug.SetRPMgr(PM1RP);
+RealRPPlug.SetRPMgr(PM1RP);
 
 
 let PM11RP=new CRPMgr();
-
-
-let emissiveTex=new CTexture();
-emissiveTex.PushInfo([new CTextureInfo(CTexture.eTarget.Sigle,CTexture.eFormat.RGBA8,1)]);
-let emissiveTexKey=PM11RP.PushTex("Bloom/emissiveTex.tex",emissiveTex);
-rp=PM11RP.PushRP(new CRPAuto());
-rp.PushAnd(new CCondition({"s":"class","v":"CPaint2D"}));
-rp.PushAnd(new CCondition({"s":"mTag[bloom]"}));
-rp.mShader=gAtl.Frame().Pal().Sl2DKey();
-rp.mRenderTarget=emissiveTexKey;
-rp.mTag.add("mask");
-
 
 
 // let basiceTex=new CTexture();
@@ -286,39 +281,14 @@ rp.mShader=gAtl.Frame().Pal().Sl2DKey();
 
 
 
-let sufBloom=PM11RP.PushSuf(new CSurfaceBloom()) as CSurfaceBloom;
-let srp=sufBloom.GetRP();
-srp.mShader=gAtl.Frame().Pal().Sl2DKey();
-srp.mTag.add("blit");
-srp.mShaderAttr.push(new CShaderAttr(0,emissiveTexKey));
-sufBloom.OldSchool();
-// sufBloom.m_intensity = 1000.0;//업샘플 합성의 기본 강도
-sufBloom.m_threshold = 1.0;//이 값보다 어두운 픽셀은 블룸 입력에서 배제
-sufBloom.m_softThreshold = 1.0;//임계 부근이 점진적으로 섞여 더 자연스러운 하이라이트 선택
-// sufBloom.m_lowFrequencyBoost = 100.0;//값을 올리면 멀리 퍼져 보이는 느낌이 커짐.
-// sufBloom.m_lowFrequencyBoostCurvation = 200.0;//멀리 퍼지는 긴 꼬리
-// sufBloom.m_highPassFrequency = 1.0;//코드상 1.0이면 모든 mip 기여 허용, 값이 작아질수록 큰 mip(멀리 퍼지는 부분) 기여가 빠르게 줄어듭니다. 즉 멀리 퍼지게 하려면 1.0 유지가 유리
-// sufBloom.Refresh();
-
-let sufLast=PM11RP.PushSuf(new CSurface());
-srp=sufLast.GetRP();
-// sufLast.SetUseRT(false);
-
-srp.mRenderTarget = gAtl.Frame().Pal().GetDefaultFrameBuffer();
-srp.mShader=gAtl.Frame().Pal().SlPostKey();
-srp.mTag.add("blend");
-srp.mShaderAttr.push(new CShaderAttr(0,gAtl.Frame().Pal().GetMainFrameTex()));
-srp.mShaderAttr.push(new CShaderAttr(1,sufBloom.GetTexKey()));
-srp.mShaderAttr.push(new CShaderAttr("BlendColor0", new CVec4(SDF.eBlend.Texture, 0)));                 // col0 = mainFrameTex
-srp.mShaderAttr.push(new CShaderAttr("BlendColor1", new CVec4(SDF.eBlend.Texture, 1)));                 // col1 = bloomTex
-srp.mShaderAttr.push(new CShaderAttr("BlendColor2", new CVec4(SDF.eBlend.LinearDodge, 0, 1, 1)));       // col2 = col0 + col1
+CRPMgrBloom.Append(PM11RP, { emissiveTo: MainRPMgr });
 
 
 
 function AM7()
 {
     //Real.SetRPMgr(AM7RP);
-    rpPlug.SetRPMgr(AM7RP);
+    RealRPPlug.SetRPMgr(AM7RP);
     let Direct=Main.Find("Direct");
     let PointList=Main.Find("PointList");
 
@@ -341,7 +311,7 @@ window["AM7"]=AM7;
 function PM1()
 {
     //Real.SetRPMgr(PM1RP);
-    rpPlug.SetRPMgr(PM1RP);
+    RealRPPlug.SetRPMgr(PM1RP);
     //Real.SetRPMgr(lightAM7RP);
     let Direct=Main.Find("Direct");
     let PointList=Main.Find("PointList");
@@ -367,7 +337,7 @@ window["PM1"]=PM1;
 function PM11()
 {
     //Real.SetRPMgr(PM11RP);
-    rpPlug.SetRPMgr(PM11RP);
+    RealRPPlug.SetRPMgr(PM11RP);
     let Direct=Main.Find("Direct");
     let PointList=Main.Find("PointList");
 
@@ -472,258 +442,6 @@ mg.SetBody(rightDiv);
 
 
 new CModalFrameView();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,0 +1,77 @@
+//Version
+import "../../../Artgine/artgine/artgine.js"
+
+//Class
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
+import { CLane } from "./CLane.js";
+CClass.Push(CLane);
+import { CPlayerComp } from "./CPlayerComp.js";
+CClass.Push(CPlayerComp);
+import { CGameMgr } from "./CGameMgr.js";
+CClass.Push(CGameMgr);
+
+//Atelier
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
+var gPF = new CPreferences();
+gPF.mTargetWidth = 0;
+gPF.mTargetHeight = 0;
+gPF.mRenderer = "GL";
+gPF.m32fDepth = false;
+gPF.mTexture16f = false;
+gPF.mAnti = true;
+gPF.mBatchPool = true;
+gPF.mXR = false;
+gPF.mDeveloper = true;
+gPF.mIAuto = true;
+gPF.mCanvas = "";
+gPF.mServer = 'local';
+gPF.mGitHub = false;
+
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
+
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
+var gAtl = new CAtelier();
+gAtl.mPF = gPF;
+await gAtl.Init([],"");
+//The content above this line is automatically set by the program. Do not modify.⬆✋🚫⬆☠️💥🔥
+
+//EntryPoint
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CLight } from "../../../Artgine/artgine/app/component/CLight.js";
+import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
+import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
+
+const Main = gAtl.NewCanvas("Main");
+Main.SetCameraKey("3D");
+Main.GetCam().SetCamCon(null);
+
+const UI = gAtl.NewCanvas("UI");
+UI.SetCameraKey("2D");
+
+gAtl.Frame().Dev().SetClearColor(true, new CVec4(0.42, 0.74, 0.96, 0.99));
+
+const sun = Main.PushSub(new CSubject());
+sun.SetKey("Sun");
+sun.SetPos(new CVec3(-0.5, 1, 0.3));
+const lig = sun.PushComp(new CLight());
+lig.SetDirect();
+lig.SetShadow3D("shadow", 0, 0, 0);
+lig.mCascadeDivide[0] = 190;
+lig.mCascadeDivide[1] = 110;
+lig.mCascadeDivide[2] = 150;
+lig.SetShadowDistance(450);
+
+// 엔진 기본 bias(1.0)는 깊이 오프셋이 최대 약 9유닛이라 타일 10 스케일에서 밑동 그림자가 잘린다
+gAtl.Brush().EnsureDefaultRP();
+const shadowReadRP = gAtl.Brush().FindAutoRP("ShadowRead_3D");
+shadowReadRP.mShaderAttr.push(new CShaderAttr("bias", new CVec1(0.15)));
+shadowReadRP.mShaderAttr.push(new CShaderAttr("normalBias", new CVec1(0.4)));
+shadowReadRP.mShaderAttr.push(new CShaderAttr("PCF", new CVec1(2)));
+
+const mgr = new CGameMgr();
+mgr.SetKey("GameMgr");
+mgr.mCanvas = Main;
+mgr.mUICanvas = UI;
+Main.PushSub(mgr);

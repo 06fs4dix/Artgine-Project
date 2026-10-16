@@ -1,11 +1,11 @@
 //Version
-import "../../../artgine/artgine.js"
+import "../../../Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "../../../artgine/basic/CClass.js";
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "../../../artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -22,9 +22,9 @@ gPF.mServer = 'webServer';
 gPF.mGitHub = false;
 gPF.mVersion = "msfcanin_12";
 
-import {CAtelier} from "../../../artgine/app/CAtelier.js";
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "../../../artgine/util/CPlugin.js";
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
@@ -32,43 +32,43 @@ await gAtl.Init([],"");
 
 //EntryPoint
 
-import {CObject} from "../../../artgine/basic/CObject.js"
+import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
 
-import { CVec3 } from "../../../artgine/geometry/CVec3.js";
-import { CCamCon3DFirstPerson } from "../../../artgine/util/CCamCon.js";
-import { CLoaderOption } from "../../../artgine/util/CLoader.js";
-import { CTexture } from "../../../artgine/render/CTexture.js";
-import { CMat } from "../../../artgine/geometry/CMat.js";
-import { CColliderTerrain, CTerrainMap } from "../../../artgine/app/subject/CTerrainMap.js";
-import { CSubject } from "../../../artgine/app/subject/CSubject.js";
-import { CLight } from "../../../artgine/app/component/CLight.js";
-import { CRPAuto, CRPMgr } from "../../../artgine/app/canvas/CRPMgr.js";
-import { CCondition } from "../../../artgine/util/CCondition.js";
-import { CRenderPass } from "../../../artgine/render/CRenderPass.js";
-import { CShaderAttr } from "../../../artgine/render/CShaderAttr.js";
-import { SDF } from "../../../artgine/z_file/SDF.js";
-import { CCanvasPluginRPMgr } from "../../../artgine/app/canvas/CCanvasPluginRPMgr.js";
-import { CPaint3D } from "../../../artgine/app/component/paint/CPaint3D.js";
-import { CVec1 } from "../../../artgine/geometry/CVec1.js";
-import { CBGAttachButton, CModalBackGround, CModalFrameView } from "../../../artgine/util/CModalUtil.js";
-import { CVec2 } from "../../../artgine/geometry/CVec2.js";
-import { CComponent } from "../../../artgine/app/component/CComponent.js";
-import { CEvent } from "../../../artgine/basic/CEvent.js";
-import { CColor } from "../../../artgine/render/CColor.js";
-import { CBound } from "../../../artgine/geometry/CBound.js";
-import { CCollider } from "../../../artgine/app/component/CCollider.js";
-import { CH5Canvas } from "../../../artgine/render/CH5Canvas.js";
-import { CRigidBody } from "../../../artgine/app/component/CRigidBody.js";
-import { CUpdate } from "../../../artgine/basic/Basic.js";
-import { CFile } from "../../../artgine/system/CFile.js";
-import { CHTMLDropdown } from "../../../artgine/util/CHTMLBar.js";
-import { Bootstrap } from "../../../artgine/basic/Bootstrap.js";
-import { CDOM } from "../../../artgine/basic/CDOM.js";
-import { CInput } from "../../../artgine/system/CInput.js";
-import { CMath } from "../../../artgine/geometry/CMath.js";
-import { CForce } from "../../../artgine/app/component/CForce.js";
-import { CVec4 } from "../../../artgine/geometry/CVec4.js";
-import { CBehavior } from "../../../artgine/app/component/CBehavior.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CCamCon3DFirstPerson } from "../../../Artgine/artgine/util/CCamCon.js";
+import { CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
+import { CTexture } from "../../../Artgine/artgine/render/CTexture.js";
+import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
+import { CColliderTerrain, CTerrainMap } from "../../../Artgine/artgine/app/subject/CTerrainMap.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CLight } from "../../../Artgine/artgine/app/component/CLight.js";
+import { CRPAuto, CRPMgr } from "../../../Artgine/artgine/app/canvas/CRPMgr.js";
+import { CCondition } from "../../../Artgine/artgine/util/CCondition.js";
+import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
+import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
+import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
+import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
+import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
+import { CBGAttachButton, CModalBackGround, CModalFrameView } from "../../../Artgine/artgine/util/CModalUtil.js";
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
+import { CComponent } from "../../../Artgine/artgine/app/component/CComponent.js";
+import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
+import { CColor } from "../../../Artgine/artgine/render/CColor.js";
+import { CBound } from "../../../Artgine/artgine/geometry/CBound.js";
+import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
+import { CH5Canvas } from "../../../Artgine/artgine/render/CH5Canvas.js";
+import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
+import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
+import { CFile } from "../../../Artgine/artgine/system/CFile.js";
+import { CHTMLDropdown } from "../../../Artgine/artgine/util/CHTMLBar.js";
+import { Bootstrap } from "../../../Artgine/artgine/basic/Bootstrap.js";
+import { CDOM } from "../../../Artgine/artgine/basic/CDOM.js";
+import { CInput } from "../../../Artgine/artgine/system/CInput.js";
+import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
+import { CForce } from "../../../Artgine/artgine/app/component/CForce.js";
+import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
+import { CBehavior } from "../../../Artgine/artgine/app/component/CBehavior.js";
 
 var Main=gAtl.NewCanvas("Main");
 Main.SetCameraKey("3D");
@@ -80,7 +80,7 @@ let ligSub = Main.PushSub(new CSubject());
 ligSub.SetPos(new CVec3(0, 1, 1));
 let ligComp = ligSub.PushComp(new CLight())
 //ligComp.mDigit=1000;
-ligComp.SetShadow3D("shadow", 0, 2);
+ligComp.SetShadow3D("shadow", 0, 0.002);
 
 class CTestComp extends CComponent
 {
@@ -160,8 +160,9 @@ heightMap.SetSplat(["Res/tile10.png","Res/tile11.png","Res/tile12.png","Res/tile
 heightMap.mTerrainHeight = 2048;
 heightMap.mTag.add("light");
 heightMap.mTag.add("shadow");
-heightMap.mCollider.SetLayer("test");
-heightMap.mCollider.PushCollisionLayer("test");
+const heightMapCol = heightMap.PushComp(new CCollider());
+heightMapCol.SetLayer("test");
+heightMapCol.PushCollisionLayer("test");
 
 // player
 const player = Main.PushSub(new CSubject());
@@ -177,15 +178,15 @@ playerCol.SetLayer("test");
 playerCol.PushCollisionLayer("test");
 playerCol.SetPushRate();
 class CBehaviorTest extends CBehavior {
-    Collision(_org: CCollider, _size: number, _tar: Array<CCollider>, _push: Array<CVec3>): void {
+    override Collision(_org: CCollider, _size: number, _tar: Array<CCollider>, _push: Array<CVec3>): void {
         super.Collision(_org, _size, _tar, _push);
     }
-    CollisionEnter(_org: CCollider, _tar: CCollider): void {
+    override CollisionEnter(_org: CCollider, _tar: CCollider): void {
         super.CollisionEnter(_org, _tar);
         console.log("enter");
         playerPt.SetColorModel(new CColor(1, 0, 0, CColor.eModel.RGBAdd));
     }
-    CollisionExit(_org: CCollider, _tar: CCollider): void {
+    override CollisionExit(_org: CCollider, _tar: CCollider): void {
         super.CollisionExit(_org, _tar);
         console.log("exit");
         playerPt.SetColorModel(new CColor(0, 0, 1, CColor.eModel.RGBAdd));

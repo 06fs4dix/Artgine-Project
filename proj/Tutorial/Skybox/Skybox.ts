@@ -18,9 +18,9 @@ gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mCanvas = "";
-gPF.mServer = 'local';
+gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mt77xoq9_12";
+gPF.mVersion = "mt2aqrj0_18";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -53,7 +53,8 @@ var Main=gAtl.NewCanvas("Main");
 Main.SetCameraKey(gAtl.Brush().GetCam3D().Key());
 gAtl.Brush().GetCam3D().SetCamCon(new CCamCon3DFirstPerson(gAtl.Frame().Input()));
 
-gAtl.Brush().GetCam3D().Init(new CVec3(1000,500,0),new CVec3());
+//해가 지는 서쪽(+x)을 바라본다
+gAtl.Brush().GetCam3D().Init(new CVec3(0,500,0),new CVec3(1000,700,0));
 
 
 // var texKey=["Res/skybox/right.jpg","Res/skybox/left.jpg","Res/skybox/bottom.jpg","Res/skybox/top.jpg","Res/skybox/front.jpg","Res/skybox/back.jpg"];
@@ -70,19 +71,11 @@ gAtl.Brush().GetCam3D().Init(new CVec3(1000,500,0),new CVec3());
 let ligSub=Main.PushSub(new CSubject());
 //let ligComp=ligSub.PushComp(new CLight());
 
-//테이블 정보도 넣어야 하는데 않넣음
 let ligComp=ligSub.PushComp(new CLightPlanet());
-ligComp.Push(new CDayCycle(new CVec3(0,1,0),new CColor(1,1,1)));
-ligComp.Push(new CDayCycle(new CVec3(2,0.5,0),new CColor(1,0.8,0.8)));
-ligComp.Push(new CDayCycle(new CVec3(-2,0.5,0),new CColor(1,0.8,0.8)));
-ligComp.Push(new CDayCycle(new CVec3(-1,0,0),new CColor(1,0.5,0.5)));
-ligComp.Push(new CDayCycle(new CVec3(1,0,0),new CColor(1,0.5,0.5)));
-ligComp.Push(new CDayCycle(new CVec3(0,-1,0),new CColor(0,0,0)));
-
+//시간대별 기본 하늘/햇빛(15분 간격). 6시 일출(-x) -> 12시 정오 -> 18시 일몰(+x)
+ligComp.PushDefault();
 ligComp.SetDirect();
-//ligComp.SetDirectPos(new CVec3(-1,0,0));
-ligComp.SetColor(new CVec3(1,0.5,0.5));
-ligSub.SetPos(new CVec3(1,0,0));
+ligComp.SetTime(17);
 
 // let sub=Main.PushSub(new CSubject());
 // sub.SetPos(new CVec3(0,0,-300));
@@ -184,11 +177,11 @@ Option_btn.SetContent(`
     <div class="mb-4">
         <h6 class="text-muted border-bottom pb-1">Light Settings</h6>
         <div class="mb-3">
-            <label for="light_dir" class="form-label">
-                Direction: <span id="light_dir_value">0</span>°
+            <label for="light_time" class="form-label">
+                Time: <span id="light_time_value">17.0</span>h
             </label>
-            <input type="range" class="form-range" id="light_dir" 
-                   min="0" max="360" value="0" step="1"
+            <input type="range" class="form-range" id="light_time"
+                   min="0" max="24" value="17" step="0.05"
                    oninput="updateCloudParams()">
         </div>
     </div>
@@ -502,13 +495,9 @@ function updateCloudParams()
     document.getElementById("auroraMaxZ_value").textContent = 
         Number(CDOM.IDValue("auroraMaxZ")).toFixed(2);
     
-    let light_dir = Number(CDOM.IDValue("light_dir"));
-    document.getElementById("light_dir_value").textContent = light_dir+"";
-    
-    let angle_rad = (light_dir * CMath.PI()) / 180.0;
-    let dir_vec = new CVec3(0, Math.sin(angle_rad), Math.cos(angle_rad));
-    
-    ligSub.SetPos(dir_vec);
+    let light_time = Number(CDOM.IDValue("light_time"));
+    document.getElementById("light_time_value").textContent = light_time.toFixed(1);
+    ligComp.SetTime(light_time);
     
      // Update ShaderAttr values
     cloudCoverageSA.mData.x = Number(CDOM.IDValue("cloudCoverage"));
@@ -564,8 +553,6 @@ function updateCloudParams()
 window["updateCloudParams"] = updateCloudParams;
 
 new CModalFrameView();
-
-
 
 
 

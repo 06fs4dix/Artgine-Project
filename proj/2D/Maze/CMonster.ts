@@ -1,22 +1,22 @@
 
-import { CAniFlow } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAniFlow.js";
-import { CAnimation, CClipColor, CClipDestroy } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CAnimation.js";
-import { CBehavior } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
+import { CAniFlow } from "../../../Artgine/artgine/app/component/CAniFlow.js";
+import { CAnimation, CClipColor, CClipDestroy } from "../../../Artgine/artgine/app/component/CAnimation.js";
+import { CBehavior } from "../../../Artgine/artgine/app/component/CBehavior.js";
 
-import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
-import { CForce } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CForce.js";
-import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
-import { CPaint2D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint2D.js";
-import { CUpdate } from "https://06fs4dix.github.io/Artgine/artgine/basic/Basic.js";
-import { CBound } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CBound.js";
-import { CMath } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMath.js";
-import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
-import { CVec4 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec4.js";
-import { CColor } from "https://06fs4dix.github.io/Artgine/artgine/render/CColor.js";
-import { CH5Canvas } from "https://06fs4dix.github.io/Artgine/artgine/render/CH5Canvas.js";
-import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/CRenderPass.js";
-import { CCurve } from "https://06fs4dix.github.io/Artgine/artgine/util/CCurve.js";
+import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
+import { CForce } from "../../../Artgine/artgine/app/component/CForce.js";
+import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
+import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
+import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
+import { CBound } from "../../../Artgine/artgine/geometry/CBound.js";
+import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
+import { CColor } from "../../../Artgine/artgine/render/CColor.js";
+import { CH5Canvas } from "../../../Artgine/artgine/render/CH5Canvas.js";
+import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
+import { CCurve } from "../../../Artgine/artgine/util/CCurve.js";
 
 export default class CMonster extends CBehavior
 {
@@ -62,7 +62,7 @@ export default class CMonster extends CBehavior
         let cl=sub.PushComp(new CCollider(pt)) as CCollider;
         cl.SetLayer("mon");
         cl.PushCollisionLayer(["block","user"]);
-        cl.SetRestitution(2);
+        cl.SetPushRate(2);
     
         let bound=new CBound();
         bound.mMin=new CVec3(-300,-300,-300);
@@ -71,11 +71,11 @@ export default class CMonster extends CBehavior
         cl=sub.PushComp(new CCollider(bound));
         cl.SetLayer("monSearch");
         cl.SetEvent(CCollider.eEvent.Trigger);
-        cl.SetRestitution(2);
+        cl.SetPushRate(2);
         cl.PushCollisionLayer("user");
     
         let rb=sub.PushComp(new CRigidBody());
-        //rb.SetRestitution(2);
+        //rb.SetPushRate(2);
     }
     override Trigger(_org: CCollider, _size: number, _tar: Array<CCollider>): void {
         this.m_enemy=_tar[0];

@@ -1,11 +1,11 @@
 //Version
-import "../../../artgine/artgine.js"
+import "../../../Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "../../../artgine/basic/CClass.js";
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "../../../artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -20,11 +20,11 @@ gPF.mIAuto = true;
 gPF.mCanvas = "";
 gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mt12d5az_9";
+gPF.mVersion = "mtsc8k27_27";
 
-import {CAtelier} from "../../../artgine/app/CAtelier.js";
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "../../../artgine/util/CPlugin.js";
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
 CPlugin.PushPath('Water','../../../plugin/Water/');
 import "../../../plugin/Water/Water.js"
 var gAtl = new CAtelier();
@@ -34,33 +34,33 @@ await gAtl.Init([],"");
 
 //EntryPoint
 
-import { CVec3 } from "../../../artgine/geometry/CVec3.js";
-import { CCamCon3DFirstPerson } from "../../../artgine/util/CCamCon.js";
-import { CLoaderOption } from "../../../artgine/util/CLoader.js";
-import { CTexture } from "../../../artgine/render/CTexture.js";
-import { CMat } from "../../../artgine/geometry/CMat.js";
-import { CTerrainMap } from "../../../artgine/app/subject/CTerrainMap.js";
-import { CSubject } from "../../../artgine/app/subject/CSubject.js";
-import { CLight } from "../../../artgine/app/component/CLight.js";
-import { CRPAuto, CRPMgr } from "../../../artgine/app/canvas/CRPMgr.js";
-import { CCondition } from "../../../artgine/util/CCondition.js";
-import { CRenderPass } from "../../../artgine/render/CRenderPass.js";
-import { CShaderAttr } from "../../../artgine/render/CShaderAttr.js";
-import { SDF } from "../../../artgine/z_file/SDF.js";
-import { CCanvasPluginRPMgr } from "../../../artgine/app/canvas/CCanvasPluginRPMgr.js";
-import { CPaint3D, CPaintCube } from "../../../artgine/app/component/paint/CPaint3D.js";
-import { CVec1 } from "../../../artgine/geometry/CVec1.js";
-import { CModalFrameView } from "../../../artgine/util/CModalUtil.js";
-import { CVec2 } from "../../../artgine/geometry/CVec2.js";
-import { CComponent } from "../../../artgine/app/component/CComponent.js";
-import { CColor } from "../../../artgine/render/CColor.js";
-import { CCollider } from "../../../artgine/app/component/CCollider.js";
-import { CRigidBody } from "../../../artgine/app/component/CRigidBody.js";
-import { CBehavior } from "../../../artgine/app/component/CBehavior.js";
-import { CUtilRender } from "../../../artgine/render/CUtilRender.js";
-import { CImgPro } from "../../../artgine/render/CImgPro.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CCamCon3DFirstPerson } from "../../../Artgine/artgine/util/CCamCon.js";
+import { CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
+import { CTexture } from "../../../Artgine/artgine/render/CTexture.js";
+import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
+import { CTerrainMap } from "../../../Artgine/artgine/app/subject/CTerrainMap.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CLight } from "../../../Artgine/artgine/app/component/CLight.js";
+import { CRPAuto, CRPMgr } from "../../../Artgine/artgine/app/canvas/CRPMgr.js";
+import { CCondition } from "../../../Artgine/artgine/util/CCondition.js";
+import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
+import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
+import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
+import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
+import { CPaint3D, CPaintCube } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
+import { CModalFrameView } from "../../../Artgine/artgine/util/CModalUtil.js";
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
+import { CComponent } from "../../../Artgine/artgine/app/component/CComponent.js";
+import { CColor } from "../../../Artgine/artgine/render/CColor.js";
+import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
+import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
+import { CBehavior } from "../../../Artgine/artgine/app/component/CBehavior.js";
+import { CUtilRender } from "../../../Artgine/artgine/render/CUtilRender.js";
+import { CImgPro } from "../../../Artgine/artgine/render/CImgPro.js";
 import { CWater3D } from "../../../plugin/Water/Water.js";
-import { CVec4 } from "../../../artgine/geometry/CVec4.js";
+import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
 
 var Main=gAtl.NewCanvas("Main");
 Main.SetCameraKey("3D");
@@ -71,7 +71,7 @@ gAtl.Brush().GetCam3D().Init(new CVec3(23000, 6000, 20000), new CVec3(23001, 600
 let ligSub = Main.PushSub(new CSubject());
 ligSub.SetPos(new CVec3(0, 1, 5));
 let ligComp = ligSub.PushComp(new CLight())
-ligComp.SetShadow3D("shadow", 0, 2, 16);
+ligComp.SetShadow3D("shadow", 0, 0.002, 0.016);
 ligComp.mShadowDistance = 100000;
 
 class CTestComp extends CComponent
@@ -84,68 +84,6 @@ class CTestComp extends CComponent
 }
 let sub = Main.PushSub(new CSubject());
 let testComp = sub.PushComp(new CTestComp());
-
-// RPMgr
-let forward=new CRPMgr();
-Main.PushPlugin(new CCanvasPluginRPMgr(forward));
-forward.PushTex(gAtl.Frame().Pal().GetShadowReadTex(),new CTexture());
-// shadowRead
-{
-    let rp=forward.PushRP(new CRPAuto());
-    rp.PushOr(new CCondition("class","==","CPaint3D"));
-    rp.PushOr(new CCondition("class","==","CPaint3DMerge"));
-    rp.PushAnd(new CCondition("mTag[shadow]","==",true));
-    rp.mPriority=CRenderPass.ePriority.BackGround+1;
-
-    rp.mShaderAttr.push(new CShaderAttr(SDF.eTexSlot.ArrShadowWrite,gAtl.Frame().Pal().GetShadowWriteTex()));
-    rp.mShaderAttr.push(new CShaderAttr("PCF",testComp.PCF));
-    rp.mShaderAttr.push(new CShaderAttr("bias",testComp.bias));
-    rp.mShaderAttr.push(new CShaderAttr("normalBias",testComp.normalBias));
-    rp.mShaderAttr.push(new CShaderAttr("shadowRate",testComp.shadowRate));
-    rp.mShaderAttr.push(new CShaderAttr("jitter",testComp.jitter));
-
-    // rp.mAlpha=false;
-    rp.mShader=gAtl.Frame().Pal().Sl3DKey();
-    rp.mRenderTarget=gAtl.Frame().Pal().GetShadowReadTex();
-    rp.mTag.add("shadowRead");
-}
-// draw
-{
-    let rp=forward.PushRP(new CRPAuto());
-    rp.PushOr(new CCondition("class","==","CPaint3D"));
-    rp.PushOr(new CCondition("class","==","CPaint3DMerge"));
-    rp.PushAnd(new CCondition("mTag[water]","!=",true));
-    rp.mShaderAttr.push(new CShaderAttr(SDF.eTexSlot.SingleShadowRead, gAtl.Frame().Pal().GetShadowReadTex()));
-    rp.mShaderAttr.push(new CShaderAttr("shadowOn", new CVec1(1)));
-    rp.mShader=gAtl.Frame().Pal().Sl3DKey();
-}
-// terrain shadowRead
-{
-    let rp=forward.PushRP(new CRPAuto());
-    rp.PushOr(new CCondition("class","==","CPaintTerrain"));
-    rp.PushAnd(new CCondition("mTag[shadow]","==",true));
-    rp.mPriority=CRenderPass.ePriority.BackGround+1;
-
-    rp.mShaderAttr.push(new CShaderAttr(SDF.eTexSlot.ArrShadowWrite, gAtl.Frame().Pal().GetShadowWriteTex()));
-    rp.mShaderAttr.push(new CShaderAttr("PCF",testComp.PCF));
-    rp.mShaderAttr.push(new CShaderAttr("bias",testComp.bias));
-    rp.mShaderAttr.push(new CShaderAttr("normalBias",testComp.normalBias));
-    rp.mShaderAttr.push(new CShaderAttr("shadowRate",testComp.shadowRate));
-    rp.mShaderAttr.push(new CShaderAttr("jitter",testComp.jitter));
-
-    // rp.mAlpha=false;
-    rp.mShader=gAtl.Frame().Pal().SlTerrainKey();
-    rp.mRenderTarget=gAtl.Frame().Pal().GetShadowReadTex();
-    rp.mTag.add("shadowRead");
-}
-// terrain draw
-{
-    let rp=forward.PushRP(new CRPAuto());
-    rp.PushOr(new CCondition("class","==","CPaintTerrain"));
-    rp.mShaderAttr.push(new CShaderAttr(SDF.eTexSlot.SingleShadowRead, gAtl.Frame().Pal().GetShadowReadTex()));
-    rp.mShaderAttr.push(new CShaderAttr("shadowOn", new CVec1(1)));
-    rp.mShader=gAtl.Frame().Pal().SlTerrainKey();
-}
 
 // terrain
 const TEX_SIZE = 4096;
@@ -221,6 +159,7 @@ async function PreLoad(_tex: string)
     const loaderOpt = new CLoaderOption();
     loaderOpt.mAlphaBleed = false;
     loaderOpt.mMipMap = CTexture.eMipmap.None;
+    loaderOpt.mGPU = false;
     return await gAtl.Frame().Load().Exe(_tex, loaderOpt);
 }
 
@@ -266,6 +205,20 @@ async function InitScene()
     heightMap.ClearAll();
 }
 InitScene();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

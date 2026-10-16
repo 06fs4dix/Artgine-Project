@@ -10,23 +10,24 @@ var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
 gPF.mRenderer = "GL";
-gPF.m32fDepth = true;
+gPF.m32fDepth = false;
 gPF.mTexture16f = false;
 gPF.mAnti = true;
 gPF.mBatchPool = true;
 gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
+gPF.mWASM = false;
 gPF.mCanvas = "";
-gPF.mServer = 'local';
+gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mt77xoq9_7";
+gPF.mVersion = "mtuwqfrg_2";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
 import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
-CPlugin.PushPath('Water','../../../Artgine/plugin/Water/');
-import "../../../Artgine/plugin/Water/Water.js"
+CPlugin.PushPath('Water','../../../plugin/Water/');
+import "../../../plugin/Water/Water.js"
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init(['Main.json'],"");
@@ -69,6 +70,7 @@ import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
 import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
 import { CComponent } from "../../../Artgine/artgine/app/component/CComponent.js";
 import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
+import { CProbe } from "../../../Artgine/artgine/app/subject/CProbe.js";
 
 //====================================================
 // 텍스쳐 로딩
@@ -80,27 +82,12 @@ await gAtl.Frame().Load().Exe("Res/teapot/1zflt0j.jpg",opt);
 await gAtl.Frame().Load().Exe("Res/teapot/1zflt0j_NRM.jpg",opt);
 await gAtl.Frame().Load().Exe("Res/teapot/1zflt0j_lig.jpg",opt);
 
-const skyLowTexBufList=[];
-
 const skyTexKey=["Res/skybox/right.jpg","Res/skybox/left.jpg","Res/skybox/bottom.jpg","Res/skybox/top.jpg","Res/skybox/front.jpg","Res/skybox/back.jpg"];
 const skyTexList:CTexture[]=[];
 await gAtl.Frame().Load().Exe(skyTexKey);
 for(let i=0;i<skyTexKey.length;++i)
-{
     skyTexList.push(gAtl.Frame().Res().Find(skyTexKey[i]) as CTexture);
-    skyLowTexBufList.push(skyTexList[i].GetBuf()[0]);
-}
 const cubeTexKey=gAtl.Frame().Ren().BuildCubeMap(skyTexList,true,"cube.tex");
-
-const envTexKey="env.tex";
-const envTex=new CTexture();
-envTex.SetSize(128, 128);
-envTex.PushInfo([new CTextureInfo(CTexture.eTarget.Cube, CTexture.eFormat.RGBA8)]);
-envTex.GetBuf().push(...skyLowTexBufList);
-envTex.SetMipMap(CTexture.eMipmap.EnvFilter);
-envTex.SetFilter(CTexture.eFilter.Linear);
-gAtl.Frame().Ren().BuildTexture(envTex);
-gAtl.Frame().Res().Push(envTexKey, envTex);
 
 //====================================================
 // 옵션
@@ -111,7 +98,7 @@ let bias : CVec1 = new CVec1(10);
 let normalBias : CVec1 = new CVec1(0.3);
 let shadowRate : CVec1 = new CVec1(0.0);
 
-let shadowDistance = 0.4;
+let shadowDistance = 4000;
 
 const shadowShaderAttrs = [
     new CShaderAttr("PCF", PCF),
@@ -247,7 +234,6 @@ sufLast.SetUseRT(false);    // to screen
 srp=sufLast.GetRP();
 srp.mShader=gAtl.Frame().Pal().SlPostKey();
 srp.mTag.add("blend");
-srp.mAlpha=false;   // 풀스크린 합성 결과를 그대로 덮어쓴다. 알파블렌딩을 켜두면 col6.a(diffuse+specular+sky 알파를 단순합산해 1을 넘김)가 블렌드 팩터로 쓰여 dstFactor(1-srcAlpha)가 음수가 되고, 화면에 이전 프레임/캔버스 내용이 비쳐 보인다(바닥이 반투명해지는 원인)
 srp.mShaderAttr.push(new CShaderAttr(0,sufLig0.GetTexKey()));
 srp.mShaderAttr.push(new CShaderAttr(1,sufLig1.GetTexKey()));
 srp.mShaderAttr.push(new CShaderAttr(2,rp.mRenderTarget));
@@ -305,14 +291,13 @@ sufLig0.NewRT([
 ]);
 srp=sufLig0.GetRP();
 srp.mShader=gAtl.Frame().Pal().SlPostKey();
-srp.mTag.add("light").add("shadow");
+srp.mTag.add("light").add("shadow").add("env");
 srp.mShaderAttr.push(new CShaderAttr(SDF.eTexSlot.SingleShadowRead,gAtl.Frame().Pal().GetShadowReadTex()));
 srp.mShaderAttr.push(new CShaderAttr("shadowOn",new CVec1(1)));
 srp.mShaderAttr.push(new CShaderAttr(0,gBufMultiTexKey));//순차적으로 등록된다
-srp.mShaderAttr.push(new CShaderAttr(0,envTexKey));//환경맵
+srp.mShaderAttr.push(new CShaderAttr(SDF.eTexSlot.ArrEnvmap,gAtl.Frame().Pal().GetEnvMapTex()));
 srp.mShaderAttr.push(new CShaderAttr("ligStep0", SDF.eLightStep0.Lambert));
 srp.mShaderAttr.push(new CShaderAttr("ligStep1", SDF.eLightStep1.CookTorrance));
-srp.mShaderAttr.push(new CShaderAttr("envmapOn", 1));
 
 // Cubemap - Sky
 rp=DeferredMulti.PushRP(new CRPAuto());
@@ -331,7 +316,6 @@ sufLast.SetUseRT(false);
 srp=sufLast.GetRP();
 srp.mShader=gAtl.Frame().Pal().SlPostKey();
 srp.mTag.add("blend");
-srp.mAlpha=false;   // 풀스크린 합성 결과를 그대로 덮어쓴다(DeferredSingle과 동일한 이유)
 srp.mShaderAttr.push(new CShaderAttr(0,sufLig0.GetTexKey()));
 srp.mShaderAttr.push(new CShaderAttr(2,rp.mRenderTarget));
 srp.mShaderAttr.push(new CShaderAttr("BlendColor0", new CVec4(SDF.eBlend.Texture, 0)));                                         // col0 = diffuse
@@ -411,7 +395,7 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal","Forward",()=>{
     L.SetPos(new CVec3(0,1,1));
 
     let lig=new CLight();
-    lig.SetShadow3D("D1_",0,100);
+    lig.SetShadow3D("D1_",0,0.1);
     lig.SetDirect();
     lig.SetMask(CPaint.eCullMask.Mask01);
     lig.SetColor(new CVec3(1,1,1));
@@ -422,7 +406,7 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal","Forward",()=>{
     L.SetPos(new CVec3(0,1,-1));
 
     lig=new CLight();
-    lig.SetShadow3D("D2_",0,100);
+    lig.SetShadow3D("D2_",0,0.1);
     lig.SetDirect();
     lig.SetMask(CPaint.eCullMask.Mask02);
     lig.SetColor(new CVec3(1,1,1));
@@ -545,7 +529,7 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred","DeferredSingle(HafeLambert+Ph
         pointLightSub.PushComp(pointLig);
     }
 
-    // let ani=new CAnimation([new CClipPRS(0,10,[new CVec3(0,100,0),new CVec3(100,100,0),new CVec3(100,100,100),new CVec3(0,100,0)],CClipPRS.eType.Pos)]);    
+    // let ani=new CAnimation([new CClipPRS(0,10,[new CVec3(0,100,0),new CVec3(100,100,0),new CVec3(100,100,100),new CVec3(0,100,0)],CClipPRS.eType.Pos)]);
     // L.PushComp(new CAniFlow(ani));
 
     let sub = Main.PushSub(new CSubject());
@@ -556,7 +540,7 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred","DeferredSingle(HafeLambert+Ph
     let pt=back.PushComp(new CPaint3D("Res/plane/plane.FBX"));
     pt.mAutoLoad.mMipMap=CTexture.eMipmap.None;
     pt.PushTag(CPaint.eTag.Light);
-    //pt.PushTag(CPaint.eTag.Shadow);
+    // pt.PushTag(CPaint.eTag.Shadow);
     pt.PushTag(CPaint.eTag.Parallax);
     pt.PushTag("shadowMulti");
     pt.PushCShaderAttr(new CShaderAttr("parallaxNormal",0.1));
@@ -574,7 +558,7 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred","DeferredSingle(HafeLambert+Ph
     skybox.SetSca(new CVec3(10,10,10));
     let ptcube=skybox.PushComp(new CPaintCube(cubeTexKey));
     ptcube.Sky(false,false,false,false,false);
-    
+
 }));
 
 
@@ -636,6 +620,9 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred","DeferredMulti(None+CookTorran
         pt2.SetMaterial((x+1)*0.5,(z+1)*0.5);
         teapot.SetPos(new CVec3(x*500,100,z*500));
     }
+
+    let probe=Main.PushSub(new CProbe());
+    probe.SetPos(new CVec3(0,300,0));
 
     let skybox=Main.PushSub(new CSubject());
     skybox.SetSca(new CVec3(10,10,10));
@@ -726,23 +713,6 @@ Help.SetContent(await CUtilWeb.MDReader("README.md"));
 
 
 new CModalFrameView();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

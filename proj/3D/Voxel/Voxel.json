@@ -11,7 +11,7 @@
     "mDeveloper": true,
     "mIAuto": true,
     "mCanvas": ""
-},
+  },
   "pluging": [],
   "includes": {
     "pakozlib": true,

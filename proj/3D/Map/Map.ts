@@ -1,11 +1,11 @@
 //Version
-import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
+import "../../../Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "https://06fs4dix.github.io/Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -17,15 +17,14 @@ gPF.mBatchPool = true;
 gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
-gPF.mWASM = false;
 gPF.mCanvas = "canvas";
 gPF.mServer = 'local';
 gPF.mGitHub = false;
 gPF.mVersion = "mq4m3t4v_75";
 
-import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"canvas");
@@ -33,22 +32,22 @@ await gAtl.Init([],"canvas");
 
 //EntryPoint
 
-import {CObject} from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js"
-import { CVec2 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec2.js";
-import { CMeshCreateInfo } from "https://06fs4dix.github.io/Artgine/artgine/render/CMeshCreateInfo.js";
-import { CVertexFormat } from "https://06fs4dix.github.io/Artgine/artgine/render/CShader.js";
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
-import { CUtilRender } from "https://06fs4dix.github.io/Artgine/artgine/render/CUtilRender.js";
-import { CPaint3D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
-import { CVec4 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec4.js";
-import { CMath } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMath.js";
-import { CCamCon3DFirstPerson } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
-import { CModalFrameView } from "https://06fs4dix.github.io/Artgine/artgine/util/CModalUtil.js";
-import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/CRenderPass.js";
-import { CConsol } from "https://06fs4dix.github.io/Artgine/artgine/basic/CConsol.js";
-import { CFont, CFontOption } from "https://06fs4dix.github.io/Artgine/artgine/util/CFont.js";
-import { CUIText } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CUI.js";
+import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
+import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
+import { CMeshCreateInfo } from "../../../Artgine/artgine/render/CMeshCreateInfo.js";
+import { CVertexFormat } from "../../../Artgine/artgine/render/CShader.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CUtilRender } from "../../../Artgine/artgine/render/CUtilRender.js";
+import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
+import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
+import { CCamCon3DFirstPerson } from "../../../Artgine/artgine/util/CCamCon.js";
+import { CModalFrameView } from "../../../Artgine/artgine/util/CModalUtil.js";
+import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
+import { CConsol } from "../../../Artgine/artgine/basic/CConsol.js";
+import { CFont, CFontOption } from "../../../Artgine/artgine/util/CFont.js";
+import { CUIText } from "../../../Artgine/artgine/app/subject/CUI.js";
 
 
 declare global {
@@ -63,7 +62,9 @@ gAtl.Frame().Dev().SetClearColor(true,new CVec4(0,0,0,0));
 
 let sub=Can3D.PushSub(new CSubject());
 sub.SetSca(new CVec3(0.1,0.1,0.1));
-sub.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
+let boxSub=sub.PushChild(new CSubject());
+boxSub.SetSca(new CVec3(200,200,200));
+boxSub.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
 sub.SetEnable(false);
 let ui=sub.PushChild(new CUIText());
 ui.SetPos(new CVec3(0,0,200));

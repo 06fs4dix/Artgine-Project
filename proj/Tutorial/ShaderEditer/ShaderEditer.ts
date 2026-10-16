@@ -1,11 +1,11 @@
-﻿//Version
-import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
+//Version
+import "../../../Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "https://06fs4dix.github.io/Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -17,31 +17,28 @@ gPF.mBatchPool = true;
 gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
-gPF.mWASM = false;
 gPF.mCanvas = "";
 gPF.mServer = 'local';
 gPF.mGitHub = false;
 gPF.mVersion = "mpuhzq22_60";
 
-import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
 //The content above this line is automatically set by the program. Do not modify.⬆✋🚫⬆☠️💥🔥
 
 //EntryPoint
-import {CObject} from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js"
-import {  CFileViewer } from "https://06fs4dix.github.io/Artgine/artgine/util/CModalUtil.js";
-import { CCamCon3DThirdPerson } from "https://06fs4dix.github.io/Artgine/artgine/util/CCamCon.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
-import { CPaint3D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CColor } from "https://06fs4dix.github.io/Artgine/artgine/render/CColor.js";
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
-import { CRenderPass } from "https://06fs4dix.github.io/Artgine/artgine/render/CRenderPass.js";
-import { CWASM } from "https://06fs4dix.github.io/Artgine/artgine/basic/CWASM.js";
-import { CConsol } from "https://06fs4dix.github.io/Artgine/artgine/basic/CConsol.js";
+import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
+import {  CFileViewer } from "../../../Artgine/artgine/util/CModalUtil.js";
+import { CCamCon3DThirdPerson } from "../../../Artgine/artgine/util/CCamCon.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CColor } from "../../../Artgine/artgine/render/CColor.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
 let Main=gAtl.NewCanvas("Main");
 let camCon=new CCamCon3DThirdPerson(gAtl.Frame().Input());
 gAtl.Brush().GetCam3D().SetCamCon(camCon);
@@ -57,6 +54,8 @@ let editer=new CFileViewer(["TestShader.ts","ShaderEditer.json","ShaderEditer.ht
     gAtl.Frame().Res().Remove("TestShader.ts");
     gAtl.Frame().Res().Push("TestShader.ts",sl);
 
+    //개별 키로 전부 등록하려면 지연 생성분을 먼저 다 만들어야 한다
+    sl.MaterializeAll();
     for(var each01 of sl.mShader)
     {
         gAtl.Frame().Res().Remove(each01.mKey);
@@ -78,6 +77,7 @@ function Init()
     Main.SetCameraKey("3D");
     
     let sub=Main.PushSub(new CSubject());
+    sub.SetSca(new CVec3(200,200,200));
     let pt=sub.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
     pt.SetTexture(gAtl.Frame().Pal().GetNoneTex());
     let rp=new CRenderPass("TestShader.ts");
@@ -85,9 +85,5 @@ function Init()
     //pt.SetColorModel(new CColor(1,1,1,CColor.eModel.RGBAdd));
 }
 Init();
-
-
-CConsol.Log(CWASM.Checker(10000));
-
 
 

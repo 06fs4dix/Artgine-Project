@@ -1,11 +1,11 @@
-﻿//Version
-import "https://06fs4dix.github.io/Artgine/artgine/artgine.js"
+//Version
+import "../../../Artgine/artgine/artgine.js"
 
 //Class
-import {CClass} from "https://06fs4dix.github.io/Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "https://06fs4dix.github.io/Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -17,17 +17,16 @@ gPF.mBatchPool = true;
 gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
-gPF.mWASM = true;
 gPF.mCanvas = "";
 gPF.mServer = 'local';
 gPF.mGitHub = false;
-gPF.mVersion = "mpuhzq22_109";
+gPF.mVersion = "msxy9gqk_7";
 
-import {CAtelier} from "https://06fs4dix.github.io/Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
-import {CPlugin} from "https://06fs4dix.github.io/Artgine/artgine/util/CPlugin.js";
+import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
 CPlugin.PushPath('Rapier','../../../plugin/Rapier/');
-import "../../../Artgine/plugin/Rapier/Rapier.js"
+import "../../../plugin/Rapier/Rapier.js"
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init(['Main.json'],"");
@@ -35,31 +34,31 @@ var Main = gAtl.Canvas('Main.json');
 //The content above this line is automatically set by the program. Do not modify.⬆✋🚫⬆☠️💥🔥
 
 //EntryPoint
-import {CObject} from "https://06fs4dix.github.io/Artgine/artgine/basic/CObject.js"
-import { CPool } from "https://06fs4dix.github.io/Artgine/artgine/basic/CPool.js";
-import { CVec3 } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CVec3.js";
+import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
+import { CPool } from "../../../Artgine/artgine/basic/CPool.js";
+import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 
-import { CBound } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CBound.js";
+import { CBound } from "../../../Artgine/artgine/geometry/CBound.js";
 
-import { CUpdate } from "https://06fs4dix.github.io/Artgine/artgine/basic/Basic.js";
+import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
 
-import { CMath } from "https://06fs4dix.github.io/Artgine/artgine/geometry/CMath.js";
-import { CBGAttachButton } from "https://06fs4dix.github.io/Artgine/artgine/util/CModalUtil.js";
-import { CUtil } from "https://06fs4dix.github.io/Artgine/artgine/basic/CUtil.js";
-import { CRapier, CRapierCollider, CRapierRigidBody } from "../../../Artgine/plugin/Rapier/Rapier.js";
-import { CEvent } from "https://06fs4dix.github.io/Artgine/artgine/basic/CEvent.js";
+import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
+import { CBGAttachButton } from "../../../Artgine/artgine/util/CModalUtil.js";
+import { CUtil } from "../../../Artgine/artgine/basic/CUtil.js";
+import { CRapier, CRapierCollider, CRapierRigidBody } from "../../../plugin/Rapier/Rapier.js";
+import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
 
-import { CDOM } from "https://06fs4dix.github.io/Artgine/artgine/basic/CDOM.js";
-import { CConsol } from "https://06fs4dix.github.io/Artgine/artgine/basic/CConsol.js";
+import { CDOM } from "../../../Artgine/artgine/basic/CDOM.js";
+import { CConsol } from "../../../Artgine/artgine/basic/CConsol.js";
 
-import { CCollider } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CCollider.js";
-import { CColor } from "https://06fs4dix.github.io/Artgine/artgine/render/CColor.js";
-import { CPaint } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint.js";
-import { CRigidBody } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CRigidBody.js";
-import { CForce } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CForce.js";
-import { CPaint3D } from "https://06fs4dix.github.io/Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CSubject } from "https://06fs4dix.github.io/Artgine/artgine/app/subject/CSubject.js";
-import { CBehavior } from "https://06fs4dix.github.io/Artgine/artgine/app/component/CBehavior.js";
+import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
+import { CColor } from "../../../Artgine/artgine/render/CColor.js";
+import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
+import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
+import { CForce } from "../../../Artgine/artgine/app/component/CForce.js";
+import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
+import { CBehavior } from "../../../Artgine/artgine/app/component/CBehavior.js";
 var gPushMode=false;
 class CControl extends CBehavior
 {
@@ -133,8 +132,8 @@ CPool.On("Box",()=>{
     cl.SetLayer("basic");
     cl.PushCollisionLayer("basic");
     let rb=sub.PushComp(new CRigidBody());
-    cl.SetRestitution();
-    sub.SetSca(new CVec3(0.1,0.1,0.1));
+    cl.SetPushRate();
+    sub.SetSca(new CVec3(20,20,20));
 
     sub.PushComp(new CControl());
 
@@ -150,8 +149,8 @@ CPool.On("Sphere",()=>{
     cl.PushCollisionLayer("basic");
     cl.SetBoundType(CBound.eType.Sphere);
     let rb=sub.PushComp(new CRigidBody());
-    cl.SetRestitution();
-    sub.SetSca(new CVec3(0.1,0.1,0.1));
+    cl.SetPushRate();
+    sub.SetSca(new CVec3(20,20,20));
 
     sub.PushComp(new CControl());
 
@@ -212,6 +211,7 @@ async function Init()
             
 
             rcl.SetFriction(0);
+            //Rapier의 진짜 반발계수다. Artgine의 밀어내기(SetPushRate)와는 다른 값이다.
             rcl.SetRestitution(1);
             if(gPushMode)
             {
@@ -240,7 +240,7 @@ async function Init()
             
 
             sub.SetPos(new CVec3(Math.random()*1000-500,Math.random()*500-250));
-            sub.SetSca(new CVec3(0.1,0.1,0.1));
+            sub.SetSca(new CVec3(20,20,20));
 
             rrb.Impulse(new CVec3(tick*Math.random()-tick*0.5,tick*Math.random()-tick*0.5));
             
@@ -257,7 +257,7 @@ async function Init()
             
             let sub=await CPool.Product<CSubject>(type);
             sub.SetPos(new CVec3(Math.random()*1000-500,Math.random()*1000-500));
-            sub.SetSca(new CVec3(0.1,0.1,0.1));
+            sub.SetSca(new CVec3(20,20,20));
             let col=sub.FindComp(CCollider);
             if(gPushMode==false)    
             {
@@ -266,7 +266,7 @@ async function Init()
             else
             {
                 col.SetEvent(CCollider.eEvent.Collision);
-                col.SetRestitution(0.5);
+                col.SetPushRate(0.5);
             } 
             // if(col.mBound.mMin.x>1000)
             // {
@@ -338,6 +338,12 @@ rapierCheckbox.addEventListener('change', () => {
 });
 
 Init();
+
+
+
+
+
+
 
 
 

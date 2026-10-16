@@ -12,9 +12,9 @@ gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mCanvas = "";
-gPF.mServer = 'local';
+gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mt77xoq9_12";
+gPF.mVersion = "mt2aqrj0_18";
 import { CAtelier } from "../../../Artgine/artgine/app/CAtelier.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
@@ -23,29 +23,21 @@ import { CCamCon3DFirstPerson } from "../../../Artgine/artgine/util/CCamCon.js";
 import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
 import { CPaintCube } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CDayCycle, CLightPlanet } from "../../../Artgine/artgine/app/component/CLightPlanet.js";
-import { CColor } from "../../../Artgine/artgine/render/CColor.js";
+import { CLightPlanet } from "../../../Artgine/artgine/app/component/CLightPlanet.js";
 import { CBGAttachButton, CModalFrameView } from "../../../Artgine/artgine/util/CModalUtil.js";
 import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
 import { CDOM } from "../../../Artgine/artgine/basic/CDOM.js";
-import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
 import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
 import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
 var Main = gAtl.NewCanvas("Main");
 Main.SetCameraKey(gAtl.Brush().GetCam3D().Key());
 gAtl.Brush().GetCam3D().SetCamCon(new CCamCon3DFirstPerson(gAtl.Frame().Input()));
-gAtl.Brush().GetCam3D().Init(new CVec3(1000, 500, 0), new CVec3());
+gAtl.Brush().GetCam3D().Init(new CVec3(0, 500, 0), new CVec3(1000, 700, 0));
 let ligSub = Main.PushSub(new CSubject());
 let ligComp = ligSub.PushComp(new CLightPlanet());
-ligComp.Push(new CDayCycle(new CVec3(0, 1, 0), new CColor(1, 1, 1)));
-ligComp.Push(new CDayCycle(new CVec3(2, 0.5, 0), new CColor(1, 0.8, 0.8)));
-ligComp.Push(new CDayCycle(new CVec3(-2, 0.5, 0), new CColor(1, 0.8, 0.8)));
-ligComp.Push(new CDayCycle(new CVec3(-1, 0, 0), new CColor(1, 0.5, 0.5)));
-ligComp.Push(new CDayCycle(new CVec3(1, 0, 0), new CColor(1, 0.5, 0.5)));
-ligComp.Push(new CDayCycle(new CVec3(0, -1, 0), new CColor(0, 0, 0)));
+ligComp.PushDefault();
 ligComp.SetDirect();
-ligComp.SetColor(new CVec3(1, 0.5, 0.5));
-ligSub.SetPos(new CVec3(1, 0, 0));
+ligComp.SetTime(17);
 let sub = Main.PushSub(new CSubject());
 sub.SetSca(new CVec3(100, 100, 100));
 let ptcube = sub.PushComp(new CPaintCube(""));
@@ -107,11 +99,11 @@ Option_btn.SetContent(`
     <div class="mb-4">
         <h6 class="text-muted border-bottom pb-1">Light Settings</h6>
         <div class="mb-3">
-            <label for="light_dir" class="form-label">
-                Direction: <span id="light_dir_value">0</span>°
+            <label for="light_time" class="form-label">
+                Time: <span id="light_time_value">17.0</span>h
             </label>
-            <input type="range" class="form-range" id="light_dir" 
-                   min="0" max="360" value="0" step="1"
+            <input type="range" class="form-range" id="light_time"
+                   min="0" max="24" value="17" step="0.05"
                    oninput="updateCloudParams()">
         </div>
     </div>
@@ -413,11 +405,9 @@ function updateCloudParams() {
         Number(CDOM.IDValue("auroraMaxY")).toFixed(2);
     document.getElementById("auroraMaxZ_value").textContent =
         Number(CDOM.IDValue("auroraMaxZ")).toFixed(2);
-    let light_dir = Number(CDOM.IDValue("light_dir"));
-    document.getElementById("light_dir_value").textContent = light_dir + "";
-    let angle_rad = (light_dir * CMath.PI()) / 180.0;
-    let dir_vec = new CVec3(0, Math.sin(angle_rad), Math.cos(angle_rad));
-    ligSub.SetPos(dir_vec);
+    let light_time = Number(CDOM.IDValue("light_time"));
+    document.getElementById("light_time_value").textContent = light_time.toFixed(1);
+    ligComp.SetTime(light_time);
     cloudCoverageSA.mData.x = Number(CDOM.IDValue("cloudCoverage"));
     cloudStartSA.mData.x = Number(CDOM.IDValue("cloudStart"));
     cloudHeightSA.mData.x = Number(CDOM.IDValue("cloudHeight"));

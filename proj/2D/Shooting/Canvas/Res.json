@@ -557,7 +557,7 @@
                             ]
                         },
                         "mBoundType": 4,
-                        "mRestitution": 0,
+                        "mPushRate": 0,
                         "mDynamic": true,
                         "mTrigger": false
                     },
@@ -812,7 +812,7 @@
                         "mMoveArr": [
                         ],
                         "mMoveArrGravity": null,
-                        "mRestitution": 0,
+                        "mPushRate": 0,
                         "mElastic": false,
                         "mDamping": 0,
                         "mMass": 0,
@@ -953,7 +953,7 @@
                             ]
                         },
                         "mBoundType": 4,
-                        "mRestitution": 0,
+                        "mPushRate": 0,
                         "mDynamic": true,
                         "mTrigger": false
                     },
@@ -1208,7 +1208,7 @@
                         "mMoveArr": [
                         ],
                         "mMoveArrGravity": null,
-                        "mRestitution": 0,
+                        "mPushRate": 0,
                         "mElastic": false,
                         "mDamping": 0,
                         "mMass": 0,
@@ -1295,7 +1295,7 @@
                                             ]
                                         },
                                         "mBoundType": 0,
-                                        "mRestitution": 0
+                                        "mPushRate": 0
                                     },
                                     {
                                         "class": "CPaint2D",
@@ -1931,7 +1931,7 @@
                                         ]
                                     },
                                     "mBoundType": 0,
-                                    "mRestitution": 0
+                                    "mPushRate": 0
                                 },
                                 "mSize": {
                                     "class": "CVec2",
@@ -2051,7 +2051,7 @@
                                             ]
                                         },
                                         "mBoundType": 0,
-                                        "mRestitution": 0
+                                        "mPushRate": 0
                                     },
                                     {
                                         "class": "CPaint2D",
@@ -2687,7 +2687,7 @@
                                         ]
                                     },
                                     "mBoundType": 0,
-                                    "mRestitution": 0
+                                    "mPushRate": 0
                                 },
                                 "mSize": {
                                     "class": "CVec2",
@@ -2807,7 +2807,7 @@
                                             ]
                                         },
                                         "mBoundType": 0,
-                                        "mRestitution": 0
+                                        "mPushRate": 0
                                     },
                                     {
                                         "class": "CPaint2D",
@@ -3443,7 +3443,7 @@
                                         ]
                                     },
                                     "mBoundType": 0,
-                                    "mRestitution": 0
+                                    "mPushRate": 0
                                 },
                                 "mSize": {
                                     "class": "CVec2",

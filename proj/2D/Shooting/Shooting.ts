@@ -32,11 +32,10 @@ gPF.mBatchPool = true;
 gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
-gPF.mWASM = false;
 gPF.mCanvas = "";
-gPF.mServer = 'local';
+gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mr228xhk_12";
+gPF.mVersion = "mr1h6y58_31";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -66,7 +65,7 @@ import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
 import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
 import { CPool } from "../../../Artgine/artgine/basic/CPool.js";
 import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
-import { CSurfaceBloom } from "../../../Artgine/plugin/Bloom/Bloom.js";
+import { CRPMgrBloom } from "../../../plugin/Bloom/Bloom.js";
 import { CConsol } from "../../../Artgine/artgine/basic/CConsol.js";
 import { CConfirm, CModal, CModalTitleBar } from "../../../Artgine/artgine/basic/CModal.js";
 import { CTimer } from "../../../Artgine/artgine/system/CTimer.js";
@@ -313,58 +312,8 @@ gAtl.Frame().PushEvent(CEvent.eType.Resize,new CEvent(()=>{
 
 
 CModal.PushTitleBar(new CModalTitleBar("DevToolModal", "Bloom", async () => {
-
-    let BloomRPM=new CRPMgr();
-    let emissiveTex=new CTexture();
-    emissiveTex.PushInfo([new CTextureInfo(CTexture.eTarget.Sigle,CTexture.eFormat.RGBA8,1)]);
-    let emissiveTexKey=BloomRPM.PushTex("emissiveTex.tex",emissiveTex);
-    let rp=BloomRPM.PushRP(new CRPAuto());
-    rp.PushAnd(new CCondition("class","==","CPaint2D"));
-    rp.PushAnd(new CCondition("mTag[bloom]"));
-    rp.mShader=gAtl.Frame().Pal().Sl2DKey();
-    rp.mRenderTarget=emissiveTexKey;
-    rp.mTag.add("mask");
-
-
-    let basiceTex=new CTexture();
-    basiceTex.PushInfo([new CTextureInfo(CTexture.eTarget.Sigle,CTexture.eFormat.RGBA8,1)]);
-    let basiceTexKey=BloomRPM.PushTex("basiceTex.tex",basiceTex);
-    rp=BloomRPM.PushRP(new CRPAuto());
-    rp.PushAnd(new CCondition("class","==","CPaint2D"));
-    rp.mShader=gAtl.Frame().Pal().Sl2DKey();
-    rp.mRenderTarget=basiceTexKey;
-
-
-    let sufBloom=BloomRPM.PushSuf(new CSurfaceBloom()) as CSurfaceBloom;
-    let srp=sufBloom.GetRP();
-    srp.mShader=gAtl.Frame().Pal().Sl2DKey();
-    srp.mTag.add("blit");
-    srp.mShaderAttr.push(new CShaderAttr(0,emissiveTexKey));
-    // sufBloom.m_intensity = 100.0;
-    // sufBloom.m_threshold = 1.0;
-    // sufBloom.m_softThreshold = 1.0;
-    // sufBloom.m_lowFrequencyBoost = 20.0;
-    // sufBloom.m_lowFrequencyBoostCurvation = 0.95;
-    // sufBloom.m_highPassFrequency = 1.0;
-    // sufBloom.Refresh();
-
-
-    
-
-    let sufLast=BloomRPM.PushSuf(new CSurface());
-    srp=sufLast.GetRP();
-    sufLast.SetUseRT(false);
-
-
-    srp.mShader=gAtl.Frame().Pal().SlPostKey();
-    srp.mTag.add("blend");
-    srp.mShaderAttr.push(new CShaderAttr(0,basiceTexKey));
-    srp.mShaderAttr.push(new CShaderAttr(1,sufBloom.GetTexKey()));
-    srp.mShaderAttr.push(new CShaderAttr("TexOffBlendFactor",new CMat([1,1,CRenderPass.eBlend.LinearDodge])));
-    //srp.mShaderAttr.push(new CShaderAttr("blend", 1, CRenderPass.eBlend.LinearDodge));
-    //srp.mShaderAttr.push(new CShaderAttr("opacity",1,1));
-
-    Main.PushPlugin(new CCanvasPluginRPMgr(BloomRPM));
+    Main.RemovePlugin(CCanvasPluginRPMgr);
+    Main.PushPlugin(new CCanvasPluginRPMgr(new CRPMgrBloom()));
 }));
 CModal.PushTitleBar(new CModalTitleBar("DevToolModal", "Basic", async () => {
     Main.RemovePlugin(CCanvasPluginRPMgr);
@@ -380,18 +329,6 @@ Option_btn.SetContent(`
     블룸,기본 설정 가능
 </div>`);
 if(gPF.mServer=="webServer")    CScore.Read("Shooting");
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
