@@ -1,8 +1,8 @@
 //Version
-import "../../../Artgine/artgine/artgine.js"
+import "../../../artgine/artgine.js"
 
 //Class
-import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../artgine/basic/CClass.js";
 import { CBackGround } from "./CBackGround.js";
 CClass.Push(CBackGround);
 import { CBossComp } from "./CBossComp.js";
@@ -16,7 +16,7 @@ CClass.Push(CGameMgr);
 import { CPlayerComp } from "./CPlayerComp.js";
 CClass.Push(CPlayerComp);
 //Atelier
-import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 600;
 gPF.mTargetHeight = 800;
@@ -33,37 +33,37 @@ gPF.mServer = 'webServer';
 gPF.mGitHub = false;
 gPF.mVersion = "mqfz8x75_2";
 
-import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../artgine/app/CAtelier.js";
 
-import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
+import {CPlugin} from "../../../artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
 //The content above this line is automatically set by the program. Do not modify.⬆✋🚫⬆☠️💥🔥
 
 //EntryPoint
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
-import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
-import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
-import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
-import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
-import { CForce } from "../../../Artgine/artgine/app/component/CForce.js";
-import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
-import { CAnimation, CClipCoodi, CClipImg, CClipDestroy, CClipAlpha, CClipPRS } from "../../../Artgine/artgine/app/component/CAnimation.js";
-import { CAniFlow } from "../../../Artgine/artgine/app/component/CAniFlow.js";
-import { CAlpha } from "../../../Artgine/artgine/render/CAlpha.js";
-import { CColor } from "../../../Artgine/artgine/render/CColor.js";
-import { CTexture, CTextureInfo } from "../../../Artgine/artgine/render/CTexture.js";
-import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
-import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
-import { CRPAuto, CRPMgr } from "../../../Artgine/artgine/app/canvas/CRPMgr.js";
-import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
-import { CSurface } from "../../../Artgine/artgine/app/subject/CSurface.js";
-import { CCondition } from "../../../Artgine/artgine/util/CCondition.js";
-import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
-import { CRPMgrBloom } from "../../../Artgine/plugin/Bloom/Bloom.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
+import { CVec2 } from "../../../artgine/geometry/CVec2.js";
+import { CVec4 } from "../../../artgine/geometry/CVec4.js";
+import { CEvent } from "../../../artgine/basic/CEvent.js";
+import { CSubject } from "../../../artgine/app/subject/CSubject.js";
+import { CPaint2D } from "../../../artgine/app/component/paint/CPaint2D.js";
+import { CRigidBody } from "../../../artgine/app/component/CRigidBody.js";
+import { CForce } from "../../../artgine/app/component/CForce.js";
+import { CCollider } from "../../../artgine/app/component/CCollider.js";
+import { CAnimation, CClipCoodi, CClipImg, CClipDestroy, CClipAlpha, CClipPRS } from "../../../artgine/app/component/CAnimation.js";
+import { CAniFlow } from "../../../artgine/app/component/CAniFlow.js";
+import { CAlpha } from "../../../artgine/render/CAlpha.js";
+import { CColor } from "../../../artgine/render/CColor.js";
+import { CTexture, CTextureInfo } from "../../../artgine/render/CTexture.js";
+import { CShaderAttr } from "../../../artgine/render/CShaderAttr.js";
+import { CRenderPass } from "../../../artgine/render/CRenderPass.js";
+import { CRPAuto, CRPMgr } from "../../../artgine/app/canvas/CRPMgr.js";
+import { CCanvasPluginRPMgr } from "../../../artgine/app/canvas/CCanvasPluginRPMgr.js";
+import { CSurface } from "../../../artgine/app/subject/CSurface.js";
+import { CCondition } from "../../../artgine/util/CCondition.js";
+import { SDF } from "../../../artgine/z_file/SDF.js";
+import { CRPMgrBloom } from "../../../plugin/Bloom/Bloom.js";
 import { CFx, CDelayComp, CSpinComp } from "./CFx.js";
 import { CGemComp } from "./CGemComp.js";
 import { CMissileComp } from "./CMissileComp.js";

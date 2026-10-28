@@ -22,7 +22,6 @@ import { CAction } from "../../../Artgine/artgine/util/CAction.js";
 import { CCamCon2DFollow } from "../../../Artgine/artgine/util/CCamCon.js";
 import { CRandom } from "../../../Artgine/artgine/util/CRandom.js";
 import { CULPC } from "../../../Artgine/artgine/util/parser/CParserULPC.js";
-import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
 
 export class CUser extends CSubject
 {
@@ -69,7 +68,6 @@ export class CUser extends CSubject
         itemCL.PushCollisionLayer("item");
         itemCL.SetEvent(CCollider.eEvent.Trigger);
 
-        //this.PushComp(new CShadowPlane());
 
         this.mAF = this.PushComp(new CAniFlow());
         this.mAF.mSave = false;

@@ -1,4 +1,23 @@
 import "../../../Artgine/artgine/artgine.js";
+import { CClass } from "../../../Artgine/artgine/basic/CClass.js";
+import { CForgeCamCon } from "./CForgeCamCon.js";
+CClass.Push(CForgeCamCon);
+import { CForgeDayNight } from "./CForgeDayNight.js";
+CClass.Push(CForgeDayNight);
+import { CForgeFlora } from "./CForgeFlora.js";
+CClass.Push(CForgeFlora);
+import { CForgeHandle } from "./CForgeHandle.js";
+CClass.Push(CForgeHandle);
+import { CForgeInspect } from "./CForgeInspect.js";
+CClass.Push(CForgeInspect);
+import { CForgeSample } from "./CForgeSample.js";
+CClass.Push(CForgeSample);
+import { CForgeSync } from "./CForgeSync.js";
+CClass.Push(CForgeSync);
+import { CForgeTerrain } from "./CForgeTerrain.js";
+CClass.Push(CForgeTerrain);
+import { CForgeWalk } from "./CForgeWalk.js";
+CClass.Push(CForgeWalk);
 import { CPreferences } from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
@@ -14,9 +33,11 @@ gPF.mIAuto = true;
 gPF.mCanvas = "";
 gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "forgebuild_1";
+gPF.mVersion = "mvkj9gcx_5";
 import { CAtelier } from "../../../Artgine/artgine/app/CAtelier.js";
 import { CPlugin } from "../../../Artgine/artgine/util/CPlugin.js";
+CPlugin.PushPath('Bloom', '../../../Artgine/plugin/Bloom/');
+import "../../../Artgine/plugin/Bloom/Bloom.js";
 CPlugin.PushPath('ForgeBuild', '../../../Artgine/plugin/ForgeBuild/');
 import "../../../Artgine/plugin/ForgeBuild/ForgeBuild.js";
 CPlugin.PushPath('Water', '../../../Artgine/plugin/Water/');
@@ -27,7 +48,6 @@ await gAtl.Init([], "");
 import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
 import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
 import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
-import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
 import { CModal } from "../../../Artgine/artgine/basic/CModal.js";
 import { CInput } from "../../../Artgine/artgine/system/CInput.js";
 import { CStorage } from "../../../Artgine/artgine/system/CStorage.js";
@@ -36,31 +56,27 @@ import { CUtilRender } from "../../../Artgine/artgine/render/CUtilRender.js";
 import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
 import { CTerrainMap } from "../../../Artgine/artgine/app/subject/CTerrainMap.js";
 import { CComponent } from "../../../Artgine/artgine/app/component/CComponent.js";
-import { CDayCycle, CLightPlanet } from "../../../Artgine/artgine/app/component/CLightPlanet.js";
-import { CColor } from "../../../Artgine/artgine/render/CColor.js";
 import { CWind } from "../../../Artgine/artgine/app/component/CWind.js";
 import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
 import { CPaintCube } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
 import { CProbe } from "../../../Artgine/artgine/app/subject/CProbe.js";
 import { CForgeScene } from "../../../Artgine/plugin/ForgeBuild/CForgeScene.js";
 import { CForgeHistory } from "../../../Artgine/plugin/ForgeBuild/CForgeHistory.js";
-import { CForgeTerrain } from "./CForgeTerrain.js";
-import { CForgeCamCon } from "./CForgeCamCon.js";
-import { CForgeSync } from "./CForgeSync.js";
 import { CForgeTheme } from "../../../Artgine/plugin/ForgeBuild/CForgeTheme.js";
-import { CForgeInspect } from "./CForgeInspect.js";
 import { CForgeAdjust } from "../../../Artgine/plugin/ForgeBuild/CForgeAdjust.js";
 import { CForgeWallGen } from "../../../Artgine/plugin/ForgeBuild/CForgeWallGen.js";
-import { CForgeHandle } from "./CForgeHandle.js";
-import { CForgeSample } from "./CForgeSample.js";
 import { CForgeGeoTest } from "../../../Artgine/plugin/ForgeBuild/CForgeGeoTest.js";
 import { CWater3D } from "../../../Artgine/plugin/Water/Water.js";
 import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
 import { CCondition } from "../../../Artgine/artgine/util/CCondition.js";
-import { CForgeFlora } from "./CForgeFlora.js";
+import { CRPMgrBloom } from "../../../Artgine/plugin/Bloom/Bloom.js";
+import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
+import { CRPMgr } from "../../../Artgine/artgine/app/canvas/CRPMgr.js";
 const U = CForgeScene.sUnit;
 const Main = gAtl.NewCanvas("Main");
 Main.SetCameraKey("3D");
+const gBloom = new CCanvasPluginRPMgr(new CRPMgrBloom({ preset: "Glow" }));
+Main.PushPlugin(gBloom);
 const gCam = gAtl.Brush().GetCam3D();
 gCam.SetFar(80000);
 gCam.SetNear(10);
@@ -96,22 +112,12 @@ const gShadow = Main.PushSub(new CSubject()).PushComp(new class CForgeShadowPara
         gAtl.Brush().FindAutoRP(key).PushAnd(new CCondition("mTag[leafNoSR]", "!=", true));
 }
 const gSky = Main.PushSub(new CSubject());
-gSky.PushComp(new CPaintCube("")).Sky(true, true, true, false, false);
+const gSkyPaint = gSky.PushComp(new CPaintCube(""));
+gSkyPaint.Sky(true, true, true, false, false);
 const gEnv = Main.PushSub(new CSubject());
 gEnv.PushComp(new CWind());
-const gSun = Main.PushSub(new CSubject());
-{
-    gSun.SetKey("sun");
-    const dir = CMath.V3Nor(new CVec3(0.62, 0.48, 0.38));
-    gSun.SetPos(dir);
-    const lig = gSun.PushComp(new CLightPlanet());
-    lig.Push(new CDayCycle(dir, new CColor(1.2, 1.04, 0.86)));
-    lig.Push(new CDayCycle(new CVec3(0, -1, 0), new CColor(0, 0, 0)));
-    lig.SetShadow3D("shadow", 0.001, 0.001, 0.033);
-    lig.SetCascadeTexelThreshold(12);
-    lig.SetShadowDistance(20000);
-    lig.mCascadeDivide = [1500, 5000, 16000];
-}
+const gDayNight = gEnv.PushComp(new CForgeDayNight(Main, gShadow.ambient));
+gDayNight.mPause = true;
 const gScene = new CForgeScene(LoadSeed());
 const gHistory = new CForgeHistory(gScene);
 const gTerrainGen = new CForgeTerrain();
@@ -124,6 +130,7 @@ const gTerrain = Main.PushSub(new CTerrainMap());
     gTerrain.SetLevel([1, 1, 1]);
     gTerrain.mTag.add(CPaint.eTag.Light);
     gTerrain.mTag.add(CPaint.eTag.Shadow);
+    gTerrain.mTag.add("shadowMulti");
     gTerrainGen.Write(gTerrain);
     gTerrain.ClearAll();
 }
@@ -137,10 +144,14 @@ const gWater = Main.PushSub(new CWater3D());
     gWater.GetPT().SetTexCodi(new CVec4(S / 400, S / 400, 0, 0));
     gWater.SetWaterDeep(150, 0, 6000, new CVec3(0.1, 0.27, 0.3), new CVec3(0.36, 0.55, 0.48));
     gWater.NormalFlow(new CVec2(0.1, 0.5));
+    gWater.AddReflector();
+    for (const rp of gWater.mReflector.GetWrite())
+        if (rp.mShader != gAtl.Frame().Pal().SlCube().mKey)
+            rp.mShaderAttr.push(new CShaderAttr("ambientColor", gShadow.ambient));
+    gWater.GetPT().PushCShaderAttr(new CShaderAttr("ambientColor", gShadow.ambient));
 }
 const gFlora = new CForgeFlora(Main, gTerrain, gTerrainGen, gScene);
 gFlora.mCam = gCam;
-gFlora.mSun = gSun.FindComp(CLightPlanet);
 gFlora.mAmbient = gShadow.ambient;
 const gCamCon = new CForgeCamCon(gAtl.Frame().Input());
 gCamCon.mBoundMax = CForgeScene.sSize * U;
@@ -150,6 +161,27 @@ gCam.SetCamCon(gCamCon);
 const gView = new CForgeSync(gScene, gTerrainGen, Main);
 const gTypeKeys = [...CForgeTheme.sList.keys()].sort((_a, _b) => { const A = CForgeTheme.Get(_a), B = CForgeTheme.Get(_b); return A.mCulture - B.mCulture || A.mEra - B.mEra || A.mLabel.localeCompare(B.mLabel); });
 const gHandle = gEnv.PushComp(new CForgeHandle(gScene, gHistory, gTerrainGen, gView, Main, gCam, gCamCon));
+const gWalk = new CForgeWalk(gAtl.Frame().Input());
+gWalk.mTerrain = (_x, _z) => gTerrainGen.HeightM(_x, _z);
+gWalk.mHulls = () => gView.mFactory.GetHulls();
+gWalk.mSubs = () => gView.mFactory.GetForgeSubs();
+function WalkToggle() {
+    if (gWalk.mOn) {
+        gWalk.Leave();
+        return;
+    }
+    const U = CForgeScene.sUnit, t = gCamCon.mTarget;
+    gCam.SetCamCon(gWalk);
+    gHandle.SetEnable(false);
+    gWalk.mOnExit = () => { gCam.SetCamCon(gCamCon); gHandle.SetEnable(true); const b = document.getElementById("forge_walk"); if (b != null)
+        b.classList.remove("active"); };
+    gWalk.Enter(t.x / U, t.z / U, gCamCon.mYaw + Math.PI);
+    const b = document.getElementById("forge_walk");
+    if (b != null)
+        b.classList.add("active");
+}
+document.addEventListener("keydown", (_e) => { if (_e.code == "KeyV" && !_e.defaultPrevented && !gWalk.mOn && _e.target?.tagName != "INPUT" && _e.target?.tagName != "SELECT")
+    WalkToggle(); });
 function LoadSeed() {
     const s = Number(CStorage.Get("ForgeBuild_seed", "1"));
     return s > 0 ? s : 1;
@@ -244,6 +276,8 @@ class CForgeUpdater extends CComponent {
         if (gView.Update())
             for (const p of gProbe)
                 p.GetEnvMap().UpdateAllEnvMap();
+        gView.SetGlow(gDayNight.NightRate());
+        gFlora.mSun ??= gDayNight.mSun;
         gFlora.Update();
     }
 }
@@ -254,7 +288,7 @@ gEnv.PushComp(new CForgeUpdater());
     panel.SetResize(false);
     panel.SetLimitPush(true);
     panel.SetBG("transparent");
-    panel.SetSize(290, 260);
+    panel.SetSize(290, 380);
     panel.SetBody(`
 <div style="pointer-events:auto;background:rgba(255,250,240,0.86);backdrop-filter:blur(8px);border-radius:14px;padding:14px 16px;color:#4a3b2a;font-size:13px;box-shadow:0 6px 24px rgba(60,40,20,0.18);">
   <div id="forge_title" class="d-flex justify-content-between align-items-start" style="margin-bottom:10px;">
@@ -263,11 +297,20 @@ gEnv.PushComp(new CForgeUpdater());
   </div>
   <div id="forge_body">
   <div class="d-grid gap-1 mb-2">
-    <div class="btn-group"><button class="btn btn-sm btn-outline-secondary" data-act="sample">샘플 추가</button><button class="btn btn-sm btn-outline-secondary active" data-act="handle" id="forge_handle">핸들 보기</button></div>
+    <div class="btn-group"><button class="btn btn-sm btn-outline-secondary" data-act="sample">샘플 추가</button><button class="btn btn-sm btn-outline-secondary active" data-act="handle" id="forge_handle">핸들 보기</button><button class="btn btn-sm btn-outline-secondary" id="forge_walk" title="V">1인칭</button></div>
     <select id="forge_preset" class="form-select form-select-sm"><option value="">테스트 장면 불러오기…</option>${CForgeSample.sPresets.map(([k, n]) => `<option value="${k}">${n}</option>`).join("")}</select>
     <div class="d-flex align-items-center gap-2"><span style="white-space:nowrap">타입</span><select id="forge_theme" class="form-select form-select-sm">${gTypeKeys.map(k => `<option value="${k}">${CForgeTheme.Get(k).mLabel}</option>`).join("")}</select></div>
     <div class="d-flex gap-3">${[["mNormal", "노말"], ["mMaterial", "재질"], ["mParallax", "패럴랙스"]].map(([k, n]) => `<label style="white-space:nowrap"><input type="checkbox" class="form-check-input me-1" data-surf="${k}" checked>${n}</label>`).join("")}</div>
     <div class="d-flex gap-3"><label style="white-space:nowrap"><input type="checkbox" class="form-check-input me-1" id="forge_flora" checked>식생(풀·나무·돌)</label><label style="white-space:nowrap"><input type="checkbox" class="form-check-input me-1" id="forge_real">실사</label></div>
+    <div class="d-flex align-items-center gap-2"><label style="white-space:nowrap"><input type="checkbox" class="form-check-input me-1" id="forge_bloom" checked>블룸</label><select id="forge_bloom_p" class="form-select form-select-sm w-auto">${["Glow", "Natural", "OldSchool", "ScreenBlur"].map(k => `<option value="${k}">${k}</option>`).join("")}</select><input id="forge_bloom_i" type="range" class="form-range" min="0" max="3" step="0.01" title="블룸 강도"></div>
+    <div class="d-flex align-items-center gap-2"><label style="white-space:nowrap"><input type="checkbox" class="form-check-input me-1" id="forge_point" checked>점광원</label><input id="forge_point_i" type="range" class="form-range" min="0" max="3" step="0.05" value="1" title="점광원 세기(밤에만 켜짐)"></div>
+    <div class="d-flex gap-3"><label style="white-space:nowrap" title="점광원마다 큐브 그림자맵 6면을 그려서 무겁다"><input type="checkbox" class="form-check-input me-1" id="forge_point_sh">점광원 그림자</label></div>
+    <div class="d-flex justify-content-between"><span>시각</span><b id="forge_clock">--:--</b></div>
+    <input id="forge_time" type="range" class="form-range" min="0" max="24" step="0.05">
+    <div class="d-flex justify-content-between align-items-center"><span>하루 길이</span>
+      <select id="forge_day" class="form-select form-select-sm w-50"><option value="0" selected>멈춤</option><option value="120">2분</option><option value="480">8분</option><option value="1440">24분</option></select></div>
+    <div class="d-flex justify-content-between align-items-center"><span>달 밝기</span>
+      <input id="forge_moon" type="range" class="form-range w-50" min="0" max="1" step="0.01" value="1"></div>
   </div>
   </div>
 </div>`);
@@ -277,9 +320,10 @@ gEnv.PushComp(new CForgeUpdater());
         body.style.display = _fold ? "none" : "";
         title.style.marginBottom = _fold ? "0" : "10px";
         fold.textContent = _fold ? "☰" : "－";
-        panel.SetSize(_fold ? 220 : 290, _fold ? 80 : 260);
+        panel.SetSize(_fold ? 220 : 290, _fold ? 80 : 410);
     };
     fold.onclick = () => { SetFold(body.style.display != "none"); gAtl.Frame().Win().Handle().focus(); };
+    document.getElementById("forge_walk").onclick = () => WalkToggle();
     const insp = new CModal("ForgeInspect");
     insp.SetTitle(CModal.eTitle.None);
     insp.SetResize(false);
@@ -343,6 +387,29 @@ gEnv.PushComp(new CForgeUpdater());
         Log(`실사: ${real.checked ? "켬" : "끔"}`);
         gAtl.Frame().Win().Handle().focus();
     };
+    const bloom = document.getElementById("forge_bloom"), bloomI = document.getElementById("forge_bloom_i");
+    const bloomP = document.getElementById("forge_bloom_p");
+    const ApplyBloom = (_slider) => {
+        const mgr = bloom.checked ? new CRPMgrBloom({ preset: bloomP.value, intensity: _slider ? Number(bloomI.value) : undefined }) : new CRPMgr();
+        gBloom.SetRPMgr(mgr);
+        if (!_slider && mgr instanceof CRPMgrBloom)
+            bloomI.value = String(mgr.GetBloom().m_intensity);
+        bloomI.disabled = bloomP.disabled = !bloom.checked;
+    };
+    window["ForgeBloom"] = (_opt) => gBloom.SetRPMgr(new CRPMgrBloom(_opt));
+    bloom.onchange = () => { ApplyBloom(false); Log(`블룸: ${bloom.checked ? "켬" : "끔"}`); gAtl.Frame().Win().Handle().focus(); };
+    bloomP.onchange = () => { ApplyBloom(false); Log(`블룸 프리셋: ${bloomP.value}`); gAtl.Frame().Win().Handle().focus(); };
+    bloomI.oninput = () => ApplyBloom(true);
+    bloomI.onchange = () => gAtl.Frame().Win().Handle().focus();
+    ApplyBloom(false);
+    const point = document.getElementById("forge_point"), pointI = document.getElementById("forge_point_i");
+    const ApplyPoint = () => { gView.SetPoint(point.checked, Number(pointI.value)); pointI.disabled = !point.checked; };
+    point.onchange = () => { ApplyPoint(); Log(`점광원: ${point.checked ? "켬" : "끔"}`); gAtl.Frame().Win().Handle().focus(); };
+    pointI.oninput = ApplyPoint;
+    pointI.onchange = () => gAtl.Frame().Win().Handle().focus();
+    ApplyPoint();
+    const pointSh = document.getElementById("forge_point_sh");
+    pointSh.onchange = () => { gView.SetPointShadow(pointSh.checked); Log(`점광원 그림자: ${pointSh.checked ? "켬" : "끔"}`); gAtl.Frame().Win().Handle().focus(); };
     const preset = document.getElementById("forge_preset");
     preset.onchange = () => {
         if (preset.value == "")
@@ -352,7 +419,21 @@ gEnv.PushComp(new CForgeUpdater());
         preset.value = "";
         gAtl.Frame().Win().Handle().focus();
     };
+    const time = document.getElementById("forge_time"), clock = document.getElementById("forge_clock");
+    time.oninput = () => gDayNight.SetHour(Number(time.value));
+    document.getElementById("forge_day").onchange = (_e) => {
+        const v = Number(_e.target.value);
+        gDayNight.mPause = v == 0;
+        if (v > 0)
+            gDayNight.mDaySec = v;
+    };
+    const moon = document.getElementById("forge_moon");
+    moon.oninput = () => { gDayNight.mMoonBright = Number(moon.value); };
     setInterval(() => {
+        const h = gDayNight.mHour;
+        clock.textContent = `${String(Math.floor(h)).padStart(2, "0")}:${String(Math.floor((h % 1) * 60)).padStart(2, "0")}`;
+        if (document.activeElement != time)
+            time.value = String(h);
         inspect.Refresh();
         SyncInsp();
     }, 300);
@@ -370,5 +451,7 @@ window["ForgeGeoTest"] = CForgeGeoTest;
 window["gView"] = gView;
 window["gWater"] = gWater;
 window["gHandle"] = gHandle;
+window["gWalk"] = gWalk;
 window["gFlora"] = gFlora;
+window["gDayNight"] = gDayNight;
 window["gCam"] = gCam;

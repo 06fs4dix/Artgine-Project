@@ -1,11 +1,11 @@
 //Version
-import "../../../Artgine/artgine/artgine.js"
+import "../../../artgine/artgine.js"
 
 //Class
-import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -22,33 +22,33 @@ gPF.mServer = 'webServer';
 gPF.mGitHub = false;
 gPF.mVersion = "mqg7brr3_50";
 
-import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../artgine/app/CAtelier.js";
 
-import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
+import {CPlugin} from "../../../artgine/util/CPlugin.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
 //The content above this line is automatically set by the program. Do not modify.⬆✋🚫⬆☠️💥🔥
 
 //EntryPoint
-import { CComponent } from "../../../Artgine/artgine/app/component/CComponent.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
-import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
-import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
-import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
-import { CTree } from "../../../Artgine/artgine/basic/CTree.js";
-import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
-import { CAnimation, CClipMorph, CClipPRS } from "../../../Artgine/artgine/app/component/CAnimation.js";
-import { CAniFlow } from "../../../Artgine/artgine/app/component/CAniFlow.js";
-import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
-import { CLight } from "../../../Artgine/artgine/app/component/CLight.js";
-import { CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
-import { CMeshCopyNode } from "../../../Artgine/artgine/render/CMeshCopyNode.js";
-import { CColor } from "../../../Artgine/artgine/render/CColor.js";
-import { CCamCon3DThirdPerson } from "../../../Artgine/artgine/util/CCamCon.js";
-import { CAimIK, CAttacher, CLookAtIK, CSpringBone, CSpringChain, CSpringCollider } from "../../../Artgine/plugin/CResolverComp/CResolverComp.js";
+import { CComponent } from "../../../artgine/app/component/CComponent.js";
+import { CSubject } from "../../../artgine/app/subject/CSubject.js";
+import { CPaint3D } from "../../../artgine/app/component/paint/CPaint3D.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
+import { CVec4 } from "../../../artgine/geometry/CVec4.js";
+import { CMat } from "../../../artgine/geometry/CMat.js";
+import { CMath } from "../../../artgine/geometry/CMath.js";
+import { CTree } from "../../../artgine/basic/CTree.js";
+import { CUpdate } from "../../../artgine/basic/Basic.js";
+import { CAnimation, CClipMorph, CClipPRS } from "../../../artgine/app/component/CAnimation.js";
+import { CAniFlow } from "../../../artgine/app/component/CAniFlow.js";
+import { CPaint } from "../../../artgine/app/component/paint/CPaint.js";
+import { CLight } from "../../../artgine/app/component/CLight.js";
+import { CLoaderOption } from "../../../artgine/util/CLoader.js";
+import { CMeshCopyNode } from "../../../artgine/render/CMeshCopyNode.js";
+import { CColor } from "../../../artgine/render/CColor.js";
+import { CCamCon3DThirdPerson } from "../../../artgine/util/CCamCon.js";
+import { CAimIK, CAttacher, CLookAtIK, CSpringBone, CSpringChain, CSpringCollider } from "../../../plugin/CResolverComp/CResolverComp.js";
 
 //VRoid 공식 샘플 Sendagaya Shino (CC0)
 const MODEL = "Res/Shino.glb";

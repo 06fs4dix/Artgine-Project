@@ -1,7 +1,7 @@
-import { CBehavior } from "../../../Artgine/artgine/app/component/CBehavior.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CBehavior } from "../../../artgine/app/component/CBehavior.js";
+import { CSubject } from "../../../artgine/app/subject/CSubject.js";
+import { CUpdate } from "../../../artgine/basic/Basic.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
 
 export class CGemComp extends CBehavior
 {

@@ -1,8 +1,8 @@
-import { CInput } from "../../../Artgine/artgine/system/CInput.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CUI, CUIHTML } from "../../../Artgine/artgine/app/subject/CUI.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
-import { CModal } from "../../../Artgine/artgine/basic/CModal.js";
+import { CInput } from "../../../artgine/system/CInput.js";
+import { CSubject } from "../../../artgine/app/subject/CSubject.js";
+import { CUI, CUIHTML } from "../../../artgine/app/subject/CUI.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
+import { CModal } from "../../../artgine/basic/CModal.js";
 const S = (css) => `font-family:sans-serif;${css}`;
 const UPGRADES = [
     { id: "Multi", name: "멀티 샷", desc: "발사 줄기가 늘어납니다.", color: "#4cf", max: 4 },

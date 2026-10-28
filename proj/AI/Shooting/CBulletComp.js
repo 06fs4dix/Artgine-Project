@@ -1,4 +1,4 @@
-import { CBehavior } from "../../../Artgine/artgine/app/component/CBehavior.js";
+import { CBehavior } from "../../../artgine/app/component/CBehavior.js";
 export class CBulletComp extends CBehavior {
     static sTargetTypes = [];
     mIsPlayer = true;

@@ -1,5 +1,6 @@
 import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CPaint3D, CPaint3DMerge } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
 import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
 import { CColor } from "../../../Artgine/artgine/render/CColor.js";
 import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
@@ -27,8 +28,46 @@ export function ClipPRS(_time, _delay, _st, _ed, _type) {
     clip.mBezierRangeX = 0;
     return clip;
 }
+const sBind = new WeakMap();
+const sGroup = new WeakMap();
 export class CVoxelModel {
+    static BindMerge(_sub, _host, _off) {
+        sBind.set(_sub, { host: _host, off: _off });
+    }
+    static MergeBox(_bind, _pos, _size, _color, _shadow) {
+        let groups = sGroup.get(_bind.host);
+        if (groups == null) {
+            groups = new Map();
+            sGroup.set(_bind.host, groups);
+        }
+        const key = _color.mF32A.join(",") + "|" + _shadow;
+        let merge = groups.get(key);
+        if (merge == null) {
+            merge = new CPaint3DMerge();
+            merge.SetColorModel(_color);
+            merge.PushTag(CPaint.eTag.Light);
+            if (_shadow)
+                merge.PushTag(CPaint.eTag.Shadow);
+            _bind.host.PushComp(merge);
+            groups.set(key, merge);
+        }
+        let mat = new CMat();
+        const m = mat.mF32A;
+        m[0] = _size.x;
+        m[5] = _size.y;
+        m[10] = _size.z;
+        m[12] = _bind.off.x + _pos.x;
+        m[13] = _bind.off.y + _pos.y;
+        m[14] = _bind.off.z + _pos.z;
+        mat.UnitCheck();
+        merge.Push(CFrame.Main().Pal().GetBoxMesh(), mat);
+    }
     static Box(_parent, _pos, _size, _color, _shadow = true) {
+        const bind = sBind.get(_parent);
+        if (bind != null) {
+            CVoxelModel.MergeBox(bind, _pos, _size, _color, _shadow);
+            return _parent;
+        }
         let sub = new CSubject();
         sub.SetPos(_pos);
         sub.SetSca(_size);

@@ -1,1 +1,0 @@
-Save the last response as a self-contained HTML file in the temp/ folder at the Artgine root (e.g. temp/summary-YYYYMMDD-HHMMSS.html). After saving, check your project guidelines/instructions for the correct local server URL format, then provide the full browser link.

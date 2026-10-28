@@ -1,5 +1,5 @@
-import "../../../Artgine/artgine/artgine.js";
-import { CPreferences } from "../../../Artgine/artgine/basic/CPreferences.js";
+import "../../../artgine/artgine.js";
+import { CPreferences } from "../../../artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -15,50 +15,50 @@ gPF.mCanvas = "";
 gPF.mServer = 'local';
 gPF.mGitHub = false;
 gPF.mVersion = "mtwh45gn_7";
-import { CAtelier } from "../../../Artgine/artgine/app/CAtelier.js";
+import { CAtelier } from "../../../artgine/app/CAtelier.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init(['Main.json'], "");
 var Main = gAtl.Canvas('Main.json');
-import { CCamCon3DThirdPerson } from "../../../Artgine/artgine/util/CCamCon.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CPaint3D, CPaintCube } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CColor } from "../../../Artgine/artgine/render/CColor.js";
-import { CDOM } from "../../../Artgine/artgine/basic/CDOM.js";
-import { CWebView } from "../../../Artgine/artgine/system/CWebView.js";
-import { CUniqueID } from "../../../Artgine/artgine/basic/CUniqueID.js";
-import { CLoaderOption } from "../../../Artgine/artgine/util/CLoader.js";
-import { CConfirm, CModal } from "../../../Artgine/artgine/basic/CModal.js";
-import { CBase64File } from "../../../Artgine/artgine/util/CBase64File.js";
-import { CAlert } from "../../../Artgine/artgine/basic/CAlert.js";
-import { CAniFlow } from "../../../Artgine/artgine/app/component/CAniFlow.js";
-import { CAnimation, CClipMesh } from "../../../Artgine/artgine/app/component/CAnimation.js";
-import { CTexture } from "../../../Artgine/artgine/render/CTexture.js";
-import { CDrop } from "../../../Artgine/artgine/basic/CModal.js";
-import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
-import { CModalFlex, CModalFrameView } from "../../../Artgine/artgine/util/CModalUtil.js";
-import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
-import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
-import { CLight } from "../../../Artgine/artgine/app/component/CLight.js";
-import { CRPAuto, CRPMgr } from "../../../Artgine/artgine/app/canvas/CRPMgr.js";
-import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
-import { CCondition } from "../../../Artgine/artgine/util/CCondition.js";
-import { CRenderPass } from "../../../Artgine/artgine/render/CRenderPass.js";
-import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
-import { CConsol } from "../../../Artgine/artgine/basic/CConsol.js";
-import { CVertexFormat } from "../../../Artgine/artgine/render/CShader.js";
-import { CTree } from "../../../Artgine/artgine/basic/CTree.js";
-import { CMeshCopyNode } from "../../../Artgine/artgine/render/CMeshCopyNode.js";
-import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
-import { CMeshTreeUpdate } from "../../../Artgine/artgine/render/CMeshTreeUpdate.js";
-import { CBound } from "../../../Artgine/artgine/geometry/CBound.js";
-import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
-import { CUtilWeb } from "../../../Artgine/artgine/util/CUtilWeb.js";
-import { CFile } from "../../../Artgine/artgine/system/CFile.js";
-import { CUtil } from "../../../Artgine/artgine/basic/CUtil.js";
-import { CIframeMsg } from "../../../Artgine/artgine/server/html/CIframeMsg.js";
-import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
+import { CCamCon3DThirdPerson } from "../../../artgine/util/CCamCon.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
+import { CSubject } from "../../../artgine/app/subject/CSubject.js";
+import { CPaint3D, CPaintCube } from "../../../artgine/app/component/paint/CPaint3D.js";
+import { CColor } from "../../../artgine/render/CColor.js";
+import { CDOM } from "../../../artgine/basic/CDOM.js";
+import { CWebView } from "../../../artgine/system/CWebView.js";
+import { CUniqueID } from "../../../artgine/basic/CUniqueID.js";
+import { CLoaderOption } from "../../../artgine/util/CLoader.js";
+import { CConfirm, CModal } from "../../../artgine/basic/CModal.js";
+import { CBase64File } from "../../../artgine/util/CBase64File.js";
+import { CAlert } from "../../../artgine/basic/CAlert.js";
+import { CAniFlow } from "../../../artgine/app/component/CAniFlow.js";
+import { CAnimation, CClipMesh } from "../../../artgine/app/component/CAnimation.js";
+import { CTexture } from "../../../artgine/render/CTexture.js";
+import { CDrop } from "../../../artgine/basic/CModal.js";
+import { CEvent } from "../../../artgine/basic/CEvent.js";
+import { CModalFlex, CModalFrameView } from "../../../artgine/util/CModalUtil.js";
+import { CShaderAttr } from "../../../artgine/render/CShaderAttr.js";
+import { CVec1 } from "../../../artgine/geometry/CVec1.js";
+import { CLight } from "../../../artgine/app/component/CLight.js";
+import { CRPAuto, CRPMgr } from "../../../artgine/app/canvas/CRPMgr.js";
+import { CCanvasPluginRPMgr } from "../../../artgine/app/canvas/CCanvasPluginRPMgr.js";
+import { CCondition } from "../../../artgine/util/CCondition.js";
+import { CRenderPass } from "../../../artgine/render/CRenderPass.js";
+import { SDF } from "../../../artgine/z_file/SDF.js";
+import { CConsol } from "../../../artgine/basic/CConsol.js";
+import { CVertexFormat } from "../../../artgine/render/CShader.js";
+import { CTree } from "../../../artgine/basic/CTree.js";
+import { CMeshCopyNode } from "../../../artgine/render/CMeshCopyNode.js";
+import { CMat } from "../../../artgine/geometry/CMat.js";
+import { CMeshTreeUpdate } from "../../../artgine/render/CMeshTreeUpdate.js";
+import { CBound } from "../../../artgine/geometry/CBound.js";
+import { CMath } from "../../../artgine/geometry/CMath.js";
+import { CUtilWeb } from "../../../artgine/util/CUtilWeb.js";
+import { CFile } from "../../../artgine/system/CFile.js";
+import { CUtil } from "../../../artgine/basic/CUtil.js";
+import { CIframeMsg } from "../../../artgine/server/html/CIframeMsg.js";
+import { CPaint } from "../../../artgine/app/component/paint/CPaint.js";
 const camcon = new CCamCon3DThirdPerson(gAtl.Frame().Input());
 gAtl.Brush().GetCam3D().SetCamCon(camcon);
 gAtl.Brush().GetCam3D().Init(new CVec3(-66, 350, 300), new CVec3(0, 0, 0));
@@ -100,8 +100,9 @@ const cubePaint = skyObj.PushComp(new CPaintCube(""));
 cubePaint.Sky();
 cubePaint.SetColorModel(new CColor(0.3, 0.3, 0.3, CColor.eModel.RGBAdd));
 const obj = Main.PushSub(new CSubject());
-const paint = obj.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh(), true, 100));
+const paint = obj.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
 const leftSubjects = [];
+let gNormalize = true;
 function recalcAndApplyBounds() {
     if (!paint || !paint.mMesh)
         return;
@@ -115,7 +116,7 @@ function recalcAndApplyBounds() {
     let combinedBound = new CBound();
     combinedBound.mType = CBound.eType.Box;
     combinedBound.InitBound(bound);
-    if (leftSubjects.length > 0) {
+    {
         for (let ls of leftSubjects) {
             let lsBound = new CBound();
             lsBound.mType = CBound.eType.Box;
@@ -131,26 +132,15 @@ function recalcAndApplyBounds() {
         let maxSize = CMath.Max(CMath.Max(combinedSize.x, combinedSize.y), combinedSize.z);
         let targetScale = 100;
         let scale = maxSize === 0 ? 1 : targetScale / maxSize;
-        let targetLMat = new CMat();
-        targetLMat.mF32A[0] = scale;
-        targetLMat.mF32A[5] = scale;
-        targetLMat.mF32A[10] = scale;
         let center = combinedBound.GetCenter();
-        targetLMat.SetV3(3, CMath.V3MulV3(center, new CVec3(-scale, -scale, -scale)));
-        targetLMat.UnitCheck();
-        paint.mCenterPos = false;
-        paint.mTargetScale = 0;
-        paint.SetLMat(targetLMat);
+        const normScale = gNormalize ? scale : 1;
+        const normPos = gNormalize ? CMath.V3MulV3(center, new CVec3(-scale, -scale, -scale)) : new CVec3(0, 0, 0);
+        obj.SetSca(normScale);
+        obj.SetPos(normPos);
         for (let ls of leftSubjects) {
-            ls.paint.mCenterPos = false;
-            ls.paint.mTargetScale = 0;
-            ls.paint.SetLMat(targetLMat);
+            ls.subject.SetSca(normScale);
+            ls.subject.SetPos(normPos);
         }
-    }
-    else {
-        paint.mCenterPos = true;
-        paint.mTargetScale = 100;
-        paint.ExeLocalMat();
     }
 }
 const topToolbar = document.createElement("div");
@@ -489,6 +479,20 @@ function updateLeftSubjectsUI() {
     });
 }
 updateLeftSubjectsUI();
+const normalizeLabel = document.createElement("label");
+normalizeLabel.className = "d-flex align-items-center text-white mb-2";
+normalizeLabel.style.fontSize = "13px";
+const normalizeCheck = document.createElement("input");
+normalizeCheck.type = "checkbox";
+normalizeCheck.className = "me-2";
+normalizeCheck.checked = gNormalize;
+normalizeCheck.onchange = () => {
+    gNormalize = normalizeCheck.checked;
+    recalcAndApplyBounds();
+};
+normalizeLabel.appendChild(normalizeCheck);
+normalizeLabel.appendChild(document.createTextNode("로드 시 정규화 (크기 100, 중심 이동)"));
+multiMeshContent.appendChild(normalizeLabel);
 multiMeshContent.appendChild(btnLeaveMesh);
 multiMeshContent.appendChild(leftMeshListContainer);
 const { item: texItem, content: texContent, header: texHeaderAcc } = createAccordionItem("Textures", "inspectorTex");

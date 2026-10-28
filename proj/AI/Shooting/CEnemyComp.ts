@@ -1,12 +1,12 @@
-import { CBehavior } from "../../../Artgine/artgine/app/component/CBehavior.js";
-import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
-import { CForce } from "../../../Artgine/artgine/app/component/CForce.js";
-import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
-import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
-import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
-import { CPlaneInside } from "../../../Artgine/artgine/geometry/CPlaneInside.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
-import { CColor } from "../../../Artgine/artgine/render/CColor.js";
+import { CBehavior } from "../../../artgine/app/component/CBehavior.js";
+import { CCollider } from "../../../artgine/app/component/CCollider.js";
+import { CForce } from "../../../artgine/app/component/CForce.js";
+import { CRigidBody } from "../../../artgine/app/component/CRigidBody.js";
+import { CPaint2D } from "../../../artgine/app/component/paint/CPaint2D.js";
+import { CUpdate } from "../../../artgine/basic/Basic.js";
+import { CPlaneInside } from "../../../artgine/geometry/CPlaneInside.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
+import { CColor } from "../../../artgine/render/CColor.js";
 import { IDamageable } from "./CBulletComp.js";
 
 export interface IEnemyChar

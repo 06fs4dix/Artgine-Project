@@ -12,13 +12,14 @@ export class CForgeSample {
             _c[1] + x * _w * 0.5 * sn + z * _d * 0.5 * cs,
         ]);
     }
+    static sInterior = { enable: true, concept: "modern", kitchen: "auto", bath: "auto", density: 0.6 };
     static sPresets = [["castle", "성곽 마을"], ["fort", "언덕 요새"], ["village", "작은 마을"], ["shapes", "건물 모양 모음"], ["street", "거리 시설(가로등·상점)"]];
     static Shape(_unit, _c, _w, _d, _a) {
         const cs = Math.cos(_a), sn = Math.sin(_a);
         return _unit.map(([x, z]) => { const lx = (x - 0.5) * _w, lz = (z - 0.5) * _d; return [_c[0] + lx * cs - lz * sn, _c[1] + lx * sn + lz * cs]; });
     }
     static House(_h, _poly, _height, _roof = 0) {
-        _h.Push(CForgeScene.eKind.Building, { id: 0, seed: 0, poly: _poly, height: _height, roof: _roof, roofH: 0, glue: [] });
+        _h.Push(CForgeScene.eKind.Building, { id: 0, seed: 0, poly: _poly, height: _height, roof: _roof, roofH: 0, glue: [], interior: CForgeSample.sInterior });
     }
     static Preset(_h, _scene, _key) {
         const K = CForgeScene.eKind, C = [64, 64];
@@ -164,7 +165,7 @@ export class CForgeSample {
             const ang = pa + R.Range(-0.06, 0.06);
             const poly = first ? CForgeSample.LShape(c, bw, bd, ang) : CForgeSample.Rect(c, bw, bd, ang);
             hpoly.push(CForgePoly.Orient(poly));
-            _hist.Push(K.Building, { id: 0, seed: 0, poly, height: R.Range(3, 6.5), roof: CForgeScene.eRoof.Auto, roofH: R.Range(2, 3.5), glue: [] });
+            _hist.Push(K.Building, { id: 0, seed: 0, poly, height: R.Range(3, 6.5), roof: CForgeScene.eRoof.Auto, roofH: R.Range(2, 3.5), glue: [], interior: CForgeSample.sInterior });
             _hist.Push(K.Path, { id: 0, seed: 0, pts: [At(along, side * (half - 0.05)), At(along, side * (off - bd * 0.5 - 0.35))], width: CForgeSample.sLaneW, style: 1 });
         }
         let riverEnd = 0;

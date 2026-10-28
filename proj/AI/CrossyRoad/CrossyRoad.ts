@@ -3,13 +3,21 @@ import "../../../Artgine/artgine/artgine.js"
 
 //Class
 import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
+import { CGameMgr } from "./CGameMgr.js";
+CClass.Push(CGameMgr);
 import { CLane } from "./CLane.js";
 CClass.Push(CLane);
 import { CPlayerComp } from "./CPlayerComp.js";
 CClass.Push(CPlayerComp);
-import { CGameMgr } from "./CGameMgr.js";
-CClass.Push(CGameMgr);
-
+import { CTheme } from "./CTheme.js";
+CClass.Push(CTheme);
+import { CVoxelModel, CSfx, RGB, V3, OnceAni, ClipPRS } from "./CVoxelModel.js";
+CClass.Push(CVoxelModel);
+CClass.Push(CSfx);
+CClass.Push(RGB);
+CClass.Push(V3);
+CClass.Push(OnceAni);
+CClass.Push(ClipPRS);
 //Atelier
 import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
@@ -24,8 +32,9 @@ gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mCanvas = "";
-gPF.mServer = 'local';
+gPF.mServer = 'webServer';
 gPF.mGitHub = false;
+gPF.mVersion = "mvg9ih76_5";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -52,7 +61,7 @@ UI.SetCameraKey("2D");
 
 gAtl.Frame().Dev().SetClearColor(true, new CVec4(0.42, 0.74, 0.96, 0.99));
 
-const sun = Main.PushSub(new CSubject());
+const sun =Main.PushSub(new CSubject());
 sun.SetKey("Sun");
 sun.SetPos(new CVec3(-0.5, 1, 0.3));
 const lig = sun.PushComp(new CLight());
@@ -75,3 +84,5 @@ mgr.SetKey("GameMgr");
 mgr.mCanvas = Main;
 mgr.mUICanvas = UI;
 Main.PushSub(mgr);
+
+

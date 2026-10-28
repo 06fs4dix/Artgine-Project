@@ -43,7 +43,7 @@ import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
 import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 import { CJSON } from "../../../Artgine/artgine/basic/CJSON.js";
 import { CSampler, CSampMinMax } from "../../../Artgine/artgine/util/CSampler.js";
-import { CDensityInfo, CLODInfo, CDensityMap, CDensityColliderInfo } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
+import { CDensityInfo, CLOD, CDensityMap, CDensityColliderInfo } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
 import { CCamCon2DFreeMove, CCamCon3DFirstPerson } from "../../../Artgine/artgine/util/CCamCon.js";
 import { CTexture } from "../../../Artgine/artgine/render/CTexture.js";
 import { CBound } from "../../../Artgine/artgine/geometry/CBound.js";
@@ -118,7 +118,7 @@ async ()=>{
     let densityMap=new CDensityMap();
     densityMap.mDiv=10;
     densityMap.mBuf.Reset(new CVec3(256,256,1),100);
-    let info=densityMap.PushDensityInfo(new CDensityInfo(0x0000ff00,new CVec3(500,500,500),[new CLODInfo("Res/tutorial_map.png",1,0,0)]));
+    let info=densityMap.PushDensityInfo(new CDensityInfo(0x0000ff00,new CVec3(500,500,500),[new CLOD("Res/tutorial_map.png",1,0,0)]));
     //info.mPos=new CSamplerMinMax(new CVec3(-25,-25),new CVec3(25,25));
     info.mSca=new CSampler(new CVec3(0.8,0.8,0.8));
     info.mCollider.push(new CDensityColliderInfo("density"));
@@ -126,7 +126,7 @@ async ()=>{
     Main.PushSub(densityMap);
     densityMap.mBuf.SetTexture(tex);
 
-    // let info=densityMap.PushDensityInfo(new CDensityInfo(0,new CVec3(100,100,100),[new CLODInfo("Res/box.obj",1,0,0)]));
+    // let info=densityMap.PushDensityInfo(new CDensityInfo(0,new CVec3(100,100,100),[new CLOD("Res/box.obj",1,0,0)]));
     // //info.mCollider=true;
     // info.mSca=new CSampler(new CVec3(0.5,0.5,0.5));
     // Main.PushSub(densityMap);

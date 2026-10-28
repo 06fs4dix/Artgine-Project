@@ -23,15 +23,15 @@ gPF.mIAuto = true;
 gPF.mCanvas = "";
 gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mvb0zs5z_2";
+gPF.mVersion = "mvkj9gcx_12";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
 import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
+CPlugin.PushPath('Bloom','../../../Artgine/plugin/Bloom/');
+import "../../../Artgine/plugin/Bloom/Bloom.js"
 CPlugin.PushPath('Inventory','../../../Artgine/plugin/Inventory/');
 import "../../../Artgine/plugin/Inventory/Inventory.js"
-CPlugin.PushPath('ShadowPlane','../../../Artgine/plugin/ShadowPlane/');
-import "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js"
 CPlugin.PushPath('Water','../../../Artgine/plugin/Water/');
 import "../../../Artgine/plugin/Water/Water.js"
 var gAtl = new CAtelier();
@@ -69,7 +69,6 @@ import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
 import { CConsol } from "../../../Artgine/artgine/basic/CConsol.js";
 import { CRPMgrBloom } from "../../../Artgine/plugin/Bloom/Bloom.js";
 
-import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
 
 
 import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
@@ -98,7 +97,7 @@ import { CHTMLDropdown } from "../../../Artgine/artgine/util/CHTMLBar.js";
 import { CVoxelMap } from "../../../Artgine/artgine/app/subject/CVoxelMap.js";
 import { CColor } from "../../../Artgine/artgine/render/CColor.js";
 import { CAtlas } from "../../../Artgine/artgine/util/CAtlas.js";
-import { CDensityInfo, CDensityMap, CDensityColliderInfo } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
+import { CDensityInfo, CDensityMap, CDensityColliderInfo, CLOD } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
 import { CBound } from "../../../Artgine/artgine/geometry/CBound.js";
 import { CSampler, CSampList, CSampMinMax } from "../../../Artgine/artgine/util/CSampler.js";
 import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
@@ -138,7 +137,7 @@ import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.
         // LTree (0x0000ff00) — 셀 800, mSca로 렌더 크기 300 유지
         const ltree = densityMap.PushDensityInfo(new CDensityInfo(0x0000ff00, new CVec3(800, 800, 0)));
         ltree.mCodi = new CSampler(new CVec4(0.12447916716337204, 0.14226190745830536, 0.12526041269302368, 0.000297616352327168));
-        ltree.AddLODLevel([{mRes:tex, mPaintTag:[CPaint.eTag.Shadow, CPaint.eTag.Light]}]);
+        ltree.AddLODLevel([new CLOD(tex, 1, 0, 0, [CPaint.eTag.Shadow, CPaint.eTag.Light])]);
         ltree.mYSort = true;
         ltree.mWind = 20;
         ltree.mSca = new CSampler(new CVec3(300, 300, 1));
@@ -151,7 +150,7 @@ import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.
         // MTree (0x00001000) — 셀 600, mSca로 렌더 크기 100 유지
         const mtree = densityMap.PushDensityInfo(new CDensityInfo(0x00001000, new CVec3(600, 600, 0)));
         mtree.mCodi = new CSampler(new CVec4(0.08020833134651184, 0.09166666865348816, 0.0002604166802484542, 0.9080356955528259));
-        mtree.AddLODLevel([{mRes:tex, mPaintTag:[CPaint.eTag.Shadow, CPaint.eTag.Light]}]);
+        mtree.AddLODLevel([new CLOD(tex, 1, 0, 0, [CPaint.eTag.Shadow, CPaint.eTag.Light])]);
         mtree.mYSort = true;
         mtree.mWind = 20;
         mtree.mSca = new CSampler(new CVec3(100, 100, 1));
@@ -164,7 +163,7 @@ import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.
         // Flower1 (0x00002000) — 셀 400, mSca로 렌더 크기 50 유지
         const flower1 = densityMap.PushDensityInfo(new CDensityInfo(0x00002000, new CVec3(400, 400, 0)));
         flower1.mCodi = new CSampler(new CVec4(0.04114583507180214, 0.04702381044626236, 0.04192708432674408, 0.4288690388202667));
-        flower1.AddLODLevel([{mRes:tex, mPaintTag:[CPaint.eTag.Shadow, CPaint.eTag.Light]}]);
+        flower1.AddLODLevel([new CLOD(tex, 1, 0, 0, [CPaint.eTag.Shadow, CPaint.eTag.Light])]);
         flower1.mYSort = true;
         flower1.mWind = 50;
         flower1.mSca = new CSampler(new CVec3(50, 50, 1));
@@ -173,7 +172,7 @@ import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.
         // Flower2 (0x00003000) — 셀 400, mSca로 렌더 크기 50 유지
         const flower2 = densityMap.PushDensityInfo(new CDensityInfo(0x00003000, new CVec3(400, 400, 0)));
         flower2.mCodi = new CSampler(new CVec4(0.03593749925494194, 0.04404762014746666, 0.12786458432674408, 0.4288690388202667));
-        flower2.AddLODLevel([{mRes:tex, mPaintTag:[CPaint.eTag.Shadow, CPaint.eTag.Light]}]);
+        flower2.AddLODLevel([new CLOD(tex, 1, 0, 0, [CPaint.eTag.Shadow, CPaint.eTag.Light])]);
         flower2.mYSort = true;
         flower2.mWind = 50;
         flower2.mSca = new CSampler(new CVec3(50, 50, 1));
@@ -200,8 +199,7 @@ Real.PushSub(new CNPC("Poppy")).SetPos(new CVec3(11000,8000));
 let MainRPPlug=new CCanvasPluginRPMgr(null);
 Main.PushPlugin(MainRPPlug);
 
-let MainRPMgr=new CRPMgr();
-MainRPPlug.SetRPMgr(MainRPMgr);
+// Main.PushPlugin(new CCanvasPluginRPMgr(new CRPMgrBloom()));
 
 let rp : CRPAuto;
 
@@ -210,7 +208,13 @@ let rp : CRPAuto;
 let RealRPPlug=new CCanvasPluginRPMgr(null);
 Real.PushPlugin(RealRPPlug);
 
+let bloomRPMgrPlugin = new CCanvasPluginRPMgr(new CRPMgrBloom());
+Real.PushPlugin(bloomRPMgrPlugin);
 
+gAtl.Brush().EnsureDefaultRP();
+let emissionRP = gAtl.Brush().FindAutoRP("Forward_Emission_2D");
+let emissionIntensitySA = emissionRP.mShaderAttr.find(sa => sa.mKey == "emissiveIntensity");
+emissionIntensitySA.mData = 0;
 
 let AM7RP=new CRPMgr();
 rp=AM7RP.PushRP(new CRPAuto());
@@ -273,18 +277,6 @@ rp.mTag.add("light");
 // rp.mRenderTarget=basiceTexKey;
 
 
-rp=PM11RP.PushRP(new CRPAuto());
-rp.PushAnd(new CCondition({"s":"class","v":"CShadowPlane"}));
-rp.PushAnd(new CCondition({"s":"mTag[shadowPlane]"}));
-rp.mShader=gAtl.Frame().Pal().Sl2DKey();
-// rp.mRenderTarget=basiceTexKey;
-
-
-
-CRPMgrBloom.Append(PM11RP, { emissiveTo: MainRPMgr });
-
-
-
 function AM7()
 {
     //Real.SetRPMgr(AM7RP);
@@ -302,8 +294,8 @@ function AM7()
     // {
     //     pt.SetColor(new CVec3());
     // }
-    
 
+    emissionIntensitySA.mData = 0;
 }
 window["AM7"]=AM7;
 
@@ -327,8 +319,8 @@ function PM1()
     //     //pt.SetEnable(false);
     //     pt.SetColor(new CVec3());
     // }
-    
 
+    emissionIntensitySA.mData = 0;
 }
 window["PM1"]=PM1;
 
@@ -347,6 +339,7 @@ function PM11()
 
     PointList.SetEnable(true);
     
+    emissionIntensitySA.mData = 1;
 }
 window["PM11"]=PM11;
 
@@ -442,15 +435,6 @@ mg.SetBody(rightDiv);
 
 
 new CModalFrameView();
-
-
-
-
-
-
-
-
-
 
 
 

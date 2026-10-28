@@ -1,11 +1,11 @@
 //Version
-import "../../../Artgine/artgine/artgine.js"
+import "../../../artgine/artgine.js"
 
 //Class
-import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -22,7 +22,11 @@ gPF.mServer = 'webServer';
 gPF.mGitHub = false;
 gPF.mVersion = "mv91179n_4";
 
-import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../artgine/app/CAtelier.js";
+
+import {CPlugin} from "../../../artgine/util/CPlugin.js";
+CPlugin.PushPath('EnvmapGPU','../../../plugin/EnvmapGPU/');
+import "../../../plugin/EnvmapGPU/EnvmapGPU.js"
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init([],"");
@@ -30,24 +34,26 @@ await gAtl.Init([],"");
 
 //EntryPoint
 
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
-import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
-import { CCamCon3DFirstPerson } from "../../../Artgine/artgine/util/CCamCon.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CProbe } from "../../../Artgine/artgine/app/subject/CProbe.js";
-import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
-import { CPaint3D, CPaintCube } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
-import { CLight } from "../../../Artgine/artgine/app/component/CLight.js";
-import { CDayCycle, CLightPlanet } from "../../../Artgine/artgine/app/component/CLightPlanet.js";
-import { CColor } from "../../../Artgine/artgine/render/CColor.js";
-import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
-import { CModal } from "../../../Artgine/artgine/basic/CModal.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
+import { CMath } from "../../../artgine/geometry/CMath.js";
+import { CCamCon3DFirstPerson } from "../../../artgine/util/CCamCon.js";
+import { CSubject } from "../../../artgine/app/subject/CSubject.js";
+import { CProbe } from "../../../artgine/app/subject/CProbe.js";
+import { CPaint } from "../../../artgine/app/component/paint/CPaint.js";
+import { CPaint3D, CPaintCube } from "../../../artgine/app/component/paint/CPaint3D.js";
+import { CLight } from "../../../artgine/app/component/CLight.js";
+import { CDayCycle, CLightPlanet } from "../../../artgine/app/component/CLightPlanet.js";
+import { CColor } from "../../../artgine/render/CColor.js";
+import { CEvent } from "../../../artgine/basic/CEvent.js";
+import { CModal } from "../../../artgine/basic/CModal.js";
+import { CCanvasPluginEnvmapGPU } from "../../../plugin/EnvmapGPU/EnvmapGPU.js";
 
 // -----------------------------------------------
 // cam
 // -----------------------------------------------
 const Main = gAtl.NewCanvas("Main");
 Main.SetCameraKey("3D");
+Main.PushPlugin(new CCanvasPluginEnvmapGPU());
 const camCon = new CCamCon3DFirstPerson(gAtl.Frame().Input());
 camCon.SetPosSensitivity(4);
 Main.GetCam().SetCamCon(camCon);
@@ -94,7 +100,7 @@ function PushBox(_min : CVec3, _max : CVec3, _color : CColor) : CPaint3D
     pt.SetMaterial(0.8, 0);
     pt.PushTag(CPaint.eTag.Light);
     pt.PushTag(CPaint.eTag.Shadow);
-    pt.Env();
+    pt.PushTag(CPaint.eTag.Env);
     pt.PushTag("probe");
     return pt;
 }

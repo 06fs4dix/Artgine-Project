@@ -21,7 +21,7 @@ gPF.mIAuto = true;
 gPF.mCanvas = "";
 gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mr2wye3w_19";
+gPF.mVersion = "mvelycyc_2";
 import { CAtelier } from "../../../Artgine/artgine/app/CAtelier.js";
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;

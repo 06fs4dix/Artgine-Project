@@ -1,5 +1,5 @@
-import { CBehavior } from "../../../Artgine/artgine/app/component/CBehavior.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CBehavior } from "../../../artgine/app/component/CBehavior.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
 export class CGemComp extends CBehavior {
     static sPlayer = null;
     static sMagnet = 110;

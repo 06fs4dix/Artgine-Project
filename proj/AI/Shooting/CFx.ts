@@ -1,22 +1,22 @@
-import { CCanvas } from "../../../Artgine/artgine/app/canvas/CCanvas.js";
-import { CAniFlow } from "../../../Artgine/artgine/app/component/CAniFlow.js";
-import { CBehavior } from "../../../Artgine/artgine/app/component/CBehavior.js";
-import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
-import { CAnimation, CClipAlpha, CClipCoodi, CClipDestroy, CClipImg, CClipPRS } from "../../../Artgine/artgine/app/component/CAnimation.js";
-import { CPaint2D } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
-import { CParticle, CParticleShapeOut } from "../../../Artgine/artgine/app/subject/CParticle.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CVec2 } from "../../../Artgine/artgine/geometry/CVec2.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
-import { CAlpha } from "../../../Artgine/artgine/render/CAlpha.js";
-import { CCamera } from "../../../Artgine/artgine/render/CCamera.js";
-import { CColor } from "../../../Artgine/artgine/render/CColor.js";
-import { CH5Canvas } from "../../../Artgine/artgine/render/CH5Canvas.js";
-import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
-import { CVec1 } from "../../../Artgine/artgine/geometry/CVec1.js";
-import { CCamShakeNoise } from "../../../Artgine/artgine/util/CCamShake.js";
-import { CSampList, CSampMinMax, CSampler } from "../../../Artgine/artgine/util/CSampler.js";
-import { CSchedule } from "../../../Artgine/artgine/util/CSchedule.js";
+import { CCanvas } from "../../../artgine/app/canvas/CCanvas.js";
+import { CAniFlow } from "../../../artgine/app/component/CAniFlow.js";
+import { CBehavior } from "../../../artgine/app/component/CBehavior.js";
+import { CUpdate } from "../../../artgine/basic/Basic.js";
+import { CAnimation, CClipAlpha, CClipCoodi, CClipDestroy, CClipImg, CClipPRS } from "../../../artgine/app/component/CAnimation.js";
+import { CPaint2D } from "../../../artgine/app/component/paint/CPaint2D.js";
+import { CParticleOut } from "../../../artgine/app/subject/CParticle.js";
+import { CSubject } from "../../../artgine/app/subject/CSubject.js";
+import { CVec2 } from "../../../artgine/geometry/CVec2.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
+import { CAlpha } from "../../../artgine/render/CAlpha.js";
+import { CCamera } from "../../../artgine/render/CCamera.js";
+import { CColor } from "../../../artgine/render/CColor.js";
+import { CH5Canvas } from "../../../artgine/render/CH5Canvas.js";
+import { CShaderAttr } from "../../../artgine/render/CShaderAttr.js";
+import { CVec1 } from "../../../artgine/geometry/CVec1.js";
+import { CCamShakeNoise } from "../../../artgine/util/CCamShake.js";
+import { CSampList, CSampMinMax, CSampler } from "../../../artgine/util/CSampler.js";
+import { CSchedule } from "../../../artgine/util/CSchedule.js";
 import { CBulletComp } from "./CBulletComp.js";
 
 export class CDelayComp extends CBehavior
@@ -151,15 +151,12 @@ export class CFx
         ani.Push(new CClipDestroy(_life));
         sample.PushComp(new CAniFlow(ani));
 
-        let shape = new CParticleShapeOut();
-        shape.mDir = new CSampMinMax<CVec3>(new CVec3(-1, -1, 0), new CVec3(1, 1, 0));
-        shape.mSpeed = new CSampMinMax<number>(_speedMin, _speedMax);
-
-        let par = new CParticle();
+        let par = new CParticleOut();
+        par.mDir = new CSampMinMax<CVec3>(new CVec3(-1, -1, 0), new CVec3(1, 1, 0));
+        par.mMoveSpeed = new CSampMinMax<number>(_speedMin, _speedMax);
         par.mSample = new CSampList<CSubject | string>([sample]);
         par.mCreateCount = new CSampler<number>(_count);
         par.mTimer = new CSchedule(0, 1);
-        par.mShape = shape;
         par.SetPos(new CVec3(_pos.x, _pos.y, 0.3));
         CFx.sCanvas.PushSub(par);
     }

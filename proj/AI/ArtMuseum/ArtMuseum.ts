@@ -18,9 +18,9 @@ gPF.mXR = false;
 gPF.mDeveloper = true;
 gPF.mIAuto = true;
 gPF.mCanvas = "";
-gPF.mServer = 'local';
+gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mv7d6evi_44";
+gPF.mVersion = "mveoz3mt_7";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -829,6 +829,8 @@ gAtl.Frame().PushEvent(CEvent.eType.Update, (_update: CUpdate) => {
         if (picked) ShowDocent(picked === gDocentArt ? null : picked);
     }
 });
+
+
 
 
 

@@ -1,5 +1,5 @@
 import { CForgeRand } from "../../../Artgine/plugin/ForgeBuild/CForgeRand.js";
-import { CForgeScene, ForgeV2, IForgeBridge, IForgeBuilding, IForgeChurch, IForgeDock, IForgeFence, IForgeMonument, IForgePath, IForgeStair, IForgeTower, IForgeWall } from "../../../Artgine/plugin/ForgeBuild/CForgeScene.js";
+import { CForgeScene, ForgeV2, IForgeBridge, IForgeBuilding, IForgeChurch, IForgeDock, IForgeFence, IForgeInterior, IForgeMonument, IForgePath, IForgeStair, IForgeTower, IForgeWall } from "../../../Artgine/plugin/ForgeBuild/CForgeScene.js";
 import { CForgeHistory } from "../../../Artgine/plugin/ForgeBuild/CForgeHistory.js";
 import { CForgeCurve, CForgeSpline } from "../../../Artgine/plugin/ForgeBuild/CForgeSpline.js";
 import { CForgeTerrain } from "./CForgeTerrain.js";
@@ -18,6 +18,7 @@ export class CForgeSample
         ] as ForgeV2);
     }
 
+	static sInterior : IForgeInterior = { enable : true, concept : "modern", kitchen : "auto", bath : "auto", density : 0.6 };
     static sPresets : [string, string][] = [["castle", "성곽 마을"], ["fort", "언덕 요새"], ["village", "작은 마을"], ["shapes", "건물 모양 모음"], ["street", "거리 시설(가로등·상점)"]];
 
     //외곽선 [0~1] 좌표를 중심·크기·각도로 옮긴다
@@ -28,7 +29,7 @@ export class CForgeSample
     }
     static House(_h : CForgeHistory, _poly : ForgeV2[], _height : number, _roof : number = 0)
     {
-        _h.Push<IForgeBuilding>(CForgeScene.eKind.Building, { id : 0, seed : 0, poly : _poly, height : _height, roof : _roof, roofH : 0, glue : [] });
+        _h.Push<IForgeBuilding>(CForgeScene.eKind.Building, { id : 0, seed : 0, poly : _poly, height : _height, roof : _roof, roofH : 0, glue : [], interior : CForgeSample.sInterior });
     }
 
     //테스트 장면(시각 확인용). 기존 장면은 지우고 하나의 실행 취소 묶음으로 만든다
@@ -195,7 +196,7 @@ export class CForgeSample
             const ang = pa + R.Range(-0.06, 0.06);
             const poly = first ? CForgeSample.LShape(c, bw, bd, ang) : CForgeSample.Rect(c, bw, bd, ang);
             hpoly.push(CForgePoly.Orient(poly));
-            _hist.Push<IForgeBuilding>(K.Building, { id : 0, seed : 0, poly, height : R.Range(3, 6.5), roof : CForgeScene.eRoof.Auto, roofH : R.Range(2, 3.5), glue : [] });
+            _hist.Push<IForgeBuilding>(K.Building, { id : 0, seed : 0, poly, height : R.Range(3, 6.5), roof : CForgeScene.eRoof.Auto, roofH : R.Range(2, 3.5), glue : [], interior : CForgeSample.sInterior });
             _hist.Push<IForgePath>(K.Path, { id : 0, seed : 0, pts : [At(along, side * (half - 0.05)), At(along, side * (off - bd * 0.5 - 0.35))], width : CForgeSample.sLaneW, style : 1 });
         }
 

@@ -18,7 +18,7 @@ import { Binormal3, Build, CMat, CVec2, CVec3, CVec4,  FloatMulMat,  LWVPMul,
 	V2MulFloat,
 	V2AddV2,
 	V4Fract,
-	Null} from "../../../Artgine/artgine/z_file/Shader"
+	Null} from "../../../artgine/z_file/Shader"
 
 
 var worldMat : CMat;

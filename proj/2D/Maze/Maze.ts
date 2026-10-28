@@ -25,7 +25,7 @@ gPF.mIAuto = true;
 gPF.mCanvas = "";
 gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mr2wye3w_19";
+gPF.mVersion = "mvelycyc_2";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -429,6 +429,7 @@ CSysAuth.Confirm(true).then(async (_enable)=>{
     audio.Volume(0.5);
     audio.Play();
 });
+
 
 
 

@@ -13,7 +13,6 @@ import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 import { CInput } from "../../../Artgine/artgine/system/CInput.js";
 import { CCoroutine } from "../../../Artgine/artgine/util/CCoroutine.js";
 import { CULPC } from "../../../Artgine/artgine/util/parser/CParserULPC.js";
-import { CShadowPlane } from "../../../Artgine/plugin/ShadowPlane/ShadowPlane.js";
 
 
 export class CNPC extends CSubject
@@ -146,7 +145,6 @@ export class CNPC extends CSubject
         this.mCL.SetPickMouse(true);
         this.mCL.SetPushRate(0);
 
-        //this.PushComp(new CShadowPlane());
 
         let co = new CCoroutine(this.AutoChat, this);
         co.Start();

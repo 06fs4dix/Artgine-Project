@@ -1,11 +1,11 @@
 //Version
-import "../../../Artgine/artgine/artgine.js"
+import "../../../artgine/artgine.js"
 
 //Class
-import {CClass} from "../../../Artgine/artgine/basic/CClass.js";
+import {CClass} from "../../../artgine/basic/CClass.js";
 
 //Atelier
-import {CPreferences} from "../../../Artgine/artgine/basic/CPreferences.js";
+import {CPreferences} from "../../../artgine/basic/CPreferences.js";
 var gPF = new CPreferences();
 gPF.mTargetWidth = 0;
 gPF.mTargetHeight = 0;
@@ -22,11 +22,11 @@ gPF.mServer = 'local';
 gPF.mGitHub = false;
 gPF.mVersion = "mpuhzq22_36";
 
-import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
+import {CAtelier} from "../../../artgine/app/CAtelier.js";
 
-import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
-CPlugin.PushPath('test','../../../Artgine/plugin/test/');
-import "../../../Artgine/plugin/test/test.js"
+import {CPlugin} from "../../../artgine/util/CPlugin.js";
+CPlugin.PushPath('test','../../../plugin/test/');
+import "../../../plugin/test/test.js"
 var gAtl = new CAtelier();
 gAtl.mPF = gPF;
 await gAtl.Init(['Main.json'],"");
@@ -34,16 +34,16 @@ var Main = gAtl.Canvas('Main.json');
 //The content above this line is automatically set by the program. Do not modify.⬆✋🚫⬆☠️💥🔥
 
 //EntryPoint
-import {CObject} from "../../../Artgine/artgine/basic/CObject.js"
-import { CConsol } from "../../../Artgine/artgine/basic/CConsol.js";
-import { CPool } from "../../../Artgine/artgine/basic/CPool.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CRPMgr } from "../../../Artgine/artgine/app/canvas/CRPMgr.js";
-import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
-import { CFrame } from "../../../Artgine/artgine/util/CFrame.js";
-import { CInput } from "../../../Artgine/artgine/system/CInput.js";
-import { CAlert } from "../../../Artgine/artgine/basic/CAlert.js";
-import { CCanvasPluginRPMgr } from "../../../Artgine/artgine/app/canvas/CCanvasPluginRPMgr.js";
+import {CObject} from "../../../artgine/basic/CObject.js"
+import { CConsol } from "../../../artgine/basic/CConsol.js";
+import { CPool } from "../../../artgine/basic/CPool.js";
+import { CSubject } from "../../../artgine/app/subject/CSubject.js";
+import { CRPMgr } from "../../../artgine/app/canvas/CRPMgr.js";
+import { CEvent } from "../../../artgine/basic/CEvent.js";
+import { CFrame } from "../../../artgine/util/CFrame.js";
+import { CInput } from "../../../artgine/system/CInput.js";
+import { CAlert } from "../../../artgine/basic/CAlert.js";
+import { CCanvasPluginRPMgr } from "../../../artgine/app/canvas/CCanvasPluginRPMgr.js";
 
 //플러그인에서 정의한 클래스 사용
 let CTest=CClass.New("CTest");

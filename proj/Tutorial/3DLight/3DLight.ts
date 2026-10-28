@@ -21,11 +21,13 @@ gPF.mWASM = false;
 gPF.mCanvas = "";
 gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mtuwqfrg_2";
+gPF.mVersion = "mvkj9gcx_27";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
 import {CPlugin} from "../../../Artgine/artgine/util/CPlugin.js";
+CPlugin.PushPath('Bloom','../../../Artgine/plugin/Bloom/');
+import "../../../Artgine/plugin/Bloom/Bloom.js"
 CPlugin.PushPath('Water','../../../Artgine/plugin/Water/');
 import "../../../Artgine/plugin/Water/Water.js"
 var gAtl = new CAtelier();
@@ -70,7 +72,7 @@ import { CMath } from "../../../Artgine/artgine/geometry/CMath.js";
 import { CEvent } from "../../../Artgine/artgine/basic/CEvent.js";
 import { CComponent } from "../../../Artgine/artgine/app/component/CComponent.js";
 import { CVec4 } from "../../../Artgine/artgine/geometry/CVec4.js";
-import { CProbe } from "../../../Artgine/artgine/app/subject/CProbe.js";
+import { CRPMgrBloom } from "../../../Artgine/plugin/Bloom/Bloom.js";
 
 //====================================================
 // 텍스쳐 로딩
@@ -78,16 +80,40 @@ import { CProbe } from "../../../Artgine/artgine/app/subject/CProbe.js";
 const opt=new CLoaderOption();
 opt.mFilter=CTexture.eFilter.Linear;
 opt.mWrap=CTexture.eWrap.Repeat;
-await gAtl.Frame().Load().Exe("Res/teapot/1zflt0j.jpg",opt);
-await gAtl.Frame().Load().Exe("Res/teapot/1zflt0j_NRM.jpg",opt);
-await gAtl.Frame().Load().Exe("Res/teapot/1zflt0j_lig.jpg",opt);
+await gAtl.Frame().Load().Exe("../SharedRes/teapot/1zflt0j.jpg",opt);
+await gAtl.Frame().Load().Exe("../SharedRes/teapot/1zflt0j_NRM.jpg",opt);
+await gAtl.Frame().Load().Exe("../SharedRes/teapot/1zflt0j_lig.jpg",opt);
 
-const skyTexKey=["Res/skybox/right.jpg","Res/skybox/left.jpg","Res/skybox/bottom.jpg","Res/skybox/top.jpg","Res/skybox/front.jpg","Res/skybox/back.jpg"];
+const ligOpt=new CLoaderOption();
+ligOpt.mFilter=CTexture.eFilter.Linear;
+ligOpt.mWrap=CTexture.eWrap.Repeat;
+ligOpt.mAlphaBleed=false;
+ligOpt.mAlphaCut=0;
+await gAtl.Frame().Load().Exe("../SharedRes/teapot/1zflt0j_lig.jpg",ligOpt);
+
+const skyLowTexBufList=[];
+
+const skyOpt=new CLoaderOption();
+skyOpt.mGPU = false;
+const skyTexKey=["../SharedRes/skybox/right.jpg","../SharedRes/skybox/left.jpg","../SharedRes/skybox/bottom.jpg","../SharedRes/skybox/top.jpg","../SharedRes/skybox/front.jpg","../SharedRes/skybox/back.jpg"];
 const skyTexList:CTexture[]=[];
-await gAtl.Frame().Load().Exe(skyTexKey);
+await gAtl.Frame().Load().Exe(skyTexKey, skyOpt);
 for(let i=0;i<skyTexKey.length;++i)
+{
     skyTexList.push(gAtl.Frame().Res().Find(skyTexKey[i]) as CTexture);
+    skyLowTexBufList.push(skyTexList[i].GetBuf()[0]);
+}
 const cubeTexKey=gAtl.Frame().Ren().BuildCubeMap(skyTexList,true,"cube.tex");
+
+const envTexKey="env.tex";
+const envTex=new CTexture();
+envTex.SetSize(128, 128);
+envTex.PushInfo([new CTextureInfo(CTexture.eTarget.Cube, CTexture.eFormat.RGBA8)]);
+envTex.GetBuf().push(...skyLowTexBufList);
+envTex.SetMipMap(CTexture.eMipmap.EnvFilter);
+envTex.SetFilter(CTexture.eFilter.Linear);
+gAtl.Frame().Ren().BuildTexture(envTex);
+gAtl.Frame().Res().Push(envTexKey, envTex);
 
 //====================================================
 // 옵션
@@ -148,7 +174,7 @@ rp.mRenderTarget=gBufNorTexKey;
 
 // gBuf - Albedo
 const gBufAlbTex=new CTexture();
-gBufNorTex.PushInfo([new CTextureInfo(CTexture.eTarget.Sigle,CTexture.eFormat.RGBA8,1)]);
+gBufAlbTex.PushInfo([new CTextureInfo(CTexture.eTarget.Sigle,CTexture.eFormat.RGBA8,1)]);
 const gBufAlbTexKey=DeferredSingle.PushTex("gBufAlb.tex",gBufAlbTex);
 
 rp=DeferredSingle.PushRP(new CRPAuto());
@@ -162,7 +188,7 @@ rp.mRenderTarget=gBufAlbTexKey;
 
 // gBuf - SPE
 const gBufSPETex=new CTexture();
-gBufNorTex.PushInfo([new CTextureInfo(CTexture.eTarget.Sigle,CTexture.eFormat.RGBA8,1)]);
+gBufSPETex.PushInfo([new CTextureInfo(CTexture.eTarget.Sigle,CTexture.eFormat.RGBA8,1)]);
 const gBufSPE=DeferredSingle.PushTex("gBufSPE.tex",gBufSPETex);
 
 rp=DeferredSingle.PushRP(new CRPAuto());
@@ -217,6 +243,21 @@ srp.mShaderAttr.push(new CShaderAttr(2,gBufNorTexKey));
 srp.mShaderAttr.push(new CShaderAttr(3,gBufSPE));
 srp.mShaderAttr.push(new CShaderAttr("renType",1));
 
+// Surface - Emissive LIGHT
+const sufLig2=DeferredSingle.PushSuf(new CSurface());
+sufLig2.NewRT([new CTextureInfo(CTexture.eTarget.Sigle, CTexture.eFormat.RGBA32F, 1)]);
+srp=sufLig2.GetRP();
+srp.mShader=gAtl.Frame().Pal().SlPostKey();
+srp.mTag.add("light");
+srp.mShaderAttr.push(new CShaderAttr(0,gBufAlbTexKey));
+srp.mShaderAttr.push(new CShaderAttr(1,gBufPosTexKey));
+srp.mShaderAttr.push(new CShaderAttr(2,gBufNorTexKey));
+srp.mShaderAttr.push(new CShaderAttr(3,gBufSPE));
+srp.mShaderAttr.push(new CShaderAttr("renType",2));
+srp.mShaderAttr.push(new CShaderAttr("ligStep0", SDF.eLightStep0.None));
+srp.mShaderAttr.push(new CShaderAttr("ligStep1", SDF.eLightStep1.None));
+srp.mShaderAttr.push(new CShaderAttr("ligStep2", SDF.eLightStep2.Emissive));
+
 // Cubemap - Sky
 rp=DeferredSingle.PushRP(new CRPAuto());
 rp.PushAnd(new CCondition("class","==","CPaintCube"));
@@ -240,10 +281,11 @@ srp.mShaderAttr.push(new CShaderAttr(2,rp.mRenderTarget));
 srp.mShaderAttr.push(new CShaderAttr("BlendColor0", new CVec4(SDF.eBlend.Texture, 0)));                                         // col0 = diffuse
 srp.mShaderAttr.push(new CShaderAttr("BlendColor1", new CVec4(SDF.eBlend.Texture, 1)));                                         // col1 = specular
 srp.mShaderAttr.push(new CShaderAttr("BlendColor2", new CVec4(SDF.eBlend.Texture, 2)));                                         // col2 = sky
-srp.mShaderAttr.push(new CShaderAttr("BlendColor3", new CVec4(SDF.eBlend.LinearDodge, 0, 1, 1)));                               // col3 = col0(dif) + col1(spe)
-srp.mShaderAttr.push(new CShaderAttr("BlendColor4", new CVec4(SDF.eBlend.Tonemap, 3, 1/*exposure*/, SDF.eTonemap.Neutral)));    // col4 = tonemap(col3)
-srp.mShaderAttr.push(new CShaderAttr("BlendColor5", new CVec4(SDF.eBlend.GammaCorrect, 4)));                                    // col5 = gamma(col4)
-srp.mShaderAttr.push(new CShaderAttr("BlendColor6", new CVec4(SDF.eBlend.LinearDodge, 5, 2, 1)));                                  // col6 = col5 + col2(sky)
+srp.mShaderAttr.push(new CShaderAttr("BlendColor4", new CVec4(SDF.eBlend.LinearDodge, 0, 1, 1)));                               // col4 = col0(dif) + col1(spe) * 1
+srp.mShaderAttr.push(new CShaderAttr("BlendColor6", new CVec4(SDF.eBlend.Tonemap, 4, 1/*exposure*/, SDF.eTonemap.Neutral)));    // col6 = tonemap(col4)
+srp.mShaderAttr.push(new CShaderAttr("BlendColor7", new CVec4(SDF.eBlend.GammaCorrect, 6)));                                    // col7 = gamma(col6)
+srp.mShaderAttr.push(new CShaderAttr("BlendColor8", new CVec4(SDF.eBlend.LinearDodge, 7, 2, 1)));                               // col8 = col7 + col2(sky) * 1
+
 
 //====================================================
 // DeferredMulti
@@ -291,13 +333,24 @@ sufLig0.NewRT([
 ]);
 srp=sufLig0.GetRP();
 srp.mShader=gAtl.Frame().Pal().SlPostKey();
-srp.mTag.add("light").add("shadow").add("env");
+srp.mTag.add("light").add("shadow");
 srp.mShaderAttr.push(new CShaderAttr(SDF.eTexSlot.SingleShadowRead,gAtl.Frame().Pal().GetShadowReadTex()));
 srp.mShaderAttr.push(new CShaderAttr("shadowOn",new CVec1(1)));
 srp.mShaderAttr.push(new CShaderAttr(0,gBufMultiTexKey));//순차적으로 등록된다
-srp.mShaderAttr.push(new CShaderAttr(SDF.eTexSlot.ArrEnvmap,gAtl.Frame().Pal().GetEnvMapTex()));
+srp.mShaderAttr.push(new CShaderAttr(0,envTexKey));//환경맵
 srp.mShaderAttr.push(new CShaderAttr("ligStep0", SDF.eLightStep0.Lambert));
 srp.mShaderAttr.push(new CShaderAttr("ligStep1", SDF.eLightStep1.CookTorrance));
+srp.mShaderAttr.push(new CShaderAttr("envmapOn", 1));
+srp.mShaderAttr.push(new CShaderAttr("ligStep2", SDF.eLightStep2.Emissive));
+
+// Surface - Emissive (MRT 2번 어태치먼트를 단일 텍스처로 추출)
+const sufEmis=DeferredMulti.PushSuf(new CSurface());
+sufEmis.NewRT([new CTextureInfo(CTexture.eTarget.Sigle, CTexture.eFormat.RGBA32F, 1)]);
+srp=sufEmis.GetRP();
+srp.mShader=gAtl.Frame().Pal().SlPostKey();
+srp.mTag.add("blend");
+srp.mShaderAttr.push(new CShaderAttr(0,sufLig0.GetTexKey()));
+srp.mShaderAttr.push(new CShaderAttr("BlendColor0", new CVec4(SDF.eBlend.Texture, 2)));
 
 // Cubemap - Sky
 rp=DeferredMulti.PushRP(new CRPAuto());
@@ -321,39 +374,18 @@ srp.mShaderAttr.push(new CShaderAttr(2,rp.mRenderTarget));
 srp.mShaderAttr.push(new CShaderAttr("BlendColor0", new CVec4(SDF.eBlend.Texture, 0)));                                         // col0 = diffuse
 srp.mShaderAttr.push(new CShaderAttr("BlendColor1", new CVec4(SDF.eBlend.Texture, 1)));                                         // col1 = specular
 srp.mShaderAttr.push(new CShaderAttr("BlendColor2", new CVec4(SDF.eBlend.Texture, 2)));                                         // col2 = sky
-srp.mShaderAttr.push(new CShaderAttr("BlendColor3", new CVec4(SDF.eBlend.LinearDodge, 0, 1, 1)));                               // col3 = col0(dif) + col1(spe) * 1
-srp.mShaderAttr.push(new CShaderAttr("BlendColor4", new CVec4(SDF.eBlend.Tonemap, 3, 1/*exposure*/, SDF.eTonemap.Neutral)));    // col4 = tonemap(col3)
-srp.mShaderAttr.push(new CShaderAttr("BlendColor5", new CVec4(SDF.eBlend.GammaCorrect, 4)));                                    // col5 = gamma(col4)
-srp.mShaderAttr.push(new CShaderAttr("BlendColor6", new CVec4(SDF.eBlend.LinearDodge, 5, 2, 1)));                               // col6 = col5 + col2(sky) * 1
+srp.mShaderAttr.push(new CShaderAttr("BlendColor4", new CVec4(SDF.eBlend.LinearDodge, 0, 1, 1)));                               // col4 = col0(dif) + col1(spe) * 1
+srp.mShaderAttr.push(new CShaderAttr("BlendColor6", new CVec4(SDF.eBlend.Tonemap, 4, 1/*exposure*/, SDF.eTonemap.Neutral)));    // col6 = tonemap(col4)
+srp.mShaderAttr.push(new CShaderAttr("BlendColor7", new CVec4(SDF.eBlend.GammaCorrect, 6)));                                    // col7 = gamma(col6)
+srp.mShaderAttr.push(new CShaderAttr("BlendColor8", new CVec4(SDF.eBlend.LinearDodge, 7, 2, 1)));                               // col8 = col7 + col2(sky) * 1
+
+
+//=============================================
 
 //=============================================
 // forward
 //=============================================
 const forward=new CRPMgr();
-
-// ShadowRead
-ShadowReadTexKey=forward.PushTex(gAtl.Frame().Pal().GetShadowReadTex(),new CTexture());
-
-rp=forward.PushRP(new CRPAuto());
-rp.PushAnd(new CCondition("class","==","CPaint3D"));
-rp.mPriority=CRenderPass.ePriority.BackGround+1;
-rp.mShaderAttr.push(new CShaderAttr(SDF.eTexSlot.ArrShadowWrite,gAtl.Frame().Pal().GetShadowWriteTex()));
-for(const attr of shadowShaderAttrs) {
-    rp.mShaderAttr.push(attr);
-}
-rp.mAlpha=false;
-rp.mShader=gAtl.Frame().Pal().Sl3DKey();
-rp.mRenderTarget=gAtl.Frame().Pal().GetShadowReadTex();
-rp.mTag.add("shadowRead");
-
-// Light
-rp=forward.PushRP(new CRPAuto());
-rp.PushAnd(new CCondition("class","==","CPaint3D"));
-rp.mShaderAttr.push(new CShaderAttr(SDF.eTexSlot.SingleShadowRead,gAtl.Frame().Pal().GetShadowReadTex()));
-rp.mShaderAttr.push(new CShaderAttr("shadowOn", 1));
-rp.mShader=gAtl.Frame().Pal().Sl3DKey();
-
-//=============================================
 
 //=============================================
 let rpPlug=new CCanvasPluginRPMgr(null);
@@ -368,19 +400,25 @@ camcon.SetPos(new CVec3());
 
 let back=Main.PushSub(new CSubject());
 let pt=back.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
-pt.SetTexture(["Res/teapot/1zflt0j.jpg","Res/teapot/1zflt0j_NRM.jpg","Res/teapot/1zflt0j_lig.jpg"]);
+pt.SetTexture(["../SharedRes/teapot/1zflt0j.jpg","../SharedRes/teapot/1zflt0j_NRM.jpg","../SharedRes/teapot/1zflt0j_lig.jpg"]);
 pt.PushTag(CPaint.eTag.Shadow);
 //pt.AddDecal(new CVec4(1,0,0,1),new CVec3(),new CVec3(),new CVec3(100,100,100));
 back.SetSca(new CVec3(2000,2,2000));
 
 let teapot=Main.PushSub(new CSubject());
-let pt2=teapot.PushComp(new CPaint3D("Res/teapot/teapot.FBX"));
+let pt2=teapot.PushComp(new CPaint3D("../SharedRes/teapot/teapot.FBX"));
 pt2.PushTag(CPaint.eTag.Shadow);
 
 teapot=Main.PushSub(new CSubject());
 teapot.SetPos(new CVec3(500,0,0));
-pt2=teapot.PushComp(new CPaint3D("Res/teapot/teapot.FBX"));
+pt2=teapot.PushComp(new CPaint3D("../SharedRes/teapot/teapot.FBX"));
 pt2.PushTag(CPaint.eTag.Shadow);
+
+let skybox=Main.PushSub(new CSubject());
+skybox.SetSca(new CVec3(10,10,10));
+let ptcube=skybox.PushComp(new CPaintCube(cubeTexKey));
+ptcube.Sky(false,false,false,false,false);
+ptcube.SetEmission(new CColor(1, 1, 1, CColor.eModel.RGBMul));
 
 //=============================================
 // forward
@@ -395,7 +433,7 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal","Forward",()=>{
     L.SetPos(new CVec3(0,1,1));
 
     let lig=new CLight();
-    lig.SetShadow3D("D1_",0,0.1);
+    lig.SetShadow3D("D1_",0,100);
     lig.SetDirect();
     lig.SetMask(CPaint.eCullMask.Mask01);
     lig.SetColor(new CVec3(1,1,1));
@@ -406,35 +444,37 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal","Forward",()=>{
     L.SetPos(new CVec3(0,1,-1));
 
     lig=new CLight();
-    lig.SetShadow3D("D2_",0,0.1);
+    lig.SetShadow3D("D2_",0,100);
     lig.SetDirect();
     lig.SetMask(CPaint.eCullMask.Mask02);
     lig.SetColor(new CVec3(1,1,1));
     lig.mShadowDistance=shadowDistance;
     L.PushComp(lig);
 
-    const pointLights = [
-        { pos: new CVec3(-450, 450, -250), color: new CVec3(1, 0.15, 0.1) },
-        { pos: new CVec3(450, 450, -250), color: new CVec3(0.1, 1, 0.25) },
-        { pos: new CVec3(0, 450, 520), color: new CVec3(0.15, 0.35, 1) },
-    ];
+    // const pointLights = [
+    //     { pos: new CVec3(-450, 450, -250), color: new CVec3(1, 0.15, 0.1) },
+    //     { pos: new CVec3(450, 450, -250), color: new CVec3(0.1, 1, 0.25) },
+    //     { pos: new CVec3(0, 450, 520), color: new CVec3(0.15, 0.35, 1) },
+    // ];
 
-    for(const pointLight of pointLights) {
-        let pointLightSub=Main.PushSub(new CSubject());
-        pointLightSub.SetPos(pointLight.pos);
+    // for(const pointLight of pointLights) {
+    //     let pointLightSub=Main.PushSub(new CSubject());
+    //     pointLightSub.SetPos(pointLight.pos);
 
-        let pointPt=pointLightSub.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
-        pointPt.SetColorModel(new CColor(pointLight.color.x, pointLight.color.y, pointLight.color.z, CColor.eModel.RGBAdd));
+    //     let pointPt=pointLightSub.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
+    //     pointPt.SetColorModel(new CColor(pointLight.color.x, pointLight.color.y, pointLight.color.z, CColor.eModel.RGBAdd));
 
-        let pointLig=new CLight();
-        pointLig.SetPoint(900, 250);
-        pointLig.SetColor(pointLight.color);
-        pointLightSub.PushComp(pointLig);
-    }
+    //     let pointLig=new CLight();
+    //     pointLig.SetPoint(900, 250);
+    //     pointLig.SetColor(pointLight.color);
+    //     pointLightSub.PushComp(pointLig);
+    // }
 
     let back=Main.PushSub(new CSubject());
     let pt=back.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
-    pt.SetTexture(["Res/teapot/1zflt0j.jpg","Res/teapot/1zflt0j_NRM.jpg","Res/teapot/1zflt0j_lig.jpg"]);
+    pt.SetTexture(["../SharedRes/teapot/1zflt0j.jpg","../SharedRes/teapot/1zflt0j_NRM.jpg","../SharedRes/teapot/1zflt0j_lig.jpg"]);
+    pt.SetMaterial(0.1,0.6,-1);
+    pt.SetEmission(new CColor(1, 1, 1, SDF.eColorModel.RGBMul));
     pt.PushTag(CPaint.eTag.Shadow);
     pt.PushTag(CPaint.eTag.Light);
     pt.PushTag("shadowMulti");
@@ -443,7 +483,8 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal","Forward",()=>{
 
     let teapot=Main.PushSub(new CSubject());
     teapot.SetPos(new CVec3(300,0,0));
-    let pt2=teapot.PushComp(new CPaint3D("Res/teapot/teapot.FBX"));
+    let pt2=teapot.PushComp(new CPaint3D("../SharedRes/teapot/teapot.FBX"));
+    pt2.SetMaterial(0.1,0.6,0);
     pt2.PushTag(CPaint.eTag.Shadow);
     pt2.PushTag(CPaint.eTag.Light);
     pt2.PushTag("shadowMulti");
@@ -451,7 +492,8 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal","Forward",()=>{
 
     teapot=Main.PushSub(new CSubject());
     teapot.SetPos(new CVec3(-300,0,0));
-    pt2=teapot.PushComp(new CPaint3D("Res/teapot/teapot.FBX"));
+    pt2=teapot.PushComp(new CPaint3D("../SharedRes/teapot/teapot.FBX"));
+    pt2.SetMaterial(0.1,0.6,0);
     pt2.PushTag(CPaint.eTag.Shadow);
     pt2.PushTag(CPaint.eTag.Light);
     pt2.PushTag("shadowMulti");
@@ -461,17 +503,18 @@ CModal.PushTitleBar(new CModalTitleBar("DevToolModal","Forward",()=>{
     skybox.SetSca(new CVec3(10,10,10));
     let ptcube=skybox.PushComp(new CPaintCube(cubeTexKey));
     ptcube.Sky(false,false,false,false,false);
+    ptcube.SetEmission(new CColor(1, 1, 1, CColor.eModel.RGBMul));
     
     // let player=Main.Push(new CSubject());
-    // pt=player.PushComp(new CPaint3D("Res/character_woman_3/character_body.zip"));
+    // pt=player.PushComp(new CPaint3D("../SharedRes/character_woman_3/character_body.zip"));
     // pt.Shadow();
-    // pt=player.PushComp(new CPaint3D("Res/character_woman_3/character_face.zip"));
+    // pt=player.PushComp(new CPaint3D("../SharedRes/character_woman_3/character_face.zip"));
     // pt.Shadow();
-    // pt=player.PushComp(new CPaint3D("Res/character_woman_3/character_hair.zip"));
+    // pt=player.PushComp(new CPaint3D("../SharedRes/character_woman_3/character_hair.zip"));
     // pt.Shadow();
-    // pt=player.PushComp(new CPaint3D("Res/character_woman_3/character_pants.zip"));
+    // pt=player.PushComp(new CPaint3D("../SharedRes/character_woman_3/character_pants.zip"));
     // pt.Shadow();
-    // pt=player.PushComp(new CPaint3D("Res/character_woman_3/character_shoes.zip"));
+    // pt=player.PushComp(new CPaint3D("../SharedRes/character_woman_3/character_shoes.zip"));
     // pt.Shadow();
     // let ani=new CAnimation();
     // ani.Push(new CClipMesh(0,1000*60,null,"Take 001"));
@@ -521,6 +564,8 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred","DeferredSingle(HafeLambert+Ph
 
         let pointPt=pointLightSub.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
         pointPt.SetColorModel(new CColor(pointLight.color.x, pointLight.color.y, pointLight.color.z, CColor.eModel.RGBAdd));
+        pointPt.SetMaterial(0.5,0,1);
+        pointPt.SetEmission(new CColor(10, 10, 10, CColor.eModel.RGBMul));
 
         let pointLig=new CLight();
         pointLig.SetPoint(1000);
@@ -529,7 +574,7 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred","DeferredSingle(HafeLambert+Ph
         pointLightSub.PushComp(pointLig);
     }
 
-    // let ani=new CAnimation([new CClipPRS(0,10,[new CVec3(0,100,0),new CVec3(100,100,0),new CVec3(100,100,100),new CVec3(0,100,0)],CClipPRS.eType.Pos)]);
+    // let ani=new CAnimation([new CClipPRS(0,10,[new CVec3(0,100,0),new CVec3(100,100,0),new CVec3(100,100,100),new CVec3(0,100,0)],CClipPRS.eType.Pos)]);    
     // L.PushComp(new CAniFlow(ani));
 
     let sub = Main.PushSub(new CSubject());
@@ -537,7 +582,7 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred","DeferredSingle(HafeLambert+Ph
     let testComp = sub.PushComp(new CTestComp(shadowShaderAttrs));
 
     let back=Main.PushSub(new CSubject());
-    let pt=back.PushComp(new CPaint3D("Res/plane/plane.FBX"));
+    let pt=back.PushComp(new CPaint3D("../SharedRes/plane/plane.FBX"));
     pt.mAutoLoad.mMipMap=CTexture.eMipmap.None;
     pt.PushTag(CPaint.eTag.Light);
     // pt.PushTag(CPaint.eTag.Shadow);
@@ -548,7 +593,7 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred","DeferredSingle(HafeLambert+Ph
     back.SetSca(new CVec3(20,1,20));
 
     let teapot=Main.PushSub(new CSubject());
-    let pt2=teapot.PushComp(new CPaint3D("Res/teapot/teapot.FBX"));
+    let pt2=teapot.PushComp(new CPaint3D("../SharedRes/teapot/teapot.FBX"));
     pt2.PushTag(CPaint.eTag.Light);
     pt2.PushTag(CPaint.eTag.Shadow);
     pt2.PushCShaderAttr(new CShaderAttr("shadowTest",testComp.shadowTest));
@@ -558,7 +603,8 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred","DeferredSingle(HafeLambert+Ph
     skybox.SetSca(new CVec3(10,10,10));
     let ptcube=skybox.PushComp(new CPaintCube(cubeTexKey));
     ptcube.Sky(false,false,false,false,false);
-
+    ptcube.SetEmission(new CColor(1, 1, 1, CColor.eModel.RGBMul));
+    
 }));
 
 
@@ -602,7 +648,7 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred","DeferredMulti(None+CookTorran
 
     let back=Main.PushSub(new CSubject());
     let pt=back.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
-    pt.SetTexture(["Res/teapot/1zflt0j.jpg"]);
+    pt.SetTexture(["../SharedRes/teapot/1zflt0j.jpg"]);
     pt.PushTag(CPaint.eTag.Light);
     pt.PushTag(CPaint.eTag.ShadowReadOnly);
     pt.SetMaterial(0.1,0.6);
@@ -617,17 +663,18 @@ CModal.PushTitleBar(new CModalTitleBar("Deferred","DeferredMulti(None+CookTorran
         pt2.SetColorModel(new CColor(1,0,0,CColor.eModel.RGBAdd));
         pt2.PushTag(CPaint.eTag.Light);
         pt2.PushTag(CPaint.eTag.Shadow);
-        pt2.SetMaterial((x+1)*0.5,(z+1)*0.5);
+        const roughness=(x+1)*0.5, metalic=(z+1)*0.5;
+        pt2.SetMaterial(roughness,metalic,(roughness+metalic)/2);
+        pt2.SetEmission(new CColor(1,1,1,CColor.eModel.RGBMul));
         teapot.SetPos(new CVec3(x*500,100,z*500));
     }
-
-    let probe=Main.PushSub(new CProbe());
-    probe.SetPos(new CVec3(0,300,0));
 
     let skybox=Main.PushSub(new CSubject());
     skybox.SetSca(new CVec3(10,10,10));
     let ptcube=skybox.PushComp(new CPaintCube(cubeTexKey));
     ptcube.Sky(false,false,false,false,false);
+    ptcube.SetEmission(new CColor(1, 1, 1, CColor.eModel.RGBMul));
+
 }));
 
 CModal.PushTitleBar(new CModalTitleBar("DevToolModal","DeferredOption",()=>{
@@ -680,14 +727,14 @@ CModal.PushTitleBar(new CModalTitleBar("DeferredOption","Moving Light",()=>{
 
 //     let back=Main.PushSub(new CSubject());
 //     let pt=back.PushComp(new CPaint3D(gAtl.Frame().Pal().GetBoxMesh()));
-//     pt.SetTexture(["Res/teapot/1zflt0j.jpg","Res/teapot/1zflt0j_NRM.jpg","Res/teapot/1zflt0j_lig.jpg"]);
+//     pt.SetTexture(["../SharedRes/teapot/1zflt0j.jpg","../SharedRes/teapot/1zflt0j_NRM.jpg","../SharedRes/teapot/1zflt0j_lig.jpg"]);
 //     pt.Shadow();
     
 //     back.SetSca(new CVec3(2000,2,2000));
 
 
 //     let teapot=Main.PushSub(new CSubject());
-//     let pt2=teapot.PushComp(new CPaint3D("Res/teapot/teapot.FBX"));
+//     let pt2=teapot.PushComp(new CPaint3D("../SharedRes/teapot/teapot.FBX"));
 //     pt2.Shadow();
 
 //     setTimeout(async () => {
@@ -713,6 +760,42 @@ Help.SetContent(await CUtilWeb.MDReader("README.md"));
 
 
 new CModalFrameView();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

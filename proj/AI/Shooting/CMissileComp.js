@@ -1,7 +1,7 @@
-import { CBehavior } from "../../../Artgine/artgine/app/component/CBehavior.js";
-import { CForce } from "../../../Artgine/artgine/app/component/CForce.js";
-import { CRigidBody } from "../../../Artgine/artgine/app/component/CRigidBody.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CBehavior } from "../../../artgine/app/component/CBehavior.js";
+import { CForce } from "../../../artgine/app/component/CForce.js";
+import { CRigidBody } from "../../../artgine/app/component/CRigidBody.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
 import { CBulletComp } from "./CBulletComp.js";
 import { CFx } from "./CFx.js";
 export class CMissileComp extends CBehavior {

@@ -1,5 +1,5 @@
-<title>Maze</title>
 <!DOCTYPE html>
+<title>Maze</title>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover' />
 <style>
     :root {
@@ -71,7 +71,7 @@
 <script type='text/javascript' src='../../../Artgine/artgine/external/legacy/monaco-editor/min/vs/loader.js'></script>
 <link rel='manifest' href='./Maze.webmanifest'/>
 <script>
-let SERVER_BASE='http://localhost:8050/Artgine/proj/2D/Maze/Maze.html';
+let SERVER_BASE='http://localhost:7000/Artgine-Project/proj/2D/Maze/Maze.html';
 const isElectron =/Electron/i.test(navigator.userAgent) ||(typeof window !== 'undefined' &&typeof window.process === 'object' &&!!window.process.versions?.electron);
 if (location.protocol == 'file:' && isElectron==false){
 	const page = (location.href.split('/').pop() || 'index.html').replace(/\?.*$/, '');

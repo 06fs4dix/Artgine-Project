@@ -34,6 +34,7 @@
     "toastui": false
   },
   "dependencies": {
+    "Bloom": 1,
     "Water": 1
   }
 }

@@ -35,7 +35,7 @@ gPF.mIAuto = true;
 gPF.mCanvas = "";
 gPF.mServer = 'webServer';
 gPF.mGitHub = false;
-gPF.mVersion = "mr1h6y58_31";
+gPF.mVersion = "mvelycyc_10";
 
 import {CAtelier} from "../../../Artgine/artgine/app/CAtelier.js";
 
@@ -329,6 +329,9 @@ Option_btn.SetContent(`
     블룸,기본 설정 가능
 </div>`);
 if(gPF.mServer=="webServer")    CScore.Read("Shooting");
+
+
+
 
 
 

@@ -327,8 +327,7 @@ export class CGameMgr extends CSubject implements ILaneHost, IPlayerHost
     {
         while (this.mGenRow <= _toRow)
         {
-            const row = this.mGenRow++;
-            const prev = this.mLanes.get(row - 1);
+            const row = this.mGenRow++;            const prev = this.mLanes.get(row - 1);
             const prevType = prev ? prev.mLaneType : CLane.eType.Grass;
             const type = this.NextType(row);
 

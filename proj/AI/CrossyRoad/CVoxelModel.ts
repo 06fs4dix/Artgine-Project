@@ -1,5 +1,6 @@
 import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CPaint3D, CPaint3DMerge } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
+import { CMat } from "../../../Artgine/artgine/geometry/CMat.js";
 import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
 import { CColor } from "../../../Artgine/artgine/render/CColor.js";
 import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
@@ -36,11 +37,64 @@ export function ClipPRS(_time: number, _delay: number, _st: CVec3, _ed: CVec3, _
     return clip;
 }
 
+interface IMergeBind
+{
+    host: CSubject;
+    off: CVec3;
+}
+
+const sBind = new WeakMap<CSubject, IMergeBind>();
+const sGroup = new WeakMap<CSubject, Map<string, CPaint3DMerge>>();
+
 export class CVoxelModel
 {
+    // _sub에 쌓는 Box는 서브젝트를 만들지 않고 _host의 CPaint3DMerge(색·그림자 조합별 1개)에 슬롯으로 들어간다.
+    // 머지 슬롯은 위치만 있고 회전·스케일이 없는 정적 모델 전용이며, 이후 개별 Box의 색 변경(SetBoxColor)은 불가능하다
+    static BindMerge(_sub: CSubject, _host: CSubject, _off: CVec3)
+    {
+        sBind.set(_sub, { host: _host, off: _off });
+    }
+    private static MergeBox(_bind: IMergeBind, _pos: CVec3, _size: CVec3, _color: CColor, _shadow: boolean)
+    {
+        let groups = sGroup.get(_bind.host);
+        if (groups == null)
+        {
+            groups = new Map<string, CPaint3DMerge>();
+            sGroup.set(_bind.host, groups);
+        }
+        const key = _color.mF32A.join(",") + "|" + _shadow;
+        let merge = groups.get(key);
+        if (merge == null)
+        {
+            merge = new CPaint3DMerge();
+            merge.SetColorModel(_color);
+            merge.PushTag(CPaint.eTag.Light);
+            if (_shadow)
+                merge.PushTag(CPaint.eTag.Shadow);
+            _bind.host.PushComp(merge);
+            groups.set(key, merge);
+        }
+        let mat = new CMat();
+        const m = mat.mF32A;
+        m[0] = _size.x;
+        m[5] = _size.y;
+        m[10] = _size.z;
+        m[12] = _bind.off.x + _pos.x;
+        m[13] = _bind.off.y + _pos.y;
+        m[14] = _bind.off.z + _pos.z;
+        mat.UnitCheck();
+        merge.Push(CFrame.Main().Pal().GetBoxMesh(), mat);
+    }
+
     // 그림자맵에서 비어있는 텍셀은 가려진 것으로 판정되므로, 그림자를 받는 바닥도 ShadowReadOnly 없이 깊이를 써야 한다
     static Box(_parent: CSubject, _pos: CVec3, _size: CVec3, _color: CColor, _shadow = true): CSubject
     {
+        const bind = sBind.get(_parent);
+        if (bind != null)
+        {
+            CVoxelModel.MergeBox(bind, _pos, _size, _color, _shadow);
+            return _parent;
+        }
         let sub = new CSubject();
         sub.SetPos(_pos);
         sub.SetSca(_size);

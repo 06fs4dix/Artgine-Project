@@ -70,6 +70,7 @@ export class CLane extends CSubject
         this.mLaneType= _type;
         this.mRow = _row;
         this.SetPos(V3(0, 0, this.Z()));
+        CVoxelModel.BindMerge(this, this, V3(0, 0, 0));
 
         switch (_type)
         {
@@ -105,12 +106,11 @@ export class CLane extends CSubject
             if (Math.random() >= chance) continue;
 
             let deco = new CSubject();
-            deco.SetPos(V3(col * TILE, 0, 0));
+            CVoxelModel.BindMerge(deco, this, V3(col * TILE, 0, 0));
             if (Math.random() < 0.22)
                 T().Rock(deco);
             else
                 T().Tree(deco, [6, 10, 14][Math.floor(Math.random() * 3)]);
-            this.PushChild(deco);
             if (inside) this.mBlock.add(col);
         }
 
@@ -145,6 +145,7 @@ export class CLane extends CSubject
         for (let i = 0; i < count; ++i)
         {
             let sub = new CSubject();
+            CVoxelModel.BindMerge(sub, sub, V3(0, 0, 0));
             if (truck)
                 T().Truck(sub, C(col), this.mDir);
             else
@@ -176,6 +177,7 @@ export class CLane extends CSubject
             const tiles = 3 + Math.floor(Math.random() * 2);
             const len = Math.min(tiles * TILE, Math.floor((spacing - TILE * 1.2) / TILE) * TILE) - 0.5;
             let sub = new CSubject();
+            CVoxelModel.BindMerge(sub, sub, V3(0, 0, 0));
             T().Log(sub, len);
             const x = -WRAP_X + i * spacing + len * 0.5;
             this.mMovers.push({ sub: sub, x: x, len: len });
@@ -319,6 +321,7 @@ export class CLane extends CSubject
         const cars = 3 + Math.floor(Math.random() * 3);
         const len = carLen * cars;
         let sub = new CSubject();
+        CVoxelModel.BindMerge(sub, sub, V3(0, 0, 0));
         for (let i = 0; i < cars; ++i)
         {
             const off = this.mDir * (len * 0.5 - carLen * 0.5 - i * carLen);

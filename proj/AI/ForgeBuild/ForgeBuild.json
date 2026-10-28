@@ -29,6 +29,7 @@
     "summernote": false
   },
   "dependencies": {
+    "Bloom": 1,
     "ForgeBuild": 1,
     "Water": 1
   }

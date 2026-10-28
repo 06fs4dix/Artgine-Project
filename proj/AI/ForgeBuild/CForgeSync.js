@@ -2,6 +2,7 @@ import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 import { CPaint3D } from "../../../Artgine/artgine/app/component/paint/CPaint3D.js";
 import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
 import { SDF } from "../../../Artgine/artgine/z_file/SDF.js";
+import { CColor } from "../../../Artgine/artgine/render/CColor.js";
 import { CForgeFactory, CForgeOption, CForgeScene } from "../../../Artgine/plugin/ForgeBuild/ForgeBuild.js";
 export class CForgeSync {
     static sType = { wall: CForgeFactory.eType.Wall, building: CForgeFactory.eType.House, tower: CForgeFactory.eType.Tower, path: CForgeFactory.eType.Path, fence: CForgeFactory.eType.Fence,
@@ -24,10 +25,37 @@ export class CForgeSync {
     }
     mSurf = { mNormal: true, mMaterial: true, mParallax: true };
     mPBR = false;
+    mGlow = 0;
+    static sGlowPower = 1;
+    static sGlowColor = new CColor(1.0, 0.72, 0.38, SDF.eColorModel.RGBMul);
     mReal = false;
     mLambert = new WeakMap();
     SetTheme(_name) { this.mTheme = _name; this.mForce = true; }
     SetSurf(_key, _on) { this.mSurf[_key] = _on; this.mForce = true; }
+    SetGlow(_rate) {
+        if (_rate == this.mGlow || (Math.abs(_rate - this.mGlow) < 0.02 && _rate > 0 && _rate < 1))
+            return;
+        this.mGlow = _rate;
+        this.ApplyPoint();
+        for (const sub of this.mSub.values())
+            if (sub != null)
+                for (const pt of sub.FindComps(CPaint3D, true))
+                    this.ApplyGlow(pt);
+    }
+    mPoint = 1;
+    mPointOn = true;
+    SetPointShadow(_on) { this.mFactory.SetPointShadow(_on); }
+    SetPoint(_on, _k) { this.mPointOn = _on; this.mPoint = _k; this.ApplyPoint(); }
+    ApplyPoint() { this.mFactory.SetPointLight(this.mPointOn ? this.mPoint * this.mGlow : 0); }
+    ApplyGlow(_pt) {
+        const glow = _pt.mTag.has("forgeGlow"), w = glow ? (_pt.mTag.has("forgeMat") ? -1 : 1) * this.mGlow * CForgeSync.sGlowPower : 0;
+        if (glow && !_pt.mTag.has("forgeEmit"))
+            _pt.SetEmission(CForgeSync.sGlowColor);
+        if (_pt.mMaterial.w == w)
+            return;
+        _pt.mMaterial.w = w;
+        _pt.ClearBatch();
+    }
     SetPBR(_on) {
         if (this.mPBR == _on)
             return;
@@ -65,7 +93,7 @@ export class CForgeSync {
     ApplyEnv(_sub) {
         if (_sub == null)
             return;
-        for (const pt of _sub.FindComps(CPaint3D)) {
+        for (const pt of _sub.FindComps(CPaint3D, true)) {
             if (this.mLambert.has(pt) == false) {
                 const step = pt.FindCShaderAttr("ligStep0");
                 this.mLambert.set(pt, step != null && step.mData.x == SDF.eLightStep0.Lambert);
@@ -84,6 +112,7 @@ export class CForgeSync {
                 if (pt.mMaterial.x > -0.5)
                     pt.SetMaterial(-1, -1, 1, 1);
             }
+            this.ApplyGlow(pt);
         }
     }
     Resolved(_kind, _id) {
@@ -100,6 +129,7 @@ export class CForgeSync {
         }
         if (_kind == K.Building) {
             const bottom = _e.poly.map((q) => V(q[0], q[1], G(q[0], q[1])));
+            opt.mInterior = _e.interior ?? null;
             return [bottom, bottom.map((v) => new CVec3(v.x, v.y + _e.height * U, v.z)), opt];
         }
         if (_kind == K.Tower) {

@@ -8,7 +8,7 @@ import { CPaint3DMerge } from "../../../Artgine/artgine/app/component/paint/CPai
 import { CForgeFloraBake } from "../../../Artgine/plugin/ForgeFlora/ForgeFlora.js";
 import { CCanvas } from "../../../Artgine/artgine/app/canvas/CCanvas.js";
 import { CPaint } from "../../../Artgine/artgine/app/component/paint/CPaint.js";
-import { CDensityInfo, CDensityMap, ILODInfo } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
+import { CDensityInfo, CDensityMap, CLOD } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
 import { CTerrainMap } from "../../../Artgine/artgine/app/subject/CTerrainMap.js";
 import { CShaderAttr } from "../../../Artgine/artgine/render/CShaderAttr.js";
 import { CSampler } from "../../../Artgine/artgine/util/CSampler.js";
@@ -173,7 +173,7 @@ export class CForgeFlora
     private mStep1 = new CShaderAttr("ligStep1", SDF.eLightStep1.None);
     private mLit = -1;
     private Light() : CShaderAttr[] { return [this.mStep0, this.mStep1]; }
-    private Tag(_t : string[]) : string[] { if(this.mPBR) _t.push("env"); return _t; }
+    private Tag(_t : string[]) : string[] { if(this.mPBR) _t.push("env"); if(_t.includes(CPaint.eTag.Shadow)) _t.push("shadowMulti"); return _t; }
     SetReal(_on : boolean)
     {
         if(this.mFactory.mReal == _on) return;
@@ -213,8 +213,8 @@ export class CForgeFlora
             this.mLitDone.add(pt);
             pt.PushCShaderAttr(this.mStep0);
             pt.PushCShaderAttr(this.mStep1);
-            if(this.mPBR) { pt.SetMaterial(-1, -1, 1, -1); pt.PushTag("env"); }
-            else { pt.SetMaterial(1, 0, 1, 1); pt.RemoveTag("env"); }
+            if(this.mPBR) { pt.SetMaterial(-1, -1, 0, -1); pt.PushTag("env"); }
+            else { pt.SetMaterial(1, 0, 0, 1); pt.RemoveTag("env"); }
         }
     }
 
@@ -226,11 +226,11 @@ export class CForgeFlora
         const tags = this.Tag(cut ? [CPaint.eTag.Light, CPaint.eTag.Shadow, "shadowReadOnly", "alphaCut"] : [CPaint.eTag.Light, CPaint.eTag.Shadow, "shadowReadOnly"]);
         const attr = () => cut ? [new CShaderAttr("alphaCut", CForgeFlora.sLeafCut), ...this.Light()] : this.Light();
         info.AddLODLevel([
-            { mRes : _k.asset.Mesh(0), mDistance : 0, mPaintTag : tags, mPaintShaderAttr : attr() },
-            { mRes : _k.asset.Mesh(1), mDistance : L[0], mHysteresis : L[0] * CForgeFlora.sHys, mPaintTag : tags, mPaintShaderAttr : attr() },
-            { mRes : _k.asset.Mesh(1), mDistance : L[1], mHysteresis : L[1] * CForgeFlora.sHys, mAmount : 0.35, mPaintTag : tags, mPaintShaderAttr : attr() },
-            { mRes : null, mDistance : L[2], mHysteresis : L[2] * CForgeFlora.sHys },
-        ].map(_l => this.Level(_k, _l)));
+            this.Level(_k, _k.asset.Mesh(0), 1, 0, 0, tags, attr()),
+            this.Level(_k, _k.asset.Mesh(1), 1, L[0], L[0] * CForgeFlora.sHys, tags, attr()),
+            this.Level(_k, _k.asset.Mesh(1), 0.35, L[1], L[1] * CForgeFlora.sHys, tags, attr()),
+            this.Level(_k, null, 1, L[2], L[2] * CForgeFlora.sHys),
+        ]);
         return info;
     }
     //잎 카드는 자기 그림자에 판째 어두워져 그림자를 드리우기만 한다(leafNoSR 패스, ForgeBuild.ts). 원거리는 구운 빌보드
@@ -239,26 +239,26 @@ export class CForgeFlora
         const info = this.Info(_cls, _p, CForgeFlora.sBigCell), L = CForgeFlora.sTreeLOD, leaf = new CShaderAttr("alphaCut", CForgeFlora.sLeafCut);
         const tags = this.Tag([CPaint.eTag.Light, CPaint.eTag.Shadow, "alphaCut", "leafNoSR"]), bill = new CShaderAttr("billboardMat", this.mBillMat);
         info.AddLODLevel([
-            { mRes : _k.asset.Mesh(0), mDistance : 0, mPaintTag : tags, mPaintShaderAttr : [leaf, ...this.Light()] },
-            { mRes : _k.asset.Mesh(1), mDistance : L[0], mHysteresis : L[0] * CForgeFlora.sHys, mPaintTag : tags, mPaintShaderAttr : [leaf, ...this.Light()] },
-            { mRes : _k.asset.Billboard(), mDistance : L[1], mHysteresis : L[1] * CForgeFlora.sHys, mPaintTag : [CPaint.eTag.Light, "alphaCut"], mPaintShaderAttr : [leaf, bill, ...this.Light()] },
-        ].map(_l => this.Level(_k, _l)));
+            this.Level(_k, _k.asset.Mesh(0), 1, 0, 0, tags, [leaf, ...this.Light()]),
+            this.Level(_k, _k.asset.Mesh(1), 1, L[0], L[0] * CForgeFlora.sHys, tags, [leaf, ...this.Light()]),
+            this.Level(_k, _k.asset.Billboard(), 1, L[1], L[1] * CForgeFlora.sHys, [CPaint.eTag.Light, "alphaCut"], [leaf, bill, ...this.Light()]),
+        ]);
         return info;
     }
     private RockInfo(_k : IForgeFloraKind, _cls : number, _p : CForgeFloraPlace) : CDensityInfo
     {
         const info = this.Info(_cls, _p, CForgeFlora.sBigCell), tags = this.Tag([CPaint.eTag.Light, CPaint.eTag.Shadow]);
         info.AddLODLevel([
-            { mRes : _k.asset.Mesh(0), mDistance : 0, mPaintTag : tags, mPaintShaderAttr : this.Light() },
-            { mRes : _k.asset.Mesh(1), mDistance : CForgeFlora.sRockLOD, mHysteresis : CForgeFlora.sRockLOD * CForgeFlora.sHys, mPaintTag : tags, mPaintShaderAttr : this.Light() },
-        ].map(_l => this.Level(_k, _l)));
+            this.Level(_k, _k.asset.Mesh(0), 1, 0, 0, tags, this.Light()),
+            this.Level(_k, _k.asset.Mesh(1), 1, CForgeFlora.sRockLOD, CForgeFlora.sRockLOD * CForgeFlora.sHys, tags, this.Light()),
+        ]);
         return info;
     }
     //거리 값은 m로 적고 엔진 단위로 바꾼다. 바람은 그 단계 메시에 생성기가 가중치를 넣었을 때만 건다(가중치 없는 메시에 걸면 엔진이 높이로 가중치를 만들어 흔든다)
-    private Level(_k : IForgeFloraKind, _l : ILODInfo) : ILODInfo
+    private Level(_k : IForgeFloraKind, _res : string, _amount : number, _dist : number, _hys : number, _tag : string[] = [], _attr : CShaderAttr[] = []) : CLOD
     {
-        const U = CForgeScene.sUnit, i = _k.asset.mLod.indexOf(_l.mRes);
-        return { ..._l, mDistance : (_l.mDistance ?? 0) * U, mHysteresis : (_l.mHysteresis ?? 0) * U, mWind : i >= 0 && _k.asset.HasWind(i) ? _k.wind : 0 };
+        const U = CForgeScene.sUnit, i = _k.asset.mLod.indexOf(_res);
+        return new CLOD(_res, _amount, _dist * U, _hys * U, _tag, _attr, i >= 0 && _k.asset.HasWind(i) ? _k.wind : 0);
     }
 
     //밀도맵을 꺼 두면 갱신이 멈춰 이미 만든 먼 LOD 묶음이 남는다. 맵은 켜 둔 채 끌 때 밀도 버퍼를 비우고, 켤 때 다시 채운다

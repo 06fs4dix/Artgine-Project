@@ -1,5 +1,5 @@
-<title>CrossyRoad</title>
 <!DOCTYPE html>
+<title>CrossyRoad</title>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover' />
 <style>
     :root {
@@ -23,7 +23,7 @@
     loadingCard.style.borderRadius = "0";
     loadingCard.style.zIndex = "9999";
     loadingCard.style.pointerEvents = "auto";
-    loadingCard.style.backgroundColor = "#212529";
+    loadingCard.style.backgroundColor = "#212529"; // Bootstrap dark 색상
     loadingCard.style.display = "flex";
     loadingCard.style.alignItems = "center";
     loadingCard.style.justifyContent = "center";
@@ -71,7 +71,7 @@
 <script type='text/javascript' src='../../../Artgine/artgine/external/legacy/monaco-editor/min/vs/loader.js'></script>
 <link rel='manifest' href='./CrossyRoad.webmanifest'/>
 <script>
-let SERVER_BASE='http://localhost:7000/Artgine/proj/AI/CrossyRoad/CrossyRoad.html';
+let SERVER_BASE='http://localhost:7000/Artgine-Project/proj/AI/CrossyRoad/CrossyRoad.html';
 const isElectron =/Electron/i.test(navigator.userAgent) ||(typeof window !== 'undefined' &&typeof window.process === 'object' &&!!window.process.versions?.electron);
 if (location.protocol == 'file:' && isElectron==false){
 	const page = (location.href.split('/').pop() || 'index.html').replace(/\?.*$/, '');

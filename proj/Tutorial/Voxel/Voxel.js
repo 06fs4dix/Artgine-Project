@@ -26,7 +26,7 @@ import { CVoxelMap, CVTile } from "../../../Artgine/artgine/app/subject/CVoxelMa
 import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
 import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
 import { CSampler } from "../../../Artgine/artgine/util/CSampler.js";
-import { CDensityInfo, CLODInfo, CDensityMap, CDensityColliderInfo } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
+import { CDensityInfo, CLOD, CDensityMap, CDensityColliderInfo } from "../../../Artgine/artgine/app/subject/CDensityMap.js";
 import { CCamCon2DFreeMove, CCamCon3DFirstPerson } from "../../../Artgine/artgine/util/CCamCon.js";
 import { CBound } from "../../../Artgine/artgine/geometry/CBound.js";
 import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
@@ -64,7 +64,7 @@ CConfirm.List("Voxel Mode Select!", [
         let densityMap = new CDensityMap();
         densityMap.mDiv = 10;
         densityMap.mBuf.Reset(new CVec3(256, 256, 1), 100);
-        let info = densityMap.PushDensityInfo(new CDensityInfo(0x0000ff00, new CVec3(500, 500, 500), [new CLODInfo("Res/tutorial_map.png", 1, 0, 0)]));
+        let info = densityMap.PushDensityInfo(new CDensityInfo(0x0000ff00, new CVec3(500, 500, 500), [new CLOD("Res/tutorial_map.png", 1, 0, 0)]));
         info.mSca = new CSampler(new CVec3(0.8, 0.8, 0.8));
         info.mCollider.push(new CDensityColliderInfo("density"));
         info.mWind = 1;

@@ -1,10 +1,10 @@
-import { CInput } from "../../../Artgine/artgine/system/CInput.js";
-import { CUpdate } from "../../../Artgine/artgine/basic/Basic.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CUI, CUIHTML } from "../../../Artgine/artgine/app/subject/CUI.js";
-import { CPaintHTML } from "../../../Artgine/artgine/app/component/paint/CPaint2D.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
-import { CModal } from "../../../Artgine/artgine/basic/CModal.js";
+import { CInput } from "../../../artgine/system/CInput.js";
+import { CUpdate } from "../../../artgine/basic/Basic.js";
+import { CSubject } from "../../../artgine/app/subject/CSubject.js";
+import { CUI, CUIHTML } from "../../../artgine/app/subject/CUI.js";
+import { CPaintHTML } from "../../../artgine/app/component/paint/CPaint2D.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
+import { CModal } from "../../../artgine/basic/CModal.js";
 import { CPlayerComp } from "./CPlayerComp.js";
 
 const S = (css: string) => `font-family:sans-serif;${css}`;

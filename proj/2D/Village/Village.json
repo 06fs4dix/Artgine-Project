@@ -29,8 +29,8 @@
     "summernote": false
   },
   "dependencies": {
+    "Bloom": 1,
     "Inventory": 1,
-    "ShadowPlane": 1,
     "Water": 1
   }
 }

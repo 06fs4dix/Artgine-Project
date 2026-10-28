@@ -1,8 +1,8 @@
-import { CBehavior } from "../../../Artgine/artgine/app/component/CBehavior.js";
-import { CCollider } from "../../../Artgine/artgine/app/component/CCollider.js";
-import { CSubject } from "../../../Artgine/artgine/app/subject/CSubject.js";
-import { CPlaneInside } from "../../../Artgine/artgine/geometry/CPlaneInside.js";
-import { CVec3 } from "../../../Artgine/artgine/geometry/CVec3.js";
+import { CBehavior } from "../../../artgine/app/component/CBehavior.js";
+import { CCollider } from "../../../artgine/app/component/CCollider.js";
+import { CSubject } from "../../../artgine/app/subject/CSubject.js";
+import { CPlaneInside } from "../../../artgine/geometry/CPlaneInside.js";
+import { CVec3 } from "../../../artgine/geometry/CVec3.js";
 
 export interface IDamageable
 {
